@@ -23,6 +23,7 @@ public class TradeSystem {
         if (! directory.exists()) {
             directory.mkdir();
         }
+
         if (!((new File("data/adminUser.ser"))).exists()) {
             createAdminUser();
         }

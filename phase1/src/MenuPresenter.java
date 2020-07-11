@@ -1,14 +1,7 @@
 
-
 import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Logger;
+import java.util.*;
+
 
 
 // import university.Student;
@@ -20,27 +13,34 @@ import java.util.logging.Logger;
 //https://stackoverflow.com/questions/12218959/how-to-read-certain-portion-of-the-text-file-in-java
 
 
+//store ea line in an arraylist for the hashmap
 
+// getMenu(key).get[0] .. get[1]... get[2]
+// stringbuilder -- //n
 public class MenuPresenter {
-    private final LinkedHashMap<Integer, String> menusMap = new LinkedHashMap<Integer, String>();
-    File menu = new File("Menu.text");
+    private final LinkedHashMap<Integer, ArrayList<String>> menusMap = new LinkedHashMap<Integer, ArrayList<String>>();
+    File menu;
 
     private LinkedHashMap readMenus() {
         try {
+            menu = new File("Menu.txt");
             BufferedReader br = new BufferedReader(new FileReader(menu));
 
             try {
-                int menuNum = 1;
+                int menuNum = 0;
                 String readBuff = br.readLine();
-                String section = "";
+                // add newline char back into sb
+                ArrayList<String> section = new ArrayList<String>();
                 while (readBuff != null) {
-                    if (section.equals("MENU{") && !readBuff.equals("}")) {
-                        menusMap.put(menuNum, readBuff);
-                        menuNum += 1;
-                    } else if (readBuff.equals("source_files {") || readBuff.equals("clone_pairs {")) {
-                        section = readBuff;
-                    } else if (readBuff.equals("}")) {
-                        section = "";
+                    if (readBuff.equals("MENU{")) {
+                        readBuff = br.readLine();
+                        section.clear();
+                        while (!readBuff.equals("}")){
+                            section.add(readBuff);
+                            readBuff = br.readLine();
+                        }
+                        menusMap.put(menuNum, section);
+                        menuNum ++;
                     }
                     readBuff = br.readLine();
                 }
@@ -58,7 +58,7 @@ public class MenuPresenter {
         return menusMap;
     }
 
-    public void getMenu(int num) {
-        System.out.println(menusMap.get(num));
+    public void printMenu(int menuIndex, int lineIndex) {
+        System.out.println(menusMap.get(menuIndex).get(lineIndex));
     }
 }
