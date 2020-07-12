@@ -20,7 +20,7 @@ public class UserManager implements Serializable{
     protected HashMap<String, ArrayList<UserAlert>> alertSystem = new HashMap<String, ArrayList<UserAlert>>();
 
     //UserManager -- all thresholds are admin things really, rethink this?
-    private int incompleteThreshold; // # of incomplete trades allowed
+    private int incompleteThreshold = 3; // # of incomplete trades allowed
 
     /**
      * Method called on program Start up. Currently fetches all userAlerts from other places in the program.

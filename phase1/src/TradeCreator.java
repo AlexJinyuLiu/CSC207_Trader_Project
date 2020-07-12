@@ -20,7 +20,7 @@ public class TradeCreator implements Serializable {
 
     protected TradeHistories tradeHistories = new TradeHistories();
 
-    private int completeThreshold; // # of complete trades allowed per week
+    private int completeThreshold = 3; // # of complete trades allowed per week
 
     private int borrowLendThreshold = 1;
 

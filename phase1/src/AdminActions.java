@@ -5,25 +5,33 @@ import java.util.Scanner;
 
 public class AdminActions {
 
-    public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator) {
+    public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator, UserManager userManager) {
         boolean running = true;
         while (running) {
             int input = -1;
             Scanner scan = new Scanner(System.in);
             menuPresenter.printMenu(4,0); // Admin Login Menu
             menuPresenter.printMenu(4,1); // (1) Set borrow/lend threshold
-            menuPresenter.printMenu(4,2); // (2) Add new admin
-            menuPresenter.printMenu(4,3); // (0) Quit
+            menuPresenter.printMenu(4,2); // (2) Set complete trade threshold
+            menuPresenter.printMenu(4,3); // (3) Set incomplete trade threshold
+            menuPresenter.printMenu(4,4); // (4) Add new admin
+            menuPresenter.printMenu(4,5); // (0) Quit
             boolean valid_input = false;
             while (!valid_input) {
                 input = scan.nextInt();
-                if (input > 2 || input < 0) {
+                if (input > 4 || input < 0) {
                     menuPresenter.printMenu(4,4);
                     // System.out.println("Please enter a number from 0 to 2");
                 } else if (input == 1) {
                     changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
                     valid_input = true;
                 } else if (input == 2) {
+                    changeCompleteThreshold(menuPresenter, adminUser, tradeCreator);
+                    valid_input = true;
+                } else if (input == 3) {
+                    changeIncompleteThreshold(menuPresenter, adminUser, userManager);
+                    valid_input = true;
+                } else if (input == 4) {
                     addNewAdmin(menuPresenter, adminUser);
                     valid_input = true;
                 } else if (input == 0) {
@@ -52,9 +60,45 @@ public class AdminActions {
             input = scan.nextInt();
             if (input > 50 || input < 0) {
                 // System.out.println("Please enter a valid threshold number");
-                menuPresenter.printMenu(6,0);
+                menuPresenter.printMenu(6,2);
             } else {
                 adminUser.changeBorrowLendThreshold(tradeCreator, input);
+                flag = false;
+            }
+        }
+    }
+
+    protected void changeCompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
+                                              TradeCreator tradeCreator) {
+        boolean flag = true;
+        int input = 0;
+        while (flag) {
+            Scanner scan = new Scanner(System.in);
+            menuPresenter.printMenu(9,0);
+            menuPresenter.printMenu(9,1);
+            input = scan.nextInt();
+            if (input > 50 || input < 0) {
+                menuPresenter.printMenu(9,2);
+            } else {
+                adminUser.changeCompleteThreshold(tradeCreator, input);
+                flag = false;
+            }
+        }
+    }
+
+    protected void changeIncompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
+                                           UserManager userManager) {
+        boolean flag = true;
+        int input = 0;
+        while (flag) {
+            Scanner scan = new Scanner(System.in);
+            menuPresenter.printMenu(10,0);
+            menuPresenter.printMenu(10,1);
+            input = scan.nextInt();
+            if (input > 50 || input < 0) {
+                menuPresenter.printMenu(10,2);
+            } else {
+                adminUser.changeIncompleteThreshold(userManager, input);
                 flag = false;
             }
         }
