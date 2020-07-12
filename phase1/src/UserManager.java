@@ -186,21 +186,6 @@ public class UserManager implements Serializable{
     }
 
 
-    /* No longer neccessary - Louis
-    public void AddTransaction(Trade trade){
-        transactions.add(trade);
-    } // This is for adding completed transactions to the stored list - Mel
-     */
-    //UserManager //TODO: Move the unfreeze stuff from the controller/presenter layer to instead call this method.
-    //public void requestUnfreeze(String username){
-        // user can request to unfreeze account whether it should be unfrozen or not
-        // moved by Riya from User
-        // unfreezeRequestList.add(username);
-        // UnfreezeRequestAlert alert = new UnfreezeRequestAlert(user1.getUsername(),user1.getNumBorrowed(),
-        //                    user1.getNumLent(), borrowLendThreshold);
-        //            adminAlerts.add(alert);
-    //}
-
     /**
      * Return a list of all adminAlerts from this class. Also empties the adminAlerts member.
      * @return the list of adminAlerts
@@ -210,70 +195,6 @@ public class UserManager implements Serializable{
         this.adminAlerts = new ArrayList<AdminAlert>();
         return alerts;
     }
-
-
-//    public ArrayList<Item> RecentTransactionItems(User user) {
-//        ArrayList<Trade> potentialRecentCompleted = new ArrayList<Trade>();
-//        ArrayList<TemporaryTrade> potentialRecentIncompleted = new ArrayList<TemporaryTrade>();
-//        ArrayList<Item> recents = new ArrayList<Item>();
-//        for (Trade trade : completedTrades) {
-//            if (trade.getUsername1().equals(user.username) & !trade.getItemIDsSentToUser2().isEmpty()) {
-//                potentialRecentCompleted.add(trade);
-//            } else if (trade.getUsername2().equals(user.username) & !trade.getItemIDsSentToUser1().isEmpty()) {
-//                potentialRecentCompleted.add(trade);
-//            }
-//        }
-//        for (TemporaryTrade tTrade: currentTemporaryTrades) {
-//            if (tTrade.getUsername1().equals(user.username) & !tTrade.getItemIDsSentToUser2().isEmpty()) {
-//                potentialRecentIncompleted.add(tTrade);
-//            } else if (tTrade.getUsername2().equals(user.username) & !tTrade.getItemIDsSentToUser1().isEmpty()) {
-//                potentialRecentIncompleted.add(tTrade);
-//            }
-//        }
-//        while (recents.size() < 3 & (!potentialRecentCompleted.isEmpty() | !potentialRecentIncompleted.isEmpty())) {
-//            if (!potentialRecentCompleted.isEmpty() & potentialRecentIncompleted.isEmpty()) {
-//                Trade mostRecentComp = potentialRecentCompleted.get(potentialRecentCompleted.size() - 1);
-//                if (mostRecentComp.getUsername1().equals(user.username)) {
-//                    recents.add(searchItem(mostRecentComp.getItemIDsSentToUser2().get(0)));
-//                    potentialRecentCompleted.remove(mostRecentComp);
-//                } else if (mostRecentComp.getUsername2().equals(user.username)) {
-//                    recents.add(searchItem(mostRecentComp.getItemIDsSentToUser1().get(0)));
-//                    potentialRecentCompleted.remove(mostRecentComp);
-//                }
-//            } else if (!potentialRecentIncompleted.isEmpty() & potentialRecentCompleted.isEmpty()) {
-//                Trade mostRecentIncomp = potentialRecentIncompleted.get(potentialRecentCompleted.size() - 1);
-//                if (mostRecentIncomp.getUsername1().equals(user.username)) {
-//                    recents.add(searchItem(mostRecentIncomp.getItemIDsSentToUser2().get(0)));
-//                    potentialRecentIncompleted.remove(mostRecentIncomp);
-//                } else if (mostRecentIncomp.getUsername2().equals(user.username)) {
-//                    recents.add(searchItem(mostRecentIncomp.getItemIDsSentToUser1().get(0)));
-//                    potentialRecentIncompleted.remove(mostRecentIncomp);
-//                }
-//            } else {
-//                Trade mostRecentComp = potentialRecentCompleted.get(potentialRecentCompleted.size() - 1);
-//                Trade mostRecentIncomp = potentialRecentIncompleted.get(potentialRecentIncompleted.size() - 1);
-//                if (mostRecentComp.getTimeOfTrade().isAfter(mostRecentIncomp.getTimeOfTrade())) {
-//                    if (mostRecentComp.getUsername1().equals(user.username)) {
-//                        recents.add(searchItem(mostRecentComp.getItemIDsSentToUser2().get(0)));
-//                        potentialRecentCompleted.remove(mostRecentComp);
-//                    } else if (mostRecentComp.getUsername2().equals(user.username)) {
-//                        recents.add(searchItem(mostRecentComp.getItemIDsSentToUser1().get(0)));
-//                        potentialRecentCompleted.remove(mostRecentComp);
-//                    }
-//                } else if (mostRecentIncomp.getTimeOfTrade().isAfter(mostRecentComp.getTimeOfTrade())) {
-//                    if (mostRecentIncomp.getUsername1().equals(user.username)) {
-//                        recents.add(searchItem(mostRecentIncomp.getItemIDsSentToUser2().get(0)));
-//                        potentialRecentIncompleted.remove(mostRecentIncomp);
-//                    } else if (mostRecentIncomp.getUsername2().equals(user.username)) {
-//                        recents.add(searchItem(mostRecentIncomp.getItemIDsSentToUser1().get(0)));
-//                        potentialRecentIncompleted.remove(mostRecentIncomp);
-//                    }
-//                }
-//            }
-//        }
-//        return recents;
-//    }
-//As ugly as this is, please don't delete this yet until I am sure the newer code works - Jinyu
 
     /** Method which returns a user when given their username
      * Author: Louis Scheffer V

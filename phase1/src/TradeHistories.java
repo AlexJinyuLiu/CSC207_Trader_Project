@@ -138,7 +138,6 @@ public class TradeHistories  implements Serializable {
      */ //TradeManager
     public ArrayList<Item> getNRecentItems(UserManager userManager, String user, int n) {
         ArrayList<Integer> orderedItemsID = this.getOrderedItemsID(user);
-        //TODO: This might not work
         ArrayList<Integer> orderedItemsIDClone = (ArrayList<Integer>) orderedItemsID.clone();
         ArrayList<Item> nOrderedItems = new ArrayList<Item>();
         while (nOrderedItems.size() < n && !orderedItemsIDClone.isEmpty()) {
