@@ -72,7 +72,7 @@ public class TradeSystem {
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
             adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
             //TODO: Ensure the alert queue is depleted after all are handled.
-            adminActions.runAdminMenu(adminUser, tradeCreator);
+            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator);
         } else {
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
             userAlertManager.handleAlertQueue(userManager, tradeCreator, userAlerts);
