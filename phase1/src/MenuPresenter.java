@@ -21,7 +21,7 @@ public class MenuPresenter {
     private final LinkedHashMap<Integer, ArrayList<String>> menusMap = new LinkedHashMap<Integer, ArrayList<String>>();
     File menu;
 
-    private LinkedHashMap readMenus() {
+    MenuPresenter() {
         try {
             menu = new File("Menu.txt");
             BufferedReader br = new BufferedReader(new FileReader(menu));
@@ -55,10 +55,9 @@ public class MenuPresenter {
             System.out.println("Error occured, please try again later.");
             e.printStackTrace();
         }
-        return menusMap;
     }
 
     public void printMenu(int menuIndex, int lineIndex) {
-        System.out.println(menusMap.get(menuIndex).get(lineIndex));
+        System.out.println(menusMap);//.get(menuIndex).get(lineIndex));
     }
 }
