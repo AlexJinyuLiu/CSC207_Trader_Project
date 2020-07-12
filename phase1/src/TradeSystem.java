@@ -11,7 +11,6 @@ public class TradeSystem {
     private UserManager userManager;
     private TradeCreator tradeCreator;
     private MenuPresenter menuPresenter = new MenuPresenter();
-    private AlertPresenter alertPresenter = new AlertPresenter();
 
     private UserAlertManager userAlertManager = new UserAlertManager();
 
@@ -71,7 +70,7 @@ public class TradeSystem {
                 System.out.println("Admin has alerts");
             }
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
-            adminAlertManager.handleAlertQueue(alertPresenter, adminUser, userManager, tradeCreator, adminAlerts);
+            adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
             //TODO: Ensure the alert queue is depleted after all are handled.
             adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager);
         } else {

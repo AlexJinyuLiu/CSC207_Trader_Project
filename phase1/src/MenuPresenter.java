@@ -32,7 +32,7 @@ public class MenuPresenter {
                 // add newline char back into sb
                 ArrayList<String> section = new ArrayList<String>();
                 while (readBuff != null) {
-                    if (readBuff.equals("MENU{")) {
+                    if (readBuff.equals("MENU{") || readBuff.equals("Alert{")) {
                         readBuff = br.readLine();
                         section.clear();
                         while (!readBuff.equals("}")){
