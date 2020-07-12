@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TradeCreator implements Serializable {
-    private static final long serialVersionUID = 6529685098267757690L;
+    private static final long serialVersionUID = 5537699939763062781L;
 
     protected ArrayList<Trade> pendingTrades = new ArrayList<Trade>(); // list of all trades which have been accepted but not completed - Louis
 
