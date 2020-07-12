@@ -21,10 +21,10 @@ public class AdminActions {
                     menuPresenter.printMenu(4,4);
                     // System.out.println("Please enter a number from 0 to 2");
                 } else if (input == 1) {
-                    changeBorrowLendThreshold(adminUser, tradeCreator);
+                    changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
                     valid_input = true;
                 } else if (input == 2) {
-                    addNewAdmin(adminUser);
+                    addNewAdmin(menuPresenter, adminUser);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -37,6 +37,8 @@ public class AdminActions {
     /** Method that takes user input and changes the threshold value (The necessary difference between the number of
      * items users have lent and borrowed before they can make another transaction)
      * @param adminUser AdminUser logged in making changes
+     * @param menuPresenter menu presenter
+     * @param tradeCreator creating the trade
      */
     protected void changeBorrowLendThreshold( MenuPresenter menuPresenter, AdminUser adminUser,
                                               TradeCreator tradeCreator) {
@@ -61,6 +63,7 @@ public class AdminActions {
     /** Method that creates additional logins for AdminUser account
      *
      * @param adminUser AdminUser logged in making changes
+     * @param menuPresenter menu presenter
      */
     protected void addNewAdmin(MenuPresenter menuPresenter, AdminUser adminUser) {
         boolean flag = true;
