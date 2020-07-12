@@ -7,7 +7,7 @@ public class TradeRequestAlert extends UserAlert implements Serializable {
     protected int tradeID;
     protected boolean isTempTrade;
 
-    public TradeRequestAlert(String senderUserName, int tradeID, boolean isTempTrade){
+    public TradeRequestAlert(String senderUserName, int tradeID){
         super();
         this.senderUserName = senderUserName;
         this.tradeID = tradeID;

@@ -11,33 +11,46 @@ MENU{
 Create Account Menu
 Enter your desired username
 Enter your desired password
-Username taken, try again
 }
 
 MENU{
 User Username Login Menu
 Enter your username:
-Username was not valid. Please try again or enter 0 to return to the main menu.
 }
 
 MENU{
 User Password Login Menu
 Please enter the password for
 Logged in as
-Invalid Password. Please try again or enter 0 to return to the main menu.
 }
 
 MENU{
 Admin Login Menu
-Please enter the password for 
-Logged in as Admin: 
-Invalid Password. Please try again or enter 0 to return to the main menu.
+(1) Set borrow/lend threshold
+(2) Add new admin
+(0) Quit
+The number you entered was not listed above. Please enter a choice between 0 and 2.
 }
 
 MENU{
 optionChoice Menu
 Please enter one of the numbers listed above
-The number you entered was not listed above. Please enter a choice between 0 and
 }
 
+MENU{
+Change Borrow/Lend Threshold Menu
+Please enter the new threshold value for lent vs borrowed:
+The number you entered was not valid. Please enter a valid threshold number.
+}
+
+MENU{
+Add New Admin Menu
+Enter the username of the administrator you want to add:
+Enter the password of the administrator you want to add:
+}
+
+MENU{
+Username taken. Please enter a different username.
+Incorrect password. Please try again.
+}
 
