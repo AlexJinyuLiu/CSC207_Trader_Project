@@ -43,6 +43,6 @@ public class AlertPresenter {
         return alertsMap;
     }
 
-    public void printMenu(int alertIndex, int lineIndex) {
+    public void printAlert(int alertIndex, int lineIndex) {
         System.out.println(alertsMap.get(alertIndex).get(lineIndex));
     }}

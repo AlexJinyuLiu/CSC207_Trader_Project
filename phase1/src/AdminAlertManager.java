@@ -9,12 +9,12 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      *
      * @param alerts Array List of AdminAlerts that need to be processed.
      */
-    public void handleAlertQueue(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator,
-                                 ArrayList<AdminAlert> alerts){
+    public void handleAlertQueue(AlertPresenter alertPresenter, AdminUser adminUser, UserManager userManager,
+                                 TradeCreator tradeCreator, ArrayList<AdminAlert> alerts){
 
         while(!(alerts.size() == 0)){
             AdminAlert alert = alerts.get(0);
-            handleAlert(menuPresenter, adminUser, userManager, tradeCreator, alert);
+            handleAlert(alertPresenter, adminUser, userManager, tradeCreator, alert);
             alerts.remove(0);
         }
 
@@ -24,15 +24,17 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      *
      * @param a AdminAlert object to be handled
      */
-    private void handleAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator, AdminAlert a){
+    private void handleAlert(AlertPresenter alertPresenter, AdminUser adminUser, UserManager userManager,
+                             TradeCreator tradeCreator, AdminAlert a){
         if (a instanceof ItemValidationRequestAlert){
-                handleItemValidationRequestAlert(adminUser, userManager, (ItemValidationRequestAlert) a);
+                handleItemValidationRequestAlert(alertPresenter, adminUser, userManager,
+                        (ItemValidationRequestAlert) a);
         } else if (a instanceof ReportAlert){
-            handleReportAlert(adminUser, userManager, tradeCreator, (ReportAlert) a);
+            handleReportAlert(alertPresenter, adminUser, userManager, tradeCreator, (ReportAlert) a);
         } else if (a instanceof FreezeUserAlert){
-            handleFreezeUserAlert(adminUser, userManager,(FreezeUserAlert) a);
+            handleFreezeUserAlert(alertPresenter, adminUser, userManager,(FreezeUserAlert) a);
         }else if (a instanceof UnfreezeRequestAlert){
-            handleUnfreezeRequestAlert(userManager, adminUser, (UnfreezeRequestAlert) a);
+            handleUnfreezeRequestAlert(alertPresenter, userManager, adminUser, (UnfreezeRequestAlert) a);
         }
     }
 
@@ -44,16 +46,26 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      *
      * @param alert AdminAlert that there is an ItemValidationRequestAlert to be handled
      */
-    private void handleItemValidationRequestAlert(AdminUser adminUser, UserManager userManager, ItemValidationRequestAlert alert){
-        System.out.println("Item validation request\nUser: " + alert.getOwner() + "\nItem name: " + alert.getName() +
-                "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID());
+    private void handleItemValidationRequestAlert(AlertPresenter alertPresenter, AdminUser adminUser,
+                                                  UserManager userManager, ItemValidationRequestAlert alert){
+        // System.out.println("Item validation request\nUser: " + alert.getOwner() + "\nItem name: " + alert.getName() +
+        //         "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID());
+        alertPresenter.printAlert(0,0);
+        alertPresenter.printAlert(0,1);
+        alertPresenter.printAlert(0,2);
+        alertPresenter.printAlert(0,3);
+        alertPresenter.printAlert(0,4);
+
         Scanner scanner = new Scanner(System.in);
         String message;
-        System.out.println("(1) Approve this item");
-        System.out.println("(2) Deny this item");
-        int choice = optionChoice(2);
+        // System.out.println("(1) Approve this item");
+        alertPresenter.printAlert(0,5);
+        // System.out.println("(2) Deny this item");
+        alertPresenter.printAlert(0,6);
+        int choice = optionChoice(alertPresenter, 2);
         if (choice == 2){
-            System.out.println("Please enter a reason why this request was declined.");
+            // System.out.println("Please enter a reason why this request was declined.");
+            alertPresenter.printAlert(0,7);
             message = scanner.next();
         }else{
             message = "";
@@ -65,7 +77,8 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      *
      * @param alert AdminAlert that there is a ReportAlert to be handled
      */
-    private void handleReportAlert(AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator,
+    private void handleReportAlert(AlertPresenter alertPresenter, AdminUser adminUser, UserManager userManager,
+                                   TradeCreator tradeCreator,
                                    ReportAlert alert){
         System.out.println(alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
                 " whose trade status is " + alert.getIsTradeComplete()
@@ -99,7 +112,8 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      *
      * @param alert AdminAlert that there is a user that should be frozen
      */
-    private void handleFreezeUserAlert(AdminUser adminUser, UserManager userManager, FreezeUserAlert alert){
+    private void handleFreezeUserAlert(AlertPresenter alertPresenter, AdminUser adminUser, UserManager userManager,
+                                       FreezeUserAlert alert){
 
         System.out.println("Freeze User Alert" +
                 "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
@@ -128,7 +142,8 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      *
      * @param alert AdminAlert that there is a user who has requested that their account be unfrozen
      */
-    private void handleUnfreezeRequestAlert(UserManager userManager, AdminUser adminUser, UnfreezeRequestAlert alert){
+    private void handleUnfreezeRequestAlert(AlertPresenter alertPresenter, UserManager userManager, AdminUser adminUser,
+                                            UnfreezeRequestAlert alert){
 
         System.out.println("Unfreeze User Request Alert" +
                 "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
@@ -157,7 +172,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      * @return int
      */
     //helper method to ensure the user picks a valid choice, options are between 1 and x - Louis
-    private int optionChoice(int x){
+    private int optionChoice(AlertPresenter alertPresenter, int x){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter one of the numbers listed above");
         int choice = scanner.nextInt();

@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class AdminActions {
 
-    public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator, UserManager userManager) {
+    public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator,
+                             UserManager userManager) {
         boolean running = true;
         while (running) {
             int input = -1;
