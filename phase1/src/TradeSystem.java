@@ -11,6 +11,7 @@ public class TradeSystem {
     private UserManager userManager;
     private TradeCreator tradeCreator;
     private MenuPresenter menuPresenter = new MenuPresenter();
+    private AlertPresenter alertPresenter = new AlertPresenter();
 
     private UserAlertManager userAlertManager = new UserAlertManager();
 
@@ -45,9 +46,9 @@ public class TradeSystem {
         Scanner scan = new Scanner(System.in);
         User loggedIn = null;
         boolean isAdmin = false;
-//method Menu Builder
-        System.out.println("Welcome to the Trade Master 9000!\n Would you like to create an account or " +
-                "login?\n(1) Create account \n(2) Login to an account\n(0) Quit");
+         System.out.println("Welcome to the Trade Master 9000!\n Would you like to create an account or " +
+                 "login?\n(1) Create account \n(2) Login to an account\n(0) Quit");
+        // MenuPresenter.printMenu(10, 0);
 
         int input = optionChoice(2);
         //TODO: This will log a user in a admin if an incorrect username and password is entered.
@@ -70,9 +71,9 @@ public class TradeSystem {
                 System.out.println("Admin has alerts");
             }
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
-            adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
+            adminAlertManager.handleAlertQueue(alertPresenter, adminUser, userManager, tradeCreator, adminAlerts);
             //TODO: Ensure the alert queue is depleted after all are handled.
-            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator);
+            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager);
         } else {
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
             userAlertManager.handleAlertQueue(userManager, tradeCreator, userAlerts);
