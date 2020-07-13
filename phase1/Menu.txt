@@ -11,17 +11,21 @@ MENU{
 Create Account Menu
 Enter your desired username
 Enter your desired password
+Username taken. Please try again.
 }
 
 MENU{
 User Username Login Menu
 Enter your username:
+Username was not valid. Please try again or enter 0 to return to the main menu.
 }
 
 MENU{
 User Password Login Menu
-Please enter the password for
-Logged in as
+Please enter your password:
+Login successful.
+Invalid Password. Please try again or enter 0 to return to the main menu.
+Logged in as Admin
 }
 
 MENU{
@@ -37,6 +41,7 @@ The number you entered was not listed above. Please enter a choice between 0 and
 MENU{
 optionChoice Menu
 Please enter one of the numbers listed above
+The number you entered was not listed above. Please enter a valid number.
 }
 
 MENU{
@@ -58,7 +63,7 @@ Incorrect password. Please try again.
 
 MENU{
 Change Complete Trade Threshold Menu
-Please enter the new threshold value for complete trades a user can conduct:
+Please enter the new threshold value for complete trades a user can conduct per week:
 The number you entered was not valid. Please enter a valid threshold number.
 }
 
@@ -79,4 +84,10 @@ Item ID Number:
 (1) Approve this item
 (2) Deny this item
 Please explain why this item was declined:
+}
+
+MENU{
+Change incomplete trade threshold
+Please enter the new threshold value for the number of incomplete trades a user can have before freezing:
+The number you entered was not valid. Please enter a valid threshold number.
 }
