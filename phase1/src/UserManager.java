@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserManager implements Serializable{
+    private static final long serialVersionUID = 886852790530090694L;
     //author: Jinyu Liu, Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
     //All methods written by Jinyu Liu except where noted
 
