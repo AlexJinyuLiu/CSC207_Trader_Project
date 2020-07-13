@@ -21,6 +21,7 @@ public class Item implements Serializable {
     }
 
     @Override
+    // TODO change to be compatible with MenuPresenter?
     public String toString() {
         return name + ", item Id: " + id + ", Description: " + description;
     }

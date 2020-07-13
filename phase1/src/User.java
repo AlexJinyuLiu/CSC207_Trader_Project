@@ -189,6 +189,7 @@ public class User implements Serializable {
      * @return string representation of the user.
      */
     public String toString(){
+        // TODO change to be compatible with MenuPresenter
         StringBuilder userString = new StringBuilder("User: " + username + "\n");
         if (availableItems.size() == 0){
             userString.append("This User has no items available for trade. \n");

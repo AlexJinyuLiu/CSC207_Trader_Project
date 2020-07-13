@@ -37,6 +37,7 @@ The number you entered was not listed above. Please enter a choice between 0 and
 MENU{
 optionChoice Menu
 Please enter one of the numbers listed above
+The number you entered was not listed above. Please enter a choice between 1 and
 }
 
 MENU{
@@ -79,4 +80,129 @@ Item ID Number:
 (1) Approve this item
 (2) Deny this item
 Please explain why this item was declined:
+}
+
+Alert{
+Handle Report Alert
+(1) Accept Report
+(2) Dismiss
+}
+
+Alert{
+Handle Freeze User Alert
+(1) Freeze User
+(2) Dismiss
+}
+
+Alert{
+Unfreeze Request Alert
+(1) Unfreeze User
+(2) Dismiss
+}
+
+MENU{
+User Menu
+(1) View items and wishlist
+(2) View user stats
+(3) Request an unfreeze
+(4) View other users
+(5) View your pending trades
+(6) View active temporary trades
+(0) Quit
+Please enter a number corresponding to a setting above:
+Please enter a number from 0 to 6
+}
+
+MENU{
+Items and Wishlist
+You have no items.
+Your available items:
+Your wishlist:
+(1) Send Item Validation request
+(2) Remove an item from available items
+(3) Remove an item from your wishlist
+Please enter a number from 1 to 3
+Please enter the name of your item
+Please enter the item description
+Please enter the ID of the item you wish to remove
+Item deleted
+Invalid item id
+Please enter the name of the item on your wishlist you wish to remove.
+}
+
+MENU{
+View Other Users
+Enter a number to view a User's page:
+Back to Main Menu
+(0) Next page (current page:
+Please Enter a valid input.
+Viewing User:
+}
+
+MENU{
+Viewing User
+(1) Send a message
+(2) Add one of their items to your wishlist
+(3) Send a trade request
+(0) Back to Main Menu
+Please enter a valid input
+Enter the contents of your message:
+Sent message to
+Enter the name of the item you would like added to your wishlist:
+}
+
+MENU{
+Form Trade Request
+The other user has no available items. You will not receive anything in this trade.
+Enter the ID of an item want from this trade:
+Invalid ID. Please try again.
+Would you like to add another item? (Y/N)
+Moving on...
+Please enter Y or N.
+You will not be offering anything with this trade.
+Enter the ID of an item you want to offer:
+Your available items to trade:
+ID:
+Enter a meeting time (format: yyyy-MM-dd HH:mm:
+Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
+Enter a meeting place:
+Your trade could not be processed.
+This could have happened if you have completed too many trades this week or if one of the users was frozen.
+Successfully created and sent trade request. You will be notified when they respond.
+}
+
+MENU{
+View User Stats
+(1) View number of items user has borrowed
+(2) View number of items user has lent
+(3) View frozen status
+(4) View number of trades involving user that have not been completed
+(5) View number of transactions this week
+(6) View items recently traded away
+(7) View most frequent trading partner's
+(8) Return to User Menu
+Please enter a number from 1 to 8
+Number of items borrowed:
+Number of items lent:
+Your account has been frozen.
+Your account is not frozen.
+Number of incomplete transactions:
+Number of transactions this week:
+}
+
+MENU{
+Send Unfreeze Request
+Your account is not frozen.
+Your unfreeze request has been sent.
+}
+
+MENU{
+View Pending Trades
+Options:
+(1) Exit this menu
+====================
+Your pending trades:
+tradeToString should be called here (?)
+Your choice was not valid, please pick a valid choice.
+Your active temporary trades:
 }
