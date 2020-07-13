@@ -31,13 +31,13 @@ Admin Login Menu
 (3) Set incomplete trade threshold
 (4) Add new admin
 (0) Quit
-The number you entered was not listed above. Please enter a choice between 0 and 2.
+The number you entered was not listed above. Please enter a valid choice number.
 }
 
 MENU{
 optionChoice Menu
 Please enter one of the numbers listed above
-The number you entered was not listed above. Please enter a choice between 1 and
+The number you entered was not listed above. Please enter a valid choice number.
 }
 
 MENU{
@@ -190,7 +190,7 @@ Number of incomplete transactions:
 Number of transactions this week:
 }
 
-MENU{
+Alert{
 Send Unfreeze Request
 Your account is not frozen.
 Your unfreeze request has been sent.
@@ -205,4 +205,96 @@ Your pending trades:
 tradeToString should be called here (?)
 Your choice was not valid, please pick a valid choice.
 Your active temporary trades:
+}
+
+Alert{
+Handle Frozen Alert
+Your account has been frozen by the administrator.
+Number of items you borrowed:
+Number of items you lent:
+Number of items you need to lend before you can borrow:
+(1) Dismiss
+}
+
+Alert{
+Handle Expiration Alert
+The following temporary trade expired at:
+(1) Report the other user
+(2) Confirm ReExchange
+Reason for reporting:
+Report has been sent to the tribunal.
+Trade re-exchange confirmed.
+}
+
+Alert{
+Handle Trade Request Alert
+Trade request made by
+(1) Accept
+(2) Decline
+(3) Edit time and Place
+Note: Number of remaining edits allowed is
+Trade Request Accepted. Meet up with the person at the time and place specified above.
+Remember to login to confirm the trade afterwords!
+Trade request declined.
+Editing Trade Request. Enter new meeting time (format: yyyy-MM-dd HH:mm):
+Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
+Enter new meeting place:
+Trade successfully edited. Meeting at:
+}
+
+Alert{
+Handle Trade Accepted Alert
+The following trade request has been accepted:
+(1) Dismiss
+}
+
+Alert{
+Handle Trade Declined Alert
+Your trade request has been declined:
+(1) Dismiss
+}
+
+Alert{
+Handle Trade Cancelled Alert
+The following trade has been cancelled as one of the users is no longer in possession of an item. Trade ID:
+(1) Dismiss
+}
+
+Alert{
+Handle Item Validation Declined Alert
+Your item validation request has been declined for the following reason:
+User:
+Item name:
+Item description:
+Item ID:
+(1) Dismiss
+(2) Send a new item validation request
+Please enter the name of your item
+Please enter the item description
+}
+
+Alert{
+Handle Trade Past Date Alert
+The following trade expired at:
+(1) Confirm trade
+(2) I didn't show up
+(3) The other person didn't show up
+Trade confirmed. Your items have been exchanged on the system.
+}
+
+Alert{
+Handle Message Alert
+From:
+(1) Dismiss
+}
+
+Alert{
+Trade to String
+User 1:
+User 2:
+Items being traded from User 1 to User 2:
+Items being traded from User 1 to User 2:
+Time and date of exchange:
+Location of trade:
+Trade ID:
 }
