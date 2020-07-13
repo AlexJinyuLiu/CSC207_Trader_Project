@@ -93,11 +93,10 @@ public class AdminActions {
         int input = 0;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            menuPresenter.printMenu(10,0);
-            menuPresenter.printMenu(10,1);
+            menuPresenter.printMenu(12,1);
             input = scan.nextInt();
             if (input > 50 || input < 0) {
-                menuPresenter.printMenu(10,2);
+                menuPresenter.printMenu(12,2);
             } else {
                 adminUser.changeIncompleteThreshold(userManager, input);
                 flag = false;

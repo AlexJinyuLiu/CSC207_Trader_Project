@@ -39,7 +39,7 @@ public class MenuPresenter {
                             section.add(readBuff);
                             readBuff = br.readLine();
                         }
-                        menusMap.put(menuNum, (ArrayList<String>)section.clone());
+                        menusMap.put(menuNum, (ArrayList<String>) section.clone());
                         menuNum ++;
                     }
                     readBuff = br.readLine();
