@@ -13,10 +13,11 @@ public class UserAlertManager {
      * Iterate through each alert in alerts, handle it and remove it from the list
      * @param alerts list of alert that are sent in
      */
-    public void handleAlertQueue(UserManager userManager, TradeCreator tradeCreator, ArrayList<UserAlert> alerts){
+    public void handleAlertQueue(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                                 ArrayList<UserAlert> alerts){
         while(!(alerts.size() == 0)){
             UserAlert alert = alerts.get(0);
-            handleAlert(userManager, tradeCreator, alert);
+            handleAlert(menuPresenter, userManager, tradeCreator, alert);
             alerts.remove(alert);
         }
     }
@@ -25,28 +26,29 @@ public class UserAlertManager {
      * Handle alert based on its coresponding type
      * @param alert alert sent in
      */
-    private void handleAlert(UserManager userManager, TradeCreator tradeCreator, UserAlert alert) {
+    private void handleAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                             UserAlert alert) {
 
         if (alert instanceof FrozenAlert) {
-            handleFrozenAlert((FrozenAlert) alert);
+            handleFrozenAlert(menuPresenter, (FrozenAlert) alert);
         } else if (alert instanceof ExpirationAlert) {
-            handleExpirationAlert(userManager, tradeCreator, (ExpirationAlert) alert);
+            handleExpirationAlert(menuPresenter, userManager, tradeCreator, (ExpirationAlert) alert);
         } else if (alert instanceof TradeRequestAlert){
-            handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert);
+            handleTradeRequestAlert(menuPresenter, userManager, tradeCreator, (TradeRequestAlert) alert);
         } else if (alert instanceof TradeAcceptedAlert) {
-            handleTradeAcceptedAlert(userManager, tradeCreator, (TradeAcceptedAlert) alert);
+            handleTradeAcceptedAlert(menuPresenter, userManager, tradeCreator, (TradeAcceptedAlert) alert);
         } else if (alert instanceof TradeDeclinedAlert){
-            handleTradeDeclinedAlert((TradeDeclinedAlert) alert);
+            handleTradeDeclinedAlert(menuPresenter, (TradeDeclinedAlert) alert);
         } else if (alert instanceof TradeCancelledAlert) {
-            handleTradeCancelledAlert((TradeCancelledAlert) alert);
+            handleTradeCancelledAlert(menuPresenter,(TradeCancelledAlert) alert);
         } else if (alert instanceof  TradeRequestCancelledAlert) {
-            handleTradeRequestCancelledAlert((TradeRequestCancelledAlert) alert);
+            handleTradeRequestCancelledAlert(menuPresenter,(TradeRequestCancelledAlert) alert);
         }else if (alert instanceof ItemValidationDeclinedAlert){
-            handleItemValidationDeclinedAlert(userManager, (ItemValidationDeclinedAlert) alert);
+            handleItemValidationDeclinedAlert(menuPresenter,userManager, (ItemValidationDeclinedAlert) alert);
         } else if (alert instanceof TradePastDateAlert) {
-            handleTradePastDateAlert(userManager, tradeCreator, (TradePastDateAlert) alert);
+            handleTradePastDateAlert(menuPresenter,userManager, tradeCreator, (TradePastDateAlert) alert);
         } else if (alert instanceof MessageAlert) {
-            handleMessageAlert((MessageAlert) alert);
+            handleMessageAlert(menuPresenter,(MessageAlert) alert);
         }
 
             //Each alert needs a handle method for its type, which prints/takes input and calls corresponding functions to
@@ -202,7 +204,7 @@ public class UserAlertManager {
 
         //System.out.println(a.getAcceptingUsername() +
         //        " has accepted the following trade request: \n" + tradeToString(userManager,
-                tradeCreator.searchPendingTrade(a.getTradeID())));
+                tradeCreator.searchPendingTrade(a.getTradeID());
         menuPresenter.printMenu(27, 1);
         boolean handled = false;
 
@@ -286,7 +288,7 @@ public class UserAlertManager {
         menuPresenter.printMenu(30, 6);
         //System.out.println("(2) Send a new item validation request");
         menuPresenter.printMenu(30, 7);
-        int choice = optionChoice(2);
+        int choice = optionChoice(menuPresenter,2);
         if (choice == 2){
             Scanner scan = new Scanner(System.in);
             String name = null;
@@ -382,6 +384,7 @@ public class UserAlertManager {
         menuPresenter.printMenu(33, 5);
         menuPresenter.printMenu(33, 6);
         menuPresenter.printMenu(33, 7);
+        return "User 1: " + trade.getUsername1(); // to be changed
     }
     // helper method which lists the names of the items going from user 1 to user 2 - Louis
     private String GetItemNamesFromUser1ToUser2(UserManager userManager, Trade trade){

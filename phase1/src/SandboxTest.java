@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class SandboxTest {
 
-    public static void main(String[] args) throws UserNameTakenException {
+    public static void main(MenuPresenter menuPresenter,String[] args) throws UserNameTakenException {
         UserManager usermanager = new UserManager();
         TradeCreator tradeCreator = new TradeCreator();
         TradeHistories tradeHistories = new TradeHistories();
 
-        usermanager.createUser("user1", "password");
-        usermanager.createUser("user2", "password");
-        usermanager.createUser("user3", "password");
-        usermanager.createUser("user4", "password");
+        usermanager.createUser(menuPresenter,"user1", "password");
+        usermanager.createUser(menuPresenter,"user2", "password");
+        usermanager.createUser(menuPresenter,"user3", "password");
+        usermanager.createUser(menuPresenter,"user4", "password");
         Item item1 = new Item("Bike", 1);
         Item item2 = new Item("Skateboard", 2);
         Item item3 = new Item("Hoverboard", 3);

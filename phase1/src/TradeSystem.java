@@ -75,8 +75,8 @@ public class TradeSystem {
             adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager);
         } else {
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
-            userAlertManager.handleAlertQueue(userManager, tradeCreator, userAlerts);
-            userActions.runUserMenu(userManager, tradeCreator, loggedIn);
+            userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, userAlerts);
+            userActions.runUserMenu(menuPresenter, userManager, tradeCreator, loggedIn);
         }
 
         FileManager.saveAdminToFile(adminUser);
@@ -131,7 +131,7 @@ public class TradeSystem {
                 String inputUsername = scan.nextLine();
                 System.out.println("Enter your desired password");
                 String password = scan.nextLine();
-                return userManager.createUser(inputUsername, password);
+                return userManager.createUser(menuPresenter, inputUsername, password);
             } catch (UserNameTakenException e) {
                 System.out.println("Username taken, try again");
             }

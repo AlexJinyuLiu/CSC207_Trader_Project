@@ -298,3 +298,9 @@ Time and date of exchange:
 Location of trade:
 Trade ID:
 }
+
+MENU{
+Create User
+Entered:
+That username is taken.
+}

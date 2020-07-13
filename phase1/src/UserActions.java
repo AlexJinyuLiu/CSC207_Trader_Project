@@ -14,7 +14,7 @@ public class UserActions {
 
 
     public void runUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, User user){
-        mainMenu(userManager, tradeCreator, user);
+        mainMenu(menuPresenter,userManager, tradeCreator, user);
     }
 
     /**
@@ -44,22 +44,22 @@ public class UserActions {
                     // System.out.println("Please enter a number from 0 to 6");
                     menuPresenter.printMenu(16, 9);
                 } else if (input == 1) {
-                    viewItemAndWishlist(userManager, user);
+                    viewItemAndWishlist(menuPresenter,userManager, user);
                     valid_input = true;
                 } else if (input == 2) {
-                    runStats(userManager, tradeCreator, user);
+                    runStats(menuPresenter,userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 3) {
-                    sendUnfreezeRequest(userManager, tradeCreator, user);
+                    sendUnfreezeRequest(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 4) {
-                    viewAllUsers(userManager, tradeCreator, user);
+                    viewAllUsers(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 5) {
-                    viewPendingTrades(tradeCreator, user);
+                    viewPendingTrades(menuPresenter, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 6) {
-                    viewActiveTempTrades(tradeCreator, user);
+                    viewActiveTempTrades(menuPresenter, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 0){
                     valid_input = true;
@@ -245,7 +245,7 @@ public class UserActions {
                 String itemString = scan.nextLine();
                 userManager.addToWishlist(userViewing, itemString);
             } else if (input == 3 && !userToView.getFrozen()){
-                formTradeRequest(tradeCreator, userViewing, userToView);
+                formTradeRequest(menuPresenter, tradeCreator, userViewing, userToView);
             } else if (input == 0){
                 handled = true;
 
