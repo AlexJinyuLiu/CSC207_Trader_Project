@@ -11,33 +11,296 @@ MENU{
 Create Account Menu
 Enter your desired username
 Enter your desired password
-Username taken, try again
 }
 
 MENU{
 User Username Login Menu
 Enter your username:
-Username was not valid. Please try again or enter 0 to return to the main menu.
 }
 
 MENU{
 User Password Login Menu
 Please enter the password for
 Logged in as
-Invalid Password. Please try again or enter 0 to return to the main menu.
 }
 
 MENU{
 Admin Login Menu
-Please enter the password for 
-Logged in as Admin: 
-Invalid Password. Please try again or enter 0 to return to the main menu.
+(1) Set borrow/lend threshold
+(2) Set complete trade threshold
+(3) Set incomplete trade threshold
+(4) Add new admin
+(0) Quit
+The number you entered was not listed above. Please enter a valid choice number.
 }
 
 MENU{
 optionChoice Menu
 Please enter one of the numbers listed above
-The number you entered was not listed above. Please enter a choice between 0 and
+The number you entered was not listed above. Please enter a valid choice number.
 }
 
-
+MENU{
+Change Borrow/Lend Threshold Menu
+Please enter the new threshold value for lent vs borrowed:
+The number you entered was not valid. Please enter a valid threshold number.
+}
+
+MENU{
+Add New Admin Menu
+Enter the username of the administrator you want to add:
+Enter the password of the administrator you want to add:
+}
+
+MENU{
+Username taken. Please enter a different username.
+Incorrect password. Please try again.
+}
+
+MENU{
+Change Complete Trade Threshold Menu
+Please enter the new threshold value for complete trades a user can conduct:
+The number you entered was not valid. Please enter a valid threshold number.
+}
+
+MENU{
+Welcome to the Trade Master 9000!
+Would you like to create an account or login?
+(1) Create new account
+(2) Login
+(0) Quit
+}
+
+Alert{
+Item Validation Request
+User:
+Item Name:
+Item Description:
+Item ID Number:
+(1) Approve this item
+(2) Deny this item
+Please explain why this item was declined:
+}
+
+Alert{
+Handle Report Alert
+(1) Accept Report
+(2) Dismiss
+}
+
+Alert{
+Handle Freeze User Alert
+(1) Freeze User
+(2) Dismiss
+}
+
+Alert{
+Unfreeze Request Alert
+(1) Unfreeze User
+(2) Dismiss
+}
+
+MENU{
+User Menu
+(1) View items and wishlist
+(2) View user stats
+(3) Request an unfreeze
+(4) View other users
+(5) View your pending trades
+(6) View active temporary trades
+(0) Quit
+Please enter a number corresponding to a setting above:
+Please enter a number from 0 to 6
+}
+
+MENU{
+Items and Wishlist
+You have no items.
+Your available items:
+Your wishlist:
+(1) Send Item Validation request
+(2) Remove an item from available items
+(3) Remove an item from your wishlist
+Please enter a number from 1 to 3
+Please enter the name of your item
+Please enter the item description
+Please enter the ID of the item you wish to remove
+Item deleted
+Invalid item id
+Please enter the name of the item on your wishlist you wish to remove.
+}
+
+MENU{
+View Other Users
+Enter a number to view a User's page:
+Back to Main Menu
+(0) Next page (current page:
+Please Enter a valid input.
+Viewing User:
+}
+
+MENU{
+Viewing User
+(1) Send a message
+(2) Add one of their items to your wishlist
+(3) Send a trade request
+(0) Back to Main Menu
+Please enter a valid input
+Enter the contents of your message:
+Sent message to
+Enter the name of the item you would like added to your wishlist:
+}
+
+MENU{
+Form Trade Request
+The other user has no available items. You will not receive anything in this trade.
+Enter the ID of an item want from this trade:
+Invalid ID. Please try again.
+Would you like to add another item? (Y/N)
+Moving on...
+Please enter Y or N.
+You will not be offering anything with this trade.
+Enter the ID of an item you want to offer:
+Your available items to trade:
+ID:
+Enter a meeting time (format: yyyy-MM-dd HH:mm:
+Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
+Enter a meeting place:
+Your trade could not be processed.
+This could have happened if you have completed too many trades this week or if one of the users was frozen.
+Successfully created and sent trade request. You will be notified when they respond.
+}
+
+MENU{
+View User Stats
+(1) View number of items user has borrowed
+(2) View number of items user has lent
+(3) View frozen status
+(4) View number of trades involving user that have not been completed
+(5) View number of transactions this week
+(6) View items recently traded away
+(7) View most frequent trading partner's
+(8) Return to User Menu
+Please enter a number from 1 to 8
+Number of items borrowed:
+Number of items lent:
+Your account has been frozen.
+Your account is not frozen.
+Number of incomplete transactions:
+Number of transactions this week:
+}
+
+Alert{
+Send Unfreeze Request
+Your account is not frozen.
+Your unfreeze request has been sent.
+}
+
+MENU{
+View Pending Trades
+Options:
+(1) Exit this menu
+====================
+Your pending trades:
+tradeToString should be called here (?)
+Your choice was not valid, please pick a valid choice.
+Your active temporary trades:
+}
+
+Alert{
+Handle Frozen Alert
+Your account has been frozen by the administrator.
+Number of items you borrowed:
+Number of items you lent:
+Number of items you need to lend before you can borrow:
+(1) Dismiss
+}
+
+Alert{
+Handle Expiration Alert
+The following temporary trade expired at:
+(1) Report the other user
+(2) Confirm ReExchange
+Reason for reporting:
+Report has been sent to the tribunal.
+Trade re-exchange confirmed.
+}
+
+Alert{
+Handle Trade Request Alert
+Trade request made by
+(1) Accept
+(2) Decline
+(3) Edit time and Place
+Note: Number of remaining edits allowed is
+Trade Request Accepted. Meet up with the person at the time and place specified above.
+Remember to login to confirm the trade afterwords!
+Trade request declined.
+Editing Trade Request. Enter new meeting time (format: yyyy-MM-dd HH:mm):
+Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
+Enter new meeting place:
+Trade successfully edited. Meeting at:
+}
+
+Alert{
+Handle Trade Accepted Alert
+The following trade request has been accepted:
+(1) Dismiss
+}
+
+Alert{
+Handle Trade Declined Alert
+Your trade request has been declined:
+(1) Dismiss
+}
+
+Alert{
+Handle Trade Cancelled Alert
+The following trade has been cancelled as one of the users is no longer in possession of an item. Trade ID:
+(1) Dismiss
+}
+
+Alert{
+Handle Item Validation Declined Alert
+Your item validation request has been declined for the following reason:
+User:
+Item name:
+Item description:
+Item ID:
+(1) Dismiss
+(2) Send a new item validation request
+Please enter the name of your item
+Please enter the item description
+}
+
+Alert{
+Handle Trade Past Date Alert
+The following trade expired at:
+(1) Confirm trade
+(2) I didn't show up
+(3) The other person didn't show up
+Trade confirmed. Your items have been exchanged on the system.
+}
+
+Alert{
+Handle Message Alert
+From:
+(1) Dismiss
+}
+
+Alert{
+Trade to String
+User 1:
+User 2:
+Items being traded from User 1 to User 2:
+Items being traded from User 1 to User 2:
+Time and date of exchange:
+Location of trade:
+Trade ID:
+}
+
+MENU{
+Create User
+Entered:
+That username is taken.
+}

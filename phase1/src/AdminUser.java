@@ -59,7 +59,6 @@ public class AdminUser implements Serializable {
      */
     public void onStartUp(UserManager userManager, TradeCreator tradeCreator){
         this.adminAlerts = userManager.fetchAdminAlerts();
-        System.out.println(tradeCreator);
         this.adminAlerts.addAll(tradeCreator.fetchAdminAlerts());
         userManager.clearAdminAlerts();
     }

@@ -1,5 +1,6 @@
 import AlertPack.*;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class TradeSystem {
     private AdminUser adminUser;
     private UserManager userManager;
     private TradeCreator tradeCreator;
+    private MenuPresenter menuPresenter = new MenuPresenter();
 
     private UserAlertManager userAlertManager = new UserAlertManager();
 
@@ -27,7 +29,7 @@ public class TradeSystem {
         if (!((new File("data/adminUser.ser"))).exists()) {
             createAdminUser();
         }
-        if (!((new File("data/serManager.ser"))).exists()) {
+        if (!((new File("data/userManager.ser"))).exists()) {
             createUserManager();
         }
         if (!((new File("data/tradeCreator.ser"))).exists()){
@@ -43,9 +45,9 @@ public class TradeSystem {
         Scanner scan = new Scanner(System.in);
         User loggedIn = null;
         boolean isAdmin = false;
-//method Menu Builder
-        System.out.println("Welcome to the Trade Master 9000!\n Would you like to create an account or " +
-                "login?\n(1) Create account \n(2) Login to an account\n(0) Quit");
+        for (int i = 0; i < 5; i++){
+            menuPresenter.printMenu(10, i);
+        }
 
         int input = optionChoice(2);
         //TODO: This will log a user in a admin if an incorrect username and password is entered.
@@ -64,21 +66,19 @@ public class TradeSystem {
         }
 //buildAdminUser method
         if (isAdmin) {
-            if (adminUser.getAdminAlerts().size() > 0) {
-                System.out.println("Admin has alerts");
-            }
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
-            adminAlertManager.handleAlertQueue(adminUser, userManager, tradeCreator, adminAlerts);
+            adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
             //TODO: Ensure the alert queue is depleted after all are handled.
-            adminActions.runAdminMenu(adminUser, tradeCreator);
+            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager);
         } else {
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
-            userAlertManager.handleAlertQueue(userManager, tradeCreator, userAlerts);
-            userActions.runUserMenu(userManager, tradeCreator, loggedIn);
+            userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, userAlerts);
+            userActions.runUserMenu(menuPresenter, userManager, tradeCreator, loggedIn);
         }
 
         FileManager.saveAdminToFile(adminUser);
-
+        FileManager.saveTradeCreatorToFile(tradeCreator);
+        FileManager.saveUserManagerToFile(userManager);
 
     }
 
@@ -113,8 +113,6 @@ public class TradeSystem {
     }
 
     protected void onStartUp(){
-        System.out.println(userManager);
-        System.out.println(tradeCreator);
         adminUser.onStartUp(userManager, tradeCreator);
         userManager.onStartUp(tradeCreator);
         tradeCreator.tradeHistories.checkForExpiredTempTrades();
@@ -124,13 +122,16 @@ public class TradeSystem {
         while (true) {
             try {
                 Scanner scan = new Scanner(System.in);
-                System.out.println("Enter your desired username");
+                //"Enter your desired username"
+                menuPresenter.printMenu(1, 1);
                 String inputUsername = scan.nextLine();
-                System.out.println("Enter your desired password");
+                //"Enter your desired password"
+                menuPresenter.printMenu(1, 2);
                 String password = scan.nextLine();
-                return userManager.createUser(inputUsername, password);
+                return userManager.createUser(menuPresenter, inputUsername, password);
             } catch (UserNameTakenException e) {
-                System.out.println("Username taken, try again");
+                //"Username taken, try again"
+                menuPresenter.printMenu(1, 3);
             }
         }
     }
@@ -150,7 +151,8 @@ public class TradeSystem {
         Scanner scanner = new Scanner(System.in);
         User user = null;
         while(user == null) {
-            System.out.println("Enter your username:");
+            //"Enter your username:"
+            menuPresenter.printMenu(2, 1);
             String username = scanner.nextLine();
             if (username.equals("0")){
                 return null;// This needs to be changed so that it will return to the main menu. - Louis
@@ -160,7 +162,8 @@ public class TradeSystem {
                 return null;
             }
             else if (user == null){
-                System.out.println("Username was not valid. Please try again or enter 0 to return to the main menu.");//currently entering 0 just exits the system - louis
+                //"Username was not valid. Please try again or enter 0 to return to the main menu."
+                menuPresenter.printMenu(2, 2);
             }
         }
         return user;
@@ -168,42 +171,48 @@ public class TradeSystem {
     private boolean takePassword(User user){
         Scanner scanner = new Scanner(System.in);
         while(true) {
-            System.out.println("Please enter the password for " + user.getUsername() + ":");
+            //"Please enter your password:"
+            menuPresenter.printMenu(3, 1);
             String pass = scanner.nextLine();
             if (pass.equals("0")){
                 return false;
             }
             else if (user.checkPassword(pass)) {
-                System.out.println("Logged in as " + user.getUsername());
+                //"Login successful"
+                menuPresenter.printMenu(3, 2);
                 return true;
             }else{
-                System.out.println("Invalid Password. Please try again or enter 0 to return to the main menu."); //currently you will exit the system if you enter 0 - louis
+                //"Invalid Password. Please try again or enter 0 to return to the main menu."
+                menuPresenter.printMenu(3, 3);
             }
         }
     }
     private Boolean takeAdminPassword(String username){
         Scanner scanner = new Scanner(System.in);
         while(true) {
-            System.out.println("Please enter the password for " + username + ":");
+            //"Please enter your password:"
+            menuPresenter.printMenu(3,1);
             String pass = scanner.nextLine();
             if (pass.equals("0")){
                 return false;
             }
             else if (adminUser.checkPassword(username, pass)) {
-                System.out.println("Logged in as Admin: " + username);
+                //"Logged in as Admin"
+                menuPresenter.printMenu(3, 4);
                 return true;
             }else{
-                System.out.println("Invalid Password. Please try again or enter 0 to return to the main menu."); //currently you will exit the system if you enter 0 - louis
+                //"Invalid Password. Please try again or enter 0 to return to the main menu."
+                menuPresenter.printMenu(3, 3);
             }
         }
     }
 
     protected int optionChoice(int x){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter one of the numbers listed above");
+        menuPresenter.printMenu(5, 1);
         int choice = scanner.nextInt();
         while(choice > x || choice < 0){
-            System.out.println("The number you entered was not listed above. Please enter a choice between 0 and " + x);
+            menuPresenter.printMenu(5, 2);
             choice = scanner.nextInt();
         }
         return choice;

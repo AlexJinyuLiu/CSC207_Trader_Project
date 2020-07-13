@@ -76,9 +76,9 @@ public class TradeHistories  implements Serializable {
         ArrayList<Trade> recent = new ArrayList<Trade>();
 
         for (Trade trade : completedTrades) {
-            if (trade.getUsername1().equals(username) & !trade.getItemIDsSentToUser2().isEmpty()) {
+            if (trade.getUsername1().equals(username) && !trade.getItemIDsSentToUser2().isEmpty()) {
                 completed.add(trade);
-            } else if (trade.getUsername2().equals(username) & !trade.getItemIDsSentToUser1().isEmpty()) {
+            } else if (trade.getUsername2().equals(username) && !trade.getItemIDsSentToUser1().isEmpty()) {
                 completed.add(trade);
             }
         }
@@ -138,10 +138,9 @@ public class TradeHistories  implements Serializable {
      */ //TradeManager
     public ArrayList<Item> getNRecentItems(UserManager userManager, String user, int n) {
         ArrayList<Integer> orderedItemsID = this.getOrderedItemsID(user);
-        //TODO: This might not work
         ArrayList<Integer> orderedItemsIDClone = (ArrayList<Integer>) orderedItemsID.clone();
         ArrayList<Item> nOrderedItems = new ArrayList<Item>();
-        while (nOrderedItems.size() < n & !orderedItemsIDClone.isEmpty()) {
+        while (nOrderedItems.size() < n && !orderedItemsIDClone.isEmpty()) {
             nOrderedItems.add(userManager.searchItem(orderedItemsIDClone.get(orderedItemsIDClone.size() - 1)));
             orderedItemsIDClone.remove(orderedItemsIDClone.size() - 1);
         }

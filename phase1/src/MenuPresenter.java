@@ -21,7 +21,7 @@ public class MenuPresenter {
     private final LinkedHashMap<Integer, ArrayList<String>> menusMap = new LinkedHashMap<Integer, ArrayList<String>>();
     File menu;
 
-    private LinkedHashMap readMenus() {
+    MenuPresenter() {
         try {
             menu = new File("Menu.txt");
             BufferedReader br = new BufferedReader(new FileReader(menu));
@@ -32,14 +32,14 @@ public class MenuPresenter {
                 // add newline char back into sb
                 ArrayList<String> section = new ArrayList<String>();
                 while (readBuff != null) {
-                    if (readBuff.equals("MENU{")) {
+                    if (readBuff.equals("MENU{") || readBuff.equals("Alert{")) {
                         readBuff = br.readLine();
                         section.clear();
                         while (!readBuff.equals("}")){
                             section.add(readBuff);
                             readBuff = br.readLine();
                         }
-                        menusMap.put(menuNum, section);
+                        menusMap.put(menuNum, (ArrayList<String>) section.clone());
                         menuNum ++;
                     }
                     readBuff = br.readLine();
@@ -55,7 +55,6 @@ public class MenuPresenter {
             System.out.println("Error occured, please try again later.");
             e.printStackTrace();
         }
-        return menusMap;
     }
 
     public void printMenu(int menuIndex, int lineIndex) {
