@@ -39,7 +39,7 @@ public class MenuPresenter {
                             section.add(readBuff);
                             readBuff = br.readLine();
                         }
-                        menusMap.put(menuNum, section);
+                        menusMap.put(menuNum, (ArrayList<String>)section.clone());
                         menuNum ++;
                     }
                     readBuff = br.readLine();
@@ -58,6 +58,6 @@ public class MenuPresenter {
     }
 
     public void printMenu(int menuIndex, int lineIndex) {
-        System.out.println(menusMap);//.get(menuIndex).get(lineIndex));
+        System.out.println(menusMap.get(menuIndex).get(lineIndex));
     }
 }

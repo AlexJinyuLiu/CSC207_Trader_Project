@@ -1,0 +1,82 @@
+MENU{
+Main Menu
+Welcome to Insert_name_here trading system!
+Would you like to create an account or login?
+(1) Create account
+(2) Login to an account
+(0) Quit
+}
+
+MENU{
+Create Account Menu
+Enter your desired username
+Enter your desired password
+}
+
+MENU{
+User Username Login Menu
+Enter your username:
+}
+
+MENU{
+User Password Login Menu
+Please enter the password for
+Logged in as
+}
+
+MENU{
+Admin Login Menu
+(1) Set borrow/lend threshold
+(2) Set complete trade threshold
+(3) Set incomplete trade threshold
+(4) Add new admin
+(0) Quit
+The number you entered was not listed above. Please enter a choice between 0 and 2.
+}
+
+MENU{
+optionChoice Menu
+Please enter one of the numbers listed above
+}
+
+MENU{
+Change Borrow/Lend Threshold Menu
+Please enter the new threshold value for lent vs borrowed:
+The number you entered was not valid. Please enter a valid threshold number.
+}
+
+MENU{
+Add New Admin Menu
+Enter the username of the administrator you want to add:
+Enter the password of the administrator you want to add:
+}
+
+MENU{
+Username taken. Please enter a different username.
+Incorrect password. Please try again.
+}
+
+MENU{
+Change Complete Trade Threshold Menu
+Please enter the new threshold value for complete trades a user can conduct:
+The number you entered was not valid. Please enter a valid threshold number.
+}
+
+MENU{
+Welcome to the Trade Master 9000!
+Would you like to create an account or login?
+(1) Create new account
+(2) Login
+(0) Quit
+}
+
+Alert{
+Item Validation Request
+User:
+Item Name:
+Item Description:
+Item ID Number:
+(1) Approve this item
+(2) Deny this item
+Please explain why this item was declined:
+}
