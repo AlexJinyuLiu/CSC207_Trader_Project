@@ -32,7 +32,8 @@ public class MenuPresenter {
                 // add newline char back into sb
                 ArrayList<String> section = new ArrayList<String>();
                 while (readBuff != null) {
-                    if (readBuff.equals("MENU{") || readBuff.equals("Alert{")) {
+                    readBuff = readBuff.split("-")[0];
+                    if (readBuff.equals("MENU{ ") || readBuff.equals("Alert{ ")) {
                         readBuff = br.readLine();
                         section.clear();
                         while (!readBuff.equals("}")){
@@ -58,6 +59,11 @@ public class MenuPresenter {
     }
 
     public void printMenu(int menuIndex, int lineIndex) {
-        System.out.println(menusMap.get(menuIndex).get(lineIndex));
+        try{
+            System.out.println(menusMap.get(menuIndex).get(lineIndex));
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
+            e.printStackTrace();
+        }
     }
 }

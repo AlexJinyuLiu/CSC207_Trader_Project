@@ -49,21 +49,22 @@ public class TradeSystem {
             menuPresenter.printMenu(10, i);
         }
 
-        int input = optionChoice(2);
-        //TODO: This will log a user in a admin if an incorrect username and password is entered.
+        int input = optionChoice(3);
+
         if (input == 1) {
             loggedIn = createAccount();
         } else if (input == 2) {
             User x = login();
-            if (x == null) {
-                isAdmin = true;
-            } else {
-                loggedIn = x;
-            }
-
+            if (x == null) return;
+            loggedIn = x;
+        } else if (input == 3) {
+            isAdmin = adminLogin();
+            if (!isAdmin) return;
         } else if (input == 0) {
             return;
         }
+
+
 //buildAdminUser method
         if (isAdmin) {
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
@@ -147,6 +148,18 @@ public class TradeSystem {
         }
         return null;
     }
+
+    private boolean adminLogin(){
+        Scanner scanner = new Scanner(System.in);
+        menuPresenter.printMenu(2, 3);
+        menuPresenter.printMenu(2, 1);
+        String username = scanner.nextLine();
+        menuPresenter.printMenu(3, 1);
+        String password = scanner.nextLine();
+
+        return adminUser.isValidUsername(username) && takeAdminPassword(password);
+    }
+
     private User takeUsername(){
         Scanner scanner = new Scanner(System.in);
         User user = null;
@@ -154,14 +167,8 @@ public class TradeSystem {
             //"Enter your username:"
             menuPresenter.printMenu(2, 1);
             String username = scanner.nextLine();
-            if (username.equals("0")){
-                return null;// This needs to be changed so that it will return to the main menu. - Louis
-            }
             user = userManager.searchUser(username);
-            if (adminUser.isValidUsername(username) && takeAdminPassword(username)){
-                return null;
-            }
-            else if (user == null){
+            if (user == null){
                 //"Username was not valid. Please try again or enter 0 to return to the main menu."
                 menuPresenter.printMenu(2, 2);
             }
