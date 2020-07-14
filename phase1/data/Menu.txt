@@ -90,6 +90,9 @@ Alert{ - 12
 Handle Report Alert
 (1) Accept Report
 (2) Dismiss
+ has reported user
+Trade status of reported user:
+Report Description:
 }
 
 Alert{ - 13

@@ -76,4 +76,13 @@ public class MenuPresenter {
             e.printStackTrace();
         }
     }
+
+    public void printMenu (int menuIndex, int lineIndex, Object variable1, Object variable2){
+        try{
+            System.out.println(variable1 + menusMap.get(menuIndex).get(lineIndex) + variable2);
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
+            e.printStackTrace();
+        }
+    }
 }
