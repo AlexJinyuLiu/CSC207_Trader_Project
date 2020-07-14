@@ -91,12 +91,19 @@ Alert{ - 12
 Handle Report Alert
 (1) Accept Report
 (2) Dismiss
+ has reported user
+Trade status of reported user:
+Report Description:
 }
 
 Alert{ - 13
 Handle Freeze User Alert
 (1) Freeze User
 (2) Dismiss
+User:
+Items this user has lent:
+Items this user has borrowed:
+Number of items required to lend before borrowing:
 }
 
 Alert{ - 14

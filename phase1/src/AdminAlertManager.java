@@ -50,12 +50,11 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
                                                   UserManager userManager, ItemValidationRequestAlert alert){
         // System.out.println("Item validation request\nUser: " + alert.getOwner() + "\nItem name: " + alert.getName() +
         //         "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID());
-        // TODO add in the alerts
         menuPresenter.printMenu(11,0);
-        menuPresenter.printMenu(11,1) ;
-        menuPresenter.printMenu(11,2);
-        menuPresenter.printMenu(11,3);
-        menuPresenter.printMenu(11,4);
+        menuPresenter.printMenu(11,1, alert.getOwner()) ;
+        menuPresenter.printMenu(11,2, alert.getName());
+        menuPresenter.printMenu(11,3, alert.getDescription());
+        menuPresenter.printMenu(11,4, alert.getItemID());
 
         Scanner scanner = new Scanner(System.in);
         String message;
@@ -82,10 +81,12 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
                                    TradeCreator tradeCreator,
                                    ReportAlert alert){
         menuPresenter.printMenu(12,0); // Handle Report Alert
-        // TODO change this
-        System.out.println(alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
-                " whose trade status is " + alert.getIsTradeComplete()
-                + "\n" + "Details: " + alert.getReportDescription());
+        // System.out.println(alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
+        //         " whose trade status is " + alert.getIsTradeComplete()
+        //         + "\n" + "Details: " + alert.getReportDescription());
+        menuPresenter.printMenu(12, 3, alert.getSenderUserName(), alert.getReportedUserName());
+        menuPresenter.printMenu(12, 4, alert.getIsTradeComplete());
+        menuPresenter.printMenu(12, 5, alert.getReportDescription());
 
         boolean flag = true;
         int input = 0;
@@ -124,11 +125,14 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
     private void handleFreezeUserAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
                                        FreezeUserAlert alert){
         menuPresenter.printMenu(13,0); // Freeze User Alert
-        // TODO change this
-        System.out.println("Freeze User Alert" +
-                "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
-                "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
-                "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed");
+        // System.out.println("Freeze User Alert" +
+        //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
+        //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
+        //         "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed");
+        menuPresenter.printMenu(13, 3, alert.getUsername());
+        menuPresenter.printMenu(13, 4, alert.getLent());
+        menuPresenter.printMenu(13, 5, alert.getBorrowed());
+        menuPresenter.printMenu(13, 6, alert.getThresholdRequired());
         boolean flag = true;
         int input = 0;
         while (flag) {
@@ -159,12 +163,14 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
     private void handleUnfreezeRequestAlert(MenuPresenter menuPresenter, UserManager userManager, AdminUser adminUser,
                                             UnfreezeRequestAlert alert){
         menuPresenter.printMenu(14,0);
-        // TODO change this
-        System.out.println("Unfreeze User Request Alert" +
-                "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
-                "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
-                "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed");
-        // author: Callan Murphy
+        // System.out.println("Unfreeze User Request Alert" +
+        //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
+        //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
+        //         "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed");
+        menuPresenter.printMenu(13, 3, alert.getUsername());
+        menuPresenter.printMenu(13, 4, alert.getLent());
+        menuPresenter.printMenu(13, 5, alert.getBorrowed());
+        menuPresenter.printMenu(13, 6, alert.getThresholdRequired());
         boolean flag = true;
         int input = 0;
         while (flag) {
@@ -195,10 +201,9 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         // System.out.println("Please enter one of the numbers listed above");
         menuPresenter.printMenu(5,1);
         int choice = scanner.nextInt();
-        while(choice > x || choice < 0){
-            // TODO change this to include +x
+        while(choice >= x || choice < 0){
             // System.out.println("The number you entered was not listed above. Please enter a choice between 1 and " + x);
-            menuPresenter.printMenu(5,2);
+            menuPresenter.printMenu(5,2, x);
             choice = scanner.nextInt();
         }
         return choice;
