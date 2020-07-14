@@ -335,6 +335,17 @@ Please enter either Y or N:
 }
 
 MENU{ - 37
+
 has proposed the following trade:
 has proposed the following temporary trade (items due back in 30 days):
+}
+
+MENU{ - 38
+User:
+This User has no items available for trade.
+Items available for trade:
+ID:
+This User has no items in their wishlist.
+Wishlist:
+This user is frozen, and thus cannot make a trade.
 }
