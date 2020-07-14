@@ -264,9 +264,7 @@ public class UserManager implements Serializable{
      * @param alert alert object to send to the user
      */ //UserManager AND TradeManager
     public void alertUser(String username, UserAlert alert){
-        ArrayList<UserAlert> alerts = alertSystem.get(username);
-        alerts.add(alert);
-        alertSystem.put(username, alerts);
+        alertSystem.get(username).add(alert);
     }
 
     /** Method which allows a user to send a message to another user, using the alert system.
