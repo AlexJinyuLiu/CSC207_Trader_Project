@@ -198,10 +198,6 @@ public class UserAlertManager {
         }
     }
 
-    private String tradeToString(UserManager userManager, Trade searchPendingTradeRequest) {
-        //TODO
-        return "tradeToString not implemented yet";
-    }
 
     private void handleTradeAcceptedAlert(MenuPresenter menuPresenter, UserManager userManager,
                                           TradeCreator tradeCreator, TradeAcceptedAlert a){

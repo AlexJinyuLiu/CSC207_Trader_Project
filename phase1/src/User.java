@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
 import AlertPack.Alert;
@@ -185,4 +184,10 @@ public class User implements Serializable {
     this.frozen = frozen;
     } // whether the account is set to frozen or not
 
+
 }
+    // top 3 trading partners, access orderedPartners LinkedHashMap and return first three username Strings.
+    // this needs to be updated after every transaction.
+
+    //I added these getters and setters for use in UserManager - Louis --> these were already made under different names,
+    // I've modified your UserManager code so they work for you. :) - Melody

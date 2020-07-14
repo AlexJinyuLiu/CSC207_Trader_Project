@@ -125,4 +125,43 @@ public class MenuPresenter {
         }
         return null;
     }
+
+    /**
+     *
+     * @return string representation of the user.
+     */
+    public void printUserToString(User user){
+        // TODO change to be compatible with MenuPresenter
+        StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
+        if (user.getAvailableItems().size() == 0){
+            userString.append("This User has no items available for trade. \n");
+        } else {
+            userString.append("Items available for trade: \n");
+            for (int i = 0; i < user.getAvailableItems().size() - 1; i++) {
+                userString.append(user.getAvailableItems().get(i).getName() + " (ID: " + user.getAvailableItems().get(i).getId() + "), ");
+            }
+            userString.append(user.getAvailableItems().get(user.getAvailableItems().size() - 1) + " (ID: " +
+                    user.getAvailableItems().get(user.getAvailableItems().size() - 1).getId() + ")\n");
+        }
+        if (user.getWishlistItemNames().size() == 0){
+            userString.append("This User has no items in their wishlist. \n");
+        } else {
+            userString.append("Wishlist: \n");
+            for (int i = 0; i < user.getWishlistItemNames().size() - 1; i++) {
+                userString.append(user.getWishlistItemNames().get(i) + ", ");
+            }
+            userString.append(user.getWishlistItemNames().get(user.getWishlistItemNames().size() - 1) + "\n");
+        }
+        if (user.getFrozen()){
+            userString.append("This user is frozen, and thus cannot make a trade. \n");
+        }
+
+        System.out.println(userString.toString());
+    }
+
+    public void printItemToString(Item item) {
+        printMenu(29, 3, item.getName());
+        printMenu(29, 4, item.getId());
+        printMenu(29, 5, item.getDescription());
+    }
 }

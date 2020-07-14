@@ -1,5 +1,4 @@
 import javax.print.DocFlavor;
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -20,6 +19,7 @@ public class Item implements Serializable {
         this.name = name;
         this.id = itemID;
     }
+
 
     //setters
 
