@@ -79,18 +79,22 @@ public class UserActions {
             // System.out.println("Your available items:");
             menuPresenter.printMenu(16, 2);
             for (Item item : user.getAvailableItems()) {
-                System.out.println(item);
+                menuPresenter.printMenu(35, 0, item);
             }
         }
         // System.out.println("\n Your wishlist :");
         menuPresenter.printMenu(16, 3);
         for (String itemName : user.getWishlistItemNames()){
-            System.out.println(itemName);
+            menuPresenter.printMenu(35, 0, itemName);
         }
 
         while (flag){
-            System.out.println("(1) Send Item Validation request \n (2) Remove an item from available items " +
-                    "\n (3) Remove an item from your wishlist\n (0) Exit to main menu");
+            //"(1) Send Item Validation request \n (2) Remove an item from available items " +
+            //"\n (3) Remove an item from your wishlist\n (0) Exit to main menu");
+            menuPresenter.printMenu(16, 4);
+            menuPresenter.printMenu(16, 5);
+            menuPresenter.printMenu(16, 6);
+            menuPresenter.printMenu(16, 14);
             input = scan.nextInt();
             if (input < 1 || input > 3){
                 // System.out.println("Please enter a number from 1 to 3");
@@ -168,7 +172,7 @@ public class UserActions {
                 usersString.append("(0) next page (current page: ").append(page).append(")").append("\n");
                 // menuPresenter.printMenu(18, 3);
             }
-            System.out.println(usersString.toString());
+            menuPresenter.printMenu(35, 0, usersString.toString());
             input = scan.nextInt();
             boolean valid_input = false;
             while(!valid_input) {
@@ -186,7 +190,7 @@ public class UserActions {
                 } else {
                     handled = true;
                     valid_input = true;
-                    System.out.println("Viewing User: " + allUsers.get(input - 1).getUsername() + "...");
+                    menuPresenter.printMenu(35, 1, allUsers.get(input - 1).getUsername());
                     // menuPresenter.printMenu(18, 5);
                     viewUser(menuPresenter, userManager, tradeCreator, allUsers.get(input - 1), userViewing);
                 }
@@ -219,7 +223,7 @@ public class UserActions {
         boolean handled = false;
         int input;
         while(!handled){
-            System.out.println(userString.toString());
+            menuPresenter.printMenu(35, 0, userString.toString());
 
             input = scan.nextInt();
 
@@ -321,7 +325,7 @@ public class UserActions {
             availableItems.append(userSending.getAvailableItems().get(userSending.getAvailableItems().size() -
                     1).getName() + " (ID: " +
                     userSending.getAvailableItems().get(userSending.getAvailableItems().size() - 1).getId() + ") ");
-            System.out.println(availableItems);
+            menuPresenter.printMenu(35, 0, availableItems);
             // menuPresenter.printMenu(20, 10);
 
             int ID2 = scan.nextInt();
@@ -376,7 +380,8 @@ public class UserActions {
         // System.out.println("Enter a meeting place: ");
         menuPresenter.printMenu(19, 13);
         String meetingPlace = scan.nextLine();
-        System.out.println("Should this be a temporary trade? (Y/N)");
+        //"Should this be a temporary trade? (Y/N)"
+        menuPresenter.printMenu(36, 0);
         boolean isTempTrade = false;
         boolean validYN = false;
         while(!validYN) {
@@ -388,7 +393,8 @@ public class UserActions {
                 validYN = true;
                 isTempTrade = false;
             } else{
-                System.out.println("Please enter either Y or N:");
+                //"Please enter either Y or N:"
+                menuPresenter.printMenu(36, 1);
             }
         }
 
@@ -469,11 +475,11 @@ public class UserActions {
 
             } else if (input == 6) {
                 ArrayList<Item> recentItems = tradeCreator.tradeHistories.getNRecentItems(userManager, user.getUsername(), 3);
-                System.out.println(recentItems);
+                menuPresenter.printMenu(35, 0, recentItems);
 
             } else if (input == 7) {
                 ArrayList<String> favouriteParnters = tradeCreator.tradeHistories.getTopNTradingPartners(user.getUsername(), 3);
-                System.out.println(favouriteParnters);
+                menuPresenter.printMenu(35, 0, favouriteParnters);
             } else if (input == 8) {
                 handled = true;
             }

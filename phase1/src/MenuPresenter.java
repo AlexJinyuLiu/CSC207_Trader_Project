@@ -85,4 +85,44 @@ public class MenuPresenter {
             e.printStackTrace();
         }
     }
+
+    /**
+     *  Prints a string representation of a trade.
+     * @param trade a trade object
+     *///TradeManager -- consider moving to Trade
+    public void printTradeToString(UserManager userManager, Trade trade){
+        // "User 1: " + trade.getUsername1() + "\nUser 2: " + trade.getUsername2() +
+        //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
+        //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
+        //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
+        //        "\nLocation of Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
+        printMenu(32, 1, trade.getUsername1());
+        printMenu(32, 2, trade.getUsername2());
+        printMenu(32, 3, GetItemNamesFromUser1ToUser2(userManager, trade));
+        printMenu(32, 4, GetItemNamesFromUser2ToUser1(userManager, trade));
+        printMenu(32, 5, trade.getTimeOfTrade().toString());
+        printMenu(32, 6, trade.getMeetingPlace());
+        printMenu(32, 7, trade.getTradeID());
+        // return "User 1: " + trade.getUsername1(); // to be changed
+    }
+    // helper method which lists the names of the items going from user 1 to user 2 - Louis
+    private String GetItemNamesFromUser1ToUser2(UserManager userManager, Trade trade){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int itemID: trade.getItemIDsSentToUser2()){
+            Item item = userManager.searchItem(userManager.searchUser(trade.getUsername1()), itemID);
+            stringBuilder.append(item.getName()).append(" ");
+            return stringBuilder.toString();
+        }
+        return null;
+    }
+    // helper method which lists the names of the items going from user 2 to user 1 - Louis
+    private String GetItemNamesFromUser2ToUser1(UserManager userManager, Trade trade){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int itemID: trade.getItemIDsSentToUser1()){
+            Item item = userManager.searchItem(userManager.searchUser(trade.getUsername2()), itemID);
+            stringBuilder.append(item.getName()).append(" ");
+            return stringBuilder.toString();
+        }
+        return null;
+    }
 }

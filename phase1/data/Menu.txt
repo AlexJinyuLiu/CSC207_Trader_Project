@@ -140,6 +140,7 @@ Please enter the ID of the item you wish to remove
 Item deleted
 Invalid item id
 Please enter the name of the item on your wishlist you wish to remove.
+(0) Exit to main menu
 }
 
 MENU{ - 17
@@ -321,4 +322,19 @@ MENU{ - 34
 Change Incomplete Trade Threshold Menu
 Please enter the new threshold value for incomplete trades a user can conduct:
 The number you entered was not valid. Please enter a valid threshold number.
+}
+
+MENU{ - 35
+
+Viewing User
+}
+
+MENU{ - 36
+Should this be a temporary trade? (Y/N)
+Please enter either Y or N:
+}
+
+MENU{ - 37
+has proposed the following trade:
+has proposed the following temporary trade (items due back in 30 days):
 }

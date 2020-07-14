@@ -118,12 +118,12 @@ public class UserAlertManager {
 
     private void handleTradeRequestAlert(UserManager userManager, TradeCreator tradeCreator, TradeRequestAlert a, MenuPresenter menuPresenter){
         if (a.getIsTempTrade()) {
-            System.out.println(a.getSenderUserName() + " has proposed the following trade: \n" +
-                    tradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID())));
-        } else{
-            System.out.println(a.getSenderUserName() + " has proposed the following temporary trade (items " +
-                    "due back in 30 days: \n" +
-                    tradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID())));
+            menuPresenter.printMenu(37, 0, a.getSenderUserName(), "");
+            menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
+        } else {
+            menuPresenter.printMenu(37, 1, a.getSenderUserName(), "");
+
+            menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         }
         boolean canEditTrade = true;
         int input = 0;
@@ -370,43 +370,5 @@ public class UserAlertManager {
     }
 
 
-    /**
-     *
-     * @param trade a trade object
-     *///TradeManager -- consider moving to Trade
-    public void tradeToString(MenuPresenter menuPresenter, UserManager userManager, Trade trade){
-        // "User 1: " + trade.getUsername1() + "\nUser 2: " + trade.getUsername2() +
-        //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
-        //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
-        //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
-        //        "\nLocation of Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
-        menuPresenter.printMenu(32, 1, trade.getUsername1());
-        menuPresenter.printMenu(32, 2, trade.getUsername2());
-        menuPresenter.printMenu(32, 3, GetItemNamesFromUser1ToUser2(userManager, trade));
-        menuPresenter.printMenu(32, 4, GetItemNamesFromUser2ToUser1(userManager, trade));
-        menuPresenter.printMenu(32, 5, trade.getTimeOfTrade().toString());
-        menuPresenter.printMenu(32, 6, trade.getMeetingPlace());
-        menuPresenter.printMenu(32, 7, trade.getTradeID());
-        // return "User 1: " + trade.getUsername1(); // to be changed
-    }
-    // helper method which lists the names of the items going from user 1 to user 2 - Louis
-    private String GetItemNamesFromUser1ToUser2(UserManager userManager, Trade trade){
-        StringBuilder stringBuilder = new StringBuilder();
-        for(int itemID: trade.getItemIDsSentToUser2()){
-            Item item = userManager.searchItem(userManager.searchUser(trade.getUsername1()), itemID);
-            stringBuilder.append(item.getName()).append(" ");
-            return stringBuilder.toString();
-        }
-        return null;
-    }
-    // helper method which lists the names of the items going from user 2 to user 1 - Louis
-    private String GetItemNamesFromUser2ToUser1(UserManager userManager, Trade trade){
-        StringBuilder stringBuilder = new StringBuilder();
-        for(int itemID: trade.getItemIDsSentToUser1()){
-            Item item = userManager.searchItem(userManager.searchUser(trade.getUsername2()), itemID);
-            stringBuilder.append(item.getName()).append(" ");
-            return stringBuilder.toString();
-        }
-        return null;
-    }
+
 }
