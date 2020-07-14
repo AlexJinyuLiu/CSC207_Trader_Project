@@ -56,6 +56,7 @@ Enter the password of the administrator you want to add:
 
 MENU{ - 8
 Username taken. Please enter a different username.
+Username invalid. Please enter a different username.
 Incorrect password. Please try again.
 Log in successful.
 }
