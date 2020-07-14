@@ -42,10 +42,9 @@ public class TradeSystem {
 
         onStartUp();
 
-        Scanner scan = new Scanner(System.in);
         User loggedIn = null;
         boolean isAdmin = false;
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 6; i++){
             menuPresenter.printMenu(10, i);
         }
 
@@ -132,7 +131,7 @@ public class TradeSystem {
                 return userManager.createUser(menuPresenter, inputUsername, password);
             } catch (UserNameTakenException e) {
                 //"Username taken, try again"
-                menuPresenter.printMenu(1, 3);
+                menuPresenter.printMenu(8, 1);
             }
         }
     }
@@ -151,7 +150,6 @@ public class TradeSystem {
 
     private boolean adminLogin(){
         Scanner scanner = new Scanner(System.in);
-        menuPresenter.printMenu(2, 3);
         menuPresenter.printMenu(2, 1);
         String username = scanner.nextLine();
         menuPresenter.printMenu(3, 1);
@@ -168,9 +166,9 @@ public class TradeSystem {
             menuPresenter.printMenu(2, 1);
             String username = scanner.nextLine();
             user = userManager.searchUser(username);
-            if (user == null){
+            if (user != null){
                 //"Username was not valid. Please try again or enter 0 to return to the main menu."
-                menuPresenter.printMenu(2, 2);
+                menuPresenter.printMenu(8, 0);
             }
         }
         return user;
@@ -186,11 +184,11 @@ public class TradeSystem {
             }
             else if (user.checkPassword(pass)) {
                 //"Login successful"
-                menuPresenter.printMenu(3, 2);
+                menuPresenter.printMenu(8, 2);
                 return true;
             }else{
                 //"Invalid Password. Please try again or enter 0 to return to the main menu."
-                menuPresenter.printMenu(3, 3);
+                menuPresenter.printMenu(3, 2);
             }
         }
     }

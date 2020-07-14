@@ -154,7 +154,8 @@ public class UserManager implements Serializable{
      */ //UserManager
     public User createUser(MenuPresenter menuPresenter, String username, String password) throws UserNameTakenException {
         // System.out.println("Entered:" + username);
-        menuPresenter.printMenu(34, 1);
+        menuPresenter.printMenu(33, 1);
+        System.out.print(username);
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
                 menuPresenter.printMenu(34, 2);
