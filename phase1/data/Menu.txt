@@ -1,4 +1,4 @@
-MENU{
+MENU{ - 0
 Main Menu
 Welcome to Insert_name_here trading system!
 Would you like to create an account or login?
@@ -7,24 +7,26 @@ Would you like to create an account or login?
 (0) Quit
 }
 
-MENU{
+MENU{ - 1
 Create Account Menu
 Enter your desired username
 Enter your desired password
 }
 
-MENU{
+MENU{ - 2
 User Username Login Menu
 Enter your username:
 }
 
-MENU{
+MENU{ - 3
 User Password Login Menu
-Please enter the password for
+Please enter your password
 Logged in as
+Invalid Password. Please try again or enter 0 to return to the main menu.
+Logged in as Admin
 }
 
-MENU{
+MENU{ - 4
 Admin Login Menu
 (1) Set borrow/lend threshold
 (2) Set complete trade threshold
@@ -34,44 +36,45 @@ Admin Login Menu
 The number you entered was not listed above. Please enter a valid choice number.
 }
 
-MENU{
+MENU{ - 5
 optionChoice Menu
 Please enter one of the numbers listed above
 The number you entered was not listed above. Please enter a valid choice number.
 }
 
-MENU{
+MENU{ - 6
 Change Borrow/Lend Threshold Menu
 Please enter the new threshold value for lent vs borrowed:
 The number you entered was not valid. Please enter a valid threshold number.
 }
 
-MENU{
+MENU{ - 7
 Add New Admin Menu
 Enter the username of the administrator you want to add:
 Enter the password of the administrator you want to add:
 }
 
-MENU{
+MENU{ - 8
 Username taken. Please enter a different username.
 Incorrect password. Please try again.
 }
 
-MENU{
+MENU{ - 9
 Change Complete Trade Threshold Menu
 Please enter the new threshold value for complete trades a user can conduct:
 The number you entered was not valid. Please enter a valid threshold number.
 }
 
-MENU{
+MENU{ - 10
 Welcome to the Trade Master 9000!
 Would you like to create an account or login?
 (1) Create new account
-(2) Login
+(2) Login as User
+(3) Login as Admin
 (0) Quit
 }
 
-Alert{
+Alert{ - 11
 Item Validation Request
 User:
 Item Name:
@@ -82,25 +85,25 @@ Item ID Number:
 Please explain why this item was declined:
 }
 
-Alert{
+Alert{ - 12
 Handle Report Alert
 (1) Accept Report
 (2) Dismiss
 }
 
-Alert{
+Alert{ - 13
 Handle Freeze User Alert
 (1) Freeze User
 (2) Dismiss
 }
 
-Alert{
+Alert{ - 14
 Unfreeze Request Alert
 (1) Unfreeze User
 (2) Dismiss
 }
 
-MENU{
+MENU{ - 15
 User Menu
 (1) View items and wishlist
 (2) View user stats
@@ -113,7 +116,7 @@ Please enter a number corresponding to a setting above:
 Please enter a number from 0 to 6
 }
 
-MENU{
+MENU{ - 16
 Items and Wishlist
 You have no items.
 Your available items:
@@ -130,7 +133,7 @@ Invalid item id
 Please enter the name of the item on your wishlist you wish to remove.
 }
 
-MENU{
+MENU{ - 17
 View Other Users
 Enter a number to view a User's page:
 Back to Main Menu
@@ -139,7 +142,7 @@ Please Enter a valid input.
 Viewing User:
 }
 
-MENU{
+MENU{ - 18
 Viewing User
 (1) Send a message
 (2) Add one of their items to your wishlist
@@ -151,7 +154,7 @@ Sent message to
 Enter the name of the item you would like added to your wishlist:
 }
 
-MENU{
+MENU{ - 19
 Form Trade Request
 The other user has no available items. You will not receive anything in this trade.
 Enter the ID of an item want from this trade:
@@ -171,7 +174,7 @@ This could have happened if you have completed too many trades this week or if o
 Successfully created and sent trade request. You will be notified when they respond.
 }
 
-MENU{
+MENU{ - 20
 View User Stats
 (1) View number of items user has borrowed
 (2) View number of items user has lent
@@ -190,13 +193,13 @@ Number of incomplete transactions:
 Number of transactions this week:
 }
 
-Alert{
+Alert{ - 21
 Send Unfreeze Request
 Your account is not frozen.
 Your unfreeze request has been sent.
 }
 
-MENU{
+MENU{ - 22
 View Pending Trades
 Options:
 (1) Exit this menu
@@ -207,7 +210,7 @@ Your choice was not valid, please pick a valid choice.
 Your active temporary trades:
 }
 
-Alert{
+Alert{ - 23
 Handle Frozen Alert
 Your account has been frozen by the administrator.
 Number of items you borrowed:
@@ -216,7 +219,7 @@ Number of items you need to lend before you can borrow:
 (1) Dismiss
 }
 
-Alert{
+Alert{ - 24
 Handle Expiration Alert
 The following temporary trade expired at:
 (1) Report the other user
@@ -226,7 +229,7 @@ Report has been sent to the tribunal.
 Trade re-exchange confirmed.
 }
 
-Alert{
+Alert{ - 25
 Handle Trade Request Alert
 Trade request made by
 (1) Accept
@@ -242,25 +245,25 @@ Enter new meeting place:
 Trade successfully edited. Meeting at:
 }
 
-Alert{
+Alert{ - 26
 Handle Trade Accepted Alert
 The following trade request has been accepted:
 (1) Dismiss
 }
 
-Alert{
+Alert{ - 27
 Handle Trade Declined Alert
 Your trade request has been declined:
 (1) Dismiss
 }
 
-Alert{
+Alert{ - 28
 Handle Trade Cancelled Alert
 The following trade has been cancelled as one of the users is no longer in possession of an item. Trade ID:
 (1) Dismiss
 }
 
-Alert{
+Alert{ - 29
 Handle Item Validation Declined Alert
 Your item validation request has been declined for the following reason:
 User:
@@ -273,7 +276,7 @@ Please enter the name of your item
 Please enter the item description
 }
 
-Alert{
+Alert{ - 30
 Handle Trade Past Date Alert
 The following trade expired at:
 (1) Confirm trade
@@ -282,13 +285,13 @@ The following trade expired at:
 Trade confirmed. Your items have been exchanged on the system.
 }
 
-Alert{
+Alert{ - 31
 Handle Message Alert
 From:
 (1) Dismiss
 }
 
-Alert{
+Alert{ - 32
 Trade to String
 User 1:
 User 2:
@@ -299,7 +302,7 @@ Location of trade:
 Trade ID:
 }
 
-MENU{
+MENU{ - 33
 Create User
 Entered:
 That username is taken.

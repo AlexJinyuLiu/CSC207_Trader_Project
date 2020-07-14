@@ -34,7 +34,7 @@ public class UserAlertManager {
         } else if (alert instanceof ExpirationAlert) {
             handleExpirationAlert(menuPresenter, userManager, tradeCreator, (ExpirationAlert) alert);
         } else if (alert instanceof TradeRequestAlert){
-            handleTradeRequestAlert(menuPresenter, userManager, tradeCreator, (TradeRequestAlert) alert);
+            handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert, menuPresenter);
         } else if (alert instanceof TradeAcceptedAlert) {
             handleTradeAcceptedAlert(menuPresenter, userManager, tradeCreator, (TradeAcceptedAlert) alert);
         } else if (alert instanceof TradeDeclinedAlert){
@@ -117,7 +117,7 @@ public class UserAlertManager {
         }
     }
 
-    private void handleTradeRequestAlert(UserManager userManager, TradeCreator tradeCreator, TradeRequestAlert a){
+    private void handleTradeRequestAlert(UserManager userManager, TradeCreator tradeCreator, TradeRequestAlert a, MenuPresenter menuPresenter){
         if (a.getIsTempTrade()) {
             System.out.println(a.getSenderUserName() + " has proposed the following trade: \n" +
                     tradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID())));
@@ -197,6 +197,11 @@ public class UserAlertManager {
             //         ".");
             menuPresenter.printMenu(26, 12);
         }
+    }
+
+    private String tradeToString(UserManager userManager, Trade searchPendingTradeRequest) {
+        //TODO
+        return "tradeToString not implemented yet";
     }
 
     private void handleTradeAcceptedAlert(MenuPresenter menuPresenter, UserManager userManager,
