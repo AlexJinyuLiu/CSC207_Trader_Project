@@ -35,7 +35,7 @@ public class UserActions {
                 // System.out.println("Please enter a number corresponding to a setting above:\n");
                 menuPresenter.printMenu(15, 8);
                 input = scan.nextInt();
-                if (input >= 6 || input <= 0) {
+                if (input > 6 || input < 0) {
                     // System.out.println("Please enter a number from 0 to 6");
                     menuPresenter.printMenu(15, 9);
                 } else if (input == 1) {

@@ -158,7 +158,7 @@ public class UserManager implements Serializable{
         System.out.print(username);
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
-                menuPresenter.printMenu(34, 2);
+                menuPresenter.printMenu(33, 2);
                 throw new UserNameTakenException("That username is taken.");
 
             }
