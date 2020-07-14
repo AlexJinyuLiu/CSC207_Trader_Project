@@ -209,22 +209,16 @@ public class UserActions {
     private void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
                           User userToView, User userViewing) {
         Scanner scan = new Scanner(System.in);
-        StringBuilder userString = new StringBuilder(userToView.toString());
-        userString.append("(1) Send a message\n");
         menuPresenter.printMenu(18, 1);
-        userString.append("(2) Add one of their items to your wishlist\n");
         menuPresenter.printMenu(18, 2);
         if (!userToView.getFrozen()) {
-            userString.append("(3) Send a trade request\n");
             menuPresenter.printMenu(18, 3);
         }
-        userString.append("(0) Back to Main Menu");
         menuPresenter.printMenu(18, 4);
         boolean handled = false;
         int input;
         while(!handled){
-            menuPresenter.printMenu(35, 0, userString.toString());
-
+            menuPresenter.printUserToString(userToView);
             input = scan.nextInt();
 
             if (input < 0 || input > 3 || (userToView.getFrozen() && input == 3)){
@@ -447,11 +441,11 @@ public class UserActions {
             if (input == 1) {
                 // System.out.println("You have borrowed " + Integer.toString(user.getNumBorrowed()) + " items.");
                 menuPresenter.printMenu(20, 10);
-
+                System.out.println(Integer.toString(user.getNumBorrowed()));
             } else if (input == 2) {
                 // System.out.println("You have lent " + Integer.toString(user.getNumLent()) + " items.");
                 menuPresenter.printMenu(20, 11);
-
+                System.out.println(Integer.toString(user.getNumLent()));
             } else if (input == 3) {
                 if (user.getFrozen()) {
                     // System.out.println("Your account has been frozen");
@@ -466,12 +460,14 @@ public class UserActions {
                 //System.out.println("Your account has made " + Integer.toString(incompleteTrades) +
                  //       " incomplete transactions");
                 menuPresenter.printMenu(20, 14);
+                System.out.println(Integer.toString(incompleteTrades));
 
             } else if (input == 5) {
                 int weeklyTransactions = tradeCreator.tradeHistories.getNumTradesThisWeek(user.getUsername());
                 // System.out.println("Your account has made " + Integer.toString(weeklyTransactions) +
                 //         " transactions this week");
                 menuPresenter.printMenu(20, 15);
+                System.out.println(Integer.toString(weeklyTransactions));
 
             } else if (input == 6) {
                 ArrayList<Item> recentItems = tradeCreator.tradeHistories.getNRecentItems(userManager, user.getUsername(), 3);
@@ -480,6 +476,7 @@ public class UserActions {
             } else if (input == 7) {
                 ArrayList<String> favouriteParnters = tradeCreator.tradeHistories.getTopNTradingPartners(user.getUsername(), 3);
                 menuPresenter.printMenu(35, 0, favouriteParnters);
+
             } else if (input == 8) {
                 handled = true;
             }
