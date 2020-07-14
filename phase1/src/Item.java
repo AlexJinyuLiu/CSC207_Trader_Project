@@ -1,4 +1,5 @@
 import javax.print.DocFlavor;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -20,10 +21,10 @@ public class Item implements Serializable {
         this.id = itemID;
     }
 
-    @Override
-    // TODO change to be compatible with MenuPresenter?
-    public String toString() {
-        return name + ", item Id: " + id + ", Description: " + description;
+    public void toString(MenuPresenter menuPresenter) {
+        menuPresenter.printMenu(29, 3, name);
+        menuPresenter.printMenu(29, 4, id);
+        menuPresenter.printMenu(29, 5, description);
     }
 
     //setters
