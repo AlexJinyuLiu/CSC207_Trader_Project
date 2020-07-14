@@ -17,6 +17,7 @@ import java.util.*;
 
 // getMenu(key).get[0] .. get[1]... get[2]
 // stringbuilder -- //n
+//be able to print it with w/e variable you pass in after you get the txt
 public class MenuPresenter {
     private final LinkedHashMap<Integer, ArrayList<String>> menusMap = new LinkedHashMap<Integer, ArrayList<String>>();
     File menu;
@@ -61,6 +62,15 @@ public class MenuPresenter {
     public void printMenu(int menuIndex, int lineIndex) {
         try{
             System.out.println(menusMap.get(menuIndex).get(lineIndex));
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
+            e.printStackTrace();
+        }
+    }
+
+    public void printMenu (int menuIndex, int lineIndex, Object variable){
+        try{
+            System.out.println(menusMap.get(menuIndex).get(lineIndex) + variable);
         } catch (IndexOutOfBoundsException e){
             System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
             e.printStackTrace();
