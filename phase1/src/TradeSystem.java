@@ -21,18 +21,18 @@ public class TradeSystem {
     public TradeSystem(){}
 
     public void run() {
-        File directory = new File("data");
+        File directory = new File("phase1/data");
         if (! directory.exists()) {
             directory.mkdir();
         }
 
-        if (!((new File("data/adminUser.ser"))).exists()) {
+        if (!((new File("phase1/data/adminUser.ser"))).exists()) {
             createAdminUser();
         }
-        if (!((new File("data/userManager.ser"))).exists()) {
+        if (!((new File("phase1/data/userManager.ser"))).exists()) {
             createUserManager();
         }
-        if (!((new File("data/tradeCreator.ser"))).exists()){
+        if (!((new File("phase1/data/tradeCreator.ser"))).exists()){
             createTradeCreator();
         }
 

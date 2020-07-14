@@ -13,7 +13,7 @@ public class FileManager {
     public static void saveAdminToFile(AdminUser admin) {
         //serializes the given user's information in a .ser file with the title of their username
         try {
-            FileOutputStream file = new FileOutputStream("data/adminUser.ser");
+            FileOutputStream file = new FileOutputStream("phase1/data/adminUser.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(admin);
             out.close();
@@ -31,7 +31,7 @@ public class FileManager {
     public static void saveUserManagerToFile(UserManager userManager) {
         //serializes the given user manager information in a .ser file
         try {
-            FileOutputStream file = new FileOutputStream("data/userManager.ser");
+            FileOutputStream file = new FileOutputStream("phase1/data/userManager.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(userManager);
             out.close();
@@ -49,7 +49,7 @@ public class FileManager {
     public static void saveTradeCreatorToFile(TradeCreator tradeCreator) {
         //serializes the given trade creator information in a .ser file
         try {
-            FileOutputStream file = new FileOutputStream("data/tradeCreator.ser");
+            FileOutputStream file = new FileOutputStream("phase1/data/tradeCreator.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(tradeCreator);
             out.close();
@@ -68,7 +68,7 @@ public class FileManager {
         // deserializes AdminUser object
         AdminUser adminUsr;
         try {
-            FileInputStream file = new FileInputStream("data/adminUser.ser");
+            FileInputStream file = new FileInputStream("phase1/data/adminUser.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             adminUsr = (AdminUser) in.readObject();
             in.close();
@@ -88,7 +88,7 @@ public class FileManager {
     public static UserManager loadUserManager(){
         UserManager userManager;
         try {
-            FileInputStream file = new FileInputStream("data/userManager.ser");
+            FileInputStream file = new FileInputStream("phase1/data/userManager.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             userManager = (UserManager) in.readObject();
             in.close();
@@ -109,7 +109,7 @@ public class FileManager {
     public static TradeCreator loadTradeCreator(){
         TradeCreator tradeCreator;
         try {
-            FileInputStream file = new FileInputStream("data/tradeCreator.ser");
+            FileInputStream file = new FileInputStream("phase1/data/tradeCreator.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             tradeCreator = (TradeCreator) in.readObject();
             System.out.println(tradeCreator);
