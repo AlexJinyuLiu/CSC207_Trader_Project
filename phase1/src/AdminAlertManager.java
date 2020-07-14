@@ -51,22 +51,22 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         // System.out.println("Item validation request\nUser: " + alert.getOwner() + "\nItem name: " + alert.getName() +
         //         "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID());
         // TODO add in the alerts
-        menuPresenter.printMenu(0,0);
-        menuPresenter.printMenu(0,1) ;
-        menuPresenter.printMenu(0,2);
-        menuPresenter.printMenu(0,3);
-        menuPresenter.printMenu(0,4);
+        menuPresenter.printMenu(11,0);
+        menuPresenter.printMenu(11,1) ;
+        menuPresenter.printMenu(11,2);
+        menuPresenter.printMenu(11,3);
+        menuPresenter.printMenu(11,4);
 
         Scanner scanner = new Scanner(System.in);
         String message;
         // System.out.println("(1) Approve this item");
-        menuPresenter.printMenu(0,5);
+        menuPresenter.printMenu(11,5);
         // System.out.println("(2) Deny this item");
-        menuPresenter.printMenu(0,6);
+        menuPresenter.printMenu(11,6);
         int choice = optionChoice(menuPresenter, 2);
         if (choice == 2){
             // System.out.println("Please enter a reason why this request was declined.");
-            menuPresenter.printMenu(0,7);
+            menuPresenter.printMenu(11,7);
             message = scanner.next();
         }else{
             message = "";
@@ -81,7 +81,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
     private void handleReportAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
                                    TradeCreator tradeCreator,
                                    ReportAlert alert){
-        menuPresenter.printMenu(13,0); // Handle Report Alert
+        menuPresenter.printMenu(12,0); // Handle Report Alert
         // TODO change this
         System.out.println(alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
                 " whose trade status is " + alert.getIsTradeComplete()
@@ -94,9 +94,9 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         while (flag){
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Accept report");
-            menuPresenter.printMenu(13,1);
+            menuPresenter.printMenu(12,1);
             // System.out.println("(2) Dismiss");
-            menuPresenter.printMenu(13,2);
+            menuPresenter.printMenu(12,2);
             input = scan.nextInt();
             if (input == 1){
                 userManager.increaseUserIncompleteTrades(userManager.searchUser(alert.getReportedUserName()));
@@ -123,7 +123,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      */
     private void handleFreezeUserAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
                                        FreezeUserAlert alert){
-        menuPresenter.printMenu(14,0); // Freeze User Alert
+        menuPresenter.printMenu(13,0); // Freeze User Alert
         // TODO change this
         System.out.println("Freeze User Alert" +
                 "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
@@ -134,9 +134,9 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         while (flag) {
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Freeze User");
-            menuPresenter.printMenu(14,1);
+            menuPresenter.printMenu(13,1);
             // System.out.println("(2) Dismiss");
-            menuPresenter.printMenu(14,2);
+            menuPresenter.printMenu(13,2);
             input = scan.nextInt();
             if (input == 1) {
                 User user = userManager.searchUser(alert.getUsername());
@@ -158,7 +158,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      */
     private void handleUnfreezeRequestAlert(MenuPresenter menuPresenter, UserManager userManager, AdminUser adminUser,
                                             UnfreezeRequestAlert alert){
-        menuPresenter.printMenu(15,0);
+        menuPresenter.printMenu(14,0);
         // TODO change this
         System.out.println("Unfreeze User Request Alert" +
                 "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
@@ -170,9 +170,9 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         while (flag) {
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Unfreeze User");
-            menuPresenter.printMenu(15,1);
+            menuPresenter.printMenu(14,1);
             // System.out.println("(2) Dismiss");
-            menuPresenter.printMenu(15,2);
+            menuPresenter.printMenu(14,2);
             input = scan.nextInt();
             if (input == 1) {
                 User user = userManager.searchUser(alert.getUsername());
@@ -193,12 +193,12 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
     private int optionChoice(MenuPresenter menuPresenter, int x){
         Scanner scanner = new Scanner(System.in);
         // System.out.println("Please enter one of the numbers listed above");
-        menuPresenter.printMenu(6,1);
+        menuPresenter.printMenu(5,1);
         int choice = scanner.nextInt();
         while(choice >= x || choice < 0){
             // TODO change this to include +x
             // System.out.println("The number you entered was not listed above. Please enter a choice between 1 and " + x);
-            menuPresenter.printMenu(6,2);
+            menuPresenter.printMenu(5,2);
             choice = scanner.nextInt();
         }
         return choice;

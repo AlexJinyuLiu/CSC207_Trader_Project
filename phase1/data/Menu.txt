@@ -57,6 +57,7 @@ Enter the password of the administrator you want to add:
 MENU{ - 8
 Username taken. Please enter a different username.
 Incorrect password. Please try again.
+Log in successful.
 }
 
 MENU{ - 9
@@ -306,4 +307,10 @@ MENU{ - 33
 Create User
 Entered:
 That username is taken.
+}
+
+MENU{ - 34
+Change Incomplete Trade Threshold Menu
+Please enter the new threshold value for incomplete trades a user can conduct:
+The number you entered was not valid. Please enter a valid threshold number.
 }
