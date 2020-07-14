@@ -6,6 +6,8 @@ public class FileManager {
     //used https://www.tutorialspoint.com/java/java_serialization.htm and
     //https://attacomsian.com/blog/java-write-object-to-file as a reference
 
+    private final static String dir = "phase1/data/"; //file directory
+
     /**
      * Serializes an admin object to a .ser file
      * @param admin admin which is being saved to a file
@@ -13,7 +15,7 @@ public class FileManager {
     public static void saveAdminToFile(AdminUser admin) {
         //serializes the given user's information in a .ser file with the title of their username
         try {
-            FileOutputStream file = new FileOutputStream("phase1/data/adminUser.ser");
+            FileOutputStream file = new FileOutputStream(dir + "adminUser.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(admin);
             out.close();
@@ -31,7 +33,7 @@ public class FileManager {
     public static void saveUserManagerToFile(UserManager userManager) {
         //serializes the given user manager information in a .ser file
         try {
-            FileOutputStream file = new FileOutputStream("phase1/data/userManager.ser");
+            FileOutputStream file = new FileOutputStream(dir + "userManager.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(userManager);
             out.close();
@@ -49,7 +51,7 @@ public class FileManager {
     public static void saveTradeCreatorToFile(TradeCreator tradeCreator) {
         //serializes the given trade creator information in a .ser file
         try {
-            FileOutputStream file = new FileOutputStream("phase1/data/tradeCreator.ser");
+            FileOutputStream file = new FileOutputStream(dir + "tradeCreator.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(tradeCreator);
             out.close();
@@ -68,7 +70,7 @@ public class FileManager {
         // deserializes AdminUser object
         AdminUser adminUsr;
         try {
-            FileInputStream file = new FileInputStream("phase1/data/adminUser.ser");
+            FileInputStream file = new FileInputStream(dir + "adminUser.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             adminUsr = (AdminUser) in.readObject();
             in.close();
@@ -88,7 +90,7 @@ public class FileManager {
     public static UserManager loadUserManager(){
         UserManager userManager;
         try {
-            FileInputStream file = new FileInputStream("phase1/data/userManager.ser");
+            FileInputStream file = new FileInputStream(dir + "userManager.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             userManager = (UserManager) in.readObject();
             in.close();
@@ -109,7 +111,7 @@ public class FileManager {
     public static TradeCreator loadTradeCreator(){
         TradeCreator tradeCreator;
         try {
-            FileInputStream file = new FileInputStream("phase1/data/tradeCreator.ser");
+            FileInputStream file = new FileInputStream(dir + "tradeCreator.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             tradeCreator = (TradeCreator) in.readObject();
             System.out.println(tradeCreator);
