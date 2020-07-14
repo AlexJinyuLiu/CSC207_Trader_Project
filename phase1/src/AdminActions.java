@@ -93,10 +93,11 @@ public class AdminActions {
         int input = 0;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            menuPresenter.printMenu(12,1);
+            menuPresenter.printMenu(34,0);
+            menuPresenter.printMenu(34,1);
             input = scan.nextInt();
             if (input > 50 || input < 0) {
-                menuPresenter.printMenu(12,2);
+                menuPresenter.printMenu(34,2);
             } else {
                 adminUser.changeIncompleteThreshold(userManager, input);
                 flag = false;
@@ -126,7 +127,7 @@ public class AdminActions {
                 flag = false;
             } else{
                 // System.out.println("That username is taken.");
-                menuPresenter.printMenu(9,0);
+                menuPresenter.printMenu(33,2);
             }
         }
     }

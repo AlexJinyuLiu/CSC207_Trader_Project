@@ -308,3 +308,9 @@ Create User
 Entered:
 That username is taken.
 }
+
+MENU{ - 34
+Change Incomplete Trade Threshold Menu
+Please enter the new threshold value for incomplete trades a user can conduct:
+The number you entered was not valid. Please enter a valid threshold number.
+}
