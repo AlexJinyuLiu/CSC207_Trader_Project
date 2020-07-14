@@ -21,12 +21,6 @@ public class Item implements Serializable {
         this.id = itemID;
     }
 
-    public void toString(MenuPresenter menuPresenter) {
-        menuPresenter.printMenu(29, 3, name);
-        menuPresenter.printMenu(29, 4, id);
-        menuPresenter.printMenu(29, 5, description);
-    }
-
     //setters
 
     /**
