@@ -93,9 +93,9 @@ public class AdminUser implements Serializable {
             // request.getOwner().availableItems.add(request.getObj());
         }
         else{
-            UserAlert alert = new ItemValidationDeclinedAlert(request.getOwner(), request.getName(),
+            UserAlert alert = new ItemValidationDeclinedAlert(request.getOwner(), request.getOwner(),
                     request.getDescription(), request.getItemID(), message);
-            userManager.alertUser(request.getName(), alert);
+            userManager.alertUser(request.getOwner(), alert);
         }
     }
 

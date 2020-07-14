@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
 import AlertPack.Alert;
@@ -188,7 +189,7 @@ public class User implements Serializable {
      *
      * @return string representation of the user.
      */
-    public String toString(){
+    public String toString(MenuPresenter menuPresenter){
         // TODO change to be compatible with MenuPresenter
         StringBuilder userString = new StringBuilder("User: " + username + "\n");
         if (availableItems.size() == 0){

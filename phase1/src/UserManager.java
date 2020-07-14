@@ -154,11 +154,12 @@ public class UserManager implements Serializable{
      */ //UserManager
     public User createUser(MenuPresenter menuPresenter, String username, String password) throws UserNameTakenException {
         // System.out.println("Entered:" + username);
-        menuPresenter.printMenu(34, 1);
+        menuPresenter.printMenu(33, 1);
+        System.out.print(username + "\n");
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
-                menuPresenter.printMenu(34, 2);
-                throw new UserNameTakenException("That username is taken.");
+                menuPresenter.printMenu(33, 2);
+                throw new UserNameTakenException();
 
             }
 
@@ -263,9 +264,7 @@ public class UserManager implements Serializable{
      * @param alert alert object to send to the user
      */ //UserManager AND TradeManager
     public void alertUser(String username, UserAlert alert){
-        ArrayList<UserAlert> alerts = alertSystem.get(username);
-        alerts.add(alert);
-        alertSystem.put(username, alerts);
+        alertSystem.get(username).add(alert);
     }
 
     /** Method which allows a user to send a message to another user, using the alert system.
