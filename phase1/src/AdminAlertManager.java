@@ -195,7 +195,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         // System.out.println("Please enter one of the numbers listed above");
         menuPresenter.printMenu(5,1);
         int choice = scanner.nextInt();
-        while(choice >= x || choice < 0){
+        while(choice > x || choice < 0){
             // TODO change this to include +x
             // System.out.println("The number you entered was not listed above. Please enter a choice between 1 and " + x);
             menuPresenter.printMenu(5,2);
