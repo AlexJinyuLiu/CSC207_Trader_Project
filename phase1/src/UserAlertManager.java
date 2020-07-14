@@ -1,6 +1,5 @@
 import AlertPack.*;
 
-import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -374,22 +373,21 @@ public class UserAlertManager {
     /**
      *
      * @param trade a trade object
-     * @return a string which describes the two users involved in the trade and the Time & date of the trade.
      *///TradeManager -- consider moving to Trade
-    public String tradeToString(MenuPresenter menuPresenter, UserManager userManager, Trade trade){
+    public void tradeToString(MenuPresenter menuPresenter, UserManager userManager, Trade trade){
         // "User 1: " + trade.getUsername1() + "\nUser 2: " + trade.getUsername2() +
         //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
         //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
         //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
         //        "\nLocation of Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
-        menuPresenter.printMenu(32, 1);
-        menuPresenter.printMenu(32, 2);
-        menuPresenter.printMenu(32, 3);
-        menuPresenter.printMenu(32, 4);
-        menuPresenter.printMenu(32, 5);
-        menuPresenter.printMenu(32, 6);
-        menuPresenter.printMenu(32, 7);
-        return "User 1: " + trade.getUsername1(); // to be changed
+        menuPresenter.printMenu(32, 1, trade.getUsername1());
+        menuPresenter.printMenu(32, 2, trade.getUsername2());
+        menuPresenter.printMenu(32, 3, GetItemNamesFromUser1ToUser2(userManager, trade));
+        menuPresenter.printMenu(32, 4, GetItemNamesFromUser2ToUser1(userManager, trade));
+        menuPresenter.printMenu(32, 5, trade.getTimeOfTrade().toString());
+        menuPresenter.printMenu(32, 6, trade.getMeetingPlace());
+        menuPresenter.printMenu(32, 7, trade.getTradeID());
+        // return "User 1: " + trade.getUsername1(); // to be changed
     }
     // helper method which lists the names of the items going from user 1 to user 2 - Louis
     private String GetItemNamesFromUser1ToUser2(UserManager userManager, Trade trade){
