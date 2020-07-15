@@ -51,7 +51,7 @@ public class UserActions {
                     viewAllUsers(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 5) {
-                    viewPendingTrades(menuPresenter, tradeCreator, user);
+                    viewPendingTrades(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 6) {
                     viewActiveTempTrades(menuPresenter, tradeCreator, user);
@@ -96,7 +96,7 @@ public class UserActions {
             menuPresenter.printMenu(16, 6);
             menuPresenter.printMenu(16, 14);
             input = scan.nextInt();
-            if (input < 1 || input > 3){
+            if (input < 0 || input > 3){
                 // System.out.println("Please enter a number from 1 to 3");
                 menuPresenter.printMenu(16, 7);
             } else flag = false;
@@ -125,7 +125,7 @@ public class UserActions {
                  menuPresenter.printMenu(16, 12);
              }
 
-         } else {
+         } else if (input == 3){
              // System.out.println("Please enter the name of the item on your wishlist you wish to remove");
              menuPresenter.printMenu(16, 13);
              String wishlistitem = scan.nextLine();
@@ -134,6 +134,8 @@ public class UserActions {
                      user.getWishlistItemNames().remove(wishlistitem);
                  }
              }
+         } else if (input == 0){
+             return;
          }
 
         }
@@ -516,7 +518,8 @@ public class UserActions {
      * Allow user to view their pending trade history
      * @param user user logged in
      */
-    public void viewPendingTrades(MenuPresenter menuPresenter, TradeCreator tradeCreator, User user){
+    public void viewPendingTrades(MenuPresenter menuPresenter, UserManager userManager,
+                                  TradeCreator tradeCreator, User user){
         int choice = 0;
         while (choice != 0 ) {
             ArrayList<Trade> userTrades = tradeCreator.searchPendingTradesByUser(user);
@@ -530,7 +533,7 @@ public class UserActions {
             for (Trade trade : userTrades) {
                 //System.out.println(tradeToString(trade));
                 // System.out.println("tradeToString should be called here");
-                menuPresenter.printMenu(22, 5);
+                menuPresenter.printTradeToString(userManager, trade);
             }
             Scanner scanner = new Scanner(System.in);
             choice = scanner.nextInt();
