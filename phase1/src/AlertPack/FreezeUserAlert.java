@@ -11,6 +11,7 @@ public class FreezeUserAlert extends AdminAlert implements Serializable {
     private int thresholdRequired; // difference needed between lent and borrowed
 
     public FreezeUserAlert(String username, int lent, int borrowed, int thresholdRequired){
+        super(2);
         this.username = username;
         this.lent = lent;
         this.borrowed = borrowed;

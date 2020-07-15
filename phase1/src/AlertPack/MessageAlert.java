@@ -8,7 +8,7 @@ public class MessageAlert extends UserAlert implements Serializable {
     protected String senderUsername;
 
     public MessageAlert(String message, String senderUsername){
-        super();
+        super(3);
         this.message = message;
         this.senderUsername = senderUsername;
     }

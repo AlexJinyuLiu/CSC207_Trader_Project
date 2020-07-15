@@ -10,7 +10,7 @@ public class FrozenAlert extends UserAlert implements Serializable {
     protected int threshholdNumofUser;
 
     public FrozenAlert(int numBorrowed, int numLent, int threshholdNum){
-        super();
+        super(0);
         numBorrowedofUser = numBorrowed;
         numLentofUser = numLent;
         threshholdNumofUser = threshholdNum;

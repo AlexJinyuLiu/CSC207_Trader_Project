@@ -28,26 +28,26 @@ public class UserAlertManager {
     private void handleAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
                              UserAlert alert) {
 
-        if (alert instanceof FrozenAlert) {
+        if (alert.getType() == 0) {
             handleFrozenAlert(menuPresenter, (FrozenAlert) alert);
-        } else if (alert instanceof ExpirationAlert) {
-            handleExpirationAlert(menuPresenter, userManager, tradeCreator, (ExpirationAlert) alert);
-        } else if (alert instanceof TradeRequestAlert){
-            handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert, menuPresenter);
-        } else if (alert instanceof TradeAcceptedAlert) {
-            handleTradeAcceptedAlert(menuPresenter, userManager, tradeCreator, (TradeAcceptedAlert) alert);
-        } else if (alert instanceof TradeDeclinedAlert){
-            handleTradeDeclinedAlert(menuPresenter, (TradeDeclinedAlert) alert);
-        } else if (alert instanceof TradeCancelledAlert) {
-            handleTradeCancelledAlert(menuPresenter,(TradeCancelledAlert) alert);
-        } else if (alert instanceof  TradeRequestCancelledAlert) {
-            handleTradeRequestCancelledAlert(menuPresenter,(TradeRequestCancelledAlert) alert);
-        }else if (alert instanceof ItemValidationDeclinedAlert){
+        } else if (alert.getType() == 1){
             handleItemValidationDeclinedAlert(menuPresenter,userManager, (ItemValidationDeclinedAlert) alert);
-        } else if (alert instanceof TradePastDateAlert) {
-            handleTradePastDateAlert(menuPresenter,userManager, tradeCreator, (TradePastDateAlert) alert);
-        } else if (alert instanceof MessageAlert) {
+        } else if (alert.getType() == 2) {
+            handleExpirationAlert(menuPresenter, userManager, tradeCreator, (ExpirationAlert) alert);
+        } else if (alert.getType() == 3) {
             handleMessageAlert(menuPresenter,(MessageAlert) alert);
+        } else if (alert.getType() == 4) {
+            handleTradeAcceptedAlert(menuPresenter, userManager, tradeCreator, (TradeAcceptedAlert) alert);
+        } else if (alert.getType() == 5) {
+            handleTradeCancelledAlert(menuPresenter,(TradeCancelledAlert) alert);
+        } else if (alert.getType() == 6){
+            handleTradeDeclinedAlert(menuPresenter, (TradeDeclinedAlert) alert);
+        } else if (alert.getType() == 7) {
+            handleTradePastDateAlert(menuPresenter,userManager, tradeCreator, (TradePastDateAlert) alert);
+        } else if (alert.getType() == 8){
+            handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert, menuPresenter);
+        } else if (alert.getType() == 9) {
+            handleTradeRequestCancelledAlert(menuPresenter,(TradeRequestCancelledAlert) alert);
         }
 
             //Each alert needs a handle method for its type, which prints/takes input and calls corresponding functions to
@@ -198,10 +198,6 @@ public class UserAlertManager {
         }
     }
 
-    private String tradeToString(UserManager userManager, Trade searchPendingTradeRequest) {
-        //TODO
-        return "tradeToString not implemented yet";
-    }
 
     private void handleTradeAcceptedAlert(MenuPresenter menuPresenter, UserManager userManager,
                                           TradeCreator tradeCreator, TradeAcceptedAlert a){
