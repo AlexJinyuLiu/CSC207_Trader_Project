@@ -40,7 +40,7 @@ public class TradeSystem {
         userManager = FileManager.loadUserManager();
         tradeCreator = FileManager.loadTradeCreator();
 
-        onStartUp();
+        tradeCreator.tradeHistories.checkForExpiredTempTrades();
 
         User loggedIn = null;
         boolean isAdmin = false;
@@ -71,14 +71,15 @@ public class TradeSystem {
 
 //buildAdminUser method
         if (isAdmin) {
+            adminUser.onStartUp(userManager, tradeCreator);
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
             adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
-            //TODO: Ensure the alert queue is depleted after all are handled.
             adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager);
         } else {
             if (loggedIn == null) {
                 return;
             }
+            userManager.onStartUp(tradeCreator);
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
             userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, userAlerts);
             userActions.runUserMenu(menuPresenter, userManager, tradeCreator, loggedIn);
@@ -120,12 +121,6 @@ public class TradeSystem {
         FileManager.saveTradeCreatorToFile(tradeCreator);
     }
 
-    protected void onStartUp(){
-        adminUser.onStartUp(userManager, tradeCreator);
-        userManager.onStartUp(tradeCreator);
-        tradeCreator.tradeHistories.checkForExpiredTempTrades();
-    }
-
     public User createAccount(){  // does not check that the username is taken
         while (true) {
             try {
@@ -136,7 +131,7 @@ public class TradeSystem {
                 //"Enter your desired password"
                 menuPresenter.printMenu(1, 2);
                 String password = scan.nextLine();
-                return userManager.createUser(menuPresenter, inputUsername, password);
+                return userManager.createUser(inputUsername, password);
             } catch (UserNameTakenException e) {
             } menuPresenter.printMenu(8, 0);
         }

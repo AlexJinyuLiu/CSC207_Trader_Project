@@ -10,19 +10,19 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
     protected final int itemID;
     private static int idGenerator = 0;
 
-    public ItemValidationRequestAlert(String owner, String obj, String desc){
+    public ItemValidationRequestAlert(int itemID, String owner, String obj, String desc){
         super(0);
         this.description = desc;
         this.name = obj;
         this.usernameOfOwner = owner;
-        itemID = idGenerator;
+        this.itemID = itemID;
         idGenerator++;
     }
-    public ItemValidationRequestAlert(String owner, String obj){
+    public ItemValidationRequestAlert(int itemID, String owner, String obj){
         super(0);
         this.name = obj;
         this.usernameOfOwner = owner;
-        itemID = idGenerator;
+        this.itemID = itemID;
         idGenerator++;
     }
 

@@ -23,6 +23,8 @@ public class UserManager implements Serializable{
     //UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
 
+    private int itemIDGenerator = 0;
+
     /**
      * Method called on program Start up. Currently fetches all userAlerts from other places in the program.
      * @param tradeCreator the TradeCreator used in this program.
@@ -141,7 +143,8 @@ public class UserManager implements Serializable{
      */ //TradeManager for cohesion reasons with alerting admin.
     public ItemValidationRequestAlert sendValidationRequest(String name, String description, String owner) {
         // reworked by Tingyu since the itemValidationRequestQueue has been moved to UserManager
-        ItemValidationRequestAlert alert = new ItemValidationRequestAlert(owner, name, description);
+        ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemIDGenerator, owner, name, description);
+        itemIDGenerator++;
         alertAdmin(alert);
         return alert;
     }
@@ -152,17 +155,11 @@ public class UserManager implements Serializable{
      * @param password password of user
      * @return the created user
      */ //UserManager
-    public User createUser(MenuPresenter menuPresenter, String username, String password) throws UserNameTakenException {
-        // System.out.println("Entered:" + username);
-        menuPresenter.printMenu(33, 1);
-        System.out.print(username + "\n");
+    public User createUser(String username, String password) throws UserNameTakenException {
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
-                menuPresenter.printMenu(33, 2);
                 throw new UserNameTakenException();
-
             }
-
         }
         User newUser = new User(username);
         newUser.setPassword(password);
