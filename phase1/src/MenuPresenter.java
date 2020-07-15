@@ -161,7 +161,7 @@ public class MenuPresenter {
 
     public void printItemToString(Item item) {
         printMenu(29, 3, item.getName());
-        printMenu(29, 4, item.getId());
-        printMenu(29, 5, item.getDescription());
+        printMenu(29, 5, item.getId());
+        printMenu(29, 4, item.getDescription());
     }
 }

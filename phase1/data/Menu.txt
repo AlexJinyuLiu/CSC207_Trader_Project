@@ -306,7 +306,7 @@ Trade to String
 User 1:
 User 2:
 Items being traded from User 1 to User 2:
-Items being traded from User 1 to User 2:
+Items being traded from User 2 to User 1:
 Time and date of exchange:
 Location of trade:
 Trade ID:
@@ -336,8 +336,8 @@ Please enter either Y or N:
 
 MENU{ - 37
 
-has proposed the following trade:
-has proposed the following temporary trade (items due back in 30 days):
+ has proposed the following trade:
+ has proposed the following temporary trade (items due back in 30 days):
 }
 
 MENU{ - 38

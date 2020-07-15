@@ -79,7 +79,8 @@ public class UserActions {
             // System.out.println("Your available items:");
             menuPresenter.printMenu(16, 2);
             for (Item item : user.getAvailableItems()) {
-                menuPresenter.printMenu(35, 0, item);
+                menuPresenter.printMenu(35, 0);
+                menuPresenter.printItemToString(item);
             }
         }
         // System.out.println("\n Your wishlist :");
@@ -292,6 +293,7 @@ public class UserActions {
                 while (!validYNInput) {
                     // System.out.println("Would you like to add another item? (Y/N)");
                     menuPresenter.printMenu(19, 4);
+                    scan.nextLine();
                     String anotherItem = scan.nextLine();
                     if (anotherItem.equals("Y")) {
                         validYNInput = true;
@@ -345,21 +347,22 @@ public class UserActions {
                 menuPresenter.printMenu(19, 3);
             } else {
                 boolean validYNInput2 = false;
-                while (!validYNInput2)
+                while (!validYNInput2){
                     // System.out.println("Would you like to add another item? (Y/N)");
                     menuPresenter.printMenu(19, 4);
-                String annotherItem = scan.nextLine();
-                if (annotherItem.equals("Y")) {
-                    validYNInput2 = true;
-                } else if (annotherItem.equals("N")) {
-                    // System.out.println("Moving on...");
-                    menuPresenter.printMenu(19, 5);
-                    validYNInput2 = true;
-                    finished2 = true;
-                } else {
-                    // System.out.println("Please enter Y or N.");
-                    menuPresenter.printMenu(19, 6);
-                }
+                    scan.nextLine();
+                    String anotherItem = scan.nextLine();
+                    if (anotherItem.equals("Y")) {
+                        validYNInput2 = true;
+                    } else if (anotherItem.equals("N")) {
+                        // System.out.println("Moving on...");
+                        menuPresenter.printMenu(19, 5);
+                        validYNInput2 = true;
+                        finished2 = true;
+                    } else {
+                        // System.out.println("Please enter Y or N.");
+                        menuPresenter.printMenu(19, 6);
+                    }}
             }
         }
 

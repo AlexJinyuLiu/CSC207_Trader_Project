@@ -150,7 +150,7 @@ public class UserAlertManager {
         menuPresenter.printMenu(25, 2);
         menuPresenter.printMenu(25, 3);
         menuPresenter.printMenu(25, 4);
-        menuPresenter.printMenu(25, 5);
+        menuPresenter.printMenu(25, 5, numEditsRemaining);
 
         input = scan.nextInt();
 
@@ -204,8 +204,9 @@ public class UserAlertManager {
 
         //System.out.println(a.getAcceptingUsername() +
         //        " has accepted the following trade request: \n" + tradeToString(userManager,
-                tradeCreator.searchPendingTrade(a.getTradeID());
+        Trade b = tradeCreator.searchPendingTrade(a.getTradeID());
         menuPresenter.printMenu(26, 1);
+        menuPresenter.printTradeToString(userManager, b);
         boolean handled = false;
 
         int input = 0;
