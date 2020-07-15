@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
 import AlertPack.Alert;
@@ -185,38 +184,7 @@ public class User implements Serializable {
     this.frozen = frozen;
     } // whether the account is set to frozen or not
 
-    /**
-     *
-     * @return string representation of the user.
-     */
-    public String toString(MenuPresenter menuPresenter){
-        // TODO change to be compatible with MenuPresenter
-        StringBuilder userString = new StringBuilder("User: " + username + "\n");
-        if (availableItems.size() == 0){
-            userString.append("This User has no items available for trade. \n");
-        } else {
-            userString.append("Items available for trade: \n");
-            for (int i = 0; i < availableItems.size() - 1; i++) {
-                userString.append(availableItems.get(i).getName() + " (ID: " + availableItems.get(i).getId() + "), ");
-            }
-            userString.append(availableItems.get(availableItems.size() - 1) + " (ID: " +
-                    availableItems.get(availableItems.size() - 1).getId() + ")\n");
-        }
-        if (wishlistItemNames.size() == 0){
-            userString.append("This User has no items in their wishlist. \n");
-        } else {
-            userString.append("Wishlist: \n");
-            for (int i = 0; i < wishlistItemNames.size() - 1; i++) {
-                userString.append(wishlistItemNames.get(i) + ", ");
-            }
-            userString.append(wishlistItemNames.get(wishlistItemNames.size() - 1) + "\n");
-        }
-        if (getFrozen()){
-            userString.append("This user is frozen, and thus cannot make a trade. \n");
-        }
 
-        return userString.toString();
-    }
 }
     // top 3 trading partners, access orderedPartners LinkedHashMap and return first three username Strings.
     // this needs to be updated after every transaction.
