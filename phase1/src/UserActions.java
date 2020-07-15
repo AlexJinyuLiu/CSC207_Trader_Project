@@ -209,22 +209,16 @@ public class UserActions {
     private void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
                           User userToView, User userViewing) {
         Scanner scan = new Scanner(System.in);
-        StringBuilder userString = new StringBuilder(userToView.toString());
-        userString.append("(1) Send a message\n");
         menuPresenter.printMenu(18, 1);
-        userString.append("(2) Add one of their items to your wishlist\n");
         menuPresenter.printMenu(18, 2);
         if (!userToView.getFrozen()) {
-            userString.append("(3) Send a trade request\n");
             menuPresenter.printMenu(18, 3);
         }
-        userString.append("(0) Back to Main Menu");
         menuPresenter.printMenu(18, 4);
         boolean handled = false;
         int input;
         while(!handled){
-            menuPresenter.printMenu(35, 0, userString.toString());
-
+            menuPresenter.printUserToString(userToView);
             input = scan.nextInt();
 
             if (input < 0 || input > 3 || (userToView.getFrozen() && input == 3)){
