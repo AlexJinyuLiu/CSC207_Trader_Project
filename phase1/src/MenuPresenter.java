@@ -140,7 +140,7 @@ public class MenuPresenter {
             for (int i = 0; i < user.getAvailableItems().size() - 1; i++) {
                 userString.append(user.getAvailableItems().get(i).getName() + " (ID: " + user.getAvailableItems().get(i).getId() + "), ");
             }
-            userString.append(user.getAvailableItems().get(user.getAvailableItems().size() - 1) + " (ID: " +
+            userString.append(user.getAvailableItems().get(user.getAvailableItems().size() - 1).getName() + " (ID: " +
                     user.getAvailableItems().get(user.getAvailableItems().size() - 1).getId() + ")\n");
         }
         if (user.getWishlistItemNames().size() == 0){
