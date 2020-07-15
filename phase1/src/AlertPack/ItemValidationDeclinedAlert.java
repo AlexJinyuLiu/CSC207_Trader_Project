@@ -11,6 +11,7 @@ public class ItemValidationDeclinedAlert extends UserAlert implements Serializab
     protected String message;
 
     public ItemValidationDeclinedAlert(String owner, String obj, String desc, int itemID, String message){
+        super(1);
         this.description = desc;
         this.name = obj;
         this.usernameOfOwner = owner;
@@ -18,6 +19,7 @@ public class ItemValidationDeclinedAlert extends UserAlert implements Serializab
         this.message = message;
     }
     public ItemValidationDeclinedAlert(String owner, String obj, int itemID, String message){
+        super(1);
         this.name = obj;
         this.usernameOfOwner = owner;
         this.itemID = itemID;

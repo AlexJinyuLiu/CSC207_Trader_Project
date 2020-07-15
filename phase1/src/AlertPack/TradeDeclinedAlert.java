@@ -7,7 +7,7 @@ public class TradeDeclinedAlert extends UserAlert implements Serializable {
     protected int tradeID;
 
     public TradeDeclinedAlert(String decliningUserName, int tradeID){
-        super();
+        super(6);
         this.decliningUserName = decliningUserName;
         this.tradeID = tradeID;
     }

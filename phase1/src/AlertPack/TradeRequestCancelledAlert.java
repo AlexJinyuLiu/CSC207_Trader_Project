@@ -7,7 +7,7 @@ public class TradeRequestCancelledAlert extends UserAlert implements Serializabl
     protected int tradeID;
 
     public TradeRequestCancelledAlert(int tradeID){
-        super();
+        super(9);
         this.tradeID = tradeID;
     }
 

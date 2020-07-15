@@ -13,6 +13,7 @@ public class ReportAlert extends AdminAlert implements Serializable {
 
     public ReportAlert(String senderUserName, String reportedUserName, boolean isTradeComplete,
                        String reportDescription) {
+        super(1);
         this.senderUserName = senderUserName;
         this.reportedUserName = reportedUserName;
         this.isTradeComplete = isTradeComplete;

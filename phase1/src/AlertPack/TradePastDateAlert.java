@@ -10,6 +10,7 @@ public class TradePastDateAlert extends UserAlert implements Serializable {
     protected int tradeId;
 
     public TradePastDateAlert(LocalDateTime dueDate, String username, int tradeId){
+        super(7);
         this.dueDate = dueDate;
         this.username = username;
         this.tradeId = tradeId;

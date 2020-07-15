@@ -26,14 +26,14 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      */
     private void handleAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
                              TradeCreator tradeCreator, AdminAlert a){
-        if (a instanceof ItemValidationRequestAlert){
+        if (a.getType() == 0){
                 handleItemValidationRequestAlert(menuPresenter, adminUser, userManager,
                         (ItemValidationRequestAlert) a);
-        } else if (a instanceof ReportAlert){
+        } else if (a.getType() == 1){
             handleReportAlert(menuPresenter, adminUser, userManager, tradeCreator, (ReportAlert) a);
-        } else if (a instanceof FreezeUserAlert){
+        } else if (a.getType() == 2){
             handleFreezeUserAlert(menuPresenter, adminUser, userManager,(FreezeUserAlert) a);
-        }else if (a instanceof UnfreezeRequestAlert){
+        } else if (a.getType() == 3){
             handleUnfreezeRequestAlert(menuPresenter, userManager, adminUser, (UnfreezeRequestAlert) a);
         }
     }

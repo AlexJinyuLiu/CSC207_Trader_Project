@@ -9,7 +9,7 @@ public class ExpirationAlert extends UserAlert implements Serializable {
     protected int tradeId;
 
     public ExpirationAlert(LocalDateTime dueDate, String username, int tradeId){
-        super();
+        super(2);
         this.dueDate = dueDate;
         this.username = username;
         this.tradeId = tradeId;

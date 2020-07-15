@@ -10,6 +10,7 @@ public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
     private int thresholdRequired; // difference needed between lent and borrowed
 
     public UnfreezeRequestAlert(String username, int lent, int borrowed, int thresholdRequired){
+        super(3);
         this.username = username;
         this.lent = lent;
         this.borrowed = borrowed;
