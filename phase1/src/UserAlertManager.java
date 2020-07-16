@@ -160,6 +160,9 @@ public class UserAlertManager {
             tradeCreator.acceptTradeRequest(trade, thisUser.getUsername());
             // System.out.println("Trade Request Accepted. Meet up with the person at the time and place specified above."+
             //         "Remember to login to confirm the trade afterwords!");
+            // TODO remove these debug statements
+            System.out.println(trade.user1AcceptedRequest);
+            System.out.println(trade.user2AcceptedRequest);
             menuPresenter.printMenu(25, 6);
             menuPresenter.printMenu(25, 7);
         } else if (input == 2){
@@ -315,21 +318,32 @@ public class UserAlertManager {
         int input = 0;
         while (flag) {
             Scanner scan = new Scanner(System.in);
+            menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTrade(a.getTradeId()));
+
             // System.out.println("(1) Confirm Trade\n(2) I didn't show up\n(3) The other person didn't show up");
             menuPresenter.printMenu(30, 2);
             menuPresenter.printMenu(30, 3);
             menuPresenter.printMenu(30, 4);
             input = scan.nextInt();
             if (input == 1) {
+                flag = false;
                 User user = userManager.searchUser(a.getUsername());
-                tradeCreator.confirmTrade(userManager, user,
-                        tradeCreator.searchPendingTrade(a.getTradeId()));
+                tradeCreator.confirmTrade(userManager, user, tradeCreator.searchPendingTrade(a.getTradeId()));
+                // TODO remove these debug statements
+                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user1AcceptedRequest);
+                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user2AcceptedRequest);
+                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user1TradeConfirmed);
+                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user2TradeConfirmed);
                 // System.out.println("Trade confirmed. Your items have been exchanged on the system.");
                 menuPresenter.printMenu(30, 5);
                 //TODO
-            }
-            else if (input == 2){
+
+            } else if (input == 2){
+                flag = false;
                 //TODO
+            } else if (input == 3){
+                flag = false;
+
             }
         }
     }

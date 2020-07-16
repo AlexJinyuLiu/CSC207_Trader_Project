@@ -362,7 +362,8 @@ public class UserActions {
                     } else {
                         // System.out.println("Please enter Y or N.");
                         menuPresenter.printMenu(19, 6);
-                    }}
+                    }
+                }
             }
         }
 
@@ -525,7 +526,7 @@ public class UserActions {
     public void viewPendingTrades(MenuPresenter menuPresenter, UserManager userManager,
                                   TradeCreator tradeCreator, User user){
         int choice = 0;
-        while (choice != 0 ) {
+        while (choice == 0 ) {
             ArrayList<Trade> userTrades = tradeCreator.searchPendingTradesByUser(user);
             // System.out.println("Options:");
             for (int i = 1; i < 5; i++) {

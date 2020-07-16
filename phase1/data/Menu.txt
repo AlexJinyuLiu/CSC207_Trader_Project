@@ -176,7 +176,7 @@ You will not be offering anything with this trade.
 Enter the ID of an item you want to offer:
 Your available items to trade:
 ID:
-Enter a meeting time (format: yyyy-MM-dd HH:mm:
+Enter a meeting time (format: yyyy-MM-dd HH:mm):
 Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
 Enter a meeting place:
 Your trade could not be processed.
@@ -288,11 +288,11 @@ Please enter the item description
 
 Alert{ - 30
 Handle Trade Past Date Alert
-The following trade expired at:
+The following trade has past the time & date of scheduled exchange:
 (1) Confirm trade
 (2) I didn't show up
 (3) The other person didn't show up
-Trade confirmed. Your items have been exchanged on the system.
+Trade confirmed. Your items will be exchanged in the system as soon as both users have confirmed.
 }
 
 Alert{ - 31

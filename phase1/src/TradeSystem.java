@@ -41,6 +41,7 @@ public class TradeSystem {
         tradeCreator = FileManager.loadTradeCreator();
 
         tradeCreator.tradeHistories.checkForExpiredTempTrades();
+        tradeCreator.onStartup();
 
         User loggedIn = null;
         boolean isAdmin = false;
@@ -71,6 +72,7 @@ public class TradeSystem {
 
 //buildAdminUser method
         if (isAdmin) {
+
             adminUser.onStartUp(userManager, tradeCreator);
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
             adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
