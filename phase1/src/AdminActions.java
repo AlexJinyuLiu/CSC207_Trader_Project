@@ -1,10 +1,18 @@
 import java.util.Scanner;
 
 
-
-
+/**
+ * A controller class that dictates what can be done on the Admin's menu.
+ */
 public class AdminActions {
 
+    /**
+     * Starts and calls the presenter class stuff to display the admin main menu and take user input.
+     * @param menuPresenter the menupresenter object to be used to print things.
+     * @param adminUser the AdminUser initialized in the program.
+     * @param tradeCreator the TradeCreator initialized in the program.
+     * @param userManager the UserManager initialized in the program.
+     */
     public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator,
                              UserManager userManager) {
         boolean running = true;

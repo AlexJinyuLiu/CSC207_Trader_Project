@@ -26,11 +26,21 @@ public class AdminUser implements Serializable {
 
     }
 
+    /**
+     * Returns whether or not <username> is taken by annother user on the system.
+     * @param username the username in question.
+     * @return a boolean determining whether or not the username is valid.
+     */
     public boolean isValidUsername(String username){
         return loginInfo.containsKey(username);
     }
 
-
+    /**
+     * Adds a login (username and password) for a user on the system.
+     * @param username the inputed username
+     * @param password the password associated with the account
+     * @return a boolean describing whether or not the
+     */
     public boolean addLogin(String username, String password){
         if (loginInfo.containsKey(username)){
             return false;
