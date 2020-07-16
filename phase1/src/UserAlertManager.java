@@ -248,7 +248,7 @@ public class UserAlertManager {
         // System.out.println("The following pending trade has been cancelled as one of the users is no longer in possession of " +
         //         "a item in the proposed trade. Trade ID: " + a.getTradeID());
         menuPresenter.printMenu(28, 1);
-        menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
+        menuPresenter.printTradeToString(userManager, tradeCreator.searchTrades(a.getTradeID()));
         boolean handled = false;
 
         int input = 0;
@@ -257,7 +257,6 @@ public class UserAlertManager {
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Dismiss");
             menuPresenter.printMenu(28, 2);
-            scan.nextLine();
             input = scan.nextInt();
             if (input == 1) {handled = true;}
         }
@@ -277,7 +276,6 @@ public class UserAlertManager {
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Dismiss");
             menuPresenter.printMenu(28, 2);
-            scan.nextLine();
             input = scan.nextInt();
             if (input == 1) {handled = true;}
         }
