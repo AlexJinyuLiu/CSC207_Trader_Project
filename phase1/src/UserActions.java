@@ -117,24 +117,26 @@ public class UserActions {
              // System.out.println("Please enter the ID of the item you wish to remove");
              menuPresenter.printMenu(16, 10);
              int itemID = scan.nextInt();
-             for (Item item: user.getAvailableItems()){
-                 if (item.getId() == itemID) {
-                     user.getAvailableItems().remove(item);
+             for (int i = 0; i < user.getAvailableItems().size(); i++){
+                 if (user.getAvailableItems().get(i).getId() == itemID) {
+                     user.getAvailableItems().remove(user.getAvailableItems().get(i));
                      // System.out.println("Item deleted");
                      menuPresenter.printMenu(16, 11);
                  } else // System.out.println("Invalid item id");
-                 menuPresenter.printMenu(16, 12);
+                     menuPresenter.printMenu(16, 12);
              }
 
          } else if (input == 3){
              // System.out.println("Please enter the name of the item on your wishlist you wish to remove");
              menuPresenter.printMenu(16, 13);
-             String wishlistitem = scan.nextLine();
-             for (String itemName: user.getWishlistItemNames()){
-                 if (itemName.equals(wishlistitem)) {
-                     user.getWishlistItemNames().remove(wishlistitem);
+             scan.nextLine();
+             String wishlistItem = scan.nextLine();
+             for (int i = 0; i < user.getWishlistItemNames().size(); i++) {
+                 if (user.getWishlistItemNames().get(i).equals(wishlistItem)) {
+                     user.getWishlistItemNames().remove(i);
                  }
              }
+             // TODO should have prompt here
          } else if (input == 0){
              return;
          }
@@ -246,8 +248,10 @@ public class UserActions {
             } else if (input == 2){
                 // System.out.println("Enter the name of the item you would like added to your wishlist:\n");
                 menuPresenter.printMenu(18, 8);
+                scan.nextLine();
                 String itemString = scan.nextLine();
                 userManager.addToWishlist(userViewing, itemString);
+                // TODO should have a prompt indicates success of adding to wishlist here
             } else if (input == 3 && !userToView.getFrozen()){
                 formTradeRequest(menuPresenter, tradeCreator, userViewing, userToView);
             } else if (input == 0){
