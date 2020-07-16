@@ -143,6 +143,7 @@ Item deleted
 Invalid item id
 Please enter the name of the item on your wishlist you wish to remove.
 (0) Exit to main menu
+The item has been removed.
 }
 
 MENU{ - 17
@@ -164,6 +165,7 @@ Please enter a valid input
 Enter the contents of your message:
 Sent message to
 Enter the name of the item you would like added to your wishlist:
+Item successfully added to wishlist.
 }
 
 MENU{ - 19

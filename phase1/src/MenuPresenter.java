@@ -132,7 +132,6 @@ public class MenuPresenter {
      * @return string representation of the user.
      */
     public void printUserToString(User user){
-        // TODO change to be compatible with MenuPresenter
         StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
         if (user.getAvailableItems().size() == 0){
             userString.append("This User has no items available for trade. \n");

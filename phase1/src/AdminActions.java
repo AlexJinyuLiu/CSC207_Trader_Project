@@ -22,7 +22,7 @@ public class AdminActions {
                 input = scan.nextInt();
                 if (input > 4 || input < 0) {
                     menuPresenter.printMenu(4,4);
-                    // System.out.println("Please enter a number from 0 to 2");
+                    // "Please enter a number from 0 to 2"
                 } else if (input == 1) {
                     changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
                     valid_input = true;
@@ -55,12 +55,12 @@ public class AdminActions {
         int input = 0;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            // System.out.println("Please enter the new threshold value for lent vs borrowed: ");
+            // "Please enter the new threshold value for lent vs borrowed: "
             menuPresenter.printMenu(6,0);
             menuPresenter.printMenu(6,1);
             input = scan.nextInt();
             if (input > 50 || input < 0) {
-                // System.out.println("Please enter a valid threshold number");
+                // "Please enter a valid threshold number"
                 menuPresenter.printMenu(6,2);
             } else {
                 adminUser.changeBorrowLendThreshold(tradeCreator, input);
@@ -116,17 +116,17 @@ public class AdminActions {
         String inputPassword;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            // System.out.println("Enter the username of the administrator you want to add: ");
+            // "Enter the username of the administrator you want to add: "
             menuPresenter.printMenu(7,0);
             menuPresenter.printMenu(7,1);
             inputUsername = scan.next();
-            // System.out.println("Enter the password of the administrator you want to add: ");
+            // "Enter the password of the administrator you want to add: "
             menuPresenter.printMenu(7,2);
             inputPassword = scan.next();
             if (adminUser.addLogin(inputUsername, inputPassword)){
                 flag = false;
             } else{
-                // System.out.println("That username is taken.");
+                // "That username is taken."
                 menuPresenter.printMenu(33,2);
             }
         }

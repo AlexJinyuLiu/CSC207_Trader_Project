@@ -155,8 +155,6 @@ public class TradeCreator implements Serializable {
         //Creating and adding an alert for user2
         TradeRequestAlert alert = createTradeRequestAlert(trade, user1, true);
         alertUser(user2, alert);
-        System.out.println(trade.user1AcceptedRequest);
-        System.out.println(trade.user2AcceptedRequest);
         return true;
 
     } //Does not remove item from user1 availableItems or user2 availableItems
@@ -195,8 +193,6 @@ public class TradeCreator implements Serializable {
         }
         pendingTradeRequests.remove(trade);
         pendingTrades.add(trade);
-        System.out.println(pendingTradeRequests);
-        System.out.println(pendingTrades);
 
         TradeAcceptedAlert alert = new TradeAcceptedAlert(username, trade.getTradeID());
         alertUser(otherUserName, alert);
@@ -366,15 +362,8 @@ public class TradeCreator implements Serializable {
         } else if (user.getUsername().equals(trade.getUsername2())) {
             trade.setUser2TradeConfirmed(true);
         }
-        System.out.println(trade.user1AcceptedRequest);
-        System.out.println(trade.user2AcceptedRequest);
-        System.out.println(trade.user1TradeConfirmed);
-        System.out.println(trade.user2TradeConfirmed);
         if (trade.isTradeCompleted()) {
-            //Todo remove the line below
-            System.out.println("Trade Completed");
             afterTrade(userManager, trade);
-            System.out.println("afterTrade Completed");
         }
     }
 
@@ -386,8 +375,6 @@ public class TradeCreator implements Serializable {
      * @param trade trade object
      */ //TradeManager
     public void afterTrade(UserManager userManager, Trade trade) {
-        //TODO call this method from confirmTrade method in this class
-        System.out.println("afterTrade method has been Called");
         pendingTrades.remove(trade);
         if (trade instanceof TemporaryTrade) {
             tradeHistories.addCurrentTemporaryTrade((TemporaryTrade) trade);
@@ -449,7 +436,6 @@ public class TradeCreator implements Serializable {
                 }
             }
         }
-        System.out.println(tradesToRemove);
         for(Trade trade: tradesToRemove){
             pendingTrades.remove(trade);
             tradeHistories.addDeadTrade(trade);
@@ -485,7 +471,6 @@ public class TradeCreator implements Serializable {
                 }
             }
         }
-        System.out.println(tradesToRemove);
         for(Trade trade: tradesToRemove){
             pendingTradeRequests.remove(trade);
             tradeHistories.addDeadTrade(trade);

@@ -32,11 +32,11 @@ public class UserActions {
             }
             boolean valid_input = false;
             while(!valid_input){
-                // System.out.println("Please enter a number corresponding to a setting above:\n");
+                //"Please enter a number corresponding to a setting above:\n"
                 menuPresenter.printMenu(15, 8);
                 input = scan.nextInt();
                 if (input > 6 || input < 0) {
-                    // System.out.println("Please enter a number from 0 to 6");
+                    //"Please enter a number from 0 to 6"
                     menuPresenter.printMenu(15, 9);
                 } else if (input == 1) {
                     viewItemAndWishlist(menuPresenter,userManager, user);
@@ -54,13 +54,13 @@ public class UserActions {
                     viewPendingTrades(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 6) {
-                    viewActiveTempTrades(menuPresenter, tradeCreator, user);
+                    viewActiveTempTrades(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 0){
                     valid_input = true;
                     running = false;
                 }
-        }
+            }
         }
     }
 
@@ -73,17 +73,17 @@ public class UserActions {
         int input = 0;
         Scanner scan = new Scanner(System.in);
         if (user.getAvailableItems().size() == 0){
-            // System.out.println("You have no items.");
+            //"You have no items."
             menuPresenter.printMenu(16, 1);
         } else {
-            // System.out.println("Your available items:");
+            //"Your available items:"
             menuPresenter.printMenu(16, 2);
             for (Item item : user.getAvailableItems()) {
                 menuPresenter.printMenu(35, 0);
                 menuPresenter.printItemToString(item);
             }
         }
-        // System.out.println("\n Your wishlist :");
+        //"\n Your wishlist :"
         menuPresenter.printMenu(16, 3);
         for (String itemName : user.getWishlistItemNames()){
             menuPresenter.printMenu(35, 0, itemName);
@@ -98,45 +98,46 @@ public class UserActions {
             menuPresenter.printMenu(16, 14);
             input = scan.nextInt();
             if (input < 0 || input > 3){
-                // System.out.println("Please enter a number from 1 to 3");
+                //"Please enter a number from 1 to 3"
                 menuPresenter.printMenu(16, 7);
             } else flag = false;
 
          if (input == 1){
              String name = null;
-             // System.out.println("Please enter the name of your item");
+             //"Please enter the name of your item"
              menuPresenter.printMenu(16, 8);
-             scan.nextLine(); //This awfulness is needed to prevent it from skipping a line. - Louis
+             scan.nextLine();
              name = scan.nextLine();
-             // System.out.println("Please enter the item description");
+             //"Please enter the item description"
              menuPresenter.printMenu(16, 9);
              String description = scan.nextLine();
              String username = user.getUsername();
              userManager.sendValidationRequest(name,description,username);
          } else if (input == 2){
-             // System.out.println("Please enter the ID of the item you wish to remove");
+             //"Please enter the ID of the item you wish to remove"
              menuPresenter.printMenu(16, 10);
              int itemID = scan.nextInt();
              for (int i = 0; i < user.getAvailableItems().size(); i++){
                  if (user.getAvailableItems().get(i).getId() == itemID) {
                      user.getAvailableItems().remove(user.getAvailableItems().get(i));
-                     // System.out.println("Item deleted");
+                     //"Item deleted"
                      menuPresenter.printMenu(16, 11);
-                 } else // System.out.println("Invalid item id");
+                 } else //"Invalid item id"
                      menuPresenter.printMenu(16, 12);
              }
 
          } else if (input == 3){
-             // System.out.println("Please enter the name of the item on your wishlist you wish to remove");
+             //"Please enter the name of the item on your wishlist you wish to remove"
              menuPresenter.printMenu(16, 13);
              scan.nextLine();
              String wishlistItem = scan.nextLine();
              for (int i = 0; i < user.getWishlistItemNames().size(); i++) {
                  if (user.getWishlistItemNames().get(i).equals(wishlistItem)) {
                      user.getWishlistItemNames().remove(i);
+                     //"The item has been removed"
+                     menuPresenter.printMenu(16, 15);
                  }
              }
-             // TODO should have prompt here
          } else if (input == 0){
              return;
          }
@@ -153,9 +154,9 @@ public class UserActions {
                              User userViewing){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
-        // System.out.println("--- View other users ---");
+        // "--- View other users ---"
         menuPresenter.printMenu(17, 0);
-        // System.out.println("Enter a number to view a User's page:");
+        // "Enter a number to view a User's page:"
         menuPresenter.printMenu(17, 1);
         int page = 1;
         ArrayList<User> allUsers = userManager.getListUsers();
@@ -168,7 +169,7 @@ public class UserActions {
                     usersString.append("(").append(i).append(") ").append(allUsers.get(i - 1).getUsername()).append("\n");
                 } catch (IndexOutOfBoundsException e){
                     nextPageExists = false;
-                    usersString.append("Back to Main Menu"); // Back to Main Menu
+                    usersString.append("Back to Main Menu");
                     // menuPresenter.printMenu(18, 2);
                     break;
                 }
@@ -182,7 +183,7 @@ public class UserActions {
             boolean valid_input = false;
             while(!valid_input) {
                 if (input < 0 || input > allUsers.size() + 1 || (!nextPageExists && input == 0)){
-                    // System.out.println("Please Enter a valid input.");
+                    // "Please Enter a valid input."
                     menuPresenter.printMenu(17, 4);
                     input = scan.nextInt();
                 } else if (input == allUsers.size() + 1){
@@ -235,23 +236,23 @@ public class UserActions {
             input = scan.nextInt();
 
             if (input < 0 || input > 3 || (userToView.getFrozen() && input == 3)){
-                // System.out.println("Please enter a valid input");
+                // "Please enter a valid input"
                 menuPresenter.printMenu(18, 5);
             } else if (input == 1) {
-                // System.out.println("Enter the contents of your message:\n");
+                // "Enter the contents of your message:\n"
                 menuPresenter.printMenu(18, 6);
                 scan.nextLine();
                 String message = scan.nextLine();
                 userManager.sendMessageToUser(userViewing, userToView, message);
-                // System.out.println("Sent message to " + userToView.getUsername() + ": \"" + message + "\"");
+                // "Sent message to " + userToView.getUsername() + ": \"" + message + "\""
                 menuPresenter.printMenu(18, 7);
             } else if (input == 2){
-                // System.out.println("Enter the name of the item you would like added to your wishlist:\n");
+                // "Enter the name of the item you would like added to your wishlist:\n"
                 menuPresenter.printMenu(18, 8);
                 scan.nextLine();
                 String itemString = scan.nextLine();
                 userManager.addToWishlist(userViewing, itemString);
-                // TODO should have a prompt indicates success of adding to wishlist here
+                menuPresenter.printMenu(18, 9);
             } else if (input == 3 && !userToView.getFrozen()){
                 formTradeRequest(menuPresenter, tradeCreator, userViewing, userToView);
             } else if (input == 0){
@@ -268,18 +269,16 @@ public class UserActions {
      */
     private void formTradeRequest(MenuPresenter menuPresenter, TradeCreator tradeCreator, User userSending,
                                   User userReceiving) {
-        //TODO break this method into helpers
-        //TODO: Possibly have a limit to the number of items that can be traded at once?
         Scanner scan = new Scanner(System.in);
         boolean finished = false;
         ArrayList<Integer> itemIDsRecieved = new ArrayList<Integer>();
         if (userReceiving.getAvailableItems().size() == 0){
-            // System.out.println("The other user has no available items. You will not receive anything in this trade.");
+            // "The other user has no available items. You will not receive anything in this trade."
             menuPresenter.printMenu(19, 1);
             finished = true;
         }
         while (!finished) {
-            // System.out.println("Enter the ID of an item want from this trade:\n");
+            // "Enter the ID of an item want from this trade:\n"
             menuPresenter.printMenu(19, 2);
             int ID = scan.nextInt();
             boolean validID = false;
@@ -292,24 +291,24 @@ public class UserActions {
                 }
             }
             if (!validID) {
-                // System.out.println("Invalid ID. Please try again.\n");
+                // "Invalid ID. Please try again.\n"
                 menuPresenter.printMenu(19, 3);
             } else {
                 boolean validYNInput = false;
                 while (!validYNInput) {
-                    // System.out.println("Would you like to add another item? (Y/N)");
+                    // "Would you like to add another item? (Y/N)"
                     menuPresenter.printMenu(19, 4);
                     scan.nextLine();
                     String anotherItem = scan.nextLine();
                     if (anotherItem.equals("Y")) {
                         validYNInput = true;
                     } else if (anotherItem.equals("N")) {
-                        // System.out.println("Moving on...");
+                        // "Moving on..."
                         menuPresenter.printMenu(19, 5);
                         validYNInput = true;
                         finished = true;
                     } else {
-                        // System.out.println("Please enter Y or N.");
+                        // "Please enter Y or N."
                         menuPresenter.printMenu(19, 6);
                     }
                 }
@@ -319,14 +318,14 @@ public class UserActions {
 
         boolean finished2 = false;
         if (userSending.getAvailableItems().size() == 0){
-            // System.out.println("You will not be offering anything with this trade.");
+            // "You will not be offering anything with this trade."
             menuPresenter.printMenu(19, 7);
             finished2 = true;
         }
         while (!finished2) {
-            // System.out.println("Enter the ID of an item you want to offer:");
+            // "Enter the ID of an item you want to offer:"
             menuPresenter.printMenu(19, 8);
-            // System.out.println("Your available items to trade:");
+            // "Your available items to trade:"
             menuPresenter.printMenu(19, 9);
             StringBuilder availableItems = new StringBuilder();
             for (int i = 0; i < userSending.getAvailableItems().size() - 1; i++) {
@@ -351,31 +350,31 @@ public class UserActions {
                 }
             }
             if (!validID2) {
-                // System.out.println("Invalid ID. Please try again.");
+                // "Invalid ID. Please try again."
                 menuPresenter.printMenu(19, 3);
             } else {
                 boolean validYNInput2 = false;
                 while (!validYNInput2){
-                    // System.out.println("Would you like to add another item? (Y/N)");
+                    // "Would you like to add another item? (Y/N)"
                     menuPresenter.printMenu(19, 4);
                     scan.nextLine();
                     String anotherItem = scan.nextLine();
                     if (anotherItem.equals("Y")) {
                         validYNInput2 = true;
                     } else if (anotherItem.equals("N")) {
-                        // System.out.println("Moving on...");
+                        // "Moving on..."
                         menuPresenter.printMenu(19, 5);
                         validYNInput2 = true;
                         finished2 = true;
                     } else {
-                        // System.out.println("Please enter Y or N.");
+                        // "Please enter Y or N."
                         menuPresenter.printMenu(19, 6);
                     }
                 }
             }
         }
 
-        // System.out.println("Enter a meeting time (format: yyyy-MM-dd HH:mm: ");
+        // "Enter a meeting time (format: yyyy-MM-dd HH:mm: "
         menuPresenter.printMenu(19, 11);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         boolean stringNotFound = true;
@@ -386,14 +385,14 @@ public class UserActions {
             try {
                 meetingTime = LocalDateTime.parse(inputDateTime, formatter);
             } catch (DateTimeParseException e) {
-                // System.out.println("Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):");
+                // "Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):"
                 menuPresenter.printMenu(19, 12);
                 continue;
             }
             stringNotFound = false;
         }
 
-        // System.out.println("Enter a meeting place: ");
+        // "Enter a meeting place: "
         menuPresenter.printMenu(19, 13);
         String meetingPlace = scan.nextLine();
         //"Should this be a temporary trade? (Y/N)"
@@ -423,12 +422,12 @@ public class UserActions {
                     meetingTime, meetingPlace);
         }
         if (!canBeProcessed){
-            //System.out.println("Your trade could not be processed. This could have happened if you have completed " +
-             //       "too many trades this week or if one of the users was frozen");
+            //"Your trade could not be processed. This could have happened if you have completed " +
+             //       "too many trades this week or if one of the users was frozen"
             menuPresenter.printMenu(19, 14);
             menuPresenter.printMenu(19, 15);
         }else{
-        // System.out.println("Successfully created and sent trade request. You will be notified when they respond.");
+        // "Successfully created and sent trade request. You will be notified when they respond."
             menuPresenter.printMenu(19, 16);
         }
     }
@@ -445,7 +444,6 @@ public class UserActions {
      * @param user user logged in viewing the statuses
      */
     public void runStats(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, User user) {
-        //TODO: Fix this so we're not stacking calls on top of eachother.
         int input = 0;
         boolean handled = false;
         while (!handled) {
@@ -456,38 +454,35 @@ public class UserActions {
                 }
                 input = scan.nextInt();
                 if (input > 8 || input < 1) {
-                    // System.out.println("Please enter a number from 1 to 8");
+                    // "Please enter a number from 1 to 8"
                     menuPresenter.printMenu(20, 9);
                 } else break;
             }
             if (input == 1) {
-                // System.out.println("You have borrowed " + Integer.toString(user.getNumBorrowed()) + " items.");
-                menuPresenter.printMenu(20, 10);
-                System.out.println(Integer.toString(user.getNumBorrowed()));
+                // "You have borrowed " + Integer.toString(user.getNumBorrowed()) + " items."
+                menuPresenter.printMenu(20, 10, Integer.toString(user.getNumBorrowed()));
             } else if (input == 2) {
-                // System.out.println("You have lent " + Integer.toString(user.getNumLent()) + " items.");
-                menuPresenter.printMenu(20, 11);
-                System.out.println(Integer.toString(user.getNumLent()));
+                // "You have lent " + Integer.toString(user.getNumLent()) + " items."
+                menuPresenter.printMenu(20, 11, Integer.toString(user.getNumLent()));
             } else if (input == 3) {
                 if (user.getFrozen()) {
-                    // System.out.println("Your account has been frozen");
+                    // "Your account has been frozen"
                     menuPresenter.printMenu(20, 12);
                 } else {
-                    // System.out.println("Your account is not frozen");
+                    // "Your account is not frozen"
                     menuPresenter.printMenu(20, 13);
                 }
 
             } else if (input == 4) { //Other methods need access to UserManager methods
-                //System.out.println("Your account has made " + Integer.toString(incompleteTrades) +
-                 //       " incomplete transactions");
+                //"Your account has made " + Integer.toString(incompleteTrades) +
+                 //       " incomplete transactions"
                 menuPresenter.printMenu(20, 14, user.getNumIncompleteTrades());
 
             } else if (input == 5) {
                 int weeklyTransactions = tradeCreator.tradeHistories.getNumTradesThisWeek(user.getUsername());
-                // System.out.println("Your account has made " + Integer.toString(weeklyTransactions) +
-                //         " transactions this week");
-                menuPresenter.printMenu(20, 15);
-                System.out.println(Integer.toString(weeklyTransactions));
+                // "Your account has made " + Integer.toString(weeklyTransactions) +
+                //         " transactions this week"
+                menuPresenter.printMenu(20, 15, Integer.toString(weeklyTransactions));
 
             } else if (input == 6) {
                 ArrayList<Item> recentItems = tradeCreator.tradeHistories.getNRecentItems(userManager, user.getUsername(), 3);
@@ -512,7 +507,7 @@ public class UserActions {
     public void sendUnfreezeRequest( MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
                                      User user) {
         if (!user.getFrozen()) {
-            // System.out.println("Your account is not frozen");
+            // "Your account is not frozen"
             menuPresenter.printMenu(21, 1);
         }
         else {
@@ -525,7 +520,7 @@ public class UserActions {
             UnfreezeRequestAlert alert = new UnfreezeRequestAlert(username, numLent, numBorrowed, borrowLendThreshold,
                     incompleteTrades, incompThreshold);
             userManager.alertAdmin(alert);
-            // System.out.println("Your request has been sent");
+            // "Your request has been sent"
             menuPresenter.printMenu(21, 2);
         }
     }
@@ -539,22 +534,20 @@ public class UserActions {
         int choice = 0;
         while (choice == 0 ) {
             ArrayList<Trade> userTrades = tradeCreator.searchPendingTradesByUser(user);
-            // System.out.println("Options:");
+            // "Options:"
             for (int i = 1; i < 5; i++) {
                 menuPresenter.printMenu(22, i);
             }
-            // System.out.println("(1) Exit this menu");
-            // System.out.println("====================");
-            // System.out.println("Your pending trades:");
+            // "(1) Exit this menu"
+            // "===================="
+            // "Your pending trades:"
             for (Trade trade : userTrades) {
-                //System.out.println(tradeToString(trade));
-                // System.out.println("tradeToString should be called here");
                 menuPresenter.printTradeToString(userManager, trade);
             }
             Scanner scanner = new Scanner(System.in);
             choice = scanner.nextInt();
             if (choice != 1){
-                // System.out.println("Your choice was not valid, please pick a valid choice.");
+                // "Your choice was not valid, please pick a valid choice."
                 menuPresenter.printMenu(22, 6);
             }
         }
@@ -564,29 +557,26 @@ public class UserActions {
      * Allow user to view their active temporary trade history
      * @param user user logged in
      */
-    public void viewActiveTempTrades(MenuPresenter menuPresenter, TradeCreator tradeCreator, User user) {
+    public void viewActiveTempTrades(MenuPresenter menuPresenter, UserManager userManager,
+                                     TradeCreator tradeCreator, User user) {
         int input = -1;
         ArrayList<TemporaryTrade> userTrades = tradeCreator.tradeHistories.searchActiveTempTradesByUser(user);
         for (int i = 1; i < 4; i++) {
             menuPresenter.printMenu(22, i);
         }
-        // System.out.println("Options:");
-        // System.out.println("(1) Exit this menu");
-        // System.out.println("====================");
+        // "Options:"
+        // "(1) Exit this menu"
+        // "===================="
         menuPresenter.printMenu(22, 7);
-        // System.out.println("Your active temporary trades:");
+        // "Your active temporary trades:"
         for (Trade trade : userTrades) {
-            //TODO: This tradeToString method should be implemented in our presenter layer. it can be called from there.
-            //System.out.println(tradeToString(trade));
-            //the below is our substitute for now:
-            //System.out.println("tradeToString should be called here");
-            menuPresenter.printMenu(22, 5, trade);
+            menuPresenter.printTradeToString(userManager, trade);
         }
         while (input != 1) {
             Scanner scanner = new Scanner(System.in);
             input = scanner.nextInt();
             if (input != 1) {
-                // System.out.println("Your choice was not valid, please pick a valid choice.");
+                // "Your choice was not valid, please pick a valid choice."
                 menuPresenter.printMenu(22, 6);
             }
         }

@@ -102,7 +102,6 @@ public class UserManager implements Serializable{
             }
             else {
                 user1.addAvailableItem(item);
-                System.out.println(user1.getAvailableItems());
             }
         }
         for(int itemID : trade.getItemIDsSentToUser2()){
@@ -124,8 +123,6 @@ public class UserManager implements Serializable{
             }
 
         }
-        System.out.print(user1.getAvailableItems());
-        System.out.println(user2.getAvailableItems());
     }
 
     /** Method which returns items to their owners after the expiration of a temporary trade

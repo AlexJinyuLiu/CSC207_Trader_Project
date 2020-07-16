@@ -114,7 +114,7 @@ public class FileManager {
             FileInputStream file = new FileInputStream(dir + "tradeCreator.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             tradeCreator = (TradeCreator) in.readObject();
-            System.out.println(tradeCreator);
+
             in.close();
             file.close();
         }
