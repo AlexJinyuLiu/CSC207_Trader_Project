@@ -348,14 +348,26 @@ public class UserAlertManager {
                 tradeCreator.confirmTrade(userManager, user, tradeCreator.searchTrades(a.getTradeId()));
                 // System.out.println("Trade confirmed. Your items have been exchanged on the system.");
                 menuPresenter.printMenu(30, 5);
-                //TODO
 
             } else if (input == 2){
                 flag = true;
-                //TODO
             } else if (input == 3){
-                flag = true;
+                Trade trade = tradeCreator.searchTrades(a.getTradeId());
+                String reportingUser, reportedUser;
+                if(a.getUsername().equals(trade.getUsername1())){
+                    reportingUser = trade.getUsername1();
+                    reportedUser = trade.getUsername2();
+                } else{
+                    reportingUser = trade.getUsername2();
+                    reportedUser = trade.getUsername1();
+                }
 
+                AdminAlert alert = new ReportAlert(reportingUser, reportedUser, false, reportedUser +
+                        " didn't show up");
+                userManager.alertAdmin(alert);
+                //"Report has been sent to the tribunal."
+                menuPresenter.printMenu(24, 5);
+                flag = true;
             }
         }
     }
