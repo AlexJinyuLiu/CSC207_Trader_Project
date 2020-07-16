@@ -167,13 +167,13 @@ Enter the name of the item you would like added to your wishlist:
 MENU{ - 19
 Form Trade Request
 The other user has no available items. You will not receive anything in this trade.
-Enter the ID of an item want from this trade:
+Enter the ID of an item want from this trade or -1 if you don't want any items this trade:
 Invalid ID. Please try again.
 Would you like to add another item? (Y/N)
 Moving on...
 Please enter Y or N.
 You will not be offering anything with this trade.
-Enter the ID of an item you want to offer:
+Enter the ID of an item you want to offer or -1 if you don't want to offer any items:
 Your available items to trade:
 ID:
 Enter a meeting time (format: yyyy-MM-dd HH:mm):

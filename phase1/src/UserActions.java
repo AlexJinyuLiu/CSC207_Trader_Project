@@ -283,6 +283,8 @@ public class UserActions {
                 if (item.getId() == ID) {
                     itemIDsRecieved.add(ID);
                     validID = true;
+                } else if (ID == -1) {
+                    validID = true;
                 }
             }
             if (!validID) {
@@ -339,6 +341,8 @@ public class UserActions {
             for (Item item : userSending.getAvailableItems()) {
                 if (item.getId() == ID2) {
                     itemIDsSent.add(ID2);
+                    validID2 = true;
+                } else if (ID2 == -1) {
                     validID2 = true;
                 }
             }
