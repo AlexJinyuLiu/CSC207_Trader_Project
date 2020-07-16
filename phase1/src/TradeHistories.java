@@ -14,6 +14,8 @@ public class TradeHistories  implements Serializable {
 
     protected ArrayList<Trade> completedTrades = new ArrayList<Trade>(); // list of all trades which have been completed - Louis
 
+    protected ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability - Louis
+
     protected ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
 
     protected HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
@@ -111,6 +113,48 @@ public class TradeHistories  implements Serializable {
         return recent;
     }
 
+    /**
+     *
+     * @param trade trade where items became unavailable.
+     */
+    public void addDeadTrade(Trade trade){
+        deadTrades.add(trade);
+    }
+
+    /**
+     *
+     * @return list of all dead trades.
+     */
+    public ArrayList<Trade> getDeadTrades() {
+        return deadTrades;
+    }
+
+    /**
+     *
+     * @param tradeID the id number of the dead trade
+     * @return the trade object of the dead trade
+     */
+    public Trade searchDeadTrades(int tradeID){
+        for(Trade trade : deadTrades){
+            if(trade.getTradeID() == tradeID){
+                return trade;
+            }
+        }
+        return null;
+    }
+    /**
+     *
+     * @param tradeID the id number of the completed trade
+     * @return the trade object of the completed trade
+     */
+    public Trade searchCompletedTrades(int tradeID){
+        for(Trade trade : completedTrades){
+            if(trade.getTradeID() == tradeID){
+                return trade;
+            }
+        }
+        return null;
+    }
 
     /** Helper function that returns an ordered list of all items' ID that the user traded away. The list is ordered by
      * the date that the user traded the item away.

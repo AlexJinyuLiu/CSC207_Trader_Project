@@ -408,10 +408,10 @@ public class UserActions {
 
         Boolean canBeProcessed;
         if (isTempTrade) {
-            canBeProcessed = tradeCreator.sendTradeRequest(userSending, userReceiving, itemIDsRecieved, itemIDsSent,
+            canBeProcessed = tradeCreator.sendTemporaryTradeRequest(userSending, userReceiving, itemIDsRecieved, itemIDsSent,
                     meetingTime, meetingPlace);
         } else {
-            canBeProcessed = tradeCreator.sendTemporaryTradeRequest(userSending, userReceiving, itemIDsRecieved, itemIDsSent,
+            canBeProcessed = tradeCreator.sendTradeRequest(userSending, userReceiving, itemIDsRecieved, itemIDsSent,
                     meetingTime, meetingPlace);
         }
         if (!canBeProcessed){

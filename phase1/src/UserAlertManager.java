@@ -16,8 +16,9 @@ public class UserAlertManager {
                                  ArrayList<UserAlert> alerts){
         while(!(alerts.size() == 0)){
             UserAlert alert = alerts.get(0);
-            handleAlert(menuPresenter, userManager, tradeCreator, alert);
-            alerts.remove(alert);
+                System.out.println(alerts);
+                handleAlert(menuPresenter, userManager, tradeCreator, alert);
+                alerts.remove(alert);
         }
     }
 
@@ -39,7 +40,7 @@ public class UserAlertManager {
         } else if (alert.getType() == 4) {
             handleTradeAcceptedAlert(menuPresenter, userManager, tradeCreator, (TradeAcceptedAlert) alert);
         } else if (alert.getType() == 5) {
-            handleTradeCancelledAlert(menuPresenter,(TradeCancelledAlert) alert);
+            handleTradeCancelledAlert(menuPresenter, userManager, tradeCreator, (TradeCancelledAlert) alert);
         } else if (alert.getType() == 6){
             handleTradeDeclinedAlert(menuPresenter, (TradeDeclinedAlert) alert);
         } else if (alert.getType() == 7) {
@@ -47,7 +48,7 @@ public class UserAlertManager {
         } else if (alert.getType() == 8){
             handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert, menuPresenter);
         } else if (alert.getType() == 9) {
-            handleTradeRequestCancelledAlert(menuPresenter,(TradeRequestCancelledAlert) alert);
+            handleTradeRequestCancelledAlert(menuPresenter, userManager, tradeCreator, (TradeRequestCancelledAlert) alert);
         }
 
             //Each alert needs a handle method for its type, which prints/takes input and calls corresponding functions to
@@ -207,9 +208,10 @@ public class UserAlertManager {
 
         //System.out.println(a.getAcceptingUsername() +
         //        " has accepted the following trade request: \n" + tradeToString(userManager,
-        Trade b = tradeCreator.searchPendingTrade(a.getTradeID());
-        menuPresenter.printMenu(26, 1);
-        menuPresenter.printTradeToString(userManager, b);
+            Trade b = tradeCreator.searchTrades(a.getTradeID());
+            menuPresenter.printMenu(26, 1);
+            menuPresenter.printTradeToString(userManager, b);
+
         boolean handled = false;
 
         int input = 0;
@@ -241,11 +243,12 @@ public class UserAlertManager {
 
     }
 
-    private void handleTradeCancelledAlert(MenuPresenter menuPresenter, TradeCancelledAlert a) {
+    private void handleTradeCancelledAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradeCancelledAlert a) {
 
         // System.out.println("The following pending trade has been cancelled as one of the users is no longer in possession of " +
         //         "a item in the proposed trade. Trade ID: " + a.getTradeID());
         menuPresenter.printMenu(28, 1);
+        menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         boolean handled = false;
 
         int input = 0;
@@ -254,16 +257,18 @@ public class UserAlertManager {
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Dismiss");
             menuPresenter.printMenu(28, 2);
+            scan.nextLine();
             input = scan.nextInt();
-            if (input == 1) handled = true;
+            if (input == 1) {handled = true;}
         }
     }
 
-    private void handleTradeRequestCancelledAlert(MenuPresenter menuPresenter, TradeRequestCancelledAlert a) {
+    private void handleTradeRequestCancelledAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradeRequestCancelledAlert a) {
 
         // System.out.println("The following trade request has been cancelled as one of the users is no " +
         //         "longer in possession of an item in the proposed trade. Trade ID: " + a.getTradeID() );
         menuPresenter.printMenu(28, 1);
+        menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         boolean handled = false;
 
         int input = 0;
@@ -272,8 +277,9 @@ public class UserAlertManager {
             Scanner scan = new Scanner(System.in);
             // System.out.println("(1) Dismiss");
             menuPresenter.printMenu(28, 2);
+            scan.nextLine();
             input = scan.nextInt();
-            if (input == 1) handled = true;
+            if (input == 1) {handled = true;}
         }
     }
 
@@ -314,11 +320,22 @@ public class UserAlertManager {
         // System.out.println("The following trade expired at" + a.getDueDate()+ "\n" +
         //         tradeToString(userManager, tradeCreator.searchPendingTrade(a.getTradeId())));
         menuPresenter.printMenu(30, 1);
-        boolean flag = true;
+        boolean flag = false;
         int input = 0;
-        while (flag) {
+        int x = 0;
+        System.out.println("entering while loop");
+        while (!flag) {
+            x++;
+            System.out.print("x: ");
+            System.out.println(x);
             Scanner scan = new Scanner(System.in);
-            menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTrade(a.getTradeId()));
+            System.out.print("TradeID: ");
+            System.out.println(a.getTradeId());
+            System.out.print("pending trades: ");
+            System.out.println(tradeCreator.pendingTrades);
+            System.out.print("flag: ");
+            System.out.println(flag);
+            menuPresenter.printTradeToString(userManager, tradeCreator.searchTrades(a.getTradeId()));
 
             // System.out.println("(1) Confirm Trade\n(2) I didn't show up\n(3) The other person didn't show up");
             menuPresenter.printMenu(30, 2);
@@ -326,23 +343,20 @@ public class UserAlertManager {
             menuPresenter.printMenu(30, 4);
             input = scan.nextInt();
             if (input == 1) {
-                flag = false;
+                flag = true;
+                System.out.print("flag: ");
+                System.out.println(flag);
                 User user = userManager.searchUser(a.getUsername());
-                tradeCreator.confirmTrade(userManager, user, tradeCreator.searchPendingTrade(a.getTradeId()));
-                // TODO remove these debug statements
-                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user1AcceptedRequest);
-                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user2AcceptedRequest);
-                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user1TradeConfirmed);
-                System.out.println(tradeCreator.searchPendingTrade(a.getTradeId()).user2TradeConfirmed);
+                tradeCreator.confirmTrade(userManager, user, tradeCreator.searchTrades(a.getTradeId()));
                 // System.out.println("Trade confirmed. Your items have been exchanged on the system.");
                 menuPresenter.printMenu(30, 5);
                 //TODO
 
             } else if (input == 2){
-                flag = false;
+                flag = true;
                 //TODO
             } else if (input == 3){
-                flag = false;
+                flag = true;
 
             }
         }
@@ -372,6 +386,20 @@ public class UserAlertManager {
         menuPresenter.printMenu(5, 1);
         int choice = scanner.nextInt();
         while(choice >= x || choice < 0){
+            // System.out.println("The number you entered was not listed above. Please enter a choice between 1 and " + x);
+            menuPresenter.printMenu(5, 2);
+        }
+        return choice;
+
+
+    }
+    //helper method to ensure the user picks a valid choice, options are between 1 and x - Louis
+    private int optionChoice(MenuPresenter menuPresenter, int x, int y){
+        Scanner scanner = new Scanner(System.in);
+        // System.out.println("Please enter one of the numbers listed above");
+        menuPresenter.printMenu(5, 1);
+        int choice = scanner.nextInt();
+        while(choice >= y || choice < x){
             // System.out.println("The number you entered was not listed above. Please enter a choice between 1 and " + x);
             menuPresenter.printMenu(5, 2);
         }

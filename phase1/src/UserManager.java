@@ -87,6 +87,8 @@ public class UserManager implements Serializable{
         User user2 = searchUser(trade.getUsername2());
         for(int itemID : trade.getItemIDsSentToUser1()){
             Item item = searchItem(user2, itemID);
+            System.out.print("item: ");
+            System.out.println(item);
             //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
             user1.increaseNumBorrowed(1);
             user2.increaseNumLent(1);
@@ -96,10 +98,12 @@ public class UserManager implements Serializable{
             }
             else {
                 user1.addAvailableItem(item);
+                System.out.println(user1.getAvailableItems());
             }
         }
         for(int itemID : trade.getItemIDsSentToUser2()){
             Item item = searchItem(user1, itemID);
+            System.out.println(item);
             //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
             user2.increaseNumBorrowed(1);
             user1.increaseNumLent(1);
@@ -112,6 +116,8 @@ public class UserManager implements Serializable{
             }
 
         }
+        System.out.print(user1.getAvailableItems());
+        System.out.println(user2.getAvailableItems());
     }
 
     /** Method which returns items to their owners after the expiration of a temporary trade
@@ -236,6 +242,11 @@ public class UserManager implements Serializable{
     public Item searchItem(int itemID) {
         for (User user : listUsers) {
             for (Item item : user.getAvailableItems()) {
+                if (itemID == item.getId()) {
+                    return item;
+                }
+            }
+            for (Item item: user.getBorrowedItems()){
                 if (itemID == item.getId()) {
                     return item;
                 }

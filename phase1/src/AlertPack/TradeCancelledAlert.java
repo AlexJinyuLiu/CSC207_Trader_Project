@@ -8,6 +8,7 @@ public class TradeCancelledAlert extends UserAlert implements Serializable {
 
     public TradeCancelledAlert(int tradeID){
         super(5);
+        System.out.println("Trade " + tradeID + " has been cancelled. Generating alerts...");
         this.tradeID = tradeID;
     }
 

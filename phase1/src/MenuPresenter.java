@@ -96,6 +96,7 @@ public class MenuPresenter {
         //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
         //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
         //        "\nLocation of Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
+        System.out.println(trade);
         printMenu(32, 1, trade.getUsername1());
         printMenu(32, 2, trade.getUsername2());
         printMenu(32, 3, GetItemNamesFromUser1ToUser2(userManager, trade));
@@ -109,7 +110,7 @@ public class MenuPresenter {
     private String GetItemNamesFromUser1ToUser2(UserManager userManager, Trade trade){
         StringBuilder stringBuilder = new StringBuilder();
         for(int itemID: trade.getItemIDsSentToUser2()){
-            Item item = userManager.searchItem(userManager.searchUser(trade.getUsername1()), itemID);
+            Item item = userManager.searchItem(itemID);
             stringBuilder.append(item.getName()).append(" ");
             return stringBuilder.toString();
         }
@@ -119,7 +120,7 @@ public class MenuPresenter {
     private String GetItemNamesFromUser2ToUser1(UserManager userManager, Trade trade){
         StringBuilder stringBuilder = new StringBuilder();
         for(int itemID: trade.getItemIDsSentToUser1()){
-            Item item = userManager.searchItem(userManager.searchUser(trade.getUsername2()), itemID);
+            Item item = userManager.searchItem(itemID);
             stringBuilder.append(item.getName()).append(" ");
             return stringBuilder.toString();
         }

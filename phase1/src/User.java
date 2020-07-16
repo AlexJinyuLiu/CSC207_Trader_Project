@@ -184,7 +184,13 @@ public class User implements Serializable {
     this.frozen = frozen;
     } // whether the account is set to frozen or not
 
-
+    /**
+     *
+     * @return list of all items this user is currently borrowing.
+     */
+    public ArrayList<Item> getBorrowedItems() {
+        return borrowedItems;
+    }
 }
     // top 3 trading partners, access orderedPartners LinkedHashMap and return first three username Strings.
     // this needs to be updated after every transaction.

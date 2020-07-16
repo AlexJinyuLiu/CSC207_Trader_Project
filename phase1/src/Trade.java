@@ -17,6 +17,8 @@ public class Trade implements Serializable {
     protected boolean user1TradeConfirmed = false;
     protected boolean user2TradeConfirmed = false;
 
+    protected boolean usersAlertedToPastDue = false;
+
     protected int user1NumRequests = 0;
     protected int user2NumRequests = 0;
 
@@ -200,6 +202,19 @@ public class Trade implements Serializable {
      */
     public int getTradeID(){return tradeID;}
 
+    /**
+     *
+     * @return returns whether the users have been alerted to the fact that the trade is past due.
+     */
+    public boolean getUsersAlertedToPastDue() {
+        return usersAlertedToPastDue;
+    }
 
-
+    /**
+     *
+     * @param usersAlertedToPastDue whether the users have been alerted to the fact that the trade is past due.
+     */
+    public void setUsersAlertedToPastDue(boolean usersAlertedToPastDue) {
+        this.usersAlertedToPastDue = usersAlertedToPastDue;
+    }
 }
