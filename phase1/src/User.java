@@ -66,7 +66,7 @@ public class User implements Serializable {
      * @param x the number to increase the number of items this user has lent by.
      */
     public void increaseNumLent(int x){
-        numBorrowed += x;
+        numLent += x;
     }
 
     /**

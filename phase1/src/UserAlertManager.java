@@ -177,7 +177,7 @@ public class UserAlertManager {
             boolean stringNotFound = true;
             LocalDateTime meetingTime = null;
             while(stringNotFound) {
-
+                scan.nextLine();
                 String inputDateTime = scan.nextLine();
                 try {
                     meetingTime = LocalDateTime.parse(inputDateTime, formatter);

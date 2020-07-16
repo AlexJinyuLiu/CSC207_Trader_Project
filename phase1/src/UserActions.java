@@ -485,7 +485,9 @@ public class UserActions {
 
             } else if (input == 6) {
                 ArrayList<Item> recentItems = tradeCreator.tradeHistories.getNRecentItems(userManager, user.getUsername(), 3);
-                menuPresenter.printMenu(35, 0, recentItems);
+                for (Item item : recentItems) {
+                    menuPresenter.printItemToString(item);
+                }
 
             } else if (input == 7) {
                 ArrayList<String> favouriteParnters = tradeCreator.tradeHistories.getTopNTradingPartners(user.getUsername(), 3);
