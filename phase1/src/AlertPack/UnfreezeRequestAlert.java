@@ -8,13 +8,18 @@ public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
     private int lent; // amount user has lent
     private int borrowed; // amount user has borrowed
     private int thresholdRequired; // difference needed between lent and borrowed
+    private int incompleteT;
+    private int incompThreshold;
 
-    public UnfreezeRequestAlert(String username, int lent, int borrowed, int thresholdRequired){
+    public UnfreezeRequestAlert(String username, int lent, int borrowed, int thresholdRequired, int incompleteTrades,
+                                int incompleteThresholdRequired){
         super(3);
         this.username = username;
         this.lent = lent;
         this.borrowed = borrowed;
         this.thresholdRequired = thresholdRequired;
+        this.incompleteT = incompleteTrades;
+        this.incompThreshold = incompleteThresholdRequired;
     }
 
     /**
@@ -43,4 +48,15 @@ public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
         return this.thresholdRequired;
     }
 
+    /**
+     *
+     * @return the number of incomplete trades that this user has made
+     */
+    public int getIncompleteT() {return this.incompleteT;}
+
+    /**
+     *
+     * @return the allowed number of incomplete trades that a user can make
+     */
+    public int getIncompThreshold() {return this.incompThreshold;}
 }

@@ -7,13 +7,18 @@ public class FrozenAlert extends UserAlert implements Serializable {
 
     protected int numBorrowedofUser;
     protected int numLentofUser;
-    protected int threshholdNumofUser;
+    protected int thresholdNumofUser;
+    protected int numIncomplete;
+    protected int thresholdIncomplete;
 
-    public FrozenAlert(int numBorrowed, int numLent, int threshholdNum){
+    public FrozenAlert(int numBorrowed, int numLent, int threshholdNum, int numIncomp, int thresholdIncomp){
         super(0);
         numBorrowedofUser = numBorrowed;
         numLentofUser = numLent;
-        threshholdNumofUser = threshholdNum;
+        thresholdNumofUser = threshholdNum;
+        numIncomplete = numIncomp;
+        thresholdIncomplete = thresholdIncomp;
+
     }
 
     /**
@@ -37,8 +42,18 @@ public class FrozenAlert extends UserAlert implements Serializable {
      * @return the threshold of lent - borrowed that each user should be greater than or equal to.
      */
     public int getThreshholdNumofUser() {
-        return threshholdNumofUser;
+        return thresholdNumofUser;
     }
 
+    /**
+     *
+     *  @return the number of incomplete transactions of this user
+     */
+    public int getNumIncomplete() { return numIncomplete; }
 
+    /**
+     *
+     * @return the incompleteThreshold
+     */
+    public int getThresholdIncomplete() { return thresholdIncomplete; }
 }

@@ -32,7 +32,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         } else if (a.getType() == 1){
             handleReportAlert(menuPresenter, adminUser, userManager, tradeCreator, (ReportAlert) a);
         } else if (a.getType() == 2){
-            handleFreezeUserAlert(menuPresenter, adminUser, userManager,(FreezeUserAlert) a);
+            handleFreezeUserAlert(menuPresenter, adminUser, userManager,(FreezeUserAlert) a, tradeCreator);
         } else if (a.getType() == 3){
             handleUnfreezeRequestAlert(menuPresenter, userManager, adminUser, (UnfreezeRequestAlert) a);
         }
@@ -101,11 +101,11 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
             input = scan.nextInt();
             if (input == 1){
                 userManager.increaseUserIncompleteTrades(userManager.searchUser(alert.getReportedUserName()));
-                int numIncompleteTrades = tradeCreator.getNumIncompTrades(alert.getReportedUserName());
+                int numIncompleteTrades = userManager.searchUser(alert.getReportedUserName()).getNumIncompleteTrades();
                 threshold = userManager.getIncompleteThreshold();
                 if (numIncompleteTrades > threshold){
                     User reportedUser = userManager.searchUser(alert.getReportedUserName());
-                    adminUser.freezeUser(userManager, reportedUser);
+                    adminUser.freezeUser(userManager, reportedUser, tradeCreator);
                 }
                 flag = false;
             }
@@ -123,7 +123,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
      * @param userManager for searching the username of the user to be frozen
      */
     private void handleFreezeUserAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
-                                       FreezeUserAlert alert){
+                                       FreezeUserAlert alert, TradeCreator tradeCreator){
         menuPresenter.printMenu(13,0); // Freeze User Alert
         // System.out.println("Freeze User Alert" +
         //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
@@ -145,7 +145,7 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
             if (input == 1) {
                 User user = userManager.searchUser(alert.getUsername());
                 assert user != null;
-                adminUser.freezeUser(userManager, user);
+                adminUser.freezeUser(userManager, user, tradeCreator);
                 flag = false;
             }
             if (input == 2) flag = false;
@@ -171,6 +171,8 @@ public class AdminAlertManager { //This class has a two way dependency with Trad
         menuPresenter.printMenu(13, 4, alert.getLent());
         menuPresenter.printMenu(13, 5, alert.getBorrowed());
         menuPresenter.printMenu(13, 6, alert.getThresholdRequired());
+        menuPresenter.printMenu(13, 7, alert.getIncompleteT());
+        menuPresenter.printMenu(13, 8, alert.getIncompThreshold());
         boolean flag = true;
         int input = 0;
         while (flag) {

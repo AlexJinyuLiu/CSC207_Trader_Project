@@ -478,11 +478,9 @@ public class UserActions {
                 }
 
             } else if (input == 4) { //Other methods need access to UserManager methods
-                int incompleteTrades = tradeCreator.getNumIncompTrades(user.getUsername());
                 //System.out.println("Your account has made " + Integer.toString(incompleteTrades) +
                  //       " incomplete transactions");
-                menuPresenter.printMenu(20, 14);
-                System.out.println(Integer.toString(incompleteTrades));
+                menuPresenter.printMenu(20, 14, user.getNumIncompleteTrades());
 
             } else if (input == 5) {
                 int weeklyTransactions = tradeCreator.tradeHistories.getNumTradesThisWeek(user.getUsername());
@@ -522,7 +520,10 @@ public class UserActions {
             int numLent = user.getNumLent();
             int numBorrowed = user.getNumBorrowed();
             int borrowLendThreshold = tradeCreator.getBorrowLendThreshold();
-            UnfreezeRequestAlert alert = new UnfreezeRequestAlert(username, numLent, numBorrowed, borrowLendThreshold);
+            int incompleteTrades = user.getNumIncompleteTrades();
+            int incompThreshold = userManager.getIncompleteThreshold();
+            UnfreezeRequestAlert alert = new UnfreezeRequestAlert(username, numLent, numBorrowed, borrowLendThreshold,
+                    incompleteTrades, incompThreshold);
             userManager.alertAdmin(alert);
             // System.out.println("Your request has been sent");
             menuPresenter.printMenu(21, 2);

@@ -104,11 +104,13 @@ public class AdminUser implements Serializable {
      * author: tian
      * @param user user object to freeze
      */
-    public void freezeUser(UserManager userManager, User user){
+    public void freezeUser(UserManager userManager, User user, TradeCreator tradeCreator){
         user.setFrozen(true);
         int numBorrowed = user.getNumBorrowed();
         int numLent = user.getNumLent();
-        FrozenAlert alert = new FrozenAlert(numBorrowed, numLent, numBorrowed - numLent);
+        int incompleteT = user.getNumIncompleteTrades();
+        FrozenAlert alert = new FrozenAlert(numBorrowed, numLent, tradeCreator.getBorrowLendThreshold(), incompleteT,
+                userManager.getIncompleteThreshold());
         userManager.alertUser(user.getUsername(), alert);
     }
 

@@ -60,9 +60,11 @@ public class UserAlertManager {
 
     private void handleFrozenAlert(MenuPresenter menuPresenter, FrozenAlert a){
         menuPresenter.printMenu(23, 1); // Your account has been frozen by the administrator.
-        menuPresenter.printMenu(23, 2); // Number of items you borrowed:
-        menuPresenter.printMenu(23, 3); // Number of items you lent:
-        menuPresenter.printMenu(23, 4); // Number of items you need to lend before you can borrow:
+        menuPresenter.printMenu(23, 2, a.getNumBorrowedofUser()); // Number of items you borrowed:
+        menuPresenter.printMenu(23, 3, a.getNumLentofUser()); // Number of items you lent:
+        menuPresenter.printMenu(23, 4, a.getThreshholdNumofUser()); // Number of items you need to lend before you can borrow:
+        menuPresenter.printMenu(23, 6, a.getNumIncomplete());
+        menuPresenter.printMenu(23, 7, a.getThresholdIncomplete());
         boolean flag = true;
         int input = 0;
         while (flag) {

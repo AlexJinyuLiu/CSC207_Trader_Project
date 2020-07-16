@@ -265,34 +265,6 @@ public class TradeCreator implements Serializable {
         alertUser(otherUserName, alert);
     }
 
-    //TODO: decide if we still need this.
-    private ArrayList<Trade> getIncompleteTrades() {
-        ArrayList<Trade> incompleteTrades = new ArrayList<Trade>();
-        for (Trade trade : pendingTrades) {
-            if (trade.getTimeOfTrade().isAfter(LocalDateTime.now())) {
-                incompleteTrades.add(trade);
-            }
-        }
-        return incompleteTrades;
-    }
-
-    /**
-     * Number of incomplete trades made by the user
-     *
-     * @param username username of User being evaluated
-     * @return count of number of incomplete trades
-     */ //TradeManager
-    public int getNumIncompTrades(String username) {
-        int count = 0;
-        ArrayList<Trade> incompleteTrades = this.getIncompleteTrades();
-        for (Trade trade : incompleteTrades) {
-            if (trade.getUsername1().equals(username) | trade.getUsername2().equals(username)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
 
     /**
      * Method which searches pending trade requests when given the trade's ID number and returns the trade.

@@ -104,6 +104,8 @@ User:
 Items this user has lent:
 Items this user has borrowed:
 Number of items required to lend before borrowing:
+Number of incomplete transactions:
+Number of incomplete transactions permitted:
 }
 
 Alert{ - 14
@@ -227,6 +229,8 @@ Number of items you borrowed:
 Number of items you lent:
 Number of items you need to lend before you can borrow:
 (1) Dismiss
+Number of incomplete transactions:
+Number of incomplete transactions permitted:
 }
 
 Alert{ - 24
