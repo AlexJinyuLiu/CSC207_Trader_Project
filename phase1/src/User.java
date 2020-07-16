@@ -139,8 +139,7 @@ public class User implements Serializable {
      *
      * @param item item to be removed from the user's available items.
      */
-    public void removeAvailableItem(Item item){
-        availableItems.remove(item);
+    public void removeAvailableItem(Item item){ availableItems.remove(item);
     }
 
     /**

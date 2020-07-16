@@ -580,7 +580,7 @@ public class UserActions {
             //System.out.println(tradeToString(trade));
             //the below is our substitute for now:
             //System.out.println("tradeToString should be called here");
-            menuPresenter.printMenu(22, 5);
+            menuPresenter.printMenu(22, 5, trade);
         }
         while (input != 1) {
             Scanner scanner = new Scanner(System.in);

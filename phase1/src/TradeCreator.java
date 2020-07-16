@@ -406,14 +406,14 @@ public class TradeCreator implements Serializable {
         assert user1 != null;
         //This might be > instead of >= idk lol
         if (user1.getNumBorrowed() + borrowLendThreshold > user1.getNumLent()) {
-            FreezeUserAlert alert = new FreezeUserAlert(user1.getUsername(), user1.getNumBorrowed(),
-                    user1.getNumLent(), borrowLendThreshold);
+            FreezeUserAlert alert = new FreezeUserAlert(user1.getUsername(), user1.getNumLent(),
+                    user1.getNumBorrowed(), borrowLendThreshold);
             alertAdmin(alert);
         }
         assert user2 != null;
         if (user2.getNumBorrowed() + borrowLendThreshold > user2.getNumLent()) {
-            FreezeUserAlert alert = new FreezeUserAlert(user2.getUsername(), user2.getNumBorrowed(),
-                    user2.getNumLent(), borrowLendThreshold);
+            FreezeUserAlert alert = new FreezeUserAlert(user2.getUsername(), user2.getNumLent(),
+                    user2.getNumBorrowed(), borrowLendThreshold);
             alertAdmin(alert);
         }
     }

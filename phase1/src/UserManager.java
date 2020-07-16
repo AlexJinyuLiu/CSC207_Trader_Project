@@ -106,7 +106,7 @@ public class UserManager implements Serializable{
             }
         }
         for(int itemID : trade.getItemIDsSentToUser2()){
-            Item item = searchItem(user2, itemID);
+            Item item = searchItem(user1, itemID);
             for (String string: user2.getWishlistItemNames()){
                 if(item.getName().equals(string)){
                     user2.removeItemFromWishList(string);
