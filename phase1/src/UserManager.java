@@ -86,9 +86,13 @@ public class UserManager implements Serializable{
         User user1 = searchUser(trade.getUsername1());
         User user2 = searchUser(trade.getUsername2());
         for(int itemID : trade.getItemIDsSentToUser1()){
+
             Item item = searchItem(user2, itemID);
-            System.out.print("item: ");
-            System.out.println(item);
+            for (String string: user1.getWishlistItemNames()){
+                if(item.getName().equals(string)){
+                    user1.removeItemFromWishList(string);
+                }
+            }
             //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
             user1.increaseNumBorrowed(1);
             user2.increaseNumLent(1);
@@ -102,8 +106,12 @@ public class UserManager implements Serializable{
             }
         }
         for(int itemID : trade.getItemIDsSentToUser2()){
-            Item item = searchItem(user1, itemID);
-            System.out.println(item);
+            Item item = searchItem(user2, itemID);
+            for (String string: user2.getWishlistItemNames()){
+                if(item.getName().equals(string)){
+                    user2.removeItemFromWishList(string);
+                }
+            }
             //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
             user2.increaseNumBorrowed(1);
             user1.increaseNumLent(1);
