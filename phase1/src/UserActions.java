@@ -1,9 +1,9 @@
-import AlertPack.AdminAlert;
-import AlertPack.ReportAlert;
 import AlertPack.UnfreezeRequestAlert;
+import EntityPack.Item;
+import EntityPack.TemporaryTrade;
+import EntityPack.Trade;
+import EntityPack.User;
 
-import javax.swing.text.View;
-import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -96,7 +96,7 @@ public class UserActions {
         }
 
         while (flag){
-            //"(1) Send Item Validation request \n (2) Remove an item from available items " +
+            //"(1) Send EntityPack.Item Validation request \n (2) Remove an item from available items " +
             //"\n (3) Remove an item from your wishlist\n (0) Exit to main menu");
             menuPresenter.printMenu(16, 4);
             menuPresenter.printMenu(16, 5);
@@ -126,7 +126,7 @@ public class UserActions {
              for (int i = 0; i < user.getAvailableItems().size(); i++){
                  if (user.getAvailableItems().get(i).getId() == itemID) {
                      user.getAvailableItems().remove(user.getAvailableItems().get(i));
-                     //"Item deleted"
+                     //"EntityPack.Item deleted"
                      menuPresenter.printMenu(16, 11);
                  } else //"Invalid item id"
                      menuPresenter.printMenu(16, 12);
@@ -162,7 +162,7 @@ public class UserActions {
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
         menuPresenter.printMenu(17, 0);
-        // "Enter a number to view a User's page:"
+        // "Enter a number to view a EntityPack.User's page:"
         menuPresenter.printMenu(17, 1);
         int page = 1;
         ArrayList<User> allUsers = userManager.getListUsers();

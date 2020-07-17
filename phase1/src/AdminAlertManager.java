@@ -1,4 +1,5 @@
 import AlertPack.*;
+import EntityPack.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,7 +52,7 @@ public class AdminAlertManager {
      */
     private void handleItemValidationRequestAlert(MenuPresenter menuPresenter, AdminUser adminUser,
                                                   UserManager userManager, ItemValidationRequestAlert alert){
-        // "Item validation request\nUser: " + alert.getOwner() + "\nItem name: " + alert.getName() +
+        // "EntityPack.Item validation request\nUser: " + alert.getOwner() + "\nEntityPack.Item name: " + alert.getName() +
         //         "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID()
         menuPresenter.printMenu(11,0);
         menuPresenter.printMenu(11,1, alert.getOwner()) ;
@@ -127,8 +128,8 @@ public class AdminAlertManager {
      */
     private void handleFreezeUserAlert(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
                                        FreezeUserAlert alert, TradeCreator tradeCreator){
-        menuPresenter.printMenu(13,0); // Freeze User Alert
-        // "Freeze User Alert" +
+        menuPresenter.printMenu(13,0); // Freeze EntityPack.User Alert
+        // "Freeze EntityPack.User Alert" +
         //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
         //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
         //         "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed"
@@ -140,7 +141,7 @@ public class AdminAlertManager {
         int input = 0;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            // "(1) Freeze User"
+            // "(1) Freeze EntityPack.User"
             menuPresenter.printMenu(13,1);
             // "(2) Dismiss"
             menuPresenter.printMenu(13,2);
@@ -166,7 +167,7 @@ public class AdminAlertManager {
     private void handleUnfreezeRequestAlert(MenuPresenter menuPresenter, UserManager userManager, AdminUser adminUser,
                                             UnfreezeRequestAlert alert){
         menuPresenter.printMenu(14,0);
-        // "Unfreeze User Request Alert" +
+        // "Unfreeze EntityPack.User Request Alert" +
         //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
         //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
         //         "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed"
@@ -180,7 +181,7 @@ public class AdminAlertManager {
         int input = 0;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            // "(1) Unfreeze User"
+            // "(1) Unfreeze EntityPack.User"
             menuPresenter.printMenu(14,1);
             // "(2) Dismiss"
             menuPresenter.printMenu(14,2);

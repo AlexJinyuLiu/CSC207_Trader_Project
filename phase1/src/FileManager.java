@@ -100,7 +100,7 @@ public class FileManager {
             file.close();
         }
         catch (IOException | ClassNotFoundException e) {
-            // ClassNotFoundException if User class is not recognized
+            // ClassNotFoundException if EntityPack.User class is not recognized
             e.printStackTrace();
             return null;
         }
@@ -122,7 +122,7 @@ public class FileManager {
             file.close();
         }
         catch (IOException | ClassNotFoundException e) {
-            // ClassNotFoundException if User class is not recognized
+            // ClassNotFoundException if EntityPack.User class is not recognized
             e.printStackTrace();
             return null;
         }

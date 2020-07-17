@@ -1,4 +1,7 @@
 import AlertPack.*;
+import EntityPack.TemporaryTrade;
+import EntityPack.Trade;
+import EntityPack.User;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -81,7 +84,7 @@ public class UserAlertManager {
     private void handleExpirationAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
                                        ExpirationAlert alert){
 
-        // "The following TemporaryTrade has expired at" + alert.getDueDate() + ":\n" +
+        // "The following EntityPack.TemporaryTrade has expired at" + alert.getDueDate() + ":\n" +
         //        tradeToString(userManager, tradeCreator.tradeHistories.searchTemporaryTrade(alert.getTradeId()))
         menuPresenter.printMenu(24, 1);
         boolean flag = true;
@@ -116,7 +119,7 @@ public class UserAlertManager {
             User user = userManager.searchUser(alert.getUsername());
             TemporaryTrade trade = tradeCreator.tradeHistories.searchTemporaryTrade(alert.getTradeId());
             tradeCreator.tradeHistories.confirmReExchange(userManager, user, trade);
-            // "Trade ReExchange confirmed"
+            // "EntityPack.Trade ReExchange confirmed"
             menuPresenter.printMenu(24, 6);
         }
     }
@@ -163,16 +166,16 @@ public class UserAlertManager {
 
         if (input == 1){
             tradeCreator.acceptTradeRequest(trade, thisUser.getUsername());
-            // "Trade Request Accepted. Meet up with the person at the time and place specified above."+
+            // "EntityPack.Trade Request Accepted. Meet up with the person at the time and place specified above."+
             //         "Remember to login to confirm the trade afterwords!"
             menuPresenter.printMenu(25, 6);
             menuPresenter.printMenu(25, 7);
         } else if (input == 2){
             tradeCreator.declineTradeRequest(trade, thisUser.getUsername());
-            // "Trade Request Declined."
+            // "EntityPack.Trade Request Declined."
             menuPresenter.printMenu(25, 8);
         } else if (input == 3){
-            // "Editing Trade Request. \n Enter new meeting time (format: yyyy-MM-dd HH:mm: \n"
+            // "Editing EntityPack.Trade Request. \n Enter new meeting time (format: yyyy-MM-dd HH:mm: \n"
             menuPresenter.printMenu(25, 9);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             boolean stringNotFound = true;
@@ -195,7 +198,7 @@ public class UserAlertManager {
             String inputMeetingPlace = scan.nextLine();
             assert meetingTime != null;
             tradeCreator.editTradeRequest(userManager, trade, meetingTime, inputMeetingPlace, thisUser.getUsername());
-            // "Trade successfully edited. Meeting at " + inputMeetingPlace + " at " + meetingTime +
+            // "EntityPack.Trade successfully edited. Meeting at " + inputMeetingPlace + " at " + meetingTime +
             //         "."
             menuPresenter.printMenu(25, 12);
         }
@@ -245,7 +248,7 @@ public class UserAlertManager {
     private void handleTradeCancelledAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradeCancelledAlert a) {
 
         // "The following pending trade has been cancelled as one of the users is no longer in possession of " +
-        //         "a item in the proposed trade. Trade ID: " + a.getTradeID()
+        //         "a item in the proposed trade. EntityPack.Trade ID: " + a.getTradeID()
         menuPresenter.printMenu(28, 1);
         menuPresenter.printTradeToString(userManager, tradeCreator.searchTrades(a.getTradeID()));
         boolean handled = false;
@@ -264,7 +267,7 @@ public class UserAlertManager {
     private void handleTradeRequestCancelledAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradeRequestCancelledAlert a) {
 
         // "The following trade request has been cancelled as one of the users is no " +
-        //         "longer in possession of an item in the proposed trade. Trade ID: " + a.getTradeID()
+        //         "longer in possession of an item in the proposed trade. EntityPack.Trade ID: " + a.getTradeID()
         menuPresenter.printMenu(28, 1);
         menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         boolean handled = false;
@@ -284,7 +287,7 @@ public class UserAlertManager {
                                                    ItemValidationDeclinedAlert a){
 
         //"Your item validation request has been declined for the following reason: \n" +
-        //        a.getMessage()+ ".\nUser: " + a.getOwner() + "Item name: " + a.getName() + "\nItem description: " +
+        //        a.getMessage()+ ".\nUser: " + a.getOwner() + "EntityPack.Item name: " + a.getName() + "\nEntityPack.Item description: " +
         //        a.getDescription() + "\nItem ID number: " + a.getItemID()
         menuPresenter.printMenu(29, 1);
         menuPresenter.printMenu(29, 2);
@@ -325,7 +328,7 @@ public class UserAlertManager {
             Scanner scan = new Scanner(System.in);
             menuPresenter.printTradeToString(userManager, tradeCreator.searchTrades(a.getTradeId()));
 
-            // "(1) Confirm Trade\n(2) I didn't show up\n(3) The other person didn't show up"
+            // "(1) Confirm EntityPack.Trade\n(2) I didn't show up\n(3) The other person didn't show up"
             menuPresenter.printMenu(30, 2);
             menuPresenter.printMenu(30, 3);
             menuPresenter.printMenu(30, 4);
@@ -334,7 +337,7 @@ public class UserAlertManager {
                 flag = true;
                 User user = userManager.searchUser(a.getUsername());
                 tradeCreator.confirmTrade(userManager, user, tradeCreator.searchTrades(a.getTradeId()));
-                // "Trade confirmed. Your items have been exchanged on the system."
+                // "EntityPack.Trade confirmed. Your items have been exchanged on the system."
                 menuPresenter.printMenu(30, 5);
 
             } else if (input == 2){

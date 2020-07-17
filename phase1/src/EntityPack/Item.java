@@ -1,9 +1,11 @@
+package EntityPack;
+
 import javax.print.DocFlavor;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Represents an Item in the trading system.
+ * Represents an EntityPack.Item in the trading system.
  */
 public class Item implements Serializable {
     //author: Tian Yue Dong in group 0110 for CSC207H1 summer 2020 project
@@ -22,7 +24,7 @@ public class Item implements Serializable {
     private final int id;
 
     /**
-     * Initializes a new Item with a name, description, and unique ID.
+     * Initializes a new EntityPack.Item with a name, description, and unique ID.
      * @param name the name of the item
      * @param description a short description of the item
      * @param itemID the unique ID of the item.
@@ -34,7 +36,7 @@ public class Item implements Serializable {
     }
 
     /**
-     * Initializes a new Item with a name and unique ID.
+     * Initializes a new EntityPack.Item with a name and unique ID.
      * @param name the name of the item
      * @param itemID the unique ID of the item.
      */

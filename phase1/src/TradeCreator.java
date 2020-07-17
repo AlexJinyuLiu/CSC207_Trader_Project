@@ -1,4 +1,8 @@
 import AlertPack.*;
+import EntityPack.Item;
+import EntityPack.TemporaryTrade;
+import EntityPack.Trade;
+import EntityPack.User;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -125,7 +129,7 @@ public class TradeCreator implements Serializable {
         pendingTradeRequests.add(trade);
         trade.setTimeOfTrade(timeOfTrade);
         trade.setMeetingPlace(meetingPlace);
-        trade.user1AcceptedRequest = true;
+        trade.setUser1AcceptedRequest(true);
 
         //Creating and adding an alert for user2
         TradeRequestAlert alert = createTradeRequestAlert(trade, user1, false);
@@ -173,7 +177,7 @@ public class TradeCreator implements Serializable {
         pendingTradeRequests.add(trade);
         trade.setTimeOfTrade(timeOfTrade);
         trade.setMeetingPlace(meetingPlace);
-        trade.user1AcceptedRequest = true;
+        trade.setUser1AcceptedRequest(true);
 
         //Creating and adding an alert for user2
         TradeRequestAlert alert = createTradeRequestAlert(trade, user1, true);
@@ -186,8 +190,8 @@ public class TradeCreator implements Serializable {
      * Creates a TradeRequstAlert for <trade> object sent by <user1>. This method does not add said TradeRequestAlert
      * to the alertSystem.
      *
-     * @param trade the Trade object for the Alert.
-     * @param user1 the User who is sending the Trade request.
+     * @param trade the EntityPack.Trade object for the Alert.
+     * @param user1 the EntityPack.User who is sending the EntityPack.Trade request.
      * @return A TradeRequestAlert corresponding to <trade>
      */ //TradeManager
     public TradeRequestAlert createTradeRequestAlert(Trade trade, User user1, boolean isTempTrade) {
@@ -200,7 +204,7 @@ public class TradeCreator implements Serializable {
      * Reworked by Tingyu Liang 7/2/2020
      *
      * @param trade    trade object
-     * @param username username of User which is accepting the trade request
+     * @param username username of EntityPack.User which is accepting the trade request
      */ //TradeManager
     public void acceptTradeRequest(Trade trade, String username) {
         String otherUserName;
@@ -223,11 +227,11 @@ public class TradeCreator implements Serializable {
 
 
     /**
-     * Decline trade request <trade> sent to User <user>. Also sends a TradeDeclinedAlert to send to the requesting
-     * User.
+     * Decline trade request <trade> sent to EntityPack.User <user>. Also sends a TradeDeclinedAlert to send to the requesting
+     * EntityPack.User.
      *
      * @param trade         The trade request to be declined.
-     * @param decliningUser username of The User declining the request.
+     * @param decliningUser username of The EntityPack.User declining the request.
      *///TradeManager
     public void declineTradeRequest(Trade trade, String decliningUser) {
 
@@ -258,15 +262,15 @@ public class TradeCreator implements Serializable {
      */ //TradeManager
     public void editTradeRequest(UserManager userManager, Trade trade, LocalDateTime timeOfTrade,
                                  String meetingPlace, String UserEditingName) {
-        trade.timeOfTrade = timeOfTrade;
-        trade.meetingPlace = meetingPlace;
+        trade.setTimeOfTrade(timeOfTrade);
+        trade.setMeetingPlace(meetingPlace);
         if (UserEditingName.equals(trade.getUsername1())) {
-            trade.user1AcceptedRequest = true;
-            trade.user2AcceptedRequest = false;
+            trade.setUser1AcceptedRequest(true);
+            trade.setUser2AcceptedRequest(false);
             trade.incrementUser1NumRequests();
         } else if (UserEditingName.equals(trade.getUsername2())) {
-            trade.user2AcceptedRequest = true;
-            trade.user1AcceptedRequest = false;
+            trade.setUser2AcceptedRequest(true);
+            trade.setUser2AcceptedRequest(false);
             trade.incrementUser2NumRequests();
         }
 
@@ -397,7 +401,7 @@ public class TradeCreator implements Serializable {
 
     /**
      * Method which executes all item swaps and checks all pending trades and pending trade requests after a trade has
-     * been completed. Trade is moved to completed trades if it is a
+     * been completed. EntityPack.Trade is moved to completed trades if it is a
      * Author: Louis Scheffer V
      *
      * @param trade trade object

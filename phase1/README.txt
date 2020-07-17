@@ -15,9 +15,9 @@ _  /   _  / / /  __/     _  /   _  /   / /_/ // /_/ / /  __/     _  /  / / / /_/
 
 Authors: Tian Yue Dong, Jinyu Liu, Murray Smith, Melody Yang, Riya Razdan, Tingyu Liang, Callan Murphy, Louis Scheffer V
 
-The Trade Master 9000 (Phase 1):
+The EntityPack.Trade Master 9000 (Phase 1):
 
-The Trade Master 9000 is a program that allows users to trade items with each other!
+The EntityPack.Trade Master 9000 is a program that allows users to trade items with each other!
 
 The interface is of this program is text through the java console, to navigate through the program, the presenter will
 prompt you for valid user input. For menus, you will need to enter a number ranging from 0-10 to the corresponding menu
@@ -42,10 +42,10 @@ IF USER:
         - FrozenAlert (your account has been frozen by administrator)
         - ItemValidationRequestDeclinedAlert (your itemValidation has been declined)
         - MessageAlert (Another user has messaged you)
-        - TradeRequestAlert (Another User has sent you a Trade request)
+        - TradeRequestAlert (Another EntityPack.User has sent you a EntityPack.Trade request)
         - TradeCancelledAlert (The item involved in this trade is no longer available, This trade has been cancelled)
         - TradeDeclinedAlert (The trade offer you sent has been declined by the other user)
-        - TradeRequestAcceptedAlert (Trade has been accepted by the other user)
+        - TradeRequestAcceptedAlert (EntityPack.Trade has been accepted by the other user)
         - TradePastDateAlert (The exchange date of the trade has passed, report what happened)
 
     After handling the user alerts, you will have access to the Usermenu
@@ -54,13 +54,13 @@ IF USER:
             (2) Remove an item from wishlist
             (3) Remove an item from available items
         (2) View user stats
-            (1) Send Item Validation request
+            (1) Send EntityPack.Item Validation request
             (2) Remove an item from available items
             (3) Remove an item from your wishlist
             (0) Exit to main menu
         (3) Request an unfreeze
         (4) View other users
-            Enter a number to view a User's page:
+            Enter a number to view a EntityPack.User's page:
             (1) send a message to userToView
             (2) add one of userToView's items to the wishlist
             (3) send a trade request to userToView
@@ -75,7 +75,7 @@ IF ADMIN:
         If a user borrowed an item that make their borrowed greater than or equal to their lent, admin will be alerted
         of this and has the option to freeze that user.
         - ItemValidationAlert (A user has sent a request for their item to be added to their inventory)
-        - ReportAlert (A User has been reported by another user, freeze them)
+        - ReportAlert (A EntityPack.User has been reported by another user, freeze them)
         If a user did show up to a trade that was accepted by both parties, the other user can report them. Admin must
         accept this report for it to count towards incomplete trades. A user will be frozen if the admin approves a
         report that puts their incomplete transactions over the threshold.

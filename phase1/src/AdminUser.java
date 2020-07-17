@@ -1,4 +1,6 @@
 import AlertPack.*;
+import EntityPack.Item;
+import EntityPack.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;

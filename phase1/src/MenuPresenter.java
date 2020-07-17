@@ -1,4 +1,8 @@
 
+import EntityPack.Item;
+import EntityPack.Trade;
+import EntityPack.User;
+
 import java.io.*;
 import java.util.*;
 
@@ -92,11 +96,11 @@ public class MenuPresenter {
      * @param trade a trade object
      */
     public void printTradeToString(UserManager userManager, Trade trade){
-        // "User 1: " + trade.getUsername1() + "\nUser 2: " + trade.getUsername2() +
+        // "EntityPack.User 1: " + trade.getUsername1() + "\nEntityPack.User 2: " + trade.getUsername2() +
         //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
         //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
         //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
-        //        "\nLocation of Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
+        //        "\nLocation of EntityPack.Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
         System.out.println(trade);
         printMenu(32, 1, trade.getUsername1());
         printMenu(32, 2, trade.getUsername2());
@@ -105,7 +109,7 @@ public class MenuPresenter {
         printMenu(32, 5, trade.getTimeOfTrade().toString());
         printMenu(32, 6, trade.getMeetingPlace());
         printMenu(32, 7, trade.getTradeID());
-        // return "User 1: " + trade.getUsername1(); // to be changed
+        // return "EntityPack.User 1: " + trade.getUsername1(); // to be changed
     }
     // helper method which lists the names of the items going from user 1 to user 2 - Louis
     private String GetItemNamesFromUser1ToUser2(UserManager userManager, Trade trade){
@@ -129,13 +133,13 @@ public class MenuPresenter {
     }
 
     /**
-     * Prints a string representation of a User
-     * @param user the User in question.
+     * Prints a string representation of a EntityPack.User
+     * @param user the EntityPack.User in question.
      */
     public void printUserToString(User user){
-        StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
+        StringBuilder userString = new StringBuilder("EntityPack.User: " + user.getUsername() + "\n");
         if (user.getAvailableItems().size() == 0){
-            userString.append("This User has no items available for trade. \n");
+            userString.append("This EntityPack.User has no items available for trade. \n");
         } else {
             userString.append("Items available for trade: \n");
             for (int i = 0; i < user.getAvailableItems().size() - 1; i++) {
@@ -145,7 +149,7 @@ public class MenuPresenter {
                     user.getAvailableItems().get(user.getAvailableItems().size() - 1).getId() + ")\n");
         }
         if (user.getWishlistItemNames().size() == 0){
-            userString.append("This User has no items in their wishlist. \n");
+            userString.append("This EntityPack.User has no items in their wishlist. \n");
         } else {
             userString.append("Wishlist: \n");
             for (int i = 0; i < user.getWishlistItemNames().size() - 1; i++) {
@@ -161,7 +165,7 @@ public class MenuPresenter {
     }
 
     /**
-     * Prints a string representation of an Item object.
+     * Prints a string representation of an EntityPack.Item object.
      * @param item the item in question.
      */
     public void printItemToString(Item item) {

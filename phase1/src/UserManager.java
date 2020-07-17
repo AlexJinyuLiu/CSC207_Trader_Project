@@ -1,10 +1,12 @@
 import AlertPack.*;
+import EntityPack.Item;
+import EntityPack.TemporaryTrade;
+import EntityPack.Trade;
+import EntityPack.User;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A use case class describing the business rules of the users in the trade system.
@@ -49,9 +51,9 @@ public class UserManager implements Serializable{
     }
 
     /**
-     * Method for a User to send a reportAlert to Administrator
+     * Method for a EntityPack.User to send a reportAlert to Administrator
      * @param sender the username of the USer sending the report
-     * @param reportedUser  the username of the User to whom the sender wishes to report
+     * @param reportedUser  the username of the EntityPack.User to whom the sender wishes to report
      * @param message the message the sender would like to include
      * @param isTradeComplete whether the trade between the user is complete
      */
@@ -141,7 +143,7 @@ public class UserManager implements Serializable{
 
     /** Method which returns items to their owners after the expiration of a temporary trade
      * Author: Louis Scheffer V
-     * @param trade Temporary Trade Object
+     * @param trade Temporary EntityPack.Trade Object
      */ //TradeManager???
     public void reExchangeItems(TemporaryTrade trade){
         User user1 = searchUser(trade.getUsername1());

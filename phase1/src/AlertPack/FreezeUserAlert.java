@@ -3,7 +3,7 @@ package AlertPack;
 import java.io.Serializable;
 
 public class FreezeUserAlert extends AdminAlert implements Serializable {
-    /** Alert which is generated when a User crosses the threshold of borrowed minus lent that they are required to
+    /** Alert which is generated when a EntityPack.User crosses the threshold of borrowed minus lent that they are required to
      * maintain. The admin will then decide to freeze the user or leave the user unfrozen.
      */
 

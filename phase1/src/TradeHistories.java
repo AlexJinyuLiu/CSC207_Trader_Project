@@ -1,6 +1,10 @@
 import AlertPack.AdminAlert;
 import AlertPack.ExpirationAlert;
 import AlertPack.UserAlert;
+import EntityPack.Item;
+import EntityPack.TemporaryTrade;
+import EntityPack.Trade;
+import EntityPack.User;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -86,9 +90,9 @@ public class TradeHistories  implements Serializable {
 
     /** Helper function that returns a list of all the trades that user participated in and traded an item. The list is
      * order by the date that the item left the user's possession.
-     * @param username Username of User being evaluated
-     * @return ArrayList</Trade> (sorted by LocalTimeDate)
-     */ //TradeManager, This uses User objects so be careful about splitting.
+     * @param username Username of EntityPack.User being evaluated
+     * @return ArrayList</EntityPack.Trade> (sorted by LocalTimeDate)
+     */ //TradeManager, This uses EntityPack.User objects so be careful about splitting.
     private ArrayList<Trade> getOrderedTrades(String username) {
         ArrayList<Trade> completed = new ArrayList<Trade>();
         ArrayList<TemporaryTrade> incompleted = new ArrayList<TemporaryTrade>();
@@ -175,7 +179,7 @@ public class TradeHistories  implements Serializable {
 
     /** Helper function that returns an ordered list of all items' ID that the user traded away. The list is ordered by
      * the date that the user traded the item away.
-     * @param username username of User being evaluated
+     * @param username username of EntityPack.User being evaluated
      * @return ArrayList</int> (sorted by LocalTimeDate)
      */ //TradeManager
     private ArrayList<Integer> getOrderedItemsID(String username) {
@@ -193,9 +197,9 @@ public class TradeHistories  implements Serializable {
 
     /** Returns an ordered list of all items that the user traded away. The list is ordered by the date that the user
      * traded the item away.
-     * @param user User being evaluated
+     * @param user EntityPack.User being evaluated
      * @param n number of items
-     * @return ArrayList</Item> (sorted by LocalTimeDate)
+     * @return ArrayList</EntityPack.Item> (sorted by LocalTimeDate)
      */ //TradeManager
     public ArrayList<Item> getNRecentItems(UserManager userManager, String user, int n) {
         ArrayList<Integer> orderedItemsID = this.getOrderedItemsID(user);
@@ -219,7 +223,7 @@ public class TradeHistories  implements Serializable {
     }
 
     /** Number of trades carried out by the user in a week
-     * @param username username of User whose number of trades is being calculated
+     * @param username username of EntityPack.User whose number of trades is being calculated
      * @return the number of transactions in a week
      */ //TradeManager
     public int getNumTradesThisWeek(String username) {
@@ -260,7 +264,7 @@ public class TradeHistories  implements Serializable {
 
     /** Top trading partners for a user.
      * @param n number of top trading partners to be considered
-     * @param username name of User being evaluated
+     * @param username name of EntityPack.User being evaluated
      * @return the usernames of the top trading partners for a given user
      */ //TradeManager
     public ArrayList<String> getTopNTradingPartners(String username, int n) {
@@ -315,7 +319,7 @@ public class TradeHistories  implements Serializable {
 
 
     /**
-     * Check to see if any TemporaryTrades have expired and if so, add an alert to the User's alertQueue.
+     * Check to see if any TemporaryTrades have expired and if so, add an alert to the EntityPack.User's alertQueue.
      * Author: Murray Smith
      * Rework by Louis Scheffer V 6/30/20 // modifications made to work with the alert system.
      * Rework by Tian Yue Dong 7/1/2020 ; made it so it only sends alert to user who didn't confirm the reexchange

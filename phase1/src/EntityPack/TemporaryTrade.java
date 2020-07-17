@@ -1,3 +1,7 @@
+package EntityPack;
+
+import EntityPack.Trade;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -23,7 +27,7 @@ public class TemporaryTrade extends Trade implements Serializable {
      * @param itemIDsSentToUser1 A list of IDs of items sent to user 1 in this trade
      * @param itemIDsSentToUser2 A list of IDs of items sent to user 2 in this trade
      * @param tradeUntil a LocalDateTime object representing the time when the items should be given back.
-     * @param TradeID the unique Id of this Trade.
+     * @param TradeID the unique Id of this EntityPack.Trade.
      */
     public TemporaryTrade(String username1, String username2, ArrayList<Integer> itemIDsSentToUser1,
                           ArrayList<Integer> itemIDsSentToUser2, LocalDateTime tradeUntil, int TradeID) {
@@ -37,7 +41,7 @@ public class TemporaryTrade extends Trade implements Serializable {
      * @param username2 the username of the second user involved
      * @param itemIDsSentToUser1 A list of IDs of items sent to user 1 in this trade
      * @param itemIDsSentToUser2 A list of IDs of items sent to user 2 in this trade
-     * @param TradeID the unique Id of this Trade.
+     * @param TradeID the unique Id of this EntityPack.Trade.
      */
     public TemporaryTrade(String username1, String username2, ArrayList<Integer> itemIDsSentToUser1,
                           ArrayList<Integer> itemIDsSentToUser2, int TradeID){

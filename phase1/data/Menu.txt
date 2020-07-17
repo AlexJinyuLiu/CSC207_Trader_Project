@@ -14,12 +14,12 @@ Enter your desired password
 }
 
 MENU{ - 2
-User Username Login Menu
+EntityPack.User Username Login Menu
 Enter your username:
 }
 
 MENU{ - 3
-User Password Login Menu
+EntityPack.User Password Login Menu
 Please enter your password
 Logged in as
 Invalid Password. Please try again or enter 0 to return to the main menu.
@@ -63,26 +63,26 @@ Log in successful.
 }
 
 MENU{ - 9
-Change Complete Trade Threshold Menu
+Change Complete EntityPack.Trade Threshold Menu
 Please enter the new threshold value for complete trades a user can conduct:
 The number you entered was not valid. Please enter a valid threshold number.
 }
 
 MENU{ - 10
-Welcome to the Trade Master 9000!
+Welcome to the EntityPack.Trade Master 9000!
 Would you like to create an account or login?
 (1) Create new account
-(2) Login as User
+(2) Login as EntityPack.User
 (3) Login as Admin
 (0) Quit
 }
 
 Alert{ - 11
-Item Validation Request
-User:
-Item Name:
-Item Description:
-Item ID Number:
+EntityPack.Item Validation Request
+EntityPack.User:
+EntityPack.Item Name:
+EntityPack.Item Description:
+EntityPack.Item ID Number:
 (1) Approve this item
 (2) Deny this item
 Please explain why this item was declined:
@@ -93,15 +93,15 @@ Handle Report Alert
 (1) Accept Report
 (2) Dismiss
  has reported user
-Trade status of reported user:
+EntityPack.Trade status of reported user:
 Report Description:
 }
 
 Alert{ - 13
-Handle Freeze User Alert
-(1) Freeze User
+Handle Freeze EntityPack.User Alert
+(1) Freeze EntityPack.User
 (2) Dismiss
-User:
+EntityPack.User:
 Items this user has lent:
 Items this user has borrowed:
 Number of items required to lend before borrowing:
@@ -111,12 +111,12 @@ Number of incomplete transactions permitted:
 
 Alert{ - 14
 Unfreeze Request Alert
-(1) Unfreeze User
+(1) Unfreeze EntityPack.User
 (2) Dismiss
 }
 
 MENU{ - 15
-User Menu
+EntityPack.User Menu
 (1) View items and wishlist
 (2) View user stats
 (3) Request an unfreeze
@@ -133,14 +133,14 @@ Items and Wishlist
 You have no items.
 Your available items:
 Your wishlist:
-(1) Send Item Validation request
+(1) Send EntityPack.Item Validation request
 (2) Remove an item from available items
 (3) Remove an item from your wishlist
 Please enter a number from 1 to 3
 Please enter the name of your item
 Please enter the item description
 Please enter the ID of the item you wish to remove
-Item deleted
+EntityPack.Item deleted
 Invalid item id
 Please enter the name of the item on your wishlist you wish to remove.
 (0) Exit to main menu
@@ -149,15 +149,15 @@ The item has been removed.
 
 MENU{ - 17
 View Other Users
-Enter a number to view a User's page:
+Enter a number to view a EntityPack.User's page:
 Back to Main Menu
 (0) Next page (current page:
 Please Enter a valid input.
-Viewing User:
+Viewing EntityPack.User:
 }
 
 MENU{ - 18
-Viewing User
+Viewing EntityPack.User
 (1) Send a message
 (2) Add one of their items to your wishlist
 (3) Send a trade request
@@ -166,11 +166,11 @@ Please enter a valid input
 Enter the contents of your message:
 Sent message to
 Enter the name of the item you would like added to your wishlist:
-Item successfully added to wishlist.
+EntityPack.Item successfully added to wishlist.
 }
 
 MENU{ - 19
-Form Trade Request
+Form EntityPack.Trade Request
 The other user has no available items. You will not receive anything in this trade.
 Enter the ID of an item want from this trade or -1 if you don't want any items this trade:
 Invalid ID. Please try again.
@@ -190,7 +190,7 @@ Successfully created and sent trade request. You will be notified when they resp
 }
 
 MENU{ - 20
-View User Stats
+View EntityPack.User Stats
 (1) View number of items user has borrowed
 (2) View number of items user has lent
 (3) View frozen status
@@ -198,7 +198,7 @@ View User Stats
 (5) View number of transactions this week
 (6) View items recently traded away
 (7) View most frequent trading partner's
-(8) Return to User Menu
+(8) Return to EntityPack.User Menu
 Please enter a number from 1 to 8
 Number of items borrowed:
 Number of items lent:
@@ -243,50 +243,50 @@ The following temporary trade expired at:
 (2) Confirm ReExchange
 Reason for reporting:
 Report has been sent to the tribunal.
-Trade re-exchange confirmed.
+EntityPack.Trade re-exchange confirmed.
 }
 
 Alert{ - 25
-Handle Trade Request Alert
-Trade request made by
+Handle EntityPack.Trade Request Alert
+EntityPack.Trade request made by
 (1) Accept
 (2) Decline
 (3) Edit time and Place
 Note: Number of remaining edits allowed is
-Trade Request Accepted. Meet up with the person at the time and place specified above.
+EntityPack.Trade Request Accepted. Meet up with the person at the time and place specified above.
 Remember to login to confirm the trade afterwords!
-Trade request declined.
-Editing Trade Request. Enter new meeting time (format: yyyy-MM-dd HH:mm):
+EntityPack.Trade request declined.
+Editing EntityPack.Trade Request. Enter new meeting time (format: yyyy-MM-dd HH:mm):
 Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
 Enter new meeting place:
-Trade successfully edited. Meeting at:
+EntityPack.Trade successfully edited. Meeting at:
 }
 
 Alert{ - 26
-Handle Trade Accepted Alert
+Handle EntityPack.Trade Accepted Alert
 The following trade request has been accepted:
 (1) Dismiss
 }
 
 Alert{ - 27
-Handle Trade Declined Alert
+Handle EntityPack.Trade Declined Alert
 Your trade request has been declined:
 (1) Dismiss
 }
 
 Alert{ - 28
-Handle Trade Cancelled Alert
-The following trade has been cancelled as one of the users is no longer in possession of an item. Trade ID:
+Handle EntityPack.Trade Cancelled Alert
+The following trade has been cancelled as one of the users is no longer in possession of an item. EntityPack.Trade ID:
 (1) Dismiss
 }
 
 Alert{ - 29
-Handle Item Validation Declined Alert
+Handle EntityPack.Item Validation Declined Alert
 Your item validation request has been declined for the following reason:
-User:
-Item name:
-Item description:
-Item ID:
+EntityPack.User:
+EntityPack.Item name:
+EntityPack.Item description:
+EntityPack.Item ID:
 (1) Dismiss
 (2) Send a new item validation request
 Please enter the name of your item
@@ -294,12 +294,12 @@ Please enter the item description
 }
 
 Alert{ - 30
-Handle Trade Past Date Alert
+Handle EntityPack.Trade Past Date Alert
 The following trade has past the time & date of scheduled exchange:
 (1) Confirm trade
 (2) I didn't show up
 (3) The other person didn't show up
-Trade confirmed. Your items will be exchanged in the system as soon as both users have confirmed.
+EntityPack.Trade confirmed. Your items will be exchanged in the system as soon as both users have confirmed.
 }
 
 Alert{ - 31
@@ -309,31 +309,31 @@ From:
 }
 
 Alert{ - 32
-Trade to String
-User 1:
-User 2:
-Items being traded from User 1 to User 2:
-Items being traded from User 2 to User 1:
+EntityPack.Trade to String
+EntityPack.User 1:
+EntityPack.User 2:
+Items being traded from EntityPack.User 1 to EntityPack.User 2:
+Items being traded from EntityPack.User 2 to EntityPack.User 1:
 Time and date of exchange:
 Location of trade:
-Trade ID:
+EntityPack.Trade ID:
 }
 
 MENU{ - 33
-Create User
+Create EntityPack.User
 Entered:
 That username is taken.
 }
 
 MENU{ - 34
-Change Incomplete Trade Threshold Menu
+Change Incomplete EntityPack.Trade Threshold Menu
 Please enter the new threshold value for incomplete trades a user can conduct:
 The number you entered was not valid. Please enter a valid threshold number.
 }
 
 MENU{ - 35
 
-Viewing User
+Viewing EntityPack.User
 }
 
 MENU{ - 36
@@ -348,11 +348,11 @@ MENU{ - 37
 }
 
 MENU{ - 38
-User:
-This User has no items available for trade.
+EntityPack.User:
+This EntityPack.User has no items available for trade.
 Items available for trade:
 ID:
-This User has no items in their wishlist.
+This EntityPack.User has no items in their wishlist.
 Wishlist:
 This user is frozen, and thus cannot make a trade.
 }

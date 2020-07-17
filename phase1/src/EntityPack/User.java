@@ -1,6 +1,9 @@
+package EntityPack;
+
 import java.io.Serializable;
 import java.util.*;
-import AlertPack.Alert;
+
+import EntityPack.Item;
 
 /**
  * An Entity class describing a user of a program.
@@ -10,13 +13,13 @@ public class User implements Serializable {
     // Sorting method orderPartners() is taken from https://howtodoinjava.com/sort/java-sort-map-by-values/
 
     private final String username;
-    private String password; // private so no one can access except User; have setters and getters for change password function
+    private String password; // private so no one can access except EntityPack.User; have setters and getters for change password function
     private int numLent;
     private int numBorrowed;
     private int numIncompleteTrades;
     private boolean frozen = false; // true being frozen or Lent>Borrowed; false being no violations
     private ArrayList<Item> availableItems = new ArrayList<Item>(); // if this was protected then our presenters can't access it
-    private ArrayList<Item> borrowedItems = new ArrayList<Item>();// items that the user is currently borrowing via TemporaryTrade - Louis
+    private ArrayList<Item> borrowedItems = new ArrayList<Item>();// items that the user is currently borrowing via EntityPack.TemporaryTrade - Louis
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
 
 
@@ -32,7 +35,7 @@ public class User implements Serializable {
         //stats.put("Borrowed", 0); // # borrowed items since creation
         // Use Cases need to increase after each 1-way or 2-way trade; and reset each week
         //stats.put("incompleteT", 0); // # incomplete transactions since creation
-        this.username = username; // Admin needs to access to freeze; USerManager needs to access/search by User
+        this.username = username; // Admin needs to access to freeze; USerManager needs to access/search by EntityPack.User
     }
 
     /**
@@ -103,7 +106,7 @@ public class User implements Serializable {
      */
     public boolean checkPassword(String pass){return pass.equals(password);}
 
-    //for adding and removing from wishlist and available-to-lend lists, and getters for this User's lists
+    //for adding and removing from wishlist and available-to-lend lists, and getters for this EntityPack.User's lists
 
     /**
      *
