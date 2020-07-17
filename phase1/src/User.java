@@ -2,11 +2,14 @@ import java.io.Serializable;
 import java.util.*;
 import AlertPack.Alert;
 
+/**
+ * An Entity class describing a user of a program.
+ */
 public class User implements Serializable {
     //author: Melody Yang in group 0110 for CSC207H1 summer 2020 project
     // Sorting method orderPartners() is taken from https://howtodoinjava.com/sort/java-sort-map-by-values/
 
-    public final String username;
+    private final String username;
     private String password; // private so no one can access except User; have setters and getters for change password function
     private int numLent;
     private int numBorrowed;

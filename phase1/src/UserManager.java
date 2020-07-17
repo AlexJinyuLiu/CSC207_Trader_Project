@@ -6,19 +6,24 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A use case class describing the business rules of the users in the trade system.
+ */
 public class UserManager implements Serializable{
+    //Note: We are aware this is static. We are afraid to delete it because we don't remember who put it here and why,
+    // also we have to submit our phase 1 in an hour so please ignore this its probably not nescesary. Ty <3
     private static final long serialVersionUID = 886852790530090694L;
     //author: Jinyu Liu, Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
     //All methods written by Jinyu Liu except where noted
 
     //UserManager
-    protected ArrayList<User> listUsers = new ArrayList<User>(); // List of all users - Jinyu
+    private ArrayList<User> listUsers = new ArrayList<User>(); // List of all users - Jinyu
 
     //TradeManager AND UserManager
-    protected ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+    private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
 
     //UserManager
-    protected HashMap<String, ArrayList<UserAlert>> alertSystem = new HashMap<String, ArrayList<UserAlert>>();
+    private HashMap<String, ArrayList<UserAlert>> alertSystem = new HashMap<String, ArrayList<UserAlert>>();
 
     //UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
@@ -224,7 +229,7 @@ public class UserManager implements Serializable{
      */ //UserManager
     public User searchUser(String username){
         for(User user: listUsers){
-            if (user.username.equals(username)){
+            if (user.getUsername().equals(username)){
                 return user;
             }
         }

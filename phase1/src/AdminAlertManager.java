@@ -3,6 +3,9 @@ import AlertPack.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Manages the handling of admin alerts.
+ */
 public class AdminAlertManager {
 
     /** Method which iterates through each AdminAlert and handles it.

@@ -4,7 +4,10 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-// this should have a builder; now everything in here is private and you can just call the builder
+
+/**
+ * The main TradeSystem class that links everything together. Technically this is a controller class.
+ */
 public class TradeSystem {
 
     private AdminUser adminUser;
@@ -221,7 +224,7 @@ public class TradeSystem {
         return loggedIn;
     }
 
-    protected int optionChoice(int x){
+    private int optionChoice(int x){
         Scanner scanner = new Scanner(System.in);
         menuPresenter.printMenu(5, 1);
         int choice = scanner.nextInt();

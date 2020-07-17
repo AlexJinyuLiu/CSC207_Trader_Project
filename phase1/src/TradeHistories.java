@@ -8,17 +8,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A use case class describing the business rules of trades that have been confirmed by both users.
+ */
 public class TradeHistories  implements Serializable {
-    protected ArrayList<TemporaryTrade> currentTemporaryTrades = new ArrayList<TemporaryTrade>(); //list of all temporary trades where items have
+    private ArrayList<TemporaryTrade> currentTemporaryTrades = new ArrayList<TemporaryTrade>(); //list of all temporary trades where items have
     // been exchanged but not returned -Louis
 
-    protected ArrayList<Trade> completedTrades = new ArrayList<Trade>(); // list of all trades which have been completed - Louis
+    private ArrayList<Trade> completedTrades = new ArrayList<Trade>(); // list of all trades which have been completed - Louis
 
-    protected ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability - Louis
+    private ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability - Louis
 
-    protected ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+    private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
 
-    protected HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
+    private HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
     /**
      * Return a list of all adminAlerts stored in this class. Also empties the adminAlerts member.
      * @return an ArrayList of admin alerts
