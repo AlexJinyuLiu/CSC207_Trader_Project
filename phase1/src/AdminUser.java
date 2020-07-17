@@ -4,12 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A use case class describing the business rules for admin functionality.
+ */
 public class AdminUser implements Serializable {
     //author: Tingyu Liang, Riya Razdan in group 0110 for CSC207H1 summer 2020 project
 
+    /**
+     * Stores the login info for admin acccounts
+     */
     private HashMap<String, String> loginInfo;
 
 
+    /**
+     * Stores the list of alerts to be processed by the admin
+     */
     private ArrayList<AdminAlert> adminAlerts;
 
      // Not really sure how we want to do this. Hardcoded for simplicity in the meanwhile - Louis

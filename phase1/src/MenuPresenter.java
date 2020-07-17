@@ -2,24 +2,17 @@
 import java.io.*;
 import java.util.*;
 
-
-
-// import university.Student;
-
-//take file in and store each group of lines into a data structure
-//afterwards, call presenter methods i.e. MenuPresenter.loginmenu1() which will be the loginmenu
-// corresponding to the cell in the data structure
-//basically making a state machine, code pulled from:
-//https://stackoverflow.com/questions/12218959/how-to-read-certain-portion-of-the-text-file-in-java
-
-
-//store ea line in an arraylist for the hashmap
-
-// getMenu(key).get[0] .. get[1]... get[2]
-// stringbuilder -- //n
-//be able to print it with w/e variable you pass in after you get the txt
+/**
+ * A presenter class that handles the output to the user for menus and alert handling.
+ */
 public class MenuPresenter {
+    /**
+     * A map containing all menus and all lines within those menus.
+     */
     private final LinkedHashMap<Integer, ArrayList<String>> menusMap = new LinkedHashMap<Integer, ArrayList<String>>();
+    /**
+     * The file from which we read our menu text.
+     */
     File menu;
 
     /**

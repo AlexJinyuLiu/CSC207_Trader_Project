@@ -1,5 +1,8 @@
 import java.io.*;
 
+/**
+ * A gateway class that handles the input and output to and from files for serialization.
+ */
 public class FileManager {
     //author: Callan Murphy in group 0110 for CSC207H1 summer 2020 project
     //used provided code in file StudentManager.java as a reference

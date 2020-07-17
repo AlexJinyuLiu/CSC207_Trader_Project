@@ -10,6 +10,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A controller class describing the actions a user can take from the menu in the trade system.
+ */
 public class UserActions {
 
     /**

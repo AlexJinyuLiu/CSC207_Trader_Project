@@ -5,19 +5,25 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A use case class describing the business rules of trade requests and pending trades that have been accepted.
+ */
 public class TradeCreator implements Serializable {
     private static final long serialVersionUID = 5537699939763062781L;
 
-    protected ArrayList<Trade> pendingTrades = new ArrayList<Trade>(); // list of all trades which have been accepted but not completed - Louis
+    private ArrayList<Trade> pendingTrades = new ArrayList<Trade>(); // list of all trades which have been accepted but not completed - Louis
 
 
-    protected ArrayList<Trade> pendingTradeRequests = new ArrayList<Trade>(); // list of all trade requests which have not been accepted
+    private ArrayList<Trade> pendingTradeRequests = new ArrayList<Trade>(); // list of all trade requests which have not been accepted
     // by both parties - Louis
 
-    protected ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+    private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
 
-    protected HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
+    private HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
 
+    /**
+     * The instance of TradeHistories for the program.
+     */
     protected TradeHistories tradeHistories = new TradeHistories();
 
     private int completeThreshold = 3; // # of complete trades allowed per week
@@ -114,7 +120,7 @@ public class TradeCreator implements Serializable {
             list2 = itemIDsSentToUser2;
         }
 
-        Trade trade = new Trade(user1.username, user2.username, list1, list2, tradeIdGenerator);
+        Trade trade = new Trade(user1.getUsername(), user2.getUsername(), list1, list2, tradeIdGenerator);
         tradeIdGenerator++;
         pendingTradeRequests.add(trade);
         trade.setTimeOfTrade(timeOfTrade);
@@ -161,7 +167,7 @@ public class TradeCreator implements Serializable {
             list2 = itemIDsSentToUser2;
         }
 
-        TemporaryTrade trade = new TemporaryTrade(user1.username, user2.username, list1, list2,
+        TemporaryTrade trade = new TemporaryTrade(user1.getUsername(), user2.getUsername(), list1, list2,
                 LocalDateTime.now().plusDays(30), tradeIdGenerator);
         tradeIdGenerator++;
         pendingTradeRequests.add(trade);

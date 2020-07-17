@@ -6,6 +6,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * A controller class describing the actions a user can take when handling their alerts.
+ */
 public class UserAlertManager {
 
     /**

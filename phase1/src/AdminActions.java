@@ -60,7 +60,7 @@ public class AdminActions {
      * @param menuPresenter menu presenter
      * @param tradeCreator creating the trade
      */
-    protected void changeBorrowLendThreshold( MenuPresenter menuPresenter, AdminUser adminUser,
+    private void changeBorrowLendThreshold( MenuPresenter menuPresenter, AdminUser adminUser,
                                               TradeCreator tradeCreator) {
         boolean flag = true;
         int input = 0;
@@ -80,7 +80,7 @@ public class AdminActions {
         }
     }
 
-    protected void changeCompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
+    private void changeCompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
                                               TradeCreator tradeCreator) {
         boolean flag = true;
         int input = 0;
@@ -98,7 +98,7 @@ public class AdminActions {
         }
     }
 
-    protected void changeIncompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
+    private void changeIncompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
                                            UserManager userManager) {
         boolean flag = true;
         int input = 0;
@@ -121,7 +121,7 @@ public class AdminActions {
      * @param adminUser AdminUser logged in making changes
      * @param menuPresenter menu presenter
      */
-    protected void addNewAdmin(MenuPresenter menuPresenter, AdminUser adminUser) {
+    private void addNewAdmin(MenuPresenter menuPresenter, AdminUser adminUser) {
         boolean flag = true;
         String inputUsername;
         String inputPassword;

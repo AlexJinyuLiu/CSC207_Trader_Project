@@ -2,31 +2,73 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * An Entity class describing a trade, which stores users involved and items exchanged among other data.
+ */
 public class Trade implements Serializable {
     //author: Murray Smith in group 0110 for CSC207H1 summer 2020 project
 
+    /**
+     * the unique ID of this trade.
+     */
     protected int tradeID;
-    private static int ID_generator = 1;
 
+    /**
+     * the username of the first user involved.
+     */
     protected String username1;
+    /**
+     * the username of the second user involved.
+     */
     protected String username2;
 
+    /**
+     * A boolean describing whether or not user 1 has accepted the trade.
+     */
     protected boolean user1AcceptedRequest = false;
+    /**
+     * A boolean describing whether or not user 2 has accepted the trade.
+     */
     protected boolean user2AcceptedRequest = false;
 
+    /**
+     * A boolean describing whether or not user 1 has confirmed the trade.
+     */
     protected boolean user1TradeConfirmed = false;
+    /**
+     * A boolean describing whether or not user 2 has confirmed the trade.
+     */
     protected boolean user2TradeConfirmed = false;
 
+    /**
+     * A boolean representing whether or not the users of the trade have been alerted that their trade should have been
+     * confirmed, as the date at which they were to exchange the items has passed.
+     */
     protected boolean usersAlertedToPastDue = false;
 
+    /**
+     * The number of times user 1 has edited the trade request.
+     */
     protected int user1NumRequests = 0;
+    /**
+     * The number of times user 2 has edited the trade request.
+     */
     protected int user2NumRequests = 0;
-
+    /**
+     * the LocalDateTime object representing when the users are to meet up to exchange their items.
+     */
     protected LocalDateTime timeOfTrade;
-
+    /**
+     * A string describing the place where the users
+     */
     protected String meetingPlace;
-
+    /**
+     * an arraylist of all the ids of items sent to user 1 in this trade.
+     */
     protected ArrayList<Integer> itemIDsSentToUser1;
+    /**
+     * an arraylist of all the ids of items sent to user 2 in this trade.
+     */
     protected ArrayList<Integer> itemIDsSentToUser2;
 
     /**

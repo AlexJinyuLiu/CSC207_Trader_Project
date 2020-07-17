@@ -2,6 +2,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
+/**
+ * An Entity class describing a temporary trade, which is a trade in which the items need to be traded back
+ * after a time period.
+ */
 public class TemporaryTrade extends Trade implements Serializable {
 
     private LocalDateTime tradeUntil;
