@@ -3,13 +3,24 @@ package AlertPack;
 import java.io.Serializable;
 
 public class ItemValidationRequestAlert extends AdminAlert implements Serializable{
-    //author: Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
-    protected String usernameOfOwner;
-    protected String name;
-    protected String description;
-    protected final int itemID;
+    /** AdminAlert which is created from UserActions when a user requests that an item be validated.
+     *
+     */
+
+    //group 0110 for CSC207H1 summer 2020 project
+    private String usernameOfOwner;
+    private String name;
+    private String description;
+    private final int itemID;
     private static int idGenerator = 0;
 
+    /** 4 argument constructor. Called when a user has requested to validate and item.
+     *
+     * @param itemID the ID number of the proposed item.
+     * @param owner the owner of the proposed item.
+     * @param obj the name of the proposed item.
+     * @param desc a description of the proposed item.
+     */
     public ItemValidationRequestAlert(int itemID, String owner, String obj, String desc){
         super(0);
         this.description = desc;
@@ -18,6 +29,13 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
         this.itemID = itemID;
         idGenerator++;
     }
+
+    /** 3 argument constructor. Called when a user has requested to validate and item.
+     *
+     * @param itemID the ID number of the proposed item.
+     * @param owner the owner of the proposed item.
+     * @param obj the name of the proposed item.
+     */
     public ItemValidationRequestAlert(int itemID, String owner, String obj){
         super(0);
         this.name = obj;

@@ -4,10 +4,20 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class ExpirationAlert extends UserAlert implements Serializable {
-    protected LocalDateTime dueDate;
-    protected String username;
-    protected int tradeId;
+    /** An alert which is tells a user that a temporary trade they are involved in has expired.
+     *
+     */
 
+    private LocalDateTime dueDate;
+    private String username;
+    private int tradeId;
+
+    /** Called when a temporary trade has expired.
+     *
+     * @param dueDate the time & date at which the temporary trade expired.
+     * @param username the username with whom the user conducted the trade with.
+     * @param tradeId the ID number of the trade.
+     */
     public ExpirationAlert(LocalDateTime dueDate, String username, int tradeId){
         super(2);
         this.dueDate = dueDate;

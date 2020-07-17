@@ -3,13 +3,26 @@ package AlertPack;
 import java.io.Serializable;
 
 public class ItemValidationDeclinedAlert extends UserAlert implements Serializable {
-    //author: Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
-    protected String usernameOfOwner;
-    protected String name;
-    protected String description;
-    protected final int itemID;
-    protected String message;
+    /** An alert which is created when an admin denies a ItemValidationRequest. Tells the user why the request was
+     * declined.
+     */
 
+    //group 0110 for CSC207H1 summer 2020 project
+    private String usernameOfOwner;
+    private String name;
+    private String description;
+    private final int itemID;
+    private String message;
+
+    /** 5 Argument constructor.
+     * Created when an ItemValidationRequestAlert is declined by the admin.
+     *
+     * @param owner the owner of the proposed item.
+     * @param obj the name of the proposed item.
+     * @param desc the description of the proposed item.
+     * @param itemID the ID number of the proposed item.
+     * @param message A message given by the admin, as to why the request was declined.
+     */
     public ItemValidationDeclinedAlert(String owner, String obj, String desc, int itemID, String message){
         super(1);
         this.description = desc;
@@ -18,6 +31,15 @@ public class ItemValidationDeclinedAlert extends UserAlert implements Serializab
         this.itemID = itemID;
         this.message = message;
     }
+
+    /** 4 Argument constructor.
+     * Created when an ItemValidationRequestAlert is declined by the admin.
+     *
+     * @param owner the owner of the proposed item.
+     * @param obj the name of the proposed item.
+     * @param itemID the ID number of the proposed item.
+     * @param message A message given by the admin, as to why the request was declined.
+     */
     public ItemValidationDeclinedAlert(String owner, String obj, int itemID, String message){
         super(1);
         this.name = obj;

@@ -3,13 +3,23 @@ package AlertPack;
 import java.io.Serializable;
 
 public class FreezeUserAlert extends AdminAlert implements Serializable {
-    //author: Callan Murphy in group 0110 for CSC207H1 summer 2020 project
-    // Question by Tingyu: should the number parameter be in type int?
+    /** Alert which is generated when a User crosses the threshold of borrowed minus lent that they are required to
+     * maintain. The admin will then decide to freeze the user or leave the user unfrozen.
+     */
+
+    //group 0110 for CSC207H1 summer 2020 project
     private String username; // username of the user
     private int lent; // amount user has lent
     private int borrowed; // amount user has borrowed
     private int thresholdRequired; // difference needed between lent and borrowed
 
+    /** Constructor for an alert that tells the admin that the system has identified a user to freeze.
+     *
+     * @param username username of the user to be frozen.
+     * @param lent the number of items the user has borrowed.
+     * @param borrowed the number items the user has borrowed.
+     * @param thresholdRequired the threshold the user is required to maintain.
+     */
     public FreezeUserAlert(String username, int lent, int borrowed, int thresholdRequired){
         super(2);
         this.username = username;

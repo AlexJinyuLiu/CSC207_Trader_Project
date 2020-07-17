@@ -4,13 +4,25 @@ import java.awt.*;
 import java.io.Serializable;
 
 public class FrozenAlert extends UserAlert implements Serializable {
+    /** Alert which tells a user that they have been frozen by an admin. Displays the number of items borrowed and lent.
+     * Also displays the number on incomplete trades and the thresholds of incomplete trades and lent minus borrowed
+     * the user is required to maintain.
+     */
 
-    protected int numBorrowedofUser;
-    protected int numLentofUser;
-    protected int thresholdNumofUser;
-    protected int numIncomplete;
-    protected int thresholdIncomplete;
+    private int numBorrowedofUser;
+    private int numLentofUser;
+    private int thresholdNumofUser;
+    private int numIncomplete;
+    private int thresholdIncomplete;
 
+    /** Constructor which will be called when a user is frozen by an admin.
+     *
+     * @param numBorrowed the total amount of incoming items a user has traded.
+     * @param numLent the total amount of outgoing items a user has traded.
+     * @param threshholdNum the number of lent minus borrowed a user is required to maintain.
+     * @param numIncomp the number of incomplete trades attributed to the user.
+     * @param thresholdIncomp the threshold of incomplete trades before a user is frozen.
+     */
     public FrozenAlert(int numBorrowed, int numLent, int threshholdNum, int numIncomp, int thresholdIncomp){
         super(0);
         numBorrowedofUser = numBorrowed;

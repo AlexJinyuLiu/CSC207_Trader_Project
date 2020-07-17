@@ -2,12 +2,18 @@ package AlertPack;
 
 import java.io.Serializable;
 public abstract class Alert implements Serializable{
-    //author: Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
+    /** Messages which will be presented to users and may require action.
+     *
+     */
+
     private static int idGenerator = 0;
-    protected int alertID;
-    protected final int type;
+    private int alertID;
+    private final int type;
 
-
+    /** The Super Constructor for all subclasses of Alert.
+     *
+     * @param type the type of the alert which will be defined by the constructor of the alert.
+     */
     public Alert(int type) {
         alertID = idGenerator;
         idGenerator++;

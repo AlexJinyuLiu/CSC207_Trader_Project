@@ -3,10 +3,18 @@ package AlertPack;
 import java.io.Serializable;
 
 public class MessageAlert extends UserAlert implements Serializable {
-    //author: Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
-    protected String message;
-    protected String senderUsername;
+    /** Alert which gives a message to a user from another user.
+     *
+     */
+    //group 0110 for CSC207H1 summer 2020 project
+    private String message;
+    private String senderUsername;
 
+    /** Called when a user messages another user.
+     *
+     * @param message the text of the message.
+     * @param senderUsername The user from which it is sent.
+     */
     public MessageAlert(String message, String senderUsername){
         super(3);
         this.message = message;
