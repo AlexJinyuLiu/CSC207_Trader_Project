@@ -39,7 +39,7 @@ public class AdminUser implements Serializable {
      * Adds a login (username and password) for a user on the system.
      * @param username the inputed username
      * @param password the password associated with the account
-     * @return a boolean describing whether or not the
+     * @return a boolean describing whether or not the login was successfully added.
      */
     public boolean addLogin(String username, String password){
         if (loginInfo.containsKey(username)){
@@ -50,22 +50,36 @@ public class AdminUser implements Serializable {
         }
     }
 
-
+    /**
+     * Getter for the admin alert list.
+     * @return the list of admin alerts.
+     */
     public ArrayList<AdminAlert> getAdminAlerts() {
         return adminAlerts;
     }
 
-
+    /**
+     * Changes the threshold for the number of incomplete trades a user can have before they are frozen.
+     * @param userManager the UserManager initialized in the system.
+     * @param incompleteThreshold the new threshold.
+     */
     public void changeIncompleteThreshold(UserManager userManager, int incompleteThreshold) {
         userManager.setIncompleteThreshold(incompleteThreshold);
     }
 
+    /**
+     * Changes the threshold for the number of complete trades a user can perform in one week.
+     * @param tradeCreator the TradeCreator initialized in the system
+     * @param completeThreshold the new threshold.
+     */
     public void changeCompleteThreshold(TradeCreator tradeCreator, int completeThreshold) {
         tradeCreator.setCompleteThreshold(completeThreshold);
     }
 
     /**
-     * Manages all startup information for the admin
+     * Manages all startup functionality for the admin
+     * @param userManager the UserManager initialized in the system.
+     * @param tradeCreator the TradeCreator
      */
     public void onStartUp(UserManager userManager, TradeCreator tradeCreator){
         this.adminAlerts = userManager.fetchAdminAlerts();

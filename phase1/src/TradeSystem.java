@@ -18,8 +18,15 @@ public class TradeSystem {
     private AdminActions adminActions = new AdminActions();
     private UserActions userActions = new UserActions();
 
+    /**
+     * Empty constructor. Creates a new instance of TradeSystem.
+     */
     public TradeSystem(){}
 
+    /**
+     * Runs the program as normal.
+     * @throws InputZeroException An exception that occurs when a user attempts to enter "0" in their account info.
+     */
     public void run() throws InputZeroException {
         File directory = new File("phase1/data");
         if (! directory.exists()) {
@@ -108,22 +115,22 @@ public class TradeSystem {
 //   ts.build();
 //   rs.run()
 
-    public void createAdminUser(){
+    private void createAdminUser(){
         AdminUser adminUser = new AdminUser("admin", "admin");
         FileManager.saveAdminToFile(adminUser);
     }
 
-    public void createUserManager(){
+    private void createUserManager(){
         UserManager userManager = new UserManager();
         FileManager.saveUserManagerToFile(userManager);
     }
 
-    public void createTradeCreator(){
+    private void createTradeCreator(){
         TradeCreator tradeCreator = new TradeCreator();
         FileManager.saveTradeCreatorToFile(tradeCreator);
     }
 
-    public User createAccount(){  // does not check that the username is taken
+    private User createAccount(){  // does not check that the username is taken
         while (true) {
             try {
                 Scanner scan = new Scanner(System.in);
@@ -143,7 +150,7 @@ public class TradeSystem {
      *
      * @return method which allows the user to login to their account.
      */
-    public User login() throws InputZeroException {
+    private User login() throws InputZeroException {
         User user = takeUsername();
         if (user != null && takePassword(user)){
             return user;

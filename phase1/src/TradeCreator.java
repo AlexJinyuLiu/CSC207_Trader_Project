@@ -26,20 +26,37 @@ public class TradeCreator implements Serializable {
 
     private int tradeIdGenerator = 1;
 
-
+    /**
+     *
+     * @return the arraylist representing all current pending trades (trades that have been accepted, but the items
+     * haven't been exchanged yet).
+     */
     public ArrayList<Trade> getPendingTrades() {
         return pendingTrades;
     }
 
+    /**
+     *
+     * @return the arraylist representing all current pending trade requests, which are trade requests that haven't
+     * been accepted yet.
+     */
     public ArrayList<Trade> getPendingTradeRequests() {
         return pendingTradeRequests;
     }
 
+    /**
+     * Fetches the userAlerts from tradeHistories by calling the equivalent method in tradeHistories.
+     * @return A hashmap of all useralerts for all users.
+     */
     public HashMap<String, ArrayList<UserAlert>> fetchUserAlerts() {
         return tradeHistories.fetchUserAlerts();
     }
 
 
+    /**
+     * Called on program startup from TradeSystem.onStartup(). Handles verification of trades and things when the
+     * program is launched.
+     */
     public void onStartup() {
         for (Trade trade : pendingTrades) {
             if (trade.getTimeOfTrade().isBefore(LocalDateTime.now()) && !trade.getUsersAlertedToPastDue()) {
@@ -310,6 +327,11 @@ public class TradeCreator implements Serializable {
         return null;
     }
 
+    /**
+     * Searches for the trade associated with tradeID. This method searches everywhere that trades are stored.
+     * @param tradeID the ID of the trade to be searched for.
+     * @return the trade object associated with tradeID.
+     */
     public Trade searchTrades(int tradeID){
         Trade trade = searchPendingTradeRequest(tradeID);
         if (trade != null){
@@ -509,18 +531,34 @@ public class TradeCreator implements Serializable {
         this.adminAlerts.add(a);
     }
 
+    /**
+     * Set the threshold for the amount of items a user can borrow before they must lend one.
+     * @param borrowLendThreshold the new threshold.
+     */
     public void setBorrowLendThreshold(int borrowLendThreshold) {
         this.borrowLendThreshold = borrowLendThreshold;
     }
 
+    /**
+     *
+     * @return the threshold for the number of items a user can borrow before they must lend one.
+     */
     public int getBorrowLendThreshold() {
         return this.borrowLendThreshold;
     }
 
+    /**
+     * Sets the threshold for the number of completed trades a user can make in one week.
+     * @param completeThreshold the new weekly trade threshold.
+     */
     public void setCompleteThreshold(int completeThreshold) {
         this.completeThreshold = completeThreshold;
     }
 
+    /**
+     *
+     * @return the threshold for the number of completed trades a user can make in one week.
+     */
     public int getCompleteThreshold() {
         return this.completeThreshold;
     }

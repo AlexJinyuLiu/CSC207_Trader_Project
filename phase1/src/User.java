@@ -17,7 +17,10 @@ public class User implements Serializable {
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
 
 
-    //User constructor
+    /**
+     * Creates a new user object.
+     * @param username the username to give the user.
+     */
     public User(String username) {
         numBorrowed = 0;
         numIncompleteTrades = 0;

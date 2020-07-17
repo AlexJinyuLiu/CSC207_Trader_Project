@@ -22,6 +22,9 @@ public class MenuPresenter {
     private final LinkedHashMap<Integer, ArrayList<String>> menusMap = new LinkedHashMap<Integer, ArrayList<String>>();
     File menu;
 
+    /**
+     * Initializes a new MenuPresenter object, while also populating the menusMap HashMap with the lines from Menu.txt
+     */
     MenuPresenter() {
         try {
             menu = new File("phase1/data/Menu.txt");
@@ -59,6 +62,11 @@ public class MenuPresenter {
         }
     }
 
+    /**
+     * Prints to the user the line in Menu.txt corresponding to the menuIndex and lineIndex.
+     * @param menuIndex the index of menu at which the line is located
+     * @param lineIndex the index of the line within the menu.
+     */
     public void printMenu(int menuIndex, int lineIndex) {
         try{
             System.out.println(menusMap.get(menuIndex).get(lineIndex));
@@ -89,7 +97,7 @@ public class MenuPresenter {
     /**
      *  Prints a string representation of a trade.
      * @param trade a trade object
-     *///TradeManager -- consider moving to Trade
+     */
     public void printTradeToString(UserManager userManager, Trade trade){
         // "User 1: " + trade.getUsername1() + "\nUser 2: " + trade.getUsername2() +
         //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
@@ -128,8 +136,8 @@ public class MenuPresenter {
     }
 
     /**
-     *
-     * @return string representation of the user.
+     * Prints a string representation of a User
+     * @param user the User in question.
      */
     public void printUserToString(User user){
         StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
@@ -159,6 +167,10 @@ public class MenuPresenter {
         System.out.println(userString.toString());
     }
 
+    /**
+     * Prints a string representation of an Item object.
+     * @param item the item in question.
+     */
     public void printItemToString(Item item) {
         printMenu(29, 3, item.getName());
         printMenu(29, 5, item.getId());

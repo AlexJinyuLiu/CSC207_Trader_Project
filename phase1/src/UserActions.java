@@ -12,7 +12,10 @@ import java.util.Scanner;
 
 public class UserActions {
 
-
+    /**
+     * runs the usermenu as normal.
+     * @param user the user currently logged in.
+     */
     public void runUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, User user){
         mainMenu(menuPresenter,userManager, tradeCreator, user);
     }

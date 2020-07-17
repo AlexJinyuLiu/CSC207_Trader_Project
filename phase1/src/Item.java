@@ -9,12 +9,23 @@ public class Item implements Serializable {
     private String description;
     private final int id;
 
+    /**
+     * Initializes a new Item with a name, description, and unique ID.
+     * @param name the name of the item
+     * @param description a short description of the item
+     * @param itemID the unique ID of the item.
+     */
     public Item(String name, String description, int itemID) {
         this.name = name;
         this.description = description;
         this.id = itemID; // id number is taken from the item validation request when the item is created within AdminAlertManager
     }
 
+    /**
+     * Initializes a new Item with a name and unique ID.
+     * @param name the name of the item
+     * @param itemID the unique ID of the item.
+     */
     public Item(String name, int itemID){
         this.name = name;
         this.id = itemID;

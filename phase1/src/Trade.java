@@ -29,6 +29,14 @@ public class Trade implements Serializable {
     protected ArrayList<Integer> itemIDsSentToUser1;
     protected ArrayList<Integer> itemIDsSentToUser2;
 
+    /**
+     * Constructs a new trade, storing users involved, items sent to both users, and a unique ID
+     * @param username1 the username of the first user involved.
+     * @param username2 the username of the second user involved.
+     * @param itemIDsSentToUser1 a list of IDs of items sent to user 1.
+     * @param itemIDsSentToUser2 a list of IDs of items sent to user 2.
+     * @param TradeID the unique ID of this trade.
+     */
     public Trade(String username1, String username2,
                  ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2, int TradeID){
         this.username1 = username1;

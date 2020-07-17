@@ -29,17 +29,31 @@ public class TradeHistories  implements Serializable {
         return alerts;
     }
 
+    /**
+     * Return a list of all user Alerts stored in this class. Also empties the userAlertsToDispatch member.
+     * @return an ArrayList of admin alerts
+     */
     public HashMap<String, ArrayList<UserAlert>> fetchUserAlerts(){
         HashMap<String, ArrayList<UserAlert>> alerts = userAlertsToDispatch;
         this.userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
         return alerts;
     }
 
+    /**
+     * Adds an alert to be sent to the user.
+     * @param user the user to alert.
+     * @param alert the alert to be sent.
+     */
     public void alertUser(User user, UserAlert alert){
         String username = user.getUsername();
         alertUser(username, alert);
     }
 
+    /**
+     * Adds an alert to be sent to the user.
+     * @param username the username of the user to alert.
+     * @param alert the alert to be sent.
+     */
     public void alertUser(String username, UserAlert alert){
         ArrayList<UserAlert> userAlerts;
         if (userAlertsToDispatch.containsKey(username)) {

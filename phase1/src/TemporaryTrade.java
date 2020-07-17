@@ -12,12 +12,29 @@ public class TemporaryTrade extends Trade implements Serializable {
     //Two constructors, one that takes a date for the object to be returned and annother that sets it by
     //default to thirty days after the present.
 
+    /**
+     * Initializes a new temporary trade, storing users involved, items sent to each user, and a return date and ID.
+     * @param username1 the username of the first user involved
+     * @param username2 the username of the second user involved
+     * @param itemIDsSentToUser1 A list of IDs of items sent to user 1 in this trade
+     * @param itemIDsSentToUser2 A list of IDs of items sent to user 2 in this trade
+     * @param tradeUntil a LocalDateTime object representing the time when the items should be given back.
+     * @param TradeID the unique Id of this Trade.
+     */
     public TemporaryTrade(String username1, String username2, ArrayList<Integer> itemIDsSentToUser1,
                           ArrayList<Integer> itemIDsSentToUser2, LocalDateTime tradeUntil, int TradeID) {
         super(username1, username2, itemIDsSentToUser1, itemIDsSentToUser2, TradeID);
         this.tradeUntil = tradeUntil;
     }
-
+    /**
+     * Initializes a new temporary trade, storing users involved, items sent to each user, and a return date and ID.
+     * By default the temporary trade lasts 30 days.
+     * @param username1 the username of the first user involved
+     * @param username2 the username of the second user involved
+     * @param itemIDsSentToUser1 A list of IDs of items sent to user 1 in this trade
+     * @param itemIDsSentToUser2 A list of IDs of items sent to user 2 in this trade
+     * @param TradeID the unique Id of this Trade.
+     */
     public TemporaryTrade(String username1, String username2, ArrayList<Integer> itemIDsSentToUser1,
                           ArrayList<Integer> itemIDsSentToUser2, int TradeID){
         super(username1, username2, itemIDsSentToUser1, itemIDsSentToUser2, TradeID);

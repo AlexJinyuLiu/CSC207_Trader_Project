@@ -55,17 +55,26 @@ public class UserManager implements Serializable{
         this.alertAdmin(alert);
     }
 
-    //UserManager
+    /**
+     * Return a list of all users registered in the program.
+     * @return an arraylist of all users.
+     */
     public ArrayList<User> getListUsers() {
         return listUsers;
     }
 
-    //TradeManager and UserManager
+    /**
+     * clears all admin alerts.
+     */
     public void clearAdminAlerts(){
         adminAlerts = new ArrayList<AdminAlert>();
     }
 
-    //UserManager
+    /**
+     * Returns the user alerts for the user with the given username.
+     * @param username the username in question
+     * @return an arraylist containing all alerts for that user.
+     */
     public ArrayList<UserAlert> getUserAlerts(String username){
         return alertSystem.get(username);
     }
