@@ -380,9 +380,10 @@ public class UserAlertManager {
         // "Please enter one of the numbers listed above"
         menuPresenter.printMenu(5, 1);
         int choice = scanner.nextInt();
-        while(choice >= x || choice < 0){
+        while(choice > x || choice < 0){
             // "The number you entered was not listed above. Please enter a choice between 1 and " + x
             menuPresenter.printMenu(5, 2);
+            choice = scanner.nextInt();
         }
         return choice;
 
@@ -394,9 +395,10 @@ public class UserAlertManager {
         // "Please enter one of the numbers listed above"
         menuPresenter.printMenu(5, 1);
         int choice = scanner.nextInt();
-        while(choice >= y || choice < x){
+        while(choice > y || choice < x){
             // "The number you entered was not listed above. Please enter a choice between 1 and " + x
             menuPresenter.printMenu(5, 2);
+            choice = scanner.nextInt();
         }
         return choice;
 

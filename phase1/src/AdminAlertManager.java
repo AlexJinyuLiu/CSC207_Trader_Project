@@ -202,7 +202,7 @@ public class AdminAlertManager {
         // "Please enter one of the numbers listed above"
         menuPresenter.printMenu(5,1);
         int choice = scanner.nextInt();
-        while(choice >= x || choice < 0){
+        while(choice > x || choice < 0){
             // "The number you entered was not listed above. Please enter a choice between 1 and " + x
             menuPresenter.printMenu(5,2, x);
             choice = scanner.nextInt();

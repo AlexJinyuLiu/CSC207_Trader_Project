@@ -24,13 +24,13 @@ public class AdminActions {
             menuPresenter.printMenu(4,2); // (2) Set complete trade threshold
             menuPresenter.printMenu(4,3); // (3) Set incomplete trade threshold
             menuPresenter.printMenu(4,4); // (4) Add new admin
-            menuPresenter.printMenu(4,5); // (0) Quit
+            menuPresenter.printMenu(4, 5);// (5) View current threshold values
+            menuPresenter.printMenu(4,6); // (0) Quit
             boolean valid_input = false;
             while (!valid_input) {
                 input = scan.nextInt();
-                if (input > 4 || input < 0) {
-                    menuPresenter.printMenu(4,4);
-                    // "Please enter a number from 0 to 2"
+                if (input > 5 || input < 0) {
+                    menuPresenter.printMenu(4,7);
                 } else if (input == 1) {
                     changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
                     valid_input = true;
@@ -42,6 +42,9 @@ public class AdminActions {
                     valid_input = true;
                 } else if (input == 4) {
                     addNewAdmin(menuPresenter, adminUser);
+                    valid_input = true;
+                } else if (input == 5){
+                    viewThresholdValues(menuPresenter, userManager, tradeCreator);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -138,5 +141,12 @@ public class AdminActions {
                 menuPresenter.printMenu(33,2);
             }
         }
+    }
+
+    private void viewThresholdValues(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator){
+        menuPresenter.printMenu(39, 0);
+        menuPresenter.printMenu(39, 1, tradeCreator.getBorrowLendThreshold());
+        menuPresenter.printMenu(39, 2, tradeCreator.getCompleteThreshold());
+        menuPresenter.printMenu(39, 3, userManager.getIncompleteThreshold());
     }
 }

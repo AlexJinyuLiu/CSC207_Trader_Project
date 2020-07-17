@@ -32,6 +32,7 @@ Admin Login Menu
 (2) Set complete trade threshold
 (3) Set incomplete trade threshold
 (4) Add new admin
+(5) View current threshold values
 (0) Quit
 The number you entered was not listed above. Please enter a valid choice number.
 }
@@ -354,4 +355,11 @@ ID:
 This User has no items in their wishlist.
 Wishlist:
 This user is frozen, and thus cannot make a trade.
+}
+
+MENU{ - 39
+Current threshold values:
+Borrow/Lend threshold:
+Completed Trades per week threshold:
+Incomplete Trades allowed threshold:
 }

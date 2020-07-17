@@ -66,4 +66,5 @@ IF ADMIN:
         (2) Set complete trade threshold
         (3) Set incomplete trade threshold
         (4) Add new admin
+        (5) View all threshold values
         (0) Quits
