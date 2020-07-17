@@ -11,7 +11,7 @@ prompt you for valid user input. For menus, you will need to enter a number rang
 number, and for other uses cases, simply enter what the program tells you to do and hit enter.
 
 Instructions:
-1. Go to Intellij and click run.
+1. Go to Intellij and click run. Navigate to then click 'main'.
 	(a) If an error occurs at this point, it is likely caused by corrupted .ser files. You may need to delete all .ser files and run the program again.
 2. At this point, you can:
   	(a) Create an account.
