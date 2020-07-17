@@ -68,3 +68,5 @@ IF ADMIN:
         (4) Add new admin
         (5) View all threshold values
         (0) Quits
+
+** Please QUIT from main menu instead of stopping the program to ensure .ser files get updated **
