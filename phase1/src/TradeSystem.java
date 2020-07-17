@@ -46,6 +46,10 @@ public class TradeSystem {
             createTradeCreator();
         }
 
+        for (int i = 0; i < 5; i++){
+            menuPresenter.printMenu(40, i);
+        }
+
         adminUser = FileManager.loadAdminUser();
         userManager = FileManager.loadUserManager();
         tradeCreator = FileManager.loadTradeCreator();
