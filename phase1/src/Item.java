@@ -2,11 +2,23 @@ import javax.print.DocFlavor;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Represents an Item in the trading system.
+ */
 public class Item implements Serializable {
     //author: Tian Yue Dong in group 0110 for CSC207H1 summer 2020 project
 
+    /**
+     * The name of the item
+     */
     private String name;
+    /**
+     * A short description of the item
+     */
     private String description;
+    /**
+     * A unique ID for the item.
+     */
     private final int id;
 
     /**

@@ -56,9 +56,14 @@ IF USER:
 
 IF ADMIN:
     Upon login, you will be first be prompted with a Queue of UserAlerts that you need to handle, these include:
-        - FreeUserAlert (A user has violated a rule and needs to be frozen)
+        - FreezeUserAlert (A user has violated a rule and needs to be frozen)
+        If a user borrowed an item that make their borrowed greater than or equal to their lent, admin will be alerted
+        of this and has the option to freeze that user.
         - ItemValidationAlert (A user has sent a request for their item to be added to their inventory)
         - ReportAlert (A User has been reported by another user, freeze them)
+        If a user did show up to a trade that was accepted by both parties, the other user can report them. Admin must
+        accept this report for it to count towards incomplete trades. A user will be frozen if the admin approves a
+        report that puts their incomplete transactions over the threshold.
         - UnfreezeRequestAlert (A user has sent a request to unfreeze their account)
 
      Admin Login Menu
@@ -68,3 +73,5 @@ IF ADMIN:
         (4) Add new admin
         (5) View all threshold values
         (0) Quits
+
+** Please QUIT from main menu instead of stopping the program to ensure .ser files get updated **

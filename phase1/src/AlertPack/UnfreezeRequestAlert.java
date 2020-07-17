@@ -2,6 +2,9 @@ package AlertPack;
 
 import java.io.Serializable;
 
+/**
+ * An admin alert that is sent to an admin when a user requests to unfreeze their account.
+ */
 public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
     //author: Callan Murphy in group 0110 for CSC207H1 summer 2020 project
     private String username; // username of the user
@@ -11,6 +14,17 @@ public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
     private int incompleteT;
     private int incompThreshold;
 
+    /**
+     * Initializes a new unfreezeRequestAlert, storing the username of the user in question, the number of items they've
+     * lent and borrowed, the threshold of items lent/items borrowed required, their number of incomplete trades, and
+     * the threshold of incomplete trades they must remain under.
+     * @param username the username of the user
+     * @param lent the number of items that user has lent
+     * @param borrowed the number of items that user has borrowed
+     * @param thresholdRequired the threshold of items lent/borrowed required.
+     * @param incompleteTrades the number of incomplete trades this user has.
+     * @param incompleteThresholdRequired the threshold of incomplete trades they must stay under.
+     */
     public UnfreezeRequestAlert(String username, int lent, int borrowed, int thresholdRequired, int incompleteTrades,
                                 int incompleteThresholdRequired){
         super(3);
