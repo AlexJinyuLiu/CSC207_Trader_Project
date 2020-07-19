@@ -109,7 +109,7 @@ public class TradeSystem {
 
 //in main:
 //
-//    FileManager fm = new FileManager();
+//    ControllerPresenterPack.FileManager fm = new ControllerPresenterPack.FileManager();
 //    TradeSystemBuilder tsb = TradeSystemBuilder(fm);
 //    tsb.buildUserManager();
 //    ...
@@ -117,7 +117,7 @@ public class TradeSystem {
 //    ts.run();
 
 //   or
-//   FileManager fm = new FileManager();
+//   ControllerPresenterPack.FileManager fm = new ControllerPresenterPack.FileManager();
 //   TradeSystem ts = TradeSystem(fm);
 //   ts.build();
 //   rs.run()

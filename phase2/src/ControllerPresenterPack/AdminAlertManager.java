@@ -1,5 +1,11 @@
+package ControllerPresenterPack;
+
 import AlertPack.*;
+import ControllerPresenterPack.MenuPresenter;
 import EntityPack.User;
+import UseCasePack.AdminUser;
+import UseCasePack.TradeCreator;
+import UseCasePack.UserManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,3 +1,5 @@
+package UseCasePack;
+
 import AlertPack.*;
 import EntityPack.Item;
 import EntityPack.User;
@@ -26,7 +28,7 @@ public class AdminUser implements Serializable {
      // Not really sure how we want to do this. Hardcoded for simplicity in the meanwhile - Louis
 
     /**
-     * Constructor for AdminUser
+     * Constructor for UseCasePack.AdminUser
      * @param username string for the admin's username
      * @param password string for the admin's password
      */
@@ -71,7 +73,7 @@ public class AdminUser implements Serializable {
 
     /**
      * Changes the threshold for the number of incomplete trades a user can have before they are frozen.
-     * @param userManager the UserManager initialized in the system.
+     * @param userManager the UseCasePack.UserManager initialized in the system.
      * @param incompleteThreshold the new threshold.
      */
     public void changeIncompleteThreshold(UserManager userManager, int incompleteThreshold) {
@@ -80,7 +82,7 @@ public class AdminUser implements Serializable {
 
     /**
      * Changes the threshold for the number of complete trades a user can perform in one week.
-     * @param tradeCreator the TradeCreator initialized in the system
+     * @param tradeCreator the UseCasePack.TradeCreator initialized in the system
      * @param completeThreshold the new threshold.
      */
     public void changeCompleteThreshold(TradeCreator tradeCreator, int completeThreshold) {
@@ -89,8 +91,8 @@ public class AdminUser implements Serializable {
 
     /**
      * Manages all startup functionality for the admin
-     * @param userManager the UserManager initialized in the system.
-     * @param tradeCreator the TradeCreator
+     * @param userManager the UseCasePack.UserManager initialized in the system.
+     * @param tradeCreator the UseCasePack.TradeCreator
      */
     public void onStartUp(UserManager userManager, TradeCreator tradeCreator){
         this.adminAlerts = userManager.fetchAdminAlerts();

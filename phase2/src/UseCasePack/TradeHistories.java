@@ -1,3 +1,5 @@
+package UseCasePack;
+
 import AlertPack.AdminAlert;
 import AlertPack.ExpirationAlert;
 import AlertPack.UserAlert;
@@ -5,6 +7,7 @@ import EntityPack.Item;
 import EntityPack.TemporaryTrade;
 import EntityPack.Trade;
 import EntityPack.User;
+import UseCasePack.UserManager;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

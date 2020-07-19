@@ -1,8 +1,12 @@
+package UseCasePack;
+
 import AlertPack.*;
 import EntityPack.Item;
 import EntityPack.TemporaryTrade;
 import EntityPack.Trade;
 import EntityPack.User;
+import UseCasePack.TradeHistories;
+import UseCasePack.UserManager;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -26,15 +30,23 @@ public class TradeCreator implements Serializable {
     private HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
 
     /**
-     * The instance of TradeHistories for the program.
+     * The instance of UseCasePack.TradeHistories for the program.
      */
-    protected TradeHistories tradeHistories = new TradeHistories();
+    private TradeHistories tradeHistories = new TradeHistories();
 
     private int completeThreshold = 3; // # of complete trades allowed per week
 
     private int borrowLendThreshold = 1;
 
     private int tradeIdGenerator = 1;
+
+    /**
+     *
+     * @return the trade histories instance for the program.
+     */
+    public TradeHistories getTradeHistories(){
+        return this.tradeHistories;
+    }
 
     /**
      *
@@ -80,9 +92,9 @@ public class TradeCreator implements Serializable {
     }
 
     /**
-     * Gets all admin alerts from TradeCreator and TradeHistories. Also empties the adminAlerts lists.
+     * Gets all admin alerts from UseCasePack.TradeCreator and UseCasePack.TradeHistories. Also empties the adminAlerts lists.
      *
-     * @return an arraylist containing all admin alerts from this class and TradeHistories.
+     * @return an arraylist containing all admin alerts from this class and UseCasePack.TradeHistories.
      */
     public ArrayList<AdminAlert> fetchAdminAlerts() {
         ArrayList<AdminAlert> alerts = this.adminAlerts;
@@ -515,7 +527,7 @@ public class TradeCreator implements Serializable {
      *
      * @param user  object of the user who will be receiving the alert
      * @param alert alert object to send to the user
-     */ //UserManager AND TradeManager
+     */ //UseCasePack.UserManager AND TradeManager
     public void alertUser(User user, UserAlert alert) {
         String username = user.getUsername();
         alertUser(username, alert);
@@ -527,7 +539,7 @@ public class TradeCreator implements Serializable {
      *
      * @param username username of the user receiving the alert
      * @param alert    alert object to send to the user
-     */ //UserManager AND TradeManager
+     */ //UseCasePack.UserManager AND TradeManager
     public void alertUser(String username, UserAlert alert) {
         tradeHistories.alertUser(username, alert);
     }

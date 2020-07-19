@@ -20,7 +20,7 @@ public class MenuPresenter {
     File menu;
 
     /**
-     * Initializes a new MenuPresenter object, while also populating the menusMap HashMap with the lines from Menu.txt
+     * Initializes a new ControllerPresenterPack.MenuPresenter object, while also populating the menusMap HashMap with the lines from Menu.txt
      */
     MenuPresenter() {
         try {

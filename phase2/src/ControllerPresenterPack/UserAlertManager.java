@@ -1,7 +1,11 @@
+package ControllerPresenterPack;
+
 import AlertPack.*;
 import EntityPack.TemporaryTrade;
 import EntityPack.Trade;
 import EntityPack.User;
+import UseCasePack.TradeCreator;
+import UseCasePack.UserManager;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -85,7 +89,7 @@ public class UserAlertManager {
                                        ExpirationAlert alert){
 
         // "The following EntityPack.TemporaryTrade has expired at" + alert.getDueDate() + ":\n" +
-        //        tradeToString(userManager, tradeCreator.tradeHistories.searchTemporaryTrade(alert.getTradeId()))
+        //        tradeToString(userManager, tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId()))
         menuPresenter.printMenu(24, 1);
         boolean flag = true;
         int input = 0;
@@ -99,7 +103,7 @@ public class UserAlertManager {
             if (input == 1 || input == 2) flag = false;
         }
         if (input == 1) {
-            Trade trade = tradeCreator.tradeHistories.searchTemporaryTrade(alert.getTradeId());
+            Trade trade = tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId());
             Scanner scan = new Scanner(System.in);
             // "Reason for reporting: + \n"
             menuPresenter.printMenu(24, 4);
@@ -117,8 +121,8 @@ public class UserAlertManager {
 
         } else {
             User user = userManager.searchUser(alert.getUsername());
-            TemporaryTrade trade = tradeCreator.tradeHistories.searchTemporaryTrade(alert.getTradeId());
-            tradeCreator.tradeHistories.confirmReExchange(userManager, user, trade);
+            TemporaryTrade trade = tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId());
+            tradeCreator.getTradeHistories().confirmReExchange(userManager, user, trade);
             // "EntityPack.Trade ReExchange confirmed"
             menuPresenter.printMenu(24, 6);
         }
@@ -315,7 +319,7 @@ public class UserAlertManager {
     }
 
     private void handleTradePastDateAlert(MenuPresenter menuPresenter, UserManager userManager,
-                                          TradeCreator tradeCreator,TradePastDateAlert a){
+                                          TradeCreator tradeCreator, TradePastDateAlert a){
 
         // "The following trade expired at" + a.getDueDate()+ "\n" +
         //         tradeToString(userManager, tradeCreator.searchPendingTrade(a.getTradeId()))

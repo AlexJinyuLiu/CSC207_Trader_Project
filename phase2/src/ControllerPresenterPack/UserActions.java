@@ -1,8 +1,12 @@
+package ControllerPresenterPack;
+
 import AlertPack.UnfreezeRequestAlert;
 import EntityPack.Item;
 import EntityPack.TemporaryTrade;
 import EntityPack.Trade;
 import EntityPack.User;
+import UseCasePack.TradeCreator;
+import UseCasePack.UserManager;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -479,25 +483,25 @@ public class UserActions {
                     menuPresenter.printMenu(20, 13);
                 }
 
-            } else if (input == 4) { //Other methods need access to UserManager methods
+            } else if (input == 4) { //Other methods need access to UseCasePack.UserManager methods
                 //"Your account has made " + Integer.toString(incompleteTrades) +
                  //       " incomplete transactions"
                 menuPresenter.printMenu(20, 14, user.getNumIncompleteTrades());
 
             } else if (input == 5) {
-                int weeklyTransactions = tradeCreator.tradeHistories.getNumTradesThisWeek(user.getUsername());
+                int weeklyTransactions = tradeCreator.getTradeHistories().getNumTradesThisWeek(user.getUsername());
                 // "Your account has made " + Integer.toString(weeklyTransactions) +
                 //         " transactions this week"
                 menuPresenter.printMenu(20, 15, Integer.toString(weeklyTransactions));
 
             } else if (input == 6) {
-                ArrayList<Item> recentItems = tradeCreator.tradeHistories.getNRecentItems(userManager, user.getUsername(), 3);
+                ArrayList<Item> recentItems = tradeCreator.getTradeHistories().getNRecentItems(userManager, user.getUsername(), 3);
                 for (Item item : recentItems) {
                     menuPresenter.printItemToString(item);
                 }
 
             } else if (input == 7) {
-                ArrayList<String> favouriteParnters = tradeCreator.tradeHistories.getTopNTradingPartners(user.getUsername(), 3);
+                ArrayList<String> favouriteParnters = tradeCreator.getTradeHistories().getTopNTradingPartners(user.getUsername(), 3);
                 menuPresenter.printMenu(35, 0, favouriteParnters);
 
             } else if (input == 8) {
@@ -510,8 +514,8 @@ public class UserActions {
      * Send a unfreeze request to admin
      * @param user user that sends the request
      */
-    public void sendUnfreezeRequest( MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                                     User user) {
+    public void sendUnfreezeRequest(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                                    User user) {
         if (!user.getFrozen()) {
             // "Your account is not frozen"
             menuPresenter.printMenu(21, 1);
@@ -566,7 +570,7 @@ public class UserActions {
     public void viewActiveTempTrades(MenuPresenter menuPresenter, UserManager userManager,
                                      TradeCreator tradeCreator, User user) {
         int input = -1;
-        ArrayList<TemporaryTrade> userTrades = tradeCreator.tradeHistories.searchActiveTempTradesByUser(user);
+        ArrayList<TemporaryTrade> userTrades = tradeCreator.getTradeHistories().searchActiveTempTradesByUser(user);
         for (int i = 1; i < 4; i++) {
             menuPresenter.printMenu(22, i);
         }

@@ -32,7 +32,7 @@ public class Item implements Serializable {
     public Item(String name, String description, int itemID) {
         this.name = name;
         this.description = description;
-        this.id = itemID; // id number is taken from the item validation request when the item is created within AdminAlertManager
+        this.id = itemID; // id number is taken from the item validation request when the item is created within ControllerPresenterPack.AdminAlertManager
     }
 
     /**

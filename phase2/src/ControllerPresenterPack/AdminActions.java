@@ -1,3 +1,9 @@
+package ControllerPresenterPack;
+
+import UseCasePack.AdminUser;
+import UseCasePack.TradeCreator;
+import UseCasePack.UserManager;
+
 import java.util.Scanner;
 
 
@@ -9,9 +15,9 @@ public class AdminActions {
     /**
      * Starts and calls the presenter class stuff to display the admin main menu and take user input.
      * @param menuPresenter the menupresenter object to be used to print things.
-     * @param adminUser the AdminUser initialized in the program.
-     * @param tradeCreator the TradeCreator initialized in the program.
-     * @param userManager the UserManager initialized in the program.
+     * @param adminUser the UseCasePack.AdminUser initialized in the program.
+     * @param tradeCreator the UseCasePack.TradeCreator initialized in the program.
+     * @param userManager the UseCasePack.UserManager initialized in the program.
      */
     public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator,
                              UserManager userManager) {
@@ -56,12 +62,12 @@ public class AdminActions {
 
     /** Method that takes user input and changes the threshold value (The necessary difference between the number of
      * items users have lent and borrowed before they can make another transaction)
-     * @param adminUser AdminUser logged in making changes
+     * @param adminUser UseCasePack.AdminUser logged in making changes
      * @param menuPresenter menu presenter
      * @param tradeCreator creating the trade
      */
-    private void changeBorrowLendThreshold( MenuPresenter menuPresenter, AdminUser adminUser,
-                                              TradeCreator tradeCreator) {
+    private void changeBorrowLendThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
+                                           TradeCreator tradeCreator) {
         boolean flag = true;
         int input = 0;
         while (flag) {
@@ -81,7 +87,7 @@ public class AdminActions {
     }
 
     private void changeCompleteThreshold(MenuPresenter menuPresenter, AdminUser adminUser,
-                                              TradeCreator tradeCreator) {
+                                         TradeCreator tradeCreator) {
         boolean flag = true;
         int input = 0;
         while (flag) {
@@ -116,9 +122,9 @@ public class AdminActions {
         }
     }
 
-    /** Method that creates additional logins for AdminUser account
+    /** Method that creates additional logins for UseCasePack.AdminUser account
      *
-     * @param adminUser AdminUser logged in making changes
+     * @param adminUser UseCasePack.AdminUser logged in making changes
      * @param menuPresenter menu presenter
      */
     private void addNewAdmin(MenuPresenter menuPresenter, AdminUser adminUser) {

@@ -1,3 +1,9 @@
+package ControllerPresenterPack;
+
+import UseCasePack.AdminUser;
+import UseCasePack.TradeCreator;
+import UseCasePack.UserManager;
+
 import java.io.*;
 
 /**
@@ -9,7 +15,7 @@ public class FileManager {
     //used https://www.tutorialspoint.com/java/java_serialization.htm and
     //https://attacomsian.com/blog/java-write-object-to-file as a reference
 
-    private final static String dir = "phase1/data/"; //file directory
+    private final static String dir = "phase2/data/"; //file directory
 
     /**
      * Serializes an admin object to a .ser file
@@ -30,7 +36,7 @@ public class FileManager {
     }
 
     /**
-     * Serializes a UserManager object to a .ser file
+     * Serializes a UseCasePack.UserManager object to a .ser file
      * @param userManager which is being saved to a file
      */
     public static void saveUserManagerToFile(UserManager userManager) {
@@ -48,7 +54,7 @@ public class FileManager {
     }
 
     /**
-     * Serializes a TradeCreator object to a .ser file
+     * Serializes a UseCasePack.TradeCreator object to a .ser file
      * @param tradeCreator which is being saved to a file
      */
     public static void saveTradeCreatorToFile(TradeCreator tradeCreator) {
@@ -67,10 +73,10 @@ public class FileManager {
 
     /**
      * Loads Admin from .ser file
-     * @return AdminUser object
+     * @return UseCasePack.AdminUser object
      */
     public static AdminUser loadAdminUser(){
-        // deserializes AdminUser object
+        // deserializes UseCasePack.AdminUser object
         AdminUser adminUsr;
         try {
             FileInputStream file = new FileInputStream(dir + "adminUser.ser");
@@ -87,8 +93,8 @@ public class FileManager {
     }
 
     /**
-     * Loads a UserManager from a .ser file
-     * @return the UserManager object stored in the file
+     * Loads a UseCasePack.UserManager from a .ser file
+     * @return the UseCasePack.UserManager object stored in the file
      */
     public static UserManager loadUserManager(){
         UserManager userManager;
@@ -108,8 +114,8 @@ public class FileManager {
     }
 
     /**
-     * Loads a TradeCreator from a .ser file
-     * @return the UserManager object stored in the file
+     * Loads a UseCasePack.TradeCreator from a .ser file
+     * @return the UseCasePack.UserManager object stored in the file
      */
     public static TradeCreator loadTradeCreator(){
         TradeCreator tradeCreator;

@@ -30,7 +30,7 @@ public class FileManager {
     }
 
     /**
-     * Serializes a UserManager object to a .ser file
+     * Serializes a UseCasePack.UserManager object to a .ser file
      * @param userManager which is being saved to a file
      */
     public static void saveUserManagerToFile(UserManager userManager) {
@@ -48,7 +48,7 @@ public class FileManager {
     }
 
     /**
-     * Serializes a TradeCreator object to a .ser file
+     * Serializes a UseCasePack.TradeCreator object to a .ser file
      * @param tradeCreator which is being saved to a file
      */
     public static void saveTradeCreatorToFile(TradeCreator tradeCreator) {
@@ -67,10 +67,10 @@ public class FileManager {
 
     /**
      * Loads Admin from .ser file
-     * @return AdminUser object
+     * @return UseCasePack.AdminUser object
      */
     public static AdminUser loadAdminUser(){
-        // deserializes AdminUser object
+        // deserializes UseCasePack.AdminUser object
         AdminUser adminUsr;
         try {
             FileInputStream file = new FileInputStream(dir + "adminUser.ser");
@@ -87,8 +87,8 @@ public class FileManager {
     }
 
     /**
-     * Loads a UserManager from a .ser file
-     * @return the UserManager object stored in the file
+     * Loads a UseCasePack.UserManager from a .ser file
+     * @return the UseCasePack.UserManager object stored in the file
      */
     public static UserManager loadUserManager(){
         UserManager userManager;
@@ -108,8 +108,8 @@ public class FileManager {
     }
 
     /**
-     * Loads a TradeCreator from a .ser file
-     * @return the UserManager object stored in the file
+     * Loads a UseCasePack.TradeCreator from a .ser file
+     * @return the UseCasePack.UserManager object stored in the file
      */
     public static TradeCreator loadTradeCreator(){
         TradeCreator tradeCreator;

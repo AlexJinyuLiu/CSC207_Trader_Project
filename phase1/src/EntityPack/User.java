@@ -203,5 +203,5 @@ public class User implements Serializable {
     // top 3 trading partners, access orderedPartners LinkedHashMap and return first three username Strings.
     // this needs to be updated after every transaction.
 
-    //I added these getters and setters for use in UserManager - Louis --> these were already made under different names,
-    // I've modified your UserManager code so they work for you. :) - Melody
+    //I added these getters and setters for use in UseCasePack.UserManager - Louis --> these were already made under different names,
+    // I've modified your UseCasePack.UserManager code so they work for you. :) - Melody

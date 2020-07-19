@@ -1,5 +1,10 @@
 import AlertPack.*;
+import ControllerPresenterPack.*;
 import EntityPack.User;
+import UseCasePack.AdminUser;
+import UseCasePack.TradeCreator;
+import UseCasePack.UserManager;
+import UseCasePack.UserNameTakenException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,6 +26,8 @@ public class TradeSystem {
     private AdminActions adminActions = new AdminActions();
     private UserActions userActions = new UserActions();
 
+    private String dir = "phase2/data/";
+
     /**
      * Empty constructor. Creates a new instance of TradeSystem.
      */
@@ -36,13 +43,13 @@ public class TradeSystem {
             directory.mkdir();
         }
 
-        if (!((new File("phase1/data/adminUser.ser"))).exists()) {
+        if (!((new File(dir + "adminUser.ser"))).exists()) {
             createAdminUser();
         }
-        if (!((new File("phase1/data/userManager.ser"))).exists()) {
+        if (!((new File(dir + "userManager.ser"))).exists()) {
             createUserManager();
         }
-        if (!((new File("phase1/data/tradeCreator.ser"))).exists()){
+        if (!((new File(dir + "tradeCreator.ser"))).exists()){
             createTradeCreator();
         }
 
@@ -54,7 +61,7 @@ public class TradeSystem {
         userManager = FileManager.loadUserManager();
         tradeCreator = FileManager.loadTradeCreator();
 
-        tradeCreator.tradeHistories.checkForExpiredTempTrades();
+        tradeCreator.getTradeHistories().checkForExpiredTempTrades();
         tradeCreator.onStartup();
 
         User loggedIn = null;
@@ -109,7 +116,7 @@ public class TradeSystem {
 
 //in main:
 //
-//    FileManager fm = new FileManager();
+//    ControllerPresenterPack.FileManager fm = new ControllerPresenterPack.FileManager();
 //    TradeSystemBuilder tsb = TradeSystemBuilder(fm);
 //    tsb.buildUserManager();
 //    ...
@@ -117,7 +124,7 @@ public class TradeSystem {
 //    ts.run();
 
 //   or
-//   FileManager fm = new FileManager();
+//   ControllerPresenterPack.FileManager fm = new ControllerPresenterPack.FileManager();
 //   TradeSystem ts = TradeSystem(fm);
 //   ts.build();
 //   rs.run()

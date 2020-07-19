@@ -479,7 +479,7 @@ public class UserActions {
                     menuPresenter.printMenu(20, 13);
                 }
 
-            } else if (input == 4) { //Other methods need access to UserManager methods
+            } else if (input == 4) { //Other methods need access to UseCasePack.UserManager methods
                 //"Your account has made " + Integer.toString(incompleteTrades) +
                  //       " incomplete transactions"
                 menuPresenter.printMenu(20, 14, user.getNumIncompleteTrades());

@@ -1,3 +1,5 @@
+package UseCasePack;
+
 import AlertPack.*;
 import EntityPack.Item;
 import EntityPack.TemporaryTrade;
@@ -18,23 +20,23 @@ public class UserManager implements Serializable{
     //author: Jinyu Liu, Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
     //All methods written by Jinyu Liu except where noted
 
-    //UserManager
+    //UseCasePack.UserManager
     private ArrayList<User> listUsers = new ArrayList<User>(); // List of all users - Jinyu
 
-    //TradeManager AND UserManager
+    //TradeManager AND UseCasePack.UserManager
     private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
 
-    //UserManager
+    //UseCasePack.UserManager
     private HashMap<String, ArrayList<UserAlert>> alertSystem = new HashMap<String, ArrayList<UserAlert>>();
 
-    //UserManager -- all thresholds are admin things really, rethink this?
+    //UseCasePack.UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
 
     private int itemIDGenerator = 0;
 
     /**
      * Method called on program Start up. Currently fetches all userAlerts from other places in the program.
-     * @param tradeCreator the TradeCreator used in this program.
+     * @param tradeCreator the UseCasePack.TradeCreator used in this program.
      */
     public void onStartUp(TradeCreator tradeCreator){
         HashMap<String, ArrayList<UserAlert>> alertsToAdd = tradeCreator.fetchUserAlerts();
@@ -89,7 +91,7 @@ public class UserManager implements Serializable{
     /**
      * Alerts the admin.
      * @param alert alert
-     */ //TradeManager and UserManager
+     */ //TradeManager and UseCasePack.UserManager
     public void alertAdmin(AdminAlert alert){
         this.adminAlerts.add(alert);
     }
@@ -169,7 +171,7 @@ public class UserManager implements Serializable{
      * @return The ItemValidationRequestAlert in question.
      */ //TradeManager for cohesion reasons with alerting admin.
     public ItemValidationRequestAlert sendValidationRequest(String name, String description, String owner) {
-        // reworked by Tingyu since the itemValidationRequestQueue has been moved to UserManager
+        // reworked by Tingyu since the itemValidationRequestQueue has been moved to UseCasePack.UserManager
         ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemIDGenerator, owner, name, description);
         itemIDGenerator++;
         alertAdmin(alert);
@@ -181,7 +183,7 @@ public class UserManager implements Serializable{
      * @param username username of user
      * @param password password of user
      * @return the created user
-     */ //UserManager
+     */ //UseCasePack.UserManager
     public User createUser(String username, String password) throws UserNameTakenException {
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
@@ -199,7 +201,7 @@ public class UserManager implements Serializable{
      * Adds an item to the user's wishlist
      * @param user user
      * @param itemName name of item
-     */ //UserManager
+     */ //UseCasePack.UserManager
     public void addToWishlist(User user, String itemName){
         user.addItemToWishList(itemName);
     }
@@ -208,7 +210,7 @@ public class UserManager implements Serializable{
      * removes an item from the user's wishlist
      * @param user user
      * @param itemName name of item
-     */ //UserManager
+     */ //UseCasePack.UserManager
     public void removeFromWishList(User user, String itemName){
         user.removeItemFromWishList(itemName);
     }
@@ -228,7 +230,7 @@ public class UserManager implements Serializable{
      * Author: Louis Scheffer V
      * @param username username of the user
      * @return user object
-     */ //UserManager
+     */ //UseCasePack.UserManager
     public User searchUser(String username){
         for(User user: listUsers){
             if (user.getUsername().equals(username)){
@@ -281,7 +283,7 @@ public class UserManager implements Serializable{
      * Author: Louis Scheffer V
      * @param user object of the user who will be receiving the alert
      * @param alert alert object to send to the user
-     */ //UserManager AND TradeManager
+     */ //UseCasePack.UserManager AND TradeManager
     public void alertUser(User user, UserAlert alert){
         String username = user.getUsername();
         alertUser(username, alert);
@@ -291,7 +293,7 @@ public class UserManager implements Serializable{
      * Author: Louis Scheffer V
      * @param username username of the user receiving the alert
      * @param alert alert object to send to the user
-     */ //UserManager AND TradeManager
+     */ //UseCasePack.UserManager AND TradeManager
     public void alertUser(String username, UserAlert alert){
         alertSystem.get(username).add(alert);
     }
@@ -301,7 +303,7 @@ public class UserManager implements Serializable{
      * @param sender user object who is sending the message.
      * @param recipient user object who is receiving the message.
      * @param message message text.
-     */ //UserManager
+     */ //UseCasePack.UserManager
     public void sendMessageToUser(User sender, User recipient, String message){
         UserAlert alert = new MessageAlert(sender.getUsername(), message);
         alertUser(recipient, alert);

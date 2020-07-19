@@ -3,7 +3,7 @@ package AlertPack;
 import java.io.Serializable;
 
 public class ItemValidationRequestAlert extends AdminAlert implements Serializable{
-    /** AdminAlert which is created from UserActions when a user requests that an item be validated.
+    /** AdminAlert which is created from ControllerPresenterPack.UserActions when a user requests that an item be validated.
      *
      */
 
