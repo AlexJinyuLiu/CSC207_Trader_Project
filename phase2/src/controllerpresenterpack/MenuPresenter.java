@@ -26,7 +26,7 @@ public class MenuPresenter {
      */
     public MenuPresenter() {
         try {
-            menu = new File("phase1/data/Menu.txt");
+            menu = new File("phase2/data/Menu.txt");
             BufferedReader br = new BufferedReader(new FileReader(menu));
 
             try {

@@ -16,6 +16,7 @@ public class User implements Serializable {
     private int numBorrowed;
     private int numIncompleteTrades;
     private boolean frozen = false; // true being frozen or Lent>Borrowed; false being no violations
+    private boolean active = true;
     private ArrayList<Item> availableItems = new ArrayList<Item>(); // if this was protected then our presenters can't access it
     private ArrayList<Item> borrowedItems = new ArrayList<Item>();// items that the user is currently borrowing via EntityPack.TemporaryTrade - Louis
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
@@ -34,6 +35,22 @@ public class User implements Serializable {
         // Use Cases need to increase after each 1-way or 2-way trade; and reset each week
         //stats.put("incompleteT", 0); // # incomplete transactions since creation
         this.username = username; // Admin needs to access to freeze; USerManager needs to access/search by EntityPack.User
+    }
+
+    /**
+     * Set the activeness of the User
+     * @param active
+     */
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    /**
+     *
+     * @return true if User is active, false otherwise
+     */
+    public boolean isActive() {
+        return active;
     }
 
     /**

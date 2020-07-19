@@ -126,6 +126,7 @@ User Menu
 (0) Quit
 Please enter a number corresponding to a setting above:
 Please enter a number from 0 to 6
+(7) Set Active Status
 }
 
 MENU{ - 16
@@ -370,4 +371,14 @@ ___  __/___  /_ _____        ___  __/______________ _______  /_____        ___  
 __  /   __  __ \_  _ \       __  /   __  ___/_  __ `/_  __  / _  _ \       __  /|_/ / _  __ `/__  ___/_  __/_  _ \__  ___/       _  /_/ /_  / / /_  / / /_  / / /
 _  /    _  / / //  __/       _  /    _  /    / /_/ / / /_/ /  /  __/       _  /  / /  / /_/ / _(__  ) / /_  /  __/_  /           _\__, / / /_/ / / /_/ / / /_/ /
 /_/     /_/ /_/ \___/        /_/     /_/     \__,_/  \__,_/   \___/        /_/  /_/   \__,_/  /____/  \__/  \___/ /_/            /____/  \____/  \____/  \____/
+}
+
+MENU{ - 41
+Your account is :
+Would you like to activate your account?
+Would you like to set your account as inactive?
+Your account has been deactivated
+Your account has been activated
+(1) Yes
+(0) No, Return to Main Menu
 }

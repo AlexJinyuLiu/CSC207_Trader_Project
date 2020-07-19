@@ -40,12 +40,13 @@ public class UserActions {
             for (int i = 0; i < 8; i++) {
                 menuPresenter.printMenu(15, i);
             }
+            menuPresenter.printMenu(15, 10);
             boolean valid_input = false;
             while(!valid_input){
                 //"Please enter a number corresponding to a setting above:\n"
                 menuPresenter.printMenu(15, 8);
                 input = scan.nextInt();
-                if (input > 6 || input < 0) {
+                if (input > 7 || input < 0) {
                     //"Please enter a number from 0 to 6"
                     menuPresenter.printMenu(15, 9);
                 } else if (input == 1) {
@@ -66,12 +67,62 @@ public class UserActions {
                 } else if (input == 6) {
                     viewActiveTempTrades(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
+                } else if (input == 7) {
+                    setActive(menuPresenter, user);
+                    valid_input = true;
                 } else if (input == 0){
                     valid_input = true;
                     running = false;
                 }
             }
         }
+    }
+
+    public void setActive(MenuPresenter menuPresenter, User user){
+        String act = "";
+        Scanner scan = new Scanner(System.in);
+        if (user.isActive()){
+            act = "active";
+        } else act = "inactive";
+        // Your account is active/inactive
+        menuPresenter.printMenu(41, 0, act);
+
+        if (act.equals("active")){
+            // Would you like to set your account as inactive?
+            menuPresenter.printMenu(41, 2);
+            menuPresenter.printMenu(41, 5);
+            menuPresenter.printMenu(41, 6);
+            while(true){
+                int input = scan.nextInt();
+                if (input == 1){
+                    user.setActive(false);
+                    // Your account has been deactivated
+                    menuPresenter.printMenu(41, 3);
+                    break;
+                } else if (input == 0){
+                    user.setActive(true);
+                    break;
+                }
+            }
+        } else {
+            // Would you like to activate your account?
+            menuPresenter.printMenu(41, 1);
+            menuPresenter.printMenu(41, 5);
+            menuPresenter.printMenu(41, 6);
+            while(true){
+                int input = scan.nextInt();
+                if (input == 1){
+                    user.setActive(false);
+                    // Your account has been activated
+                    menuPresenter.printMenu(41, 4);
+                    break;
+                } else if (input == 0){
+                    user.setActive(true);
+                    break;
+                }
+            }
+        }
+
     }
 
     /**
