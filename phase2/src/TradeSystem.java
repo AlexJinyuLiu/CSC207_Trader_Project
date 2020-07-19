@@ -1,10 +1,10 @@
-import AlertPack.*;
-import ControllerPresenterPack.*;
-import EntityPack.User;
-import UseCasePack.AdminUser;
-import UseCasePack.TradeCreator;
-import UseCasePack.UserManager;
-import UseCasePack.UserNameTakenException;
+import alertpack.*;
+import controllerpresenterpack.*;
+import entitypack.User;
+import usecasepack.AdminUser;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+import usecasepack.UserNameTakenException;
 
 import java.io.File;
 import java.util.ArrayList;

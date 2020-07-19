@@ -1,7 +1,5 @@
 package alertpack;
 
-import alertpack.Alert;
-
 import java.io.Serializable;
 
 public abstract class AdminAlert extends Alert implements Serializable {

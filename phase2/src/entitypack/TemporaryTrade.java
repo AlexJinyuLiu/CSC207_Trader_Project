@@ -1,7 +1,5 @@
 package entitypack;
 
-import entitypack.Trade;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalDateTime;

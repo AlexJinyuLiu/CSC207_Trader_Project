@@ -1,8 +1,6 @@
 package entitypack;
 
-import javax.print.DocFlavor;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Represents an EntityPack.Item in the trading system.

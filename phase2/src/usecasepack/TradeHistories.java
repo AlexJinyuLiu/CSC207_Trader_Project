@@ -1,3 +1,5 @@
+package usecasepack;
+
 import alertpack.AdminAlert;
 import alertpack.ExpirationAlert;
 import alertpack.UserAlert;

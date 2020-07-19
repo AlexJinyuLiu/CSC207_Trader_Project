@@ -1,5 +1,5 @@
-import AlertPack.*;
-import EntityPack.User;
+import alertpack.*;
+import entitypack.User;
 
 import java.io.File;
 import java.util.ArrayList;

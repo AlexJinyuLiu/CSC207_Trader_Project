@@ -1,6 +1,5 @@
 package alertpack;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class FrozenAlert extends UserAlert implements Serializable {

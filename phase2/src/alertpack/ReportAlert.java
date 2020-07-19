@@ -1,7 +1,6 @@
 package alertpack;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ReportAlert extends AdminAlert implements Serializable {
     /** Alert in which a user has been reported by another user for not showing up to a trade.

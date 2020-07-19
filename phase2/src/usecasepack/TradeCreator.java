@@ -1,3 +1,5 @@
+package usecasepack;
+
 import alertpack.*;
 import entitypack.Item;
 import entitypack.TemporaryTrade;
@@ -28,13 +30,21 @@ public class TradeCreator implements Serializable {
     /**
      * The instance of UseCasePack.TradeHistories for the program.
      */
-    protected TradeHistories tradeHistories = new TradeHistories();
+    private TradeHistories tradeHistories = new TradeHistories();
 
     private int completeThreshold = 3; // # of complete trades allowed per week
 
     private int borrowLendThreshold = 1;
 
     private int tradeIdGenerator = 1;
+
+    /**
+     *
+     * @return the trade histories instance for the program.
+     */
+    public TradeHistories getTradeHistories(){
+        return this.tradeHistories;
+    }
 
     /**
      *

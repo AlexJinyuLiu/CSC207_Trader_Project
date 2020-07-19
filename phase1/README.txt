@@ -15,7 +15,7 @@ The interface is of this program is text through the java console, to navigate t
 prompt you for valid user input. For menus, you will need to enter a number ranging from 0-10 to the corresponding menu
 number, and for other uses cases, simply enter the information as prompted.
 
-UML diagrams have been created for the src folder and the package AlertPack. Both of these diagrams are inside of the design.pdf file inside the phase1 folder.
+UML diagrams have been created for the src folder and the package alertpack. Both of these diagrams are inside of the design.pdf file inside the phase1 folder.
 
 Instructions:
 1. Go to Intellij and click run. Navigate to then click 'main'.

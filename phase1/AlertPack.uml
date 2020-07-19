@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>AlertPack</OriginalElement>
+  <OriginalElement>alertpack</OriginalElement>
   <nodes>
-    <node x="946.0000000000001" y="324.0">AlertPack.TradeCancelledAlert</node>
-    <node x="228.0" y="258.0">AlertPack.FreezeUserAlert</node>
-    <node x="2356.0" y="302.0">AlertPack.TradeRequestAlert</node>
-    <node x="2121.0" y="313.0">AlertPack.TradeAcceptedAlert</node>
-    <node x="1217.5" y="0.0">AlertPack.Alert</node>
-    <node x="3083.0" y="302.0">AlertPack.ExpirationAlert</node>
-    <node x="370.0" y="126.0">AlertPack.AdminAlert</node>
-    <node x="0.0" y="269.0">AlertPack.UnfreezeRequestAlert</node>
-    <node x="2807.0" y="324.0">AlertPack.TradeRequestCancelledAlert</node>
-    <node x="2055.5" y="126.0">AlertPack.UserAlert</node>
-    <node x="439.0" y="291.0">AlertPack.ReportAlert</node>
-    <node x="1671.0" y="313.0">AlertPack.TradeDeclinedAlert</node>
-    <node x="1166.0" y="302.0">AlertPack.TradePastDateAlert</node>
-    <node x="1904.0" y="313.0">AlertPack.MessageAlert</node>
-    <node x="2575.0" y="280.0">AlertPack.FrozenAlert</node>
-    <node x="1387.0" y="280.0">AlertPack.ItemValidationDeclinedAlert</node>
-    <node x="670.0000000000001" y="291.0">AlertPack.ItemValidationRequestAlert</node>
+    <node x="946.0000000000001" y="324.0">alertpack.TradeCancelledAlert</node>
+    <node x="228.0" y="258.0">alertpack.FreezeUserAlert</node>
+    <node x="2356.0" y="302.0">alertpack.TradeRequestAlert</node>
+    <node x="2121.0" y="313.0">alertpack.TradeAcceptedAlert</node>
+    <node x="1217.5" y="0.0">alertpack.Alert</node>
+    <node x="3083.0" y="302.0">alertpack.ExpirationAlert</node>
+    <node x="370.0" y="126.0">alertpack.AdminAlert</node>
+    <node x="0.0" y="269.0">alertpack.UnfreezeRequestAlert</node>
+    <node x="2807.0" y="324.0">alertpack.TradeRequestCancelledAlert</node>
+    <node x="2055.5" y="126.0">alertpack.UserAlert</node>
+    <node x="439.0" y="291.0">alertpack.ReportAlert</node>
+    <node x="1671.0" y="313.0">alertpack.TradeDeclinedAlert</node>
+    <node x="1166.0" y="302.0">alertpack.TradePastDateAlert</node>
+    <node x="1904.0" y="313.0">alertpack.MessageAlert</node>
+    <node x="2575.0" y="280.0">alertpack.FrozenAlert</node>
+    <node x="1387.0" y="280.0">alertpack.ItemValidationDeclinedAlert</node>
+    <node x="670.0000000000001" y="291.0">alertpack.ItemValidationRequestAlert</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="AlertPack.TradeRequestCancelledAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.TradeRequestCancelledAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-27.0" />
       <point x="2935.0" y="208.0" />
       <point x="2157.5" y="208.0" />
       <point x="42.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.TradeAcceptedAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.TradeAcceptedAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-38.0" />
       <point x="2228.5" y="238.0" />
       <point x="2121.5" y="238.0" />
       <point x="6.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.TradeCancelledAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.TradeCancelledAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-27.0" />
       <point x="1046.0" y="198.0" />
       <point x="2061.5" y="198.0" />
       <point x="-54.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.UnfreezeRequestAlert" target="AlertPack.AdminAlert">
+    <edge source="alertpack.UnfreezeRequestAlert" target="alertpack.AdminAlert">
       <point x="0.0" y="-82.0" />
       <point x="104.0" y="228.0" />
       <point x="386.0" y="228.0" />
       <point x="-48.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.TradeDeclinedAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.TradeDeclinedAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-38.0" />
       <point x="1777.5" y="228.0" />
       <point x="2097.5" y="228.0" />
       <point x="-18.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.FreezeUserAlert" target="AlertPack.AdminAlert">
+    <edge source="alertpack.FreezeUserAlert" target="alertpack.AdminAlert">
       <point x="0.0" y="-93.0" />
       <point x="323.5" y="238.0" />
       <point x="418.0" y="238.0" />
       <point x="-16.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.ExpirationAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.ExpirationAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-49.0" />
       <point x="3183.5" y="198.0" />
       <point x="2169.5" y="198.0" />
       <point x="54.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.AdminAlert" target="AlertPack.Alert">
+    <edge source="alertpack.AdminAlert" target="alertpack.Alert">
       <point x="0.0" y="-26.0" />
       <point x="434.0" y="101.0" />
       <point x="1249.25" y="101.0" />
       <point x="-31.75" y="38.0" />
     </edge>
-    <edge source="AlertPack.TradePastDateAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.TradePastDateAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-49.0" />
       <point x="1266.5" y="208.0" />
       <point x="2073.5" y="208.0" />
       <point x="-42.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.ItemValidationRequestAlert" target="AlertPack.AdminAlert">
+    <edge source="alertpack.ItemValidationRequestAlert" target="alertpack.AdminAlert">
       <point x="0.0" y="-60.0" />
       <point x="798.0000000000001" y="228.0" />
       <point x="482.0" y="228.0" />
       <point x="48.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.FrozenAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.FrozenAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-71.0" />
       <point x="2681.0" y="218.0" />
       <point x="2145.5" y="218.0" />
       <point x="30.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.TradeRequestAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.TradeRequestAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-49.0" />
       <point x="2455.5" y="228.0" />
       <point x="2133.5" y="228.0" />
       <point x="18.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.ItemValidationDeclinedAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.ItemValidationDeclinedAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-71.0" />
       <point x="1519.0" y="218.0" />
       <point x="2085.5" y="218.0" />
       <point x="-30.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.MessageAlert" target="AlertPack.UserAlert">
+    <edge source="alertpack.MessageAlert" target="alertpack.UserAlert">
       <point x="0.0" y="-38.0" />
       <point x="2002.5" y="238.0" />
       <point x="2109.5" y="238.0" />
       <point x="-6.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.ReportAlert" target="AlertPack.AdminAlert">
+    <edge source="alertpack.ReportAlert" target="alertpack.AdminAlert">
       <point x="0.0" y="-60.0" />
       <point x="544.5" y="238.0" />
       <point x="450.0" y="238.0" />
       <point x="16.0" y="26.0" />
     </edge>
-    <edge source="AlertPack.UserAlert" target="AlertPack.Alert">
+    <edge source="alertpack.UserAlert" target="alertpack.Alert">
       <point x="0.0" y="-26.0" />
       <point x="2115.5" y="101.0" />
       <point x="1312.75" y="101.0" />

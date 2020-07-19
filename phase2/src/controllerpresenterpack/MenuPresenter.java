@@ -1,7 +1,9 @@
+package controllerpresenterpack;
 
 import entitypack.Item;
 import entitypack.Trade;
 import entitypack.User;
+import usecasepack.UserManager;
 
 import java.io.*;
 import java.util.*;
@@ -22,7 +24,7 @@ public class MenuPresenter {
     /**
      * Initializes a new ControllerPresenterPack.MenuPresenter object, while also populating the menusMap HashMap with the lines from Menu.txt
      */
-    MenuPresenter() {
+    public MenuPresenter() {
         try {
             menu = new File("phase1/data/Menu.txt");
             BufferedReader br = new BufferedReader(new FileReader(menu));

@@ -1,5 +1,10 @@
+package controllerpresenterpack;
+
 import alertpack.*;
 import entitypack.User;
+import usecasepack.AdminUser;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
 
 import java.util.ArrayList;
 import java.util.Scanner;

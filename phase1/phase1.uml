@@ -14,7 +14,7 @@
     <node x="1527.1405476958714" y="2918.0">AdminAlertManager</node>
     <node x="1355.1205468685362" y="3254.0">TradeSystem</node>
     <node x="1954.1405476958714" y="2929.0">FileManager</node>
-    <node x="1143.7700008273353" y="705.0">AlertPack</node>
+    <node x="1143.7700008273353" y="705.0">alertpack</node>
     <node x="605.2700008273353" y="1186.0">UserManager</node>
     <node x="21.5" y="705.0">UserNameTakenException</node>
     <node x="1440.287213535203" y="3554.0">UserActions</node>
@@ -75,7 +75,7 @@
       <point x="1390.0200008273353" y="2888.0" />
       <point x="-80.25" y="158.0" />
     </edge>
-    <edge source="AdminUser" target="AlertPack">
+    <edge source="AdminUser" target="alertpack">
       <point x="-26.75" y="-158.0" />
       <point x="1443.5200008273353" y="2522.0" />
       <point x="1448.5700008273352" y="2522.0" />
@@ -91,7 +91,7 @@
       <point x="516.1033341606686" y="2522.0" />
       <point x="138.33333333333337" y="159.0" />
     </edge>
-    <edge source="AdminAlertManager" target="AlertPack">
+    <edge source="AdminAlertManager" target="alertpack">
       <point x="50.875" y="-93.0" />
       <point x="1781.5155476958714" y="2898.0" />
       <point x="1795.7721518987344" y="2898.0" />
@@ -145,7 +145,7 @@
       <point x="1493.1033341606687" y="466.0" />
       <point x="-57.0" y="70.0" />
     </edge>
-    <edge source="UserActions" target="AlertPack">
+    <edge source="UserActions" target="alertpack">
       <point x="51.77777777777777" y="-126.0" />
       <point x="1608.5649913129807" y="3514.0" />
       <point x="2227.6405476958716" y="3514.0" />
@@ -173,7 +173,7 @@
       <point x="1561.5323115744186" y="3214.0" />
       <point x="85.41176470588232" y="-115.0" />
     </edge>
-    <edge source="TradeSystem" target="AlertPack">
+    <edge source="TradeSystem" target="alertpack">
       <point x="-56.94117647058829" y="-115.0" />
       <point x="1419.1793703979479" y="3194.0" />
       <point x="1199.7700008273353" y="3194.0" />
@@ -203,13 +203,13 @@
       <point x="664.5221518987346" y="446.0" />
       <point x="-105.4375" y="213.0" />
     </edge>
-    <edge source="UserManager" target="AlertPack">
+    <edge source="UserManager" target="alertpack">
       <point x="137.41176470588266" y="-653.0" />
       <point x="1034.681765533218" y="1106.0" />
       <point x="1206.7700008273353" y="1106.0" />
       <point x="-21.0" y="26.0" />
     </edge>
-    <edge source="UserAlertManager" target="AlertPack">
+    <edge source="UserAlertManager" target="alertpack">
       <point x="51.875" y="-159.0" />
       <point x="429.64500082733525" y="1066.0" />
       <point x="1150.7700008273353" y="1066.0" />

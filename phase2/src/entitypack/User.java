@@ -3,8 +3,6 @@ package entitypack;
 import java.io.Serializable;
 import java.util.*;
 
-import entitypack.Item;
-
 /**
  * An Entity class describing a user of a program.
  */
