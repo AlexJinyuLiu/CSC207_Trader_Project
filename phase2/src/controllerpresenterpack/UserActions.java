@@ -37,10 +37,11 @@ public class UserActions {
         while (running) {
             int input = -1;
             Scanner scan = new Scanner(System.in);
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 7; i++) {
                 menuPresenter.printMenu(15, i);
             }
             menuPresenter.printMenu(15, 10);
+            menuPresenter.printMenu(15, 7);
             boolean valid_input = false;
             while(!valid_input){
                 //"Please enter a number corresponding to a setting above:\n"
