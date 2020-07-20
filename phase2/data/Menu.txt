@@ -125,8 +125,9 @@ User Menu
 (6) View active temporary trades
 (0) Quit
 Please enter a number corresponding to a setting above:
-Please enter a number from 0 to 6
+Please enter a number from 0 to 8
 (7) Set Active Status
+(8) Change your metropolitan area
 }
 
 MENU{ - 16
@@ -381,4 +382,11 @@ Your account has been deactivated
 Your account has been activated
 (1) Yes
 (0) No, Return to Main Menu
+}
+
+MENU{ - 42
+Which metropolitan area are you located in:
+(1) Toronto
+(2) Vancouver
+(3) Ottawa
 }

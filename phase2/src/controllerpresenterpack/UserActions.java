@@ -1,10 +1,7 @@
 package controllerpresenterpack;
 
 import alertpack.UnfreezeRequestAlert;
-import entitypack.Item;
-import entitypack.TemporaryTrade;
-import entitypack.Trade;
-import entitypack.User;
+import entitypack.*;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -37,17 +34,18 @@ public class UserActions {
         while (running) {
             int input = -1;
             Scanner scan = new Scanner(System.in);
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 6; i++) {
                 menuPresenter.printMenu(15, i);
             }
             menuPresenter.printMenu(15, 10);
+            menuPresenter.printMenu(15, 11);
             menuPresenter.printMenu(15, 7);
             boolean valid_input = false;
             while(!valid_input){
                 //"Please enter a number corresponding to a setting above:\n"
                 menuPresenter.printMenu(15, 8);
                 input = scan.nextInt();
-                if (input > 7 || input < 0) {
+                if (input > 8 || input < 0) {
                     //"Please enter a number from 0 to 6"
                     menuPresenter.printMenu(15, 9);
                 } else if (input == 1) {
@@ -70,6 +68,9 @@ public class UserActions {
                     valid_input = true;
                 } else if (input == 7) {
                     setActive(menuPresenter, user);
+                    valid_input = true;
+                } else if (input == 8){
+                    changeMetroArea(userManager, menuPresenter, user.getUsername());
                     valid_input = true;
                 } else if (input == 0){
                     valid_input = true;
@@ -221,7 +222,8 @@ public class UserActions {
         // "Enter a number to view a EntityPack.User's page:"
         menuPresenter.printMenu(17, 1);
         int page = 1;
-        ArrayList<User> allUsers = userManager.getListUsers();
+        MetroArea usersMetro = userManager.getUsersMetro(userViewing);
+        ArrayList<User> allUsers = userManager.searchUsersByMetro(usersMetro);
         boolean nextPageExists = true;
         while (!handled){
             int input = -1;
@@ -643,6 +645,31 @@ public class UserActions {
             }
         }
 
+    }
+    private void changeMetroArea(UserManager userManager, MenuPresenter menuPresenter, String username){
+        for(int i = 0; i < 4; i++){
+            menuPresenter.printMenu(42, i);
+        }
+        int choice = optionChoice(1, 3, menuPresenter);
+        MetroArea city = null;
+        if (choice == 1){
+            city =  MetroArea.TORONTO;
+        } else if (choice == 2){
+            city = MetroArea.VANCOUVER;
+        } else if (choice == 3){
+            city = MetroArea.OTTAWA;
+        }
+        userManager.setUserMetro(username, city);
+    }
+    private int optionChoice(int y, int x, MenuPresenter menuPresenter){
+        Scanner scanner = new Scanner(System.in);
+        menuPresenter.printMenu(5, 1);
+        int choice = scanner.nextInt();
+        while(choice > x || choice < y){
+            menuPresenter.printMenu(5, 2);
+            choice = scanner.nextInt();
+        }
+        return choice;
     }
 
 }

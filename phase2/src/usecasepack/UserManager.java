@@ -1,10 +1,7 @@
 package usecasepack;
 
 import alertpack.*;
-import entitypack.Item;
-import entitypack.TemporaryTrade;
-import entitypack.Trade;
-import entitypack.User;
+import entitypack.*;
 
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -340,5 +337,39 @@ public class UserManager implements Serializable{
      */
     public int getUserIncompleteTrades(User user){
         return user.getNumIncompleteTrades();
+    }
+
+    /** Method to set which metropolitan area a user is based in.
+     *
+     * @param username the username of the user.
+     * @param metroArea the metro area the user will be based in.
+     */
+    public void setUserMetro(String username, MetroArea metroArea){
+        User user = searchUser(username);
+        user.setMetro(metroArea);
+    }
+
+    /** Method to return a list of users by the metropolitan area they are located in.
+     *
+     * @param metroArea metro area you are searching
+     * @return the list of active users in that metro.
+     */
+    public ArrayList<User> searchUsersByMetro(MetroArea metroArea){
+        ArrayList<User> usersInMetro = new ArrayList<User>();
+        for(User user: listUsers){
+            if (user.getMetro().equals(metroArea)){
+                usersInMetro.add(user);
+            }
+        }
+        return usersInMetro;
+    }
+
+    /** Method to get the metro area of a user
+     *
+     * @param user the user whose metro area you are checking.
+     * @return the user
+     */
+    public MetroArea getUsersMetro(User user){
+        return user.getMetro();
     }
 }

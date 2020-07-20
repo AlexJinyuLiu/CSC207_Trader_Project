@@ -1,5 +1,6 @@
 import alertpack.*;
 import controllerpresenterpack.*;
+import entitypack.MetroArea;
 import entitypack.User;
 import usecasepack.AdminUser;
 import usecasepack.TradeCreator;
@@ -70,7 +71,7 @@ public class TradeSystem {
             menuPresenter.printMenu(10, i);
         }
 
-        int input = optionChoice(3);
+        int input = optionChoice(0,3);
         try {
             if (input == 1) {
                 loggedIn = createAccount();
@@ -154,7 +155,9 @@ public class TradeSystem {
                 //"Enter your desired password"
                 menuPresenter.printMenu(1, 2);
                 String password = scan.nextLine();
-                return userManager.createUser(inputUsername, password);
+                User user = userManager.createUser(inputUsername, password);
+                pickCity(inputUsername);
+                return user;
             } catch (UserNameTakenException e) {
             } menuPresenter.printMenu(8, 0);
         }
@@ -235,17 +238,31 @@ public class TradeSystem {
         return loggedIn;
     }
 
-    private int optionChoice(int x){
+    private int optionChoice(int y, int x){
         Scanner scanner = new Scanner(System.in);
         menuPresenter.printMenu(5, 1);
         int choice = scanner.nextInt();
-        while(choice > x || choice < 0){
+        while(choice > x || choice < y){
             menuPresenter.printMenu(5, 2);
             choice = scanner.nextInt();
         }
         return choice;
+    }
 
-
+    private void pickCity(String username){
+        for(int i = 0; i < 4; i++){
+            menuPresenter.printMenu(42, i);
+        }
+        int choice = optionChoice(1, 3);
+        MetroArea city = null;
+        if (choice == 1){
+            city =  MetroArea.TORONTO;
+        } else if (choice == 2){
+            city = MetroArea.VANCOUVER;
+        } else if (choice == 3){
+            city = MetroArea.OTTAWA;
+        }
+        userManager.setUserMetro(username, city);
     }
 }
 

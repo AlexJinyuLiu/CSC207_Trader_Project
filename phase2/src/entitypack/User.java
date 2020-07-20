@@ -10,6 +10,8 @@ public class User implements Serializable {
     //author: Melody Yang in group 0110 for CSC207H1 summer 2020 project
     // Sorting method orderPartners() is taken from https://howtodoinjava.com/sort/java-sort-map-by-values/
 
+
+
     private final String username;
     private String password; // private so no one can access except EntityPack.User; have setters and getters for change password function
     private int numLent;
@@ -20,6 +22,7 @@ public class User implements Serializable {
     private ArrayList<Item> availableItems = new ArrayList<Item>(); // if this was protected then our presenters can't access it
     private ArrayList<Item> borrowedItems = new ArrayList<Item>();// items that the user is currently borrowing via EntityPack.TemporaryTrade - Louis
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
+    private MetroArea metro;
 
 
     /**
@@ -214,6 +217,23 @@ public class User implements Serializable {
     public ArrayList<Item> getBorrowedItems() {
         return borrowedItems;
     }
+
+    /**
+     *
+     * @param metro Supported metropolitan area the user is located in.
+     */
+    public void setMetro(MetroArea metro) {
+        this.metro = metro;
+    }
+
+    /**
+     *
+     * @return Supported metropolitan area the use is located in.
+     */
+    public MetroArea getMetro() {
+        return this.metro;
+    }
+
 }
     // top 3 trading partners, access orderedPartners LinkedHashMap and return first three username Strings.
     // this needs to be updated after every transaction.
