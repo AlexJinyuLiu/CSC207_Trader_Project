@@ -14,13 +14,13 @@ import java.util.Scanner;
 /**
  * A controller class describing the actions a user can take from the menu in the trade system.
  */
-public class UserActions {
+public class TradingUserActions {
 
     /**
      * runs the usermenu as normal.
      * @param user the user currently logged in.
      */
-    public void runUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, User user){
+    public void runTradingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user){
         mainMenu(menuPresenter,userManager, tradeCreator, user);
     }
 
@@ -28,7 +28,7 @@ public class UserActions {
      * Display the main menu to user, take user's input to implement the corresponding action
      * @param user user logged in making changes or viewing statuses
      */
-    public void mainMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, User user){
+    private void mainMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user){
 
         boolean running = true;
         while (running) {
@@ -80,7 +80,7 @@ public class UserActions {
         }
     }
 
-    public void setActive(MenuPresenter menuPresenter, User user){
+    public void setActive(MenuPresenter menuPresenter, TradingUser user){
         String act = "";
         Scanner scan = new Scanner(System.in);
         if (user.isActive()){
@@ -131,7 +131,7 @@ public class UserActions {
      * Allow user to view their available items (inventory) and wishlist
      * @param user user logged in viewing their items
      */
-    public void viewItemAndWishlist(MenuPresenter menuPresenter, UserManager userManager, User user){
+    public void viewItemAndWishlist(MenuPresenter menuPresenter, UserManager userManager, TradingUser user){
         boolean flag = true;
         int input = 0;
         Scanner scan = new Scanner(System.in);
@@ -214,7 +214,7 @@ public class UserActions {
      * @param userViewing user logged in viewing other users
      */
     public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             User userViewing){
+                             TradingUser userViewing){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -277,51 +277,68 @@ public class UserActions {
      * @param userViewing user logged in that is viewing other user
      */
     private void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          User userToView, User userViewing) {
+                          User userToView, TradingUser userViewing) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
         int input;
         while(!handled){
             //menuPresenter.printMenu(35, 0, userString.toString());
-            menuPresenter.printUserToString(userToView);
-            //StringBuilder userString = new StringBuilder(userToView.toString());
-            //userString.append("(1) Send a message\n");
-            menuPresenter.printMenu(18, 1);
-            //userString.append("(2) Add one of their items to your wishlist\n");
-            menuPresenter.printMenu(18, 2);
-            if (!userToView.getFrozen()) {
-                //userString.append("(3) Send a trade request\n");
-                menuPresenter.printMenu(18, 3);
-            }
-            //userString.append("(0) Back to Main Menu");
-            menuPresenter.printMenu(18, 4);
+            if (userToView instanceof TradingUser) {
+                //TODO: This might cause a bug if we enter an invalid number
+                TradingUser tradingUser = (TradingUser) userToView;
+                menuPresenter.printTradingUserToString((TradingUser)userToView);
+                //StringBuilder userString = new StringBuilder(userToView.toString());
+                //userString.append("(1) Send a message\n");
+                menuPresenter.printMenu(18, 1);
+                //userString.append("(2) Add one of their items to your wishlist\n");
+                menuPresenter.printMenu(18, 2);
+                if (!tradingUser.getFrozen()) {
+                    //userString.append("(3) Send a trade request\n");
+                    menuPresenter.printMenu(18, 3);
+                }
+                //userString.append("(0) Back to Main Menu");
+                menuPresenter.printMenu(18, 4);
 
-            input = scan.nextInt();
+                input = scan.nextInt();
 
-            if (input < 0 || input > 3 || (userToView.getFrozen() && input == 3)){
-                // "Please enter a valid input"
-                menuPresenter.printMenu(18, 5);
-            } else if (input == 1) {
-                // "Enter the contents of your message:\n"
-                menuPresenter.printMenu(18, 6);
-                scan.nextLine();
-                String message = scan.nextLine();
-                userManager.sendMessageToUser(userViewing, userToView, message);
-                // "Sent message to " + userToView.getUsername() + ": \"" + message + "\""
-                menuPresenter.printMenu(18, 7);
-            } else if (input == 2){
-                // "Enter the name of the item you would like added to your wishlist:\n"
-                menuPresenter.printMenu(18, 8);
-                scan.nextLine();
-                String itemString = scan.nextLine();
-                userManager.addToWishlist(userViewing, itemString);
-                menuPresenter.printMenu(18, 9);
-            } else if (input == 3 && !userToView.getFrozen()){
-                formTradeRequest(menuPresenter, tradeCreator, userViewing, userToView);
-            } else if (input == 0){
-                handled = true;
+                if (input < 0 || input > 3 || (tradingUser.getFrozen() && input == 3)){
+                    // "Please enter a valid input"
+                    menuPresenter.printMenu(18, 5);
+                } else if (input == 1) {
+                    // "Enter the contents of your message:\n"
+                    menuPresenter.printMenu(18, 6);
+                    scan.nextLine();
+                    String message = scan.nextLine();
+                    userManager.sendMessageToUser(userViewing, userToView, message);
+                    // "Sent message to " + userToView.getUsername() + ": \"" + message + "\""
+                    menuPresenter.printMenu(18, 7);
+                } else if (input == 2){
+                    // "Enter the name of the item you would like added to your wishlist:\n"
+                    menuPresenter.printMenu(18, 8);
+                    scan.nextLine();
+                    String itemString = scan.nextLine();
+                    userManager.addToWishlist(userViewing, itemString);
+                    menuPresenter.printMenu(18, 9);
+                } else if (input == 3 && !tradingUser.getFrozen()){
+                    formTradeRequest(menuPresenter, tradeCreator, userViewing, tradingUser);
+                } else if (input == 0){
+                    handled = true;
 
+                }
+            } else if (userToView instanceof BrowsingOnlyUser){
+                menuPresenter.printBorrowingOnlyUserToString((BrowsingOnlyUser)userToView);
+                boolean validInput = false;
+                while(!validInput) {
+                    menuPresenter.printMenu(18,4);
+                    input = scan.nextInt();
+                    if (input == 0){
+                        validInput = true;
+                        handled = true;
+                    } else{
+                        menuPresenter.printMenu(18,5);
+                    }
+                }
             }
         }
     }
@@ -331,8 +348,8 @@ public class UserActions {
      * @param userSending user logged in that sends the trade request
      * @param userReceiving user that will receive the trade request
      */
-    private void formTradeRequest(MenuPresenter menuPresenter, TradeCreator tradeCreator, User userSending,
-                                  User userReceiving) {
+    private void formTradeRequest(MenuPresenter menuPresenter, TradeCreator tradeCreator, TradingUser userSending,
+                                  TradingUser userReceiving) {
         Scanner scan = new Scanner(System.in);
         boolean finished = false;
         ArrayList<Integer> itemIDsRecieved = new ArrayList<Integer>();
@@ -507,7 +524,7 @@ public class UserActions {
      * (7) Three most frequent trading partners
      * @param user user logged in viewing the statuses
      */
-    public void runStats(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, User user) {
+    public void runStats(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user) {
         int input = 0;
         boolean handled = false;
         while (!handled) {
@@ -569,7 +586,7 @@ public class UserActions {
      * @param user user that sends the request
      */
     public void sendUnfreezeRequest(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                                    User user) {
+                                    TradingUser user) {
         if (!user.getFrozen()) {
             // "Your account is not frozen"
             menuPresenter.printMenu(21, 1);
@@ -594,7 +611,7 @@ public class UserActions {
      * @param user user logged in
      */
     public void viewPendingTrades(MenuPresenter menuPresenter, UserManager userManager,
-                                  TradeCreator tradeCreator, User user){
+                                  TradeCreator tradeCreator, TradingUser user){
         int choice = 0;
         while (choice == 0 ) {
             ArrayList<Trade> userTrades = tradeCreator.searchPendingTradesByUser(user);
@@ -622,7 +639,7 @@ public class UserActions {
      * @param user user logged in
      */
     public void viewActiveTempTrades(MenuPresenter menuPresenter, UserManager userManager,
-                                     TradeCreator tradeCreator, User user) {
+                                     TradeCreator tradeCreator, TradingUser user) {
         int input = -1;
         ArrayList<TemporaryTrade> userTrades = tradeCreator.getTradeHistories().searchActiveTempTradesByUser(user);
         for (int i = 1; i < 4; i++) {

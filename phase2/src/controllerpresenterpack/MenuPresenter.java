@@ -1,8 +1,6 @@
 package controllerpresenterpack;
 
-import entitypack.Item;
-import entitypack.Trade;
-import entitypack.User;
+import entitypack.*;
 import usecasepack.UserManager;
 
 import java.io.*;
@@ -135,13 +133,14 @@ public class MenuPresenter {
     }
 
     /**
-     * Prints a string representation of a EntityPack.User
+     * Prints a string representation of a TradingUser
      * @param user the EntityPack.User in question.
      */
-    public void printUserToString(User user){
-        StringBuilder userString = new StringBuilder("EntityPack.User: " + user.getUsername() + "\n");
-        if (user.getAvailableItems().size() == 0){
-            userString.append("This EntityPack.User has no items available for trade. \n");
+    public void printTradingUserToString(TradingUser user){
+        StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
+
+        if (user.getAvailableItems().size() == 0) {
+            userString.append("This User has no items available for trade. \n");
         } else {
             userString.append("Items available for trade: \n");
             for (int i = 0; i < user.getAvailableItems().size() - 1; i++) {
@@ -150,8 +149,8 @@ public class MenuPresenter {
             userString.append(user.getAvailableItems().get(user.getAvailableItems().size() - 1).getName() + " (ID: " +
                     user.getAvailableItems().get(user.getAvailableItems().size() - 1).getId() + ")\n");
         }
-        if (user.getWishlistItemNames().size() == 0){
-            userString.append("This EntityPack.User has no items in their wishlist. \n");
+        if (user.getWishlistItemNames().size() == 0) {
+            userString.append("This User has no items in their wishlist. \n");
         } else {
             userString.append("Wishlist: \n");
             for (int i = 0; i < user.getWishlistItemNames().size() - 1; i++) {
@@ -159,11 +158,17 @@ public class MenuPresenter {
             }
             userString.append(user.getWishlistItemNames().get(user.getWishlistItemNames().size() - 1) + "\n");
         }
-        if (user.getFrozen()){
+        if (user.getFrozen()) {
             userString.append("This user is frozen, and thus cannot make a trade. \n");
         }
 
+
         System.out.println(userString.toString());
+    }
+
+    public void printBorrowingOnlyUserToString(BrowsingOnlyUser user){
+        System.out.println("User: " + user.getUsername() + "\nThis user is \"Browsing only\", " +
+                "meaning they have no items and cannot trade.");
     }
 
     /**

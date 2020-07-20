@@ -1,10 +1,7 @@
 package usecasepack;
 
 import alertpack.*;
-import entitypack.Item;
-import entitypack.TemporaryTrade;
-import entitypack.Trade;
-import entitypack.User;
+import entitypack.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -114,7 +111,7 @@ public class TradeCreator implements Serializable {
      * @param timeOfTrade        time & date of the trade
      * @param meetingPlace       location of the trade
      */ //TradeManager
-    public Boolean sendTradeRequest(User user1, User user2, //user1 is the one sending the request to user2.
+    public Boolean sendTradeRequest(TradingUser user1, TradingUser user2, //user1 is the one sending the request to user2.
                                     ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
                                     LocalDateTime timeOfTrade, String meetingPlace) {
 
@@ -161,7 +158,7 @@ public class TradeCreator implements Serializable {
      * @param timeOfTrade        time & date of the trade
      * @param meetingPlace       location of the trade
      */
-    public Boolean sendTemporaryTradeRequest(User user1, User user2, //user1 is the one sending the request to user2.
+    public Boolean sendTemporaryTradeRequest(TradingUser user1, TradingUser user2, //user1 is the one sending the request to user2.
                                              ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
                                              LocalDateTime timeOfTrade, String meetingPlace) {
 
@@ -204,7 +201,7 @@ public class TradeCreator implements Serializable {
      * @param user1 the EntityPack.User who is sending the EntityPack.Trade request.
      * @return A TradeRequestAlert corresponding to <trade>
      */ //TradeManager
-    public TradeRequestAlert createTradeRequestAlert(Trade trade, User user1, boolean isTempTrade) {
+    public TradeRequestAlert createTradeRequestAlert(Trade trade, TradingUser user1, boolean isTempTrade) {
         return new TradeRequestAlert(user1.getUsername(), trade.getTradeID(), isTempTrade);
     }
 
@@ -284,7 +281,7 @@ public class TradeCreator implements Serializable {
             trade.incrementUser2NumRequests();
         }
 
-        TradeRequestAlert alert = createTradeRequestAlert(trade, userManager.searchUser(UserEditingName),
+        TradeRequestAlert alert = createTradeRequestAlert(trade, (TradingUser)userManager.searchUser(UserEditingName),
                 trade instanceof TemporaryTrade);
 
         String otherUserName;
@@ -321,7 +318,7 @@ public class TradeCreator implements Serializable {
      * @param user the user whose pending trades are being searched
      * @return the trades of the yser
      */ //TradeManager
-    public ArrayList<Trade> searchPendingTradesByUser(User user) {
+    public ArrayList<Trade> searchPendingTradesByUser(TradingUser user) {
         ArrayList<Trade> userTrades = new ArrayList<Trade>();
         for (Trade trade : pendingTrades) {
             if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
@@ -384,7 +381,7 @@ public class TradeCreator implements Serializable {
      * @param u2 user2
      * @return Boolean
      */ //TradeManager
-    public Boolean beforeTrade(User u1, User u2) {
+    public Boolean beforeTrade(TradingUser u1, TradingUser u2) {
         if (tradeHistories.getNumTradesThisWeek(u1.getUsername()) > completeThreshold ||
                 tradeHistories.getNumTradesThisWeek(u2.getUsername()) > completeThreshold ||
                 !u1.isActive() || u2.isActive()) {
@@ -399,7 +396,7 @@ public class TradeCreator implements Serializable {
      * @param user  who is confirming the trade
      * @param trade the trade object
      */ //TradeManager????
-    public void confirmTrade(UserManager userManager, User user, Trade trade) {
+    public void confirmTrade(UserManager userManager, TradingUser user, Trade trade) {
         if (user.getUsername().equals(trade.getUsername1())) {
             trade.setUser1TradeConfirmed(true);
         } else if (user.getUsername().equals(trade.getUsername2())) {
@@ -430,8 +427,8 @@ public class TradeCreator implements Serializable {
         checkPendingTrades(userManager);
 
 
-        User user1 = userManager.searchUser(trade.getUsername1());
-        User user2 = userManager.searchUser(trade.getUsername2());
+        TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
+        TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
 
         assert user1 != null;
         //This might be > instead of >= idk lol
@@ -458,8 +455,8 @@ public class TradeCreator implements Serializable {
     public void checkPendingTrades(UserManager userManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTrades) {
-            User user1 = userManager.searchUser(trade.getUsername1());
-            User user2 = userManager.searchUser(trade.getUsername2());
+            TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
+            TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
             for (int itemID : trade.getItemIDsSentToUser1()) {
                 Item item = userManager.searchItem(user2, itemID);
                 if (item == null) {
@@ -493,8 +490,8 @@ public class TradeCreator implements Serializable {
     public void checkPendingTradeRequests(UserManager userManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTradeRequests) {
-            User user1 = userManager.searchUser(trade.getUsername1());
-            User user2 = userManager.searchUser(trade.getUsername2());
+            TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
+            TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
             for (int itemID : trade.getItemIDsSentToUser1()) {
                 Item item = userManager.searchItem(user2, itemID);
                 if (item == null) {

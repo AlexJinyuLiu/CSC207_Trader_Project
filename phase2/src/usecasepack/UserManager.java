@@ -98,8 +98,9 @@ public class UserManager implements Serializable{
      * @param trade trade object
      */ //TradeManager
     public void exchangeItems(Trade trade){
-        User user1 = searchUser(trade.getUsername1());
-        User user2 = searchUser(trade.getUsername2());
+        //TODO: Find a better solution than casting like this.
+        TradingUser user1 = (TradingUser)searchUser(trade.getUsername1());
+        TradingUser user2 = (TradingUser)searchUser(trade.getUsername2());
         for(int itemID : trade.getItemIDsSentToUser1()){
 
             Item item = searchItem(user2, itemID);
@@ -145,8 +146,8 @@ public class UserManager implements Serializable{
      * @param trade Temporary EntityPack.Trade Object
      */ //TradeManager???
     public void reExchangeItems(TemporaryTrade trade){
-        User user1 = searchUser(trade.getUsername1());
-        User user2 = searchUser(trade.getUsername2());
+        TradingUser user1 = (TradingUser)searchUser(trade.getUsername1());
+        TradingUser user2 = (TradingUser)searchUser(trade.getUsername2());
         for(int itemID : trade.getItemIDsSentToUser1()) {
             Item item = searchItem(user2, itemID);
             user1.removeBorrowedItem(item);
@@ -181,13 +182,32 @@ public class UserManager implements Serializable{
      * @param password password of user
      * @return the created user
      */ //UseCasePack.UserManager
-    public User createUser(String username, String password) throws UserNameTakenException {
+    public TradingUser createTradingUser(String username, String password) throws UserNameTakenException {
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
                 throw new UserNameTakenException();
             }
         }
-        User newUser = new User(username);
+        TradingUser newUser = new TradingUser(username);
+        newUser.setPassword(password);
+        listUsers.add(newUser);
+        alertSystem.put(username, new ArrayList<UserAlert>());
+        return newUser;
+    }
+
+    /** Method which creates a user and adds it to the list of users
+     * Author: Jinyu Liu
+     * @param username username of user
+     * @param password password of user
+     * @return the created user
+     */ //UseCasePack.UserManager
+    public BrowsingOnlyUser createBrowsingOnlyUser(String username, String password) throws UserNameTakenException {
+        for (User user : listUsers) {
+            if (user.getUsername().equals(username)) {
+                throw new UserNameTakenException();
+            }
+        }
+        BrowsingOnlyUser newUser = new BrowsingOnlyUser(username);
         newUser.setPassword(password);
         listUsers.add(newUser);
         alertSystem.put(username, new ArrayList<UserAlert>());
@@ -199,7 +219,7 @@ public class UserManager implements Serializable{
      * @param user user
      * @param itemName name of item
      */ //UseCasePack.UserManager
-    public void addToWishlist(User user, String itemName){
+    public void addToWishlist(TradingUser user, String itemName){
         user.addItemToWishList(itemName);
     }
 
@@ -208,7 +228,7 @@ public class UserManager implements Serializable{
      * @param user user
      * @param itemName name of item
      */ //UseCasePack.UserManager
-    public void removeFromWishList(User user, String itemName){
+    public void removeFromWishList(TradingUser user, String itemName){
         user.removeItemFromWishList(itemName);
     }
 
@@ -244,7 +264,7 @@ public class UserManager implements Serializable{
      * @param itemID ID number of the item
      * @return item
      */ //Wherever is most convenient
-    public Item searchItem(User user, int itemID){
+    public Item searchItem(TradingUser user, int itemID){
         for(Item item: user.getAvailableItems()){
             if(itemID == item.getId()){
                 return item;
@@ -261,14 +281,17 @@ public class UserManager implements Serializable{
      *///Ditto from above
     public Item searchItem(int itemID) {
         for (User user : listUsers) {
-            for (Item item : user.getAvailableItems()) {
-                if (itemID == item.getId()) {
-                    return item;
+            if (user instanceof TradingUser) {
+                TradingUser tradingUser = (TradingUser) user;
+                for (Item item : tradingUser.getAvailableItems()) {
+                    if (itemID == item.getId()) {
+                        return item;
+                    }
                 }
-            }
-            for (Item item: user.getBorrowedItems()){
-                if (itemID == item.getId()) {
-                    return item;
+                for (Item item : tradingUser.getBorrowedItems()) {
+                    if (itemID == item.getId()) {
+                        return item;
+                    }
                 }
             }
         }
@@ -326,7 +349,7 @@ public class UserManager implements Serializable{
      *
      * @param user the number by which to increase the number of incomplete trades attributed to a user by.
      */
-    public void increaseUserIncompleteTrades(User user){
+    public void increaseUserIncompleteTrades(TradingUser user){
         user.increaseNumIncompleteTrades(1);
     }
 
@@ -335,7 +358,7 @@ public class UserManager implements Serializable{
      * @param user the user which is the number of incomplete trades is being queried.
      * @return the number of incomplete trades attributed to the user.
      */
-    public int getUserIncompleteTrades(User user){
+    public int getUserIncompleteTrades(TradingUser user){
         return user.getNumIncompleteTrades();
     }
 

@@ -1,6 +1,8 @@
 import alertpack.*;
 import controllerpresenterpack.*;
+import entitypack.BrowsingOnlyUser;
 import entitypack.MetroArea;
+import entitypack.TradingUser;
 import entitypack.User;
 import usecasepack.AdminUser;
 import usecasepack.TradeCreator;
@@ -25,7 +27,8 @@ public class TradeSystem {
 
     private AdminAlertManager adminAlertManager = new AdminAlertManager();
     private AdminActions adminActions = new AdminActions();
-    private UserActions userActions = new UserActions();
+    private TradingUserActions tradingUserActions = new TradingUserActions();
+    private BrowsingUserActions browsingUserActions = new BrowsingUserActions();
 
     private String dir = "phase2/data/";
 
@@ -106,7 +109,12 @@ public class TradeSystem {
             userManager.onStartUp(tradeCreator);
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
             userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, userAlerts);
-            userActions.runUserMenu(menuPresenter, userManager, tradeCreator, loggedIn);
+            if (loggedIn instanceof TradingUser) {
+                tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn);
+            } else if (loggedIn instanceof BrowsingOnlyUser){
+                browsingUserActions.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator,
+                        (BrowsingOnlyUser)loggedIn);
+            }
         }
 
         FileManager.saveAdminToFile(adminUser);
@@ -145,7 +153,7 @@ public class TradeSystem {
         FileManager.saveTradeCreatorToFile(tradeCreator);
     }
 
-    private User createAccount(){  // does not check that the username is taken
+    private TradingUser createAccount(){  // does not check that the username is taken
         while (true) {
             try {
                 Scanner scan = new Scanner(System.in);
@@ -155,7 +163,8 @@ public class TradeSystem {
                 //"Enter your desired password"
                 menuPresenter.printMenu(1, 2);
                 String password = scan.nextLine();
-                User user = userManager.createUser(inputUsername, password);
+                //TODO: Allow the user to choose which kind of account they want to make (Borrowing or trading user).
+                TradingUser user = userManager.createTradingUser(inputUsername, password);
                 pickCity(inputUsername);
                 return user;
             } catch (UserNameTakenException e) {

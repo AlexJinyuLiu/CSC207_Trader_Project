@@ -3,7 +3,7 @@ package controllerpresenterpack;
 import alertpack.*;
 import entitypack.TemporaryTrade;
 import entitypack.Trade;
-import entitypack.User;
+import entitypack.TradingUser;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -120,7 +120,7 @@ public class UserAlertManager {
             menuPresenter.printMenu(24, 5);
 
         } else {
-            User user = userManager.searchUser(alert.getUsername());
+            TradingUser user = (TradingUser)userManager.searchUser(alert.getUsername());
             TemporaryTrade trade = tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId());
             tradeCreator.getTradeHistories().confirmReExchange(userManager, user, trade);
             // "EntityPack.Trade ReExchange confirmed"
@@ -143,15 +143,15 @@ public class UserAlertManager {
         Scanner scan = new Scanner(System.in);
         Trade trade = tradeCreator.searchPendingTradeRequest(a.getTradeID());
 
-        User thisUser;
+        TradingUser thisUser;
 
         int numEditsRemaining;
         if (a.getSenderUserName().equals(trade.getUsername1())){
             numEditsRemaining = 3 - trade.getUser2NumRequests();
-            thisUser = userManager.searchUser(trade.getUsername2());
+            thisUser = (TradingUser)userManager.searchUser(trade.getUsername2());
         }else{
             numEditsRemaining = 3 - trade.getUser1NumRequests();
-            thisUser = userManager.searchUser(trade.getUsername1());
+            thisUser = (TradingUser)userManager.searchUser(trade.getUsername1());
         }
 
         if (numEditsRemaining == 0){
@@ -339,7 +339,7 @@ public class UserAlertManager {
             input = scan.nextInt();
             if (input == 1) {
                 flag = true;
-                User user = userManager.searchUser(a.getUsername());
+                TradingUser user = (TradingUser)userManager.searchUser(a.getUsername());
                 tradeCreator.confirmTrade(userManager, user, tradeCreator.searchTrades(a.getTradeId()));
                 // "EntityPack.Trade confirmed. Your items have been exchanged on the system."
                 menuPresenter.printMenu(30, 5);

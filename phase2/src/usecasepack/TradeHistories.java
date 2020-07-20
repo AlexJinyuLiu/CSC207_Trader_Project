@@ -3,10 +3,7 @@ package usecasepack;
 import alertpack.AdminAlert;
 import alertpack.ExpirationAlert;
 import alertpack.UserAlert;
-import entitypack.Item;
-import entitypack.TemporaryTrade;
-import entitypack.Trade;
-import entitypack.User;
+import entitypack.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -309,7 +306,7 @@ public class TradeHistories  implements Serializable {
      * @param user the user whose trades are being searched
      * @return the trades of the user
      */ //TradeManager
-    public ArrayList<TemporaryTrade> searchActiveTempTradesByUser(User user) {
+    public ArrayList<TemporaryTrade> searchActiveTempTradesByUser(TradingUser user) {
         ArrayList<TemporaryTrade> userTrades = new ArrayList<TemporaryTrade>();
         for (TemporaryTrade trade: currentTemporaryTrades) {
             if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
@@ -352,7 +349,7 @@ public class TradeHistories  implements Serializable {
      * @param user user who is confirming the re-exchange of items.
      * @param temporaryTrade the temporary trade object.
      */ //TradeManager????
-    public void confirmReExchange(UserManager userManager, User user, TemporaryTrade temporaryTrade){
+    public void confirmReExchange(UserManager userManager, TradingUser user, TemporaryTrade temporaryTrade){
         if(user.getUsername().equals(temporaryTrade.getUsername1())){
             temporaryTrade.setUser1ItemReturnRequestAccepted(true);
         }

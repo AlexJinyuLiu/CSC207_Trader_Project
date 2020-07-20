@@ -1,7 +1,7 @@
 package controllerpresenterpack;
 
 import alertpack.*;
-import entitypack.User;
+import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
@@ -109,11 +109,13 @@ public class AdminAlertManager {
             menuPresenter.printMenu(12,2);
             input = scan.nextInt();
             if (input == 1){
-                userManager.increaseUserIncompleteTrades(userManager.searchUser(alert.getReportedUserName()));
-                int numIncompleteTrades = userManager.searchUser(alert.getReportedUserName()).getNumIncompleteTrades();
+                userManager.increaseUserIncompleteTrades(
+                        (TradingUser)userManager.searchUser(alert.getReportedUserName()));
+                int numIncompleteTrades =
+                        ((TradingUser)userManager.searchUser(alert.getReportedUserName())).getNumIncompleteTrades();
                 threshold = userManager.getIncompleteThreshold();
                 if (numIncompleteTrades > threshold){
-                    User reportedUser = userManager.searchUser(alert.getReportedUserName());
+                    TradingUser reportedUser = (TradingUser)userManager.searchUser(alert.getReportedUserName());
                     adminUser.freezeUser(userManager, reportedUser, tradeCreator);
                 }
                 flag = false;
@@ -152,7 +154,7 @@ public class AdminAlertManager {
             menuPresenter.printMenu(13,2);
             input = scan.nextInt();
             if (input == 1) {
-                User user = userManager.searchUser(alert.getUsername());
+                TradingUser user = (TradingUser)userManager.searchUser(alert.getUsername());
                 assert user != null;
                 adminUser.freezeUser(userManager, user, tradeCreator);
                 flag = false;
@@ -192,7 +194,7 @@ public class AdminAlertManager {
             menuPresenter.printMenu(14,2);
             input = scan.nextInt();
             if (input == 1) {
-                User user = userManager.searchUser(alert.getUsername());
+                TradingUser user = (TradingUser)userManager.searchUser(alert.getUsername());
                 adminUser.unfreezeAccount(user);
                 flag = false;
             }

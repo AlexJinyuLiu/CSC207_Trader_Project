@@ -2,7 +2,7 @@ package usecasepack;
 
 import alertpack.*;
 import entitypack.Item;
-import entitypack.User;
+import entitypack.TradingUser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -121,7 +121,7 @@ public class AdminUser implements Serializable {
     public void pollValidationRequest(UserManager userManager,
                                       boolean accepted, ItemValidationRequestAlert request, String message) {
         if (accepted) {
-            User user = userManager.searchUser(request.getOwner());
+            TradingUser user = (TradingUser)userManager.searchUser(request.getOwner());
             Item item = new Item(request.getName(), request.getItemID());
             item.setDescription(request.getDescription());
             assert user != null;
@@ -141,7 +141,7 @@ public class AdminUser implements Serializable {
      * author: tian
      * @param user user object to freeze
      */
-    public void freezeUser(UserManager userManager, User user, TradeCreator tradeCreator){
+    public void freezeUser(UserManager userManager, TradingUser user, TradeCreator tradeCreator){
         user.setFrozen(true);
         int numBorrowed = user.getNumBorrowed();
         int numLent = user.getNumLent();
@@ -155,7 +155,7 @@ public class AdminUser implements Serializable {
      * Unfreezes user account
      * @param user account to unfreeze
      */
-    public void unfreezeAccount(User user){
+    public void unfreezeAccount(TradingUser user){
         user.setFrozen(false);
     }
 
