@@ -10,7 +10,7 @@ import usecasepack.UserManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BrowsingUserActions {
+public class BrowsingUserActions implements UserBrowsing {
     //TODO: Create the BrowsingOnlyUser menu from here.
 
     public void runBrowsingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
@@ -56,7 +56,7 @@ public class BrowsingUserActions {
      * @param userViewing user logged in viewing other users
      */
     public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             BrowsingUser userViewing){
+                             User userViewing){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -103,8 +103,8 @@ public class BrowsingUserActions {
      * @param userToView user that is being viewed
      * @param userViewing user logged in that is viewing other user
      */
-    private void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          User userToView, BrowsingUser userViewing) {
+    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                          User userToView, User userViewing) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
@@ -127,7 +127,7 @@ public class BrowsingUserActions {
                     // "Please enter a valid input"
                     menuPresenter.printMenu(18, 5);
                 } else if (input == 1) {
-                    createMessage(menuPresenter, userManager, userToView, userViewing);
+                    createMessage(menuPresenter, userManager, userToView, (BrowsingUser)userViewing);
                 } else if (input == 0){
                     handled = true;
 
@@ -154,7 +154,7 @@ public class BrowsingUserActions {
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(18, 6);
         String message = scan.nextLine();
-        userManager.sendMessageToUser(userViewing, userToView, message);
+        userManager.sendMessageToUser(userViewing.getUsername(), userToView, message);
         menuPresenter.printMenu(18, 7, userToView.getUsername());
     }
 }

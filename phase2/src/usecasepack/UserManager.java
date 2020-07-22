@@ -324,13 +324,8 @@ public class UserManager implements Serializable{
      * @param recipient user object who is receiving the message.
      * @param message message text.
      */ //UseCasePack.UserManager
-    public void sendMessageToUser(User sender, User recipient, String message){
-        UserAlert alert = new MessageAlert(sender.getUsername(), message);
-        alertUser(recipient, alert);
-    }
-
-    public void sendMessageToUser(String admin, User recipient, String message) {
-        UserAlert alert = new MessageAlert(admin, message);
+    public void sendMessageToUser(String sender, User recipient, String message){
+        UserAlert alert = new MessageAlert(sender, message);
         alertUser(recipient, alert);
     }
 

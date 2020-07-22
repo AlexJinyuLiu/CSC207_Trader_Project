@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * A controller class that dictates what can be done on the Admin's menu.
  */
-public class AdminActions {
+public class AdminActions implements UserBrowsing{
 
     /**
      * Starts and calls the presenter class stuff to display the admin main menu and take user input.
@@ -58,11 +58,12 @@ public class AdminActions {
                     viewThresholdValues(menuPresenter, userManager, tradeCreator);
                     valid_input = true;
                 } else if (input == 6) {
+                    //TODO: Finish similar browsing system for trades.
                     editTrade(menuPresenter, userManager, tradeCreator, adminUser);
                     valid_input = true;
                 } else if (input == 7) {
                     // TODO: parameter type to be fixed
-                    viewAllUsers(menuPresenter, userManager, adminUser);
+                    viewAllUsers(menuPresenter, userManager);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -71,6 +72,19 @@ public class AdminActions {
             }
         }
     }
+
+
+    //TODO: the below method are to be called from input 6.
+    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                             User userViewing){
+
+    }
+
+    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                         User userToView, User userViewing){
+
+    }
+
 
     /** Method that takes user input and changes the threshold value (The necessary difference between the number of
      * items users have lent and borrowed before they can make another transaction)
@@ -197,8 +211,7 @@ public class AdminActions {
         menuPresenter.printMenu(39, 3, userManager.getIncompleteThreshold());
     }
 
-    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager,
-                             String adminViewing){
+    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -232,13 +245,13 @@ public class AdminActions {
                     valid_input = true;
                     menuPresenter.printMenu(35, 1, allUsers.get(input - 1).getUsername());
                     // menuPresenter.printMenu(18, 5);
-                    viewUser(menuPresenter, userManager, allUsers.get(input - 1), adminViewing);
+                    viewUser(menuPresenter, userManager, allUsers.get(input - 1));
                 }
             }
         }
     }
 
-    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView, String adminViewing) {
+    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
@@ -267,9 +280,8 @@ public class AdminActions {
                     // "Please enter a valid input"
                     menuPresenter.printMenu(45, 5);
                 } else if (input == 1) {
-                    createMessage(menuPresenter,userManager, userToView, adminViewing);
+                    createMessage(menuPresenter,userManager, userToView);
                 } else if (input == 2){
-                    // "Enter the name of the item you would like added to your wishlist:\n"
                     menuPresenter.printMenu(45, 8);
                     scan.nextLine();
                     String itemString = scan.nextLine();
@@ -279,7 +291,8 @@ public class AdminActions {
                     menuPresenter.printMenu(45, 10);
                     scan.nextLine();
                     String itemString = scan.nextLine();
-                    userManager.removeFromWishList(tradingUser, itemString);
+                    //TODO: Create this method.
+                    userManager.removeFromAvailableItems(tradingUser, itemString);
                     menuPresenter.printMenu(45, 11);
                 } else if (input == 0){
                     handled = true;
@@ -296,7 +309,7 @@ public class AdminActions {
                         validInput = true;
                         handled = true;
                     } else if (input == 1){
-                        createMessage(menuPresenter, userManager, userToView, adminViewing);
+                        createMessage(menuPresenter, userManager, userToView);
                     } else {
                         menuPresenter.printMenu(45,5);
                     }
@@ -306,11 +319,11 @@ public class AdminActions {
     }
 
     private void createMessage(MenuPresenter menuPresenter, UserManager userManager,
-                               User userToView, String adminViewing){
+                               User userToView){
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(45, 6);
         String message = scan.nextLine();
-        userManager.sendMessageToUser(adminViewing, userToView, message);
+        userManager.sendMessageToUser("Admin", userToView, message);
         menuPresenter.printMenu(45, 7, userToView.getUsername());
     }
 }

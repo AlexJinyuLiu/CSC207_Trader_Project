@@ -166,7 +166,13 @@ public class MenuPresenter {
         System.out.println(userString.toString());
     }
 
-
+    /**
+     *
+     * @param page
+     * @param nextPageExists
+     * @param allUsers
+     * @return
+     */
     public boolean printPageOfUsers(int page, boolean nextPageExists, ArrayList<User> allUsers){
         int input = -1;
         StringBuilder usersString = new StringBuilder();

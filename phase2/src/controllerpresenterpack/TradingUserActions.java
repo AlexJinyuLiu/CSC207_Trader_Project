@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * A controller class describing the actions a user can take from the menu in the trade system.
  */
-public class TradingUserActions {
+public class TradingUserActions implements UserBrowsing {
 
     /**
      * runs the usermenu as normal.
@@ -214,7 +214,7 @@ public class TradingUserActions {
      * @param userViewing user logged in viewing other users
      */
     public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             TradingUser userViewing){
+                             User userViewing){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -261,8 +261,8 @@ public class TradingUserActions {
      * @param userToView user that is being viewed
      * @param userViewing user logged in that is viewing other user
      */
-    private void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          User userToView, TradingUser userViewing) {
+    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                          User userToView, User userViewing) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
@@ -291,16 +291,16 @@ public class TradingUserActions {
                     // "Please enter a valid input"
                     menuPresenter.printMenu(18, 5);
                 } else if (input == 1) {
-                    createMessage(menuPresenter,userManager, userToView, userViewing);
+                    createMessage(menuPresenter,userManager, userToView, (TradingUser)userViewing);
                 } else if (input == 2){
                     // "Enter the name of the item you would like added to your wishlist:\n"
                     menuPresenter.printMenu(18, 8);
                     scan.nextLine();
                     String itemString = scan.nextLine();
-                    userManager.addToWishlist(userViewing, itemString);
+                    userManager.addToWishlist((TradingUser)userViewing, itemString);
                     menuPresenter.printMenu(18, 9);
                 } else if (input == 3 && !tradingUser.getFrozen()){
-                    formTradeRequest(menuPresenter, tradeCreator, userViewing, tradingUser);
+                    formTradeRequest(menuPresenter, tradeCreator, (TradingUser)userViewing, tradingUser);
                 } else if (input == 0){
                     handled = true;
 
@@ -316,7 +316,7 @@ public class TradingUserActions {
                         validInput = true;
                         handled = true;
                     } else if (input == 1){
-                        createMessage(menuPresenter,userManager, userToView, userViewing);
+                        createMessage(menuPresenter,userManager, userToView, (TradingUser)userViewing);
                     } else {
                         menuPresenter.printMenu(18,5);
                     }
@@ -330,7 +330,7 @@ public class TradingUserActions {
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(18, 6);
         String message = scan.nextLine();
-        userManager.sendMessageToUser(userViewing, userToView, message);
+        userManager.sendMessageToUser(userViewing.getUsername(), userToView, message);
         menuPresenter.printMenu(18, 7, userToView.getUsername());
     }
 
