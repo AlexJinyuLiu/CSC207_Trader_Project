@@ -35,6 +35,7 @@ Admin Login Menu
 (3) Set incomplete trade threshold
 (4) Add new admin
 (5) View current threshold values
+(6) Edit or undo a trade
 (0) Quit
 The number you entered was not listed above. Please enter a valid choice number.
 }
@@ -399,4 +400,15 @@ User Menu
 (0) Quit
 Please enter a number corresponding to a setting above:
 Please enter a number from 0 to
+}
+
+MENU{ - 44
+Edit Trade Menu
+(1) Lookup trade by ID
+(2) Lookup trade by browsing
+(0) Quit
+Please enter a valid integer
+(1) Un-confirm trade
+(2) Un-accept trade
+(3) Re-exchange items
 }

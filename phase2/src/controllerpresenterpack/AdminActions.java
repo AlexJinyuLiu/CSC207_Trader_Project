@@ -31,11 +31,12 @@ public class AdminActions {
             menuPresenter.printMenu(4,3); // (3) Set incomplete trade threshold
             menuPresenter.printMenu(4,4); // (4) Add new admin
             menuPresenter.printMenu(4, 5);// (5) View current threshold values
-            menuPresenter.printMenu(4,6); // (0) Quit
+            menuPresenter.printMenu(4, 6);// (6) Edit or undo a trade
+            menuPresenter.printMenu(4,7); // (0) Quit
             boolean valid_input = false;
             while (!valid_input) {
                 input = scan.nextInt();
-                if (input > 5 || input < 0) {
+                if (input > 6 || input < 0) {
                     menuPresenter.printMenu(4,7);
                 } else if (input == 1) {
                     changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
@@ -51,6 +52,9 @@ public class AdminActions {
                     valid_input = true;
                 } else if (input == 5){
                     viewThresholdValues(menuPresenter, userManager, tradeCreator);
+                    valid_input = true;
+                } else if (input == 6) {
+                    editTrade(menuPresenter);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -145,6 +149,32 @@ public class AdminActions {
             } else{
                 // "That username is taken."
                 menuPresenter.printMenu(33,2);
+            }
+        }
+    }
+
+    private void editTrade(MenuPresenter menuPresenter) {
+        boolean flag = true;
+        int input = -1;
+        while (flag) {
+            Scanner scan = new Scanner(System.in);
+            menuPresenter.printMenu(44,0);
+            menuPresenter.printMenu(44,1);
+            menuPresenter.printMenu(44,2);
+            menuPresenter.printMenu(44,3);
+            input = scan.nextInt();
+            if (input > 50 || input < -1) {
+                // "Please enter a valid integer"
+                menuPresenter.printMenu(44,4);
+            } else if (input == 1) {
+                // trade lookup by ID
+                flag = false;
+            } else if (input == 2) {
+                // trade lookup by user
+                flag = false;
+            } else if (input == 0) {
+                // quit
+                flag = false;
             }
         }
     }
