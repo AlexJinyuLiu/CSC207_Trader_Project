@@ -412,3 +412,18 @@ Please enter a valid integer
 (2) Un-accept trade
 (3) Re-exchange items
 }
+
+MENU{ - 45
+Viewing User
+(1) Send a message
+(2) Remove one of the items from their wishlist
+(3) Remove one of the items from their inventory
+(0) Back to Main Menu
+Please enter a valid input
+Enter the contents of your message:
+Sent message to
+Enter the name of the item you would like to remove from their wishlist:
+Item successfully removed from the wishlist.
+Enter the name of the item you would like to remove from their inventory:
+Item successfully removed from the inventory.
+}

@@ -1,11 +1,14 @@
 package controllerpresenterpack;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import entitypack.BrowsingUser;
+import entitypack.*;
 import usecasepack.AdminUser;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 /**
@@ -37,7 +40,7 @@ public class AdminActions {
             boolean valid_input = false;
             while (!valid_input) {
                 input = scan.nextInt();
-                if (input > 6 || input < 0) {
+                if (input > 7 || input < 0) {
                     menuPresenter.printMenu(4,7);
                 } else if (input == 1) {
                     changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
@@ -56,6 +59,10 @@ public class AdminActions {
                     valid_input = true;
                 } else if (input == 6) {
                     editTrade(menuPresenter, userManager, tradeCreator, adminUser);
+                    valid_input = true;
+                } else if (input == 7) {
+                    // TODO: parameter type to be fixed
+                    viewAllUsers(menuPresenter, userManager, adminUser);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -188,5 +195,122 @@ public class AdminActions {
         menuPresenter.printMenu(39, 1, tradeCreator.getBorrowLendThreshold());
         menuPresenter.printMenu(39, 2, tradeCreator.getCompleteThreshold());
         menuPresenter.printMenu(39, 3, userManager.getIncompleteThreshold());
+    }
+
+    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager,
+                             String adminViewing){
+        boolean handled = false;
+        Scanner scan = new Scanner(System.in);
+        // "--- View other users ---"
+        menuPresenter.printMenu(17, 0);
+        // "Enter a number to view a EntityPack.User's page:"
+        menuPresenter.printMenu(17, 1);
+        int page = 1;
+        // MetroArea usersMetro = userManager.getUsersMetro(userViewing);
+        // Dunno if we wanna search user by metro in the future
+        ArrayList<User> allUsers = userManager.getListUsers();
+        boolean nextPageExists = true;
+        while (!handled){
+            nextPageExists = menuPresenter.printPageOfUsers(page, nextPageExists, allUsers);
+            int input = -1;
+            input = scan.nextInt();
+            boolean valid_input = false;
+            while(!valid_input) {
+                if (input < 0 || input > allUsers.size() + 1 || (!nextPageExists && input == 0)){
+                    // "Please Enter a valid input."
+                    menuPresenter.printMenu(17, 4);
+                    input = scan.nextInt();
+                } else if (input == allUsers.size() + 1){
+                    handled = true;
+                    valid_input = true;
+                }
+                else if (input == 0) {
+                    page += 1;
+                    valid_input = true;
+                } else {
+                    handled = true;
+                    valid_input = true;
+                    menuPresenter.printMenu(35, 1, allUsers.get(input - 1).getUsername());
+                    // menuPresenter.printMenu(18, 5);
+                    viewUser(menuPresenter, userManager, allUsers.get(input - 1), adminViewing);
+                }
+            }
+        }
+    }
+
+    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView, String adminViewing) {
+        Scanner scan = new Scanner(System.in);
+
+        boolean handled = false;
+        int input;
+        while(!handled){
+            //menuPresenter.printMenu(35, 0, userString.toString());
+            if (userToView instanceof TradingUser) {
+                //TODO: This might cause a bug if we enter an invalid number
+                TradingUser tradingUser = (TradingUser) userToView;
+                menuPresenter.printTradingUserToString((TradingUser)userToView);
+                //StringBuilder userString = new StringBuilder(userToView.toString());
+                //userString.append("(1) Send a message\n");
+                menuPresenter.printMenu(45, 1);
+                //userString.append("(2) Add one of their items to your wishlist\n");
+                menuPresenter.printMenu(45, 2);
+                if (!tradingUser.getFrozen()) {
+                    //userString.append("(3) Send a trade request\n");
+                    menuPresenter.printMenu(45, 3);
+                }
+                //userString.append("(0) Back to Main Menu");
+                menuPresenter.printMenu(45, 4);
+
+                input = scan.nextInt();
+
+                if (input < 0 || input > 3 || (tradingUser.getFrozen() && input == 3)){
+                    // "Please enter a valid input"
+                    menuPresenter.printMenu(45, 5);
+                } else if (input == 1) {
+                    createMessage(menuPresenter,userManager, userToView, adminViewing);
+                } else if (input == 2){
+                    // "Enter the name of the item you would like added to your wishlist:\n"
+                    menuPresenter.printMenu(45, 8);
+                    scan.nextLine();
+                    String itemString = scan.nextLine();
+                    userManager.removeFromWishList(tradingUser, itemString);
+                    menuPresenter.printMenu(45, 9);
+                } else if (input == 3){
+                    menuPresenter.printMenu(45, 10);
+                    scan.nextLine();
+                    String itemString = scan.nextLine();
+                    userManager.removeFromWishList(tradingUser, itemString);
+                    menuPresenter.printMenu(45, 11);
+                } else if (input == 0){
+                    handled = true;
+
+                }
+            } else if (userToView instanceof BrowsingUser){
+                menuPresenter.printBorrowingOnlyUserToString((BrowsingUser)userToView);
+                boolean validInput = false;
+                while(!validInput) {
+                    menuPresenter.printMenu(45, 1);
+                    menuPresenter.printMenu(45, 4);
+                    input = scan.nextInt();
+                    if (input == 0) {
+                        validInput = true;
+                        handled = true;
+                    } else if (input == 1){
+                        createMessage(menuPresenter, userManager, userToView, adminViewing);
+                    } else {
+                        menuPresenter.printMenu(45,5);
+                    }
+                }
+            }
+        }
+    }
+
+    private void createMessage(MenuPresenter menuPresenter, UserManager userManager,
+                               User userToView, String adminViewing){
+        Scanner scan = new Scanner(System.in);
+        menuPresenter.printMenu(45, 6);
+        String message = scan.nextLine();
+        userManager.sendMessageToUser(adminViewing, userToView, message);
+        menuPresenter.printMenu(45, 7, userToView.getUsername());
     }
 }

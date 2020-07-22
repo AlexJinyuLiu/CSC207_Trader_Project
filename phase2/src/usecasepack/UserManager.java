@@ -329,6 +329,11 @@ public class UserManager implements Serializable{
         alertUser(recipient, alert);
     }
 
+    public void sendMessageToUser(String admin, User recipient, String message) {
+        UserAlert alert = new MessageAlert(admin, message);
+        alertUser(recipient, alert);
+    }
+
     /**
      *
      * @return the threshold of lent - borrowed which all users should be at or above.
