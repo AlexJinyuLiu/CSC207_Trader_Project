@@ -1,5 +1,6 @@
 package controllerpresenterpack;
 
+import entitypack.BrowsingUser;
 import usecasepack.AdminUser;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
@@ -54,7 +55,7 @@ public class AdminActions {
                     viewThresholdValues(menuPresenter, userManager, tradeCreator);
                     valid_input = true;
                 } else if (input == 6) {
-                    editTrade(menuPresenter);
+                    editTrade(menuPresenter, userManager, tradeCreator, adminUser);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -153,7 +154,8 @@ public class AdminActions {
         }
     }
 
-    private void editTrade(MenuPresenter menuPresenter) {
+    private void editTrade(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+                           AdminUser adminUser) {
         boolean flag = true;
         int input = -1;
         while (flag) {
@@ -170,7 +172,9 @@ public class AdminActions {
                 // trade lookup by ID
                 flag = false;
             } else if (input == 2) {
-                // trade lookup by user
+                // trade lookup by browsing
+                // BrowsingUserActions browse = new BrowsingUserActions();
+                // browse.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator, adminUser);
                 flag = false;
             } else if (input == 0) {
                 // quit
