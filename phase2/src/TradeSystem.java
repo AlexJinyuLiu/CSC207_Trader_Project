@@ -1,6 +1,6 @@
 import alertpack.*;
 import controllerpresenterpack.*;
-import entitypack.BrowsingOnlyUser;
+import entitypack.BrowsingUser;
 import entitypack.MetroArea;
 import entitypack.TradingUser;
 import entitypack.User;
@@ -111,9 +111,9 @@ public class TradeSystem {
             userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, userAlerts);
             if (loggedIn instanceof TradingUser) {
                 tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn);
-            } else if (loggedIn instanceof BrowsingOnlyUser){
+            } else if (loggedIn instanceof BrowsingUser){
                 browsingUserActions.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator,
-                        (BrowsingOnlyUser)loggedIn);
+                        (BrowsingUser)loggedIn);
             }
         }
 
@@ -153,7 +153,7 @@ public class TradeSystem {
         FileManager.saveTradeCreatorToFile(tradeCreator);
     }
 
-    private TradingUser createAccount(){  // does not check that the username is taken
+    private User createAccount(){  // does not check that the username is taken
         while (true) {
             try {
                 Scanner scan = new Scanner(System.in);
@@ -163,8 +163,22 @@ public class TradeSystem {
                 //"Enter your desired password"
                 menuPresenter.printMenu(1, 2);
                 String password = scan.nextLine();
-                //TODO: Allow the user to choose which kind of account they want to make (Borrowing or trading user).
-                TradingUser user = userManager.createTradingUser(inputUsername, password);
+                menuPresenter.printMenu(1, 3);
+                boolean valid_input = false;
+                String YNInput;
+                User user = null;
+                while(!valid_input){
+                    YNInput = scan.nextLine();
+                    if (YNInput.equals("Y")){
+                        user = userManager.createBrowsingUser(inputUsername, password);
+                        valid_input = true;
+                    } else if (YNInput.equals("N")){
+                        user = userManager.createTradingUser(inputUsername, password);
+                        valid_input = true;
+                    } else{
+                        menuPresenter.printMenu(1, 4);
+                    }
+                }
                 pickCity(inputUsername);
                 return user;
             } catch (UserNameTakenException e) {

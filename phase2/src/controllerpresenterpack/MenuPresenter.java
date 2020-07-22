@@ -166,7 +166,29 @@ public class MenuPresenter {
         System.out.println(userString.toString());
     }
 
-    public void printBorrowingOnlyUserToString(BrowsingOnlyUser user){
+
+    public boolean printPageOfUsers(int page, boolean nextPageExists, ArrayList<User> allUsers){
+        int input = -1;
+        StringBuilder usersString = new StringBuilder();
+        for(int i = (9 * (page - 1)) + 1; i < (9 * page) + 1; i++){
+            try {
+                usersString.append("(").append(i).append(") ").append(allUsers.get(i - 1).getUsername()).append("\n");
+            } catch (IndexOutOfBoundsException e){
+                nextPageExists = false;
+                usersString.append("Back to Main Menu");
+                // menuPresenter.printMenu(18, 2);
+                break;
+            }
+        }
+        if (nextPageExists) {
+            usersString.append("(0) next page (current page: ").append(page).append(")").append("\n");
+            // menuPresenter.printMenu(18, 3);
+        }
+        printMenu(35, 0, usersString.toString());
+        return nextPageExists;
+    }
+
+    public void printBorrowingOnlyUserToString(BrowsingUser user){
         System.out.println("User: " + user.getUsername() + "\nThis user is \"Browsing only\", " +
                 "meaning they have no items and cannot trade.");
     }

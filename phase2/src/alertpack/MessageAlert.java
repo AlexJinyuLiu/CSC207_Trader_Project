@@ -15,7 +15,7 @@ public class MessageAlert extends UserAlert implements Serializable {
      * @param message the text of the message.
      * @param senderUsername The user from which it is sent.
      */
-    public MessageAlert(String message, String senderUsername){
+    public MessageAlert(String senderUsername, String message){
         super(3);
         this.message = message;
         this.senderUsername = senderUsername;

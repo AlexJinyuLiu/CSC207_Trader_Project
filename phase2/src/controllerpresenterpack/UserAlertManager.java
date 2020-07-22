@@ -369,7 +369,8 @@ public class UserAlertManager {
 
     private void handleMessageAlert(MenuPresenter menuPresenter, MessageAlert a){
         // "From: " + a.getSenderUsername() + "\n" + a.getMessage()
-        menuPresenter.printMenu(31, 1);
+        menuPresenter.printMenu(31, 1, a.getSenderUsername());
+        menuPresenter.printMenu(35, 0, a.getMessage());
         boolean handled = false;
 
         int input = 0;

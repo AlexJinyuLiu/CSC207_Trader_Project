@@ -201,13 +201,13 @@ public class UserManager implements Serializable{
      * @param password password of user
      * @return the created user
      */ //UseCasePack.UserManager
-    public BrowsingOnlyUser createBrowsingOnlyUser(String username, String password) throws UserNameTakenException {
+    public BrowsingUser createBrowsingUser(String username, String password) throws UserNameTakenException {
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
                 throw new UserNameTakenException();
             }
         }
-        BrowsingOnlyUser newUser = new BrowsingOnlyUser(username);
+        BrowsingUser newUser = new BrowsingUser(username);
         newUser.setPassword(password);
         listUsers.add(newUser);
         alertSystem.put(username, new ArrayList<UserAlert>());

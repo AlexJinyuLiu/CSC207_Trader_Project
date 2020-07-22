@@ -11,6 +11,8 @@ MENU{ - 1
 Create Account Menu
 Enter your desired username
 Enter your desired password
+Should this account be browse-only (cannot make trades or have items). Please enter Y for yes and N for no.
+Please enter either Y or N.
 }
 
 MENU{ - 2
@@ -389,4 +391,12 @@ Which metropolitan area are you located in:
 (1) Toronto
 (2) Vancouver
 (3) Ottawa
+}
+
+MENU{ - 43
+User Menu
+(1) View other users
+(0) Quit
+Please enter a number corresponding to a setting above:
+Please enter a number from 0 to
 }

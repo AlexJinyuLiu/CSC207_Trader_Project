@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * A class defining the data associated with a user who cannot make any trades, but only browses.
  */
-public class BrowsingOnlyUser implements Serializable, User {
+public class BrowsingUser implements Serializable, User {
 
     private String username;
 
@@ -21,7 +21,7 @@ public class BrowsingOnlyUser implements Serializable, User {
     public boolean checkPassword(String pass){return pass.equals(password);}
 
 
-    public BrowsingOnlyUser(String username){
+    public BrowsingUser(String username){
         this.username = username;
     }
 

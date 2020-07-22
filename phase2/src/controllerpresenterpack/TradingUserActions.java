@@ -227,22 +227,7 @@ public class TradingUserActions {
         boolean nextPageExists = true;
         while (!handled){
             int input = -1;
-            StringBuilder usersString = new StringBuilder();
-            for(int i = (9 * (page - 1)) + 1; i < (9 * page) + 1; i++){
-                try {
-                    usersString.append("(").append(i).append(") ").append(allUsers.get(i - 1).getUsername()).append("\n");
-                } catch (IndexOutOfBoundsException e){
-                    nextPageExists = false;
-                    usersString.append("Back to Main Menu");
-                    // menuPresenter.printMenu(18, 2);
-                    break;
-                }
-            }
-            if (nextPageExists) {
-                usersString.append("(0) next page (current page: ").append(page).append(")").append("\n");
-                // menuPresenter.printMenu(18, 3);
-            }
-            menuPresenter.printMenu(35, 0, usersString.toString());
+            nextPageExists = menuPresenter.printPageOfUsers(page, nextPageExists, allUsers);
             input = scan.nextInt();
             boolean valid_input = false;
             while(!valid_input) {
@@ -306,13 +291,7 @@ public class TradingUserActions {
                     // "Please enter a valid input"
                     menuPresenter.printMenu(18, 5);
                 } else if (input == 1) {
-                    // "Enter the contents of your message:\n"
-                    menuPresenter.printMenu(18, 6);
-                    scan.nextLine();
-                    String message = scan.nextLine();
-                    userManager.sendMessageToUser(userViewing, userToView, message);
-                    // "Sent message to " + userToView.getUsername() + ": \"" + message + "\""
-                    menuPresenter.printMenu(18, 7);
+                    createMessage(menuPresenter,userManager, userToView, userViewing);
                 } else if (input == 2){
                     // "Enter the name of the item you would like added to your wishlist:\n"
                     menuPresenter.printMenu(18, 8);
@@ -326,21 +305,33 @@ public class TradingUserActions {
                     handled = true;
 
                 }
-            } else if (userToView instanceof BrowsingOnlyUser){
-                menuPresenter.printBorrowingOnlyUserToString((BrowsingOnlyUser)userToView);
+            } else if (userToView instanceof BrowsingUser){
+                menuPresenter.printBorrowingOnlyUserToString((BrowsingUser)userToView);
                 boolean validInput = false;
                 while(!validInput) {
-                    menuPresenter.printMenu(18,4);
+                    menuPresenter.printMenu(18, 1);
+                    menuPresenter.printMenu(18, 4);
                     input = scan.nextInt();
-                    if (input == 0){
+                    if (input == 0) {
                         validInput = true;
                         handled = true;
-                    } else{
+                    } else if (input == 1){
+                        createMessage(menuPresenter,userManager, userToView, userViewing);
+                    } else {
                         menuPresenter.printMenu(18,5);
                     }
                 }
             }
         }
+    }
+
+    private void createMessage(MenuPresenter menuPresenter, UserManager userManager,
+                               User userToView, TradingUser userViewing){
+        Scanner scan = new Scanner(System.in);
+        menuPresenter.printMenu(18, 6);
+        String message = scan.nextLine();
+        userManager.sendMessageToUser(userViewing, userToView, message);
+        menuPresenter.printMenu(18, 7, userToView.getUsername());
     }
 
     /**
