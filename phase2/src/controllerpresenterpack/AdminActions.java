@@ -18,7 +18,7 @@ public class AdminActions implements UserBrowsing{
 
     /**
      * Starts and calls the presenter class stuff to display the admin main menu and take user input.
-     * @param menuPresenter the menupresenter object to be used to print things.
+     * @param menuPresenter the menuPresenter object to be used to print things.
      * @param adminUser the UseCasePack.AdminUser initialized in the program.
      * @param tradeCreator the UseCasePack.TradeCreator initialized in the program.
      * @param userManager the UseCasePack.UserManager initialized in the program.
@@ -36,11 +36,13 @@ public class AdminActions implements UserBrowsing{
             menuPresenter.printMenu(4,4); // (4) Add new admin
             menuPresenter.printMenu(4, 5);// (5) View current threshold values
             menuPresenter.printMenu(4, 6);// (6) Edit or undo a trade
+            menuPresenter.printMenu(4,9);
+            menuPresenter.printMenu(4,10);
             menuPresenter.printMenu(4,7); // (0) Quit
             boolean valid_input = false;
             while (!valid_input) {
                 input = scan.nextInt();
-                if (input > 7 || input < 0) {
+                if (input > 8 || input < 0) {
                     menuPresenter.printMenu(4,7);
                 } else if (input == 1) {
                     changeBorrowLendThreshold(menuPresenter, adminUser, tradeCreator);
@@ -62,8 +64,10 @@ public class AdminActions implements UserBrowsing{
                     editTrade(menuPresenter, userManager, tradeCreator, adminUser);
                     valid_input = true;
                 } else if (input == 7) {
-                    // TODO: parameter type to be fixed
                     viewAllUsers(menuPresenter, userManager);
+                    valid_input = true;
+                } else if (input == 8) {
+                    searchUser(menuPresenter, userManager);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -211,7 +215,21 @@ public class AdminActions implements UserBrowsing{
         menuPresenter.printMenu(39, 3, userManager.getIncompleteThreshold());
     }
 
-    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager){
+    private void searchUser(MenuPresenter menuPresenter, UserManager userManager) {
+        Scanner scan = new Scanner(System.in);
+        menuPresenter.printMenu(45,13);
+        String username = scan.nextLine();
+        User user = userManager.searchUser(username);
+        if (user != null) {
+            viewUser(menuPresenter, userManager, user);
+        }
+        else {
+            menuPresenter.printMenu(45,14);
+        }
+
+    }
+
+    private void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -251,7 +269,7 @@ public class AdminActions implements UserBrowsing{
         }
     }
 
-    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView) {
+    private void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
@@ -285,15 +303,24 @@ public class AdminActions implements UserBrowsing{
                     menuPresenter.printMenu(45, 8);
                     scan.nextLine();
                     String itemString = scan.nextLine();
-                    userManager.removeFromWishList(tradingUser, itemString);
-                    menuPresenter.printMenu(45, 9);
+                    if (userManager.checkIfUserContain(tradingUser, itemString)) {
+                        userManager.removeFromWishList(tradingUser, itemString);
+                        menuPresenter.printMenu(45, 9);
+                    }
+                    else {
+                        menuPresenter.printMenu(45, 12);
+                    }
                 } else if (input == 3){
                     menuPresenter.printMenu(45, 10);
                     scan.nextLine();
-                    String itemString = scan.nextLine();
-                    //TODO: Create this method.
-                    userManager.removeFromAvailableItems(tradingUser, itemString);
-                    menuPresenter.printMenu(45, 11);
+                    int itemID = scan.nextInt();
+                    if (userManager.checkIfUserContain(tradingUser, itemID)) {
+                        userManager.removeFromInventory(tradingUser, itemID);
+                        menuPresenter.printMenu(45, 11);
+                    }
+                    else {
+                        menuPresenter.printMenu(45, 12);
+                    }
                 } else if (input == 0){
                     handled = true;
 

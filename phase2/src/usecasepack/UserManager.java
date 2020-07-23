@@ -232,6 +232,30 @@ public class UserManager implements Serializable{
         user.removeItemFromWishList(itemName);
     }
 
+    /**
+     * Removes the item with itemID from user's inventory
+     * @param user the trading user that the item is removed from
+     * @param itemID the ID of the item requested to be removed
+     */
+    public void removeFromInventory(TradingUser user, int itemID) {
+        Item item = searchItem(user, itemID);
+        assert item != null;
+        user.removeAvailableItem(item);
+    }
+
+    /**
+     * @param user the trading user that the items in their wishlist are being inspected
+     * @param itemName the name of the item that is being searched for
+     * @return true iff user contains itemName in their wishlist
+     */
+    public boolean checkIfUserContain(TradingUser user, String itemName) { return user.containItemInWishlist(itemName); }
+
+    /**
+     * @param user the trading user that the items in their inventory are being inspected
+     * @param itemID the ID of the item that is being searched for
+     * @return true iff user contains the item with itemID in their inventory
+     */
+    public boolean checkIfUserContain(TradingUser user, int itemID) { return user.containItemInInventory(itemID); }
 
     /**
      * Return a list of all adminAlerts from this class. Also empties the adminAlerts member.

@@ -155,6 +155,18 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
+     * @param itemSearched the name of the item that is being searched for
+     * @return true iff the user contains itemSearched in their wishlist
+     */
+    public boolean containItemInWishlist(String itemSearched) {
+        for (String item: getWishlistItemNames()) {
+            if (item.equals(itemSearched)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
      *
      * @param item item to be added to the user's available items.
      */
@@ -167,6 +179,19 @@ public class TradingUser implements Serializable, User {
      * @param item item to be removed from the user's available items.
      */
     public void removeAvailableItem(Item item){ availableItems.remove(item);
+    }
+
+    /**
+     * @param itemID the ID of the item that is being searched for
+     * @return true iff the user contains the item with itemID in their inventory
+     */
+    public boolean containItemInInventory(int itemID) {
+        for (Item item: getAvailableItems()) {
+            if (item.getId() == itemID) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

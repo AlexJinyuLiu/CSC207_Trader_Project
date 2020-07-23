@@ -180,13 +180,12 @@ public class TradingUserActions implements UserBrowsing {
              //"Please enter the ID of the item you wish to remove"
              menuPresenter.printMenu(16, 10);
              int itemID = scan.nextInt();
-             for (int i = 0; i < user.getAvailableItems().size(); i++){
-                 if (user.getAvailableItems().get(i).getId() == itemID) {
-                     user.getAvailableItems().remove(user.getAvailableItems().get(i));
-                     //"EntityPack.Item deleted"
-                     menuPresenter.printMenu(16, 11);
-                 } else //"Invalid item id"
-                     menuPresenter.printMenu(16, 12);
+             if (userManager.checkIfUserContain(user, itemID)) {
+                 userManager.removeFromInventory(user, itemID);
+                 menuPresenter.printMenu(16, 15);
+             }
+             else {
+                 menuPresenter.printMenu(16, 12);
              }
 
          } else if (input == 3){
@@ -194,12 +193,12 @@ public class TradingUserActions implements UserBrowsing {
              menuPresenter.printMenu(16, 13);
              scan.nextLine();
              String wishlistItem = scan.nextLine();
-             for (int i = 0; i < user.getWishlistItemNames().size(); i++) {
-                 if (user.getWishlistItemNames().get(i).equals(wishlistItem)) {
-                     user.getWishlistItemNames().remove(i);
-                     //"The item has been removed"
-                     menuPresenter.printMenu(16, 15);
-                 }
+             if (userManager.checkIfUserContain(user, wishlistItem)) {
+                 userManager.removeFromWishList(user, wishlistItem);
+                 menuPresenter.printMenu(16, 15);
+             }
+             else {
+                 menuPresenter.printMenu(16, 16);
              }
          } else if (input == 0){
              return;
@@ -293,12 +292,16 @@ public class TradingUserActions implements UserBrowsing {
                 } else if (input == 1) {
                     createMessage(menuPresenter,userManager, userToView, (TradingUser)userViewing);
                 } else if (input == 2){
-                    // "Enter the name of the item you would like added to your wishlist:\n"
+                    // "Enter the ID of the item you would like added to your wishlist:\n"
                     menuPresenter.printMenu(18, 8);
                     scan.nextLine();
-                    String itemString = scan.nextLine();
-                    userManager.addToWishlist((TradingUser)userViewing, itemString);
-                    menuPresenter.printMenu(18, 9);
+                    int itemID = scan.nextInt();
+                    if (userManager.checkIfUserContain((TradingUser)userToView, itemID)) {
+                        Item item = userManager.searchItem((TradingUser)userToView, itemID);
+                        userManager.addToWishlist((TradingUser)userViewing, item.getName());
+                        menuPresenter.printMenu(18, 9);
+                    }
+                    else { menuPresenter.printMenu(18,10); }
                 } else if (input == 3 && !tradingUser.getFrozen()){
                     formTradeRequest(menuPresenter, tradeCreator, (TradingUser)userViewing, tradingUser);
                 } else if (input == 0){

@@ -38,6 +38,8 @@ Admin Login Menu
 (6) Edit or undo a trade
 (0) Quit
 The number you entered was not listed above. Please enter a valid choice number.
+(7) View all users
+(8) Search user by username
 }
 
 MENU{ - 5
@@ -150,6 +152,7 @@ Invalid item id
 Please enter the name of the item on your wishlist you wish to remove.
 (0) Exit to main menu
 The item has been removed.
+Item has not been found.
 }
 
 MENU{ - 17
@@ -170,8 +173,9 @@ Viewing User
 Please enter a valid input
 Enter the contents of your message:
 Sent message to
-Enter the name of the item you would like added to your wishlist:
+Enter the ID of the item you would like added to your wishlist:
 Item successfully added to wishlist.
+Item has not been found in this user's inventory.
 }
 
 MENU{ - 19
@@ -423,7 +427,10 @@ Please enter a valid input
 Enter the contents of your message:
 Sent message to
 Enter the name of the item you would like to remove from their wishlist:
-Item successfully removed from the wishlist.
-Enter the name of the item you would like to remove from their inventory:
-Item successfully removed from the inventory.
+Item has been successfully removed from the wishlist.
+Enter the ID of the item you would like to remove from their inventory:
+Item has been successfully removed from the inventory.
+Item has not been found.
+Please enter the username of the user.
+User has not been found. Redirected to the menu.
 }
