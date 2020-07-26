@@ -122,7 +122,7 @@ public class AdminUser implements Serializable {
                                       boolean accepted, ItemValidationRequestAlert request, String message) {
         if (accepted) {
             TradingUser user = (TradingUser)userManager.searchUser(request.getOwner());
-            Item item = new Item(request.getName(), request.getItemID());
+            Item item = new Item(request.getName(), request.getItemID(), request.getOwner());
             item.setDescription(request.getDescription());
             assert user != null;
             user.addAvailableItem(item);   //Changed this to fail when user is null. We don't want the program

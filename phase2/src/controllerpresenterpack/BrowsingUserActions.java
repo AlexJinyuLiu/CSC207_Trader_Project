@@ -4,6 +4,7 @@ import entitypack.BrowsingUser;
 import entitypack.MetroArea;
 import entitypack.TradingUser;
 import entitypack.User;
+import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -14,8 +15,8 @@ public class BrowsingUserActions implements UserBrowsing {
     //TODO: Create the BrowsingOnlyUser menu from here.
 
     public void runBrowsingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-    BrowsingUser user){
-        mainMenu(menuPresenter, userManager, tradeCreator, user);
+    BrowsingUser user, ItemManager itemManager){
+        mainMenu(menuPresenter, userManager, tradeCreator, user, itemManager);
     }
 
     /**
@@ -23,7 +24,7 @@ public class BrowsingUserActions implements UserBrowsing {
      * @param user user logged in making changes or viewing statuses
      */
     private void mainMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          BrowsingUser user){
+                          BrowsingUser user, ItemManager itemManager){
         int numOptions = 1;
         boolean running = true;
         while (running) {
@@ -41,7 +42,7 @@ public class BrowsingUserActions implements UserBrowsing {
                     //"Please enter a number from 0 to "
                     menuPresenter.printMenu(43, 4, numOptions);
                 } else if (input == 1) {
-                    viewAllUsers(menuPresenter, userManager, tradeCreator, user);
+                    viewAllUsers(menuPresenter, userManager, tradeCreator, user, itemManager);
                     valid_input = true;
                 } else if (input == 0){
                     valid_input = true;
@@ -56,7 +57,7 @@ public class BrowsingUserActions implements UserBrowsing {
      * @param userViewing user logged in viewing other users
      */
     public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             User userViewing){
+                             User userViewing, ItemManager itemManager){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -89,7 +90,7 @@ public class BrowsingUserActions implements UserBrowsing {
                     valid_input = true;
                     menuPresenter.printMenu(35, 1, allUsers.get(input - 1).getUsername());
                     // menuPresenter.printMenu(18, 5);
-                    viewUser(menuPresenter, userManager, tradeCreator, allUsers.get(input - 1), userViewing);
+                    viewUser(menuPresenter, userManager, tradeCreator, allUsers.get(input - 1), userViewing, itemManager);
                 }
             }
         }
@@ -104,7 +105,7 @@ public class BrowsingUserActions implements UserBrowsing {
      * @param userViewing user logged in that is viewing other user
      */
     public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          User userToView, User userViewing) {
+                          User userToView, User userViewing, ItemManager itemManager) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;

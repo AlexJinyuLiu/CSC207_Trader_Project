@@ -93,73 +93,6 @@ public class UserManager implements Serializable{
         this.adminAlerts.add(alert);
     }
 
-    /** Method which exchanges the items in the trade system after a trade has been marked as completed
-     * Author: Louis Scheffer V
-     * @param trade trade object
-     */ //TradeManager
-    public void exchangeItems(Trade trade){
-        //TODO: Find a better solution than casting like this.
-        TradingUser user1 = (TradingUser)searchUser(trade.getUsername1());
-        TradingUser user2 = (TradingUser)searchUser(trade.getUsername2());
-        for(int itemID : trade.getItemIDsSentToUser1()){
-
-            Item item = searchItem(user2, itemID);
-            for (String string: user1.getWishlistItemNames()){
-                if(item.getName().equals(string)){
-                    user1.removeItemFromWishList(string);
-                }
-            }
-            //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
-            user1.increaseNumBorrowed(1);
-            user2.increaseNumLent(1);
-            user2.removeAvailableItem(item);
-            if (trade instanceof TemporaryTrade){
-                user1.addBorrowedItem(item);
-            }
-            else {
-                user1.addAvailableItem(item);
-            }
-        }
-        for(int itemID : trade.getItemIDsSentToUser2()){
-            Item item = searchItem(user1, itemID);
-            for (String string: user2.getWishlistItemNames()){
-                if(item.getName().equals(string)){
-                    user2.removeItemFromWishList(string);
-                }
-            }
-            //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
-            user2.increaseNumBorrowed(1);
-            user1.increaseNumLent(1);
-            user1.removeAvailableItem(item);
-            if (trade instanceof TemporaryTrade){
-                user2.addBorrowedItem(item);
-            }
-            else{
-                user2.addAvailableItem(item);
-            }
-
-        }
-    }
-
-    /** Method which returns items to their owners after the expiration of a temporary trade
-     * Author: Louis Scheffer V
-     * @param trade Temporary EntityPack.Trade Object
-     */ //TradeManager???
-    public void reExchangeItems(TemporaryTrade trade){
-        TradingUser user1 = (TradingUser)searchUser(trade.getUsername1());
-        TradingUser user2 = (TradingUser)searchUser(trade.getUsername2());
-        for(int itemID : trade.getItemIDsSentToUser1()) {
-            Item item = searchItem(user2, itemID);
-            user1.removeBorrowedItem(item);
-            user2.addAvailableItem(item);
-        }
-        for(int itemID : trade.getItemIDsSentToUser2()) {
-            Item item = searchItem(user1, itemID);
-            user2.removeBorrowedItem(item);
-            user2.addAvailableItem(item);
-        }
-    }
-
 
     /** 3-arg method which creates and instantiates an ItemvalidationRequest.
      * Author: Jinyu Liu
@@ -232,16 +165,7 @@ public class UserManager implements Serializable{
         user.removeItemFromWishList(itemName);
     }
 
-    /**
-     * Removes the item with itemID from user's inventory
-     * @param user the trading user that the item is removed from
-     * @param itemID the ID of the item requested to be removed
-     */
-    public void removeFromInventory(TradingUser user, int itemID) {
-        Item item = searchItem(user, itemID);
-        assert item != null;
-        user.removeAvailableItem(item);
-    }
+    public void reExchangeItems(){}
 
     /**
      * @param user the trading user that the items in their wishlist are being inspected
@@ -280,48 +204,6 @@ public class UserManager implements Serializable{
         }
         return null;
     }
-
-    /** Method which returns a item (that is in a user's available items) when given its ID number and the user who it
-     * belongs to. Returns null if the ID is invalid.
-     * Author: Louis Scheffer V
-     * @param user who owns the item
-     * @param itemID ID number of the item
-     * @return item
-     */ //Wherever is most convenient
-    public Item searchItem(TradingUser user, int itemID){
-        for(Item item: user.getAvailableItems()){
-            if(itemID == item.getId()){
-                return item;
-            }
-        }
-        return null;
-    }
-
-    /** Method which returns a item (that is in a user's available items) when given its ID number.
-     * Returns null if an invalid ID is given
-     * Author: Louis Scheffer V
-     * @param itemID ID number of the item
-     * @return item
-     *///Ditto from above
-    public Item searchItem(int itemID) {
-        for (User user : listUsers) {
-            if (user instanceof TradingUser) {
-                TradingUser tradingUser = (TradingUser) user;
-                for (Item item : tradingUser.getAvailableItems()) {
-                    if (itemID == item.getId()) {
-                        return item;
-                    }
-                }
-                for (Item item : tradingUser.getBorrowedItems()) {
-                    if (itemID == item.getId()) {
-                        return item;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
 
     /** Overloaded method to send an alert to a user. This one uses a user object.
      * Author: Louis Scheffer V

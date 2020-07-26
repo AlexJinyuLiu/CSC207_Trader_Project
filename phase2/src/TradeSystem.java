@@ -4,10 +4,7 @@ import entitypack.BrowsingUser;
 import entitypack.MetroArea;
 import entitypack.TradingUser;
 import entitypack.User;
-import usecasepack.AdminUser;
-import usecasepack.TradeCreator;
-import usecasepack.UserManager;
-import usecasepack.UserNameTakenException;
+import usecasepack.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,6 +18,7 @@ public class TradeSystem {
     private AdminUser adminUser;
     private UserManager userManager;
     private TradeCreator tradeCreator;
+    private ItemManager itemManager;
     private MenuPresenter menuPresenter = new MenuPresenter();
 
     private UserAlertManager userAlertManager = new UserAlertManager();
@@ -56,6 +54,9 @@ public class TradeSystem {
         if (!((new File(dir + "tradeCreator.ser"))).exists()){
             createTradeCreator();
         }
+        if (!((new File(dir + "itemManager.ser"))).exists()){
+            createItemManager();
+        }
 
         for (int i = 0; i < 5; i++){
             menuPresenter.printMenu(40, i);
@@ -64,6 +65,7 @@ public class TradeSystem {
         adminUser = FileManager.loadAdminUser();
         userManager = FileManager.loadUserManager();
         tradeCreator = FileManager.loadTradeCreator();
+        itemManager = FileManager.loadItemManager();
 
         tradeCreator.getTradeHistories().checkForExpiredTempTrades();
         tradeCreator.onStartup();
@@ -101,19 +103,19 @@ public class TradeSystem {
             adminUser.onStartUp(userManager, tradeCreator);
             ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
             adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
-            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager);
+            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager, itemManager);
         } else {
             if (loggedIn == null) {
                 return;
             }
             userManager.onStartUp(tradeCreator);
             ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
-            userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, userAlerts);
+            userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, itemManager, userAlerts);
             if (loggedIn instanceof TradingUser) {
-                tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn);
+                tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn, itemManager);
             } else if (loggedIn instanceof BrowsingUser){
                 browsingUserActions.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator,
-                        (BrowsingUser)loggedIn);
+                        (BrowsingUser)loggedIn, itemManager);
             }
         }
 
@@ -151,6 +153,11 @@ public class TradeSystem {
     private void createTradeCreator(){
         TradeCreator tradeCreator = new TradeCreator();
         FileManager.saveTradeCreatorToFile(tradeCreator);
+    }
+
+    private void createItemManager(){
+        ItemManager itemManager = new ItemManager();
+        FileManager.saveItemManagerToFile(itemManager);
     }
 
     private User createAccount(){  // does not check that the username is taken

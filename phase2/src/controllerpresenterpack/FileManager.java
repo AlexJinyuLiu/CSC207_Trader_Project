@@ -1,6 +1,7 @@
 package controllerpresenterpack;
 
 import usecasepack.AdminUser;
+import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -63,6 +64,19 @@ public class FileManager {
             FileOutputStream file = new FileOutputStream(dir + "tradeCreator.ser");
             ObjectOutputStream out = new ObjectOutputStream(file);
             out.writeObject(tradeCreator);
+            out.close();
+            file.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveItemManagerToFile(ItemManager itemManager){
+        try {
+            FileOutputStream file = new FileOutputStream(dir + "itemManager.ser");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+            out.writeObject(itemManager);
             out.close();
             file.close();
         }
@@ -134,5 +148,24 @@ public class FileManager {
         }
 
         return tradeCreator;
+    }
+
+    public static ItemManager loadItemManager(){
+        ItemManager itemManager;
+        try {
+            FileInputStream file = new FileInputStream(dir + "itemManager.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+            itemManager = (ItemManager) in.readObject();
+
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            // ClassNotFoundException if EntityPack.User class is not recognized
+            e.printStackTrace();
+            return null;
+        }
+
+        return itemManager;
     }
 }

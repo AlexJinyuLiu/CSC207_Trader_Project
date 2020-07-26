@@ -2,6 +2,7 @@ package controllerpresenterpack;
 
 import alertpack.UnfreezeRequestAlert;
 import entitypack.*;
+import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -20,15 +21,15 @@ public class TradingUserActions implements UserBrowsing {
      * runs the usermenu as normal.
      * @param user the user currently logged in.
      */
-    public void runTradingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user){
-        mainMenu(menuPresenter,userManager, tradeCreator, user);
+    public void runTradingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user, ItemManager itemManager){
+        mainMenu(menuPresenter,userManager, tradeCreator, user, itemManager);
     }
 
     /**
      * Display the main menu to user, take user's input to implement the corresponding action
      * @param user user logged in making changes or viewing statuses
      */
-    private void mainMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user){
+    private void mainMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user, ItemManager itemManager){
 
         boolean running = true;
         while (running) {
@@ -49,22 +50,22 @@ public class TradingUserActions implements UserBrowsing {
                     //"Please enter a number from 0 to 6"
                     menuPresenter.printMenu(15, 9);
                 } else if (input == 1) {
-                    viewItemAndWishlist(menuPresenter,userManager, user);
+                    viewItemAndWishlist(menuPresenter, userManager, user, itemManager);
                     valid_input = true;
                 } else if (input == 2) {
-                    runStats(menuPresenter,userManager, tradeCreator, user);
+                    runStats(menuPresenter, itemManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 3) {
                     sendUnfreezeRequest(menuPresenter, userManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 4) {
-                    viewAllUsers(menuPresenter, userManager, tradeCreator, user);
+                    viewAllUsers(menuPresenter, userManager, tradeCreator, user, itemManager);
                     valid_input = true;
                 } else if (input == 5) {
-                    viewPendingTrades(menuPresenter, userManager, tradeCreator, user);
+                    viewPendingTrades(menuPresenter, itemManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 6) {
-                    viewActiveTempTrades(menuPresenter, userManager, tradeCreator, user);
+                    viewActiveTempTrades(menuPresenter, itemManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 7) {
                     setActive(menuPresenter, user);
@@ -131,7 +132,7 @@ public class TradingUserActions implements UserBrowsing {
      * Allow user to view their available items (inventory) and wishlist
      * @param user user logged in viewing their items
      */
-    public void viewItemAndWishlist(MenuPresenter menuPresenter, UserManager userManager, TradingUser user){
+    public void viewItemAndWishlist(MenuPresenter menuPresenter, UserManager userManager, TradingUser user, ItemManager itemManager){
         boolean flag = true;
         int input = 0;
         Scanner scan = new Scanner(System.in);
@@ -181,7 +182,7 @@ public class TradingUserActions implements UserBrowsing {
              menuPresenter.printMenu(16, 10);
              int itemID = scan.nextInt();
              if (userManager.checkIfUserContain(user, itemID)) {
-                 userManager.removeFromInventory(user, itemID);
+                 itemManager.removeFromInventory(itemID);
                  menuPresenter.printMenu(16, 15);
              }
              else {
@@ -213,7 +214,7 @@ public class TradingUserActions implements UserBrowsing {
      * @param userViewing user logged in viewing other users
      */
     public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             User userViewing){
+                             User userViewing, ItemManager itemManager){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -246,7 +247,7 @@ public class TradingUserActions implements UserBrowsing {
                     valid_input = true;
                     menuPresenter.printMenu(35, 1, allUsers.get(input - 1).getUsername());
                     // menuPresenter.printMenu(18, 5);
-                    viewUser(menuPresenter, userManager, tradeCreator, allUsers.get(input - 1), userViewing);
+                    viewUser(menuPresenter, userManager, tradeCreator, allUsers.get(input - 1), userViewing, itemManager);
                 }
             }
         }
@@ -261,7 +262,7 @@ public class TradingUserActions implements UserBrowsing {
      * @param userViewing user logged in that is viewing other user
      */
     public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          User userToView, User userViewing) {
+                         User userToView, User userViewing, ItemManager itemManager) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
@@ -297,7 +298,7 @@ public class TradingUserActions implements UserBrowsing {
                     scan.nextLine();
                     int itemID = scan.nextInt();
                     if (userManager.checkIfUserContain((TradingUser)userToView, itemID)) {
-                        Item item = userManager.searchItem((TradingUser)userToView, itemID);
+                        Item item = itemManager.searchItem(itemID);
                         userManager.addToWishlist((TradingUser)userViewing, item.getName());
                         menuPresenter.printMenu(18, 9);
                     }
@@ -518,7 +519,7 @@ public class TradingUserActions implements UserBrowsing {
      * (7) Three most frequent trading partners
      * @param user user logged in viewing the statuses
      */
-    public void runStats(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradingUser user) {
+    public void runStats(MenuPresenter menuPresenter, ItemManager itemManager, TradeCreator tradeCreator, TradingUser user) {
         int input = 0;
         boolean handled = false;
         while (!handled) {
@@ -560,7 +561,7 @@ public class TradingUserActions implements UserBrowsing {
                 menuPresenter.printMenu(20, 15, Integer.toString(weeklyTransactions));
 
             } else if (input == 6) {
-                ArrayList<Item> recentItems = tradeCreator.getTradeHistories().getNRecentItems(userManager, user.getUsername(), 3);
+                ArrayList<Item> recentItems = tradeCreator.getTradeHistories().getNRecentItems(itemManager, user.getUsername(), 3);
                 for (Item item : recentItems) {
                     menuPresenter.printItemToString(item);
                 }
@@ -604,7 +605,7 @@ public class TradingUserActions implements UserBrowsing {
      * Allow user to view their pending trade history
      * @param user user logged in
      */
-    public void viewPendingTrades(MenuPresenter menuPresenter, UserManager userManager,
+    public void viewPendingTrades(MenuPresenter menuPresenter, ItemManager itemManager,
                                   TradeCreator tradeCreator, TradingUser user){
         int choice = 0;
         while (choice == 0 ) {
@@ -617,7 +618,7 @@ public class TradingUserActions implements UserBrowsing {
             // "===================="
             // "Your pending trades:"
             for (Trade trade : userTrades) {
-                menuPresenter.printTradeToString(userManager, trade);
+                menuPresenter.printTradeToString(itemManager, trade);
             }
             Scanner scanner = new Scanner(System.in);
             choice = scanner.nextInt();
@@ -632,7 +633,7 @@ public class TradingUserActions implements UserBrowsing {
      * Allow user to view their active temporary trade history
      * @param user user logged in
      */
-    public void viewActiveTempTrades(MenuPresenter menuPresenter, UserManager userManager,
+    public void viewActiveTempTrades(MenuPresenter menuPresenter, ItemManager itemManager,
                                      TradeCreator tradeCreator, TradingUser user) {
         int input = -1;
         ArrayList<TemporaryTrade> userTrades = tradeCreator.getTradeHistories().searchActiveTempTradesByUser(user);
@@ -645,7 +646,7 @@ public class TradingUserActions implements UserBrowsing {
         menuPresenter.printMenu(22, 7);
         // "Your active temporary trades:"
         for (Trade trade : userTrades) {
-            menuPresenter.printTradeToString(userManager, trade);
+            menuPresenter.printTradeToString(itemManager, trade);
         }
         while (input != 1) {
             Scanner scanner = new Scanner(System.in);

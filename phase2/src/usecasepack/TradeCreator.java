@@ -396,14 +396,14 @@ public class TradeCreator implements Serializable {
      * @param user  who is confirming the trade
      * @param trade the trade object
      */ //TradeManager????
-    public void confirmTrade(UserManager userManager, TradingUser user, Trade trade) {
+    public void confirmTrade(UserManager userManager, TradingUser user, Trade trade, ItemManager itemManager) {
         if (user.getUsername().equals(trade.getUsername1())) {
             trade.setUser1TradeConfirmed(true);
         } else if (user.getUsername().equals(trade.getUsername2())) {
             trade.setUser2TradeConfirmed(true);
         }
         if (trade.isTradeCompleted()) {
-            afterTrade(userManager, trade);
+            afterTrade(userManager, trade, itemManager);
         }
     }
 
@@ -414,7 +414,7 @@ public class TradeCreator implements Serializable {
      *
      * @param trade trade object
      */ //TradeManager
-    public void afterTrade(UserManager userManager, Trade trade) {
+    public void afterTrade(UserManager userManager, Trade trade, ItemManager itemManager) {
         pendingTrades.remove(trade);
         if (trade instanceof TemporaryTrade) {
             tradeHistories.addCurrentTemporaryTrade((TemporaryTrade) trade);
@@ -422,13 +422,14 @@ public class TradeCreator implements Serializable {
         } else {
             tradeHistories.addCompletedTrade(trade);
         }
-        userManager.exchangeItems(trade);
-        checkPendingTradeRequests(userManager);
-        checkPendingTrades(userManager);
-
 
         TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
         TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
+
+        itemManager.exchangeItems(trade, user1, user2);
+        checkPendingTradeRequests(userManager, itemManager);
+        checkPendingTrades(userManager, itemManager);
+
 
         assert user1 != null;
         //This might be > instead of >= idk lol
@@ -452,13 +453,13 @@ public class TradeCreator implements Serializable {
      * Author: Louis Scheffer V
      */
     //TradeManager
-    public void checkPendingTrades(UserManager userManager) {
+    public void checkPendingTrades(UserManager userManager, ItemManager itemManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTrades) {
             TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
             TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
             for (int itemID : trade.getItemIDsSentToUser1()) {
-                Item item = userManager.searchItem(user2, itemID);
+                Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
                     UserAlert alert = new TradeCancelledAlert(trade.getTradeID());
@@ -467,7 +468,7 @@ public class TradeCreator implements Serializable {
                 }
             }
             for (int itemID : trade.getItemIDsSentToUser2()) {
-                Item item = userManager.searchItem(user1, itemID);
+                Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
                     UserAlert alert = new TradeCancelledAlert(trade.getTradeID());
@@ -487,13 +488,13 @@ public class TradeCreator implements Serializable {
      * request is deleted.
      * Author: Louis Scheffer V
      */ //TradeManager
-    public void checkPendingTradeRequests(UserManager userManager) {
+    public void checkPendingTradeRequests(UserManager userManager, ItemManager itemManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTradeRequests) {
             TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
             TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
             for (int itemID : trade.getItemIDsSentToUser1()) {
-                Item item = userManager.searchItem(user2, itemID);
+                Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
                     UserAlert alert = new TradeRequestCancelledAlert(trade.getTradeID());
@@ -502,7 +503,7 @@ public class TradeCreator implements Serializable {
                 }
             }
             for (int itemID : trade.getItemIDsSentToUser2()) {
-                Item item = userManager.searchItem(user1, itemID);
+                Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
                     UserAlert alert = new TradeRequestCancelledAlert(trade.getTradeID());

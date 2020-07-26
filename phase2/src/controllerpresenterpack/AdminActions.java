@@ -1,9 +1,9 @@
 package controllerpresenterpack;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import entitypack.BrowsingUser;
 import entitypack.*;
 import usecasepack.AdminUser;
+import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -24,7 +24,7 @@ public class AdminActions implements UserBrowsing{
      * @param userManager the UseCasePack.UserManager initialized in the program.
      */
     public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator,
-                             UserManager userManager) {
+                             UserManager userManager, ItemManager itemManager) {
         boolean running = true;
         while (running) {
             int input = -1;
@@ -64,10 +64,10 @@ public class AdminActions implements UserBrowsing{
                     editTrade(menuPresenter, userManager, tradeCreator, adminUser);
                     valid_input = true;
                 } else if (input == 7) {
-                    viewAllUsers(menuPresenter, userManager);
+                    viewAllUsers(menuPresenter, userManager, itemManager);
                     valid_input = true;
                 } else if (input == 8) {
-                    searchUser(menuPresenter, userManager);
+                    searchUser(menuPresenter, userManager, itemManager);
                     valid_input = true;
                 } else if (input == 0) {
                     valid_input = true;
@@ -80,12 +80,12 @@ public class AdminActions implements UserBrowsing{
 
     //TODO: the below method are to be called from input 6.
     public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             User userViewing){
+                             User userViewing, ItemManager itemManager){
 
     }
 
     public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                         User userToView, User userViewing){
+                         User userToView, User userViewing,ItemManager itemManager){
 
     }
 
@@ -215,13 +215,13 @@ public class AdminActions implements UserBrowsing{
         menuPresenter.printMenu(39, 3, userManager.getIncompleteThreshold());
     }
 
-    private void searchUser(MenuPresenter menuPresenter, UserManager userManager) {
+    private void searchUser(MenuPresenter menuPresenter, UserManager userManager, ItemManager itemManager) {
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(45,13);
         String username = scan.nextLine();
         User user = userManager.searchUser(username);
         if (user != null) {
-            viewUser(menuPresenter, userManager, user);
+            viewUser(menuPresenter, userManager, user, itemManager);
         }
         else {
             menuPresenter.printMenu(45,14);
@@ -229,7 +229,7 @@ public class AdminActions implements UserBrowsing{
 
     }
 
-    private void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager){
+    private void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, ItemManager itemManager){
         boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
@@ -263,13 +263,13 @@ public class AdminActions implements UserBrowsing{
                     valid_input = true;
                     menuPresenter.printMenu(35, 1, allUsers.get(input - 1).getUsername());
                     // menuPresenter.printMenu(18, 5);
-                    viewUser(menuPresenter, userManager, allUsers.get(input - 1));
+                    viewUser(menuPresenter, userManager, allUsers.get(input - 1), itemManager);
                 }
             }
         }
     }
 
-    private void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView) {
+    private void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView, ItemManager itemManager) {
         Scanner scan = new Scanner(System.in);
 
         boolean handled = false;
@@ -315,7 +315,7 @@ public class AdminActions implements UserBrowsing{
                     scan.nextLine();
                     int itemID = scan.nextInt();
                     if (userManager.checkIfUserContain(tradingUser, itemID)) {
-                        userManager.removeFromInventory(tradingUser, itemID);
+                        itemManager.removeFromInventory(itemID);
                         menuPresenter.printMenu(45, 11);
                     }
                     else {

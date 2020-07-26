@@ -20,6 +20,8 @@ public class Item implements Serializable {
      * A unique ID for the item.
      */
     private final int id;
+    private String owner;
+    private String inPossessionOf;
 
     /**
      * Initializes a new EntityPack.Item with a name, description, and unique ID.
@@ -27,10 +29,11 @@ public class Item implements Serializable {
      * @param description a short description of the item
      * @param itemID the unique ID of the item.
      */
-    public Item(String name, String description, int itemID) {
+    public Item(String name, String description, int itemID, String owner) {
         this.name = name;
         this.description = description;
         this.id = itemID; // id number is taken from the item validation request when the item is created within ControllerPresenterPack.AdminAlertManager
+        this.owner = owner;
     }
 
     /**
@@ -38,9 +41,10 @@ public class Item implements Serializable {
      * @param name the name of the item
      * @param itemID the unique ID of the item.
      */
-    public Item(String name, int itemID){
+    public Item(String name, int itemID, String owner){
         this.name = name;
         this.id = itemID;
+        this.owner = owner;
     }
 
 
@@ -76,5 +80,46 @@ public class Item implements Serializable {
         return id;
     }
 
+    /**
+     *
+     * @return username of the user who is in possession of the item.
+     */
+    public String getInPossessionOf() {
+        return inPossessionOf;
+    }
 
+    /**
+     *
+     * @return the username of the owner of the item
+     */
+    public String getOwner() {
+        return owner;
+    }
+
+    /**
+     *
+     * @param inPossessionOf username of the user who is in possession of the item via a temporary trade.
+     */
+    public void setInPossessionOf(String inPossessionOf) {
+        this.inPossessionOf = inPossessionOf;
+    }
+
+    /**
+     *
+     * @param owner username of the new owner of the item.
+     */
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    /**
+     *
+     * @return whether an item is currently being possessed by someone other than its owner as part a of a temporary trade.
+     */
+    public boolean isOnLoan(){
+        if(inPossessionOf == null){
+            return true;
+        }
+        return false;
+    }
 }

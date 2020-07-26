@@ -4,6 +4,7 @@ import alertpack.*;
 import entitypack.TemporaryTrade;
 import entitypack.Trade;
 import entitypack.TradingUser;
+import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
@@ -22,11 +23,11 @@ public class UserAlertManager {
      * Iterate through each alert in alerts, handle it and remove it from the list
      * @param alerts list of alert that are sent in
      */
-    public void handleAlertQueue(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
+    public void handleAlertQueue(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager,
                                  ArrayList<UserAlert> alerts){
         while(!(alerts.size() == 0)){
             UserAlert alert = alerts.get(0);
-                handleAlert(menuPresenter, userManager, tradeCreator, alert);
+                handleAlert(menuPresenter, userManager, tradeCreator, alert, itemManager);
                 alerts.remove(alert);
         }
     }
@@ -36,28 +37,28 @@ public class UserAlertManager {
      * @param alert alert sent in
      */
     private void handleAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             UserAlert alert) {
+                             UserAlert alert, ItemManager itemManager) {
 
         if (alert.getType() == 0) {
             handleFrozenAlert(menuPresenter, (FrozenAlert) alert);
         } else if (alert.getType() == 1){
             handleItemValidationDeclinedAlert(menuPresenter,userManager, (ItemValidationDeclinedAlert) alert);
         } else if (alert.getType() == 2) {
-            handleExpirationAlert(menuPresenter, userManager, tradeCreator, (ExpirationAlert) alert);
+            handleExpirationAlert(menuPresenter, userManager, tradeCreator, (ExpirationAlert) alert, itemManager);
         } else if (alert.getType() == 3) {
             handleMessageAlert(menuPresenter,(MessageAlert) alert);
         } else if (alert.getType() == 4) {
-            handleTradeAcceptedAlert(menuPresenter, userManager, tradeCreator, (TradeAcceptedAlert) alert);
+            handleTradeAcceptedAlert(menuPresenter, itemManager, tradeCreator, (TradeAcceptedAlert) alert);
         } else if (alert.getType() == 5) {
-            handleTradeCancelledAlert(menuPresenter, userManager, tradeCreator, (TradeCancelledAlert) alert);
+            handleTradeCancelledAlert(menuPresenter, itemManager, tradeCreator, (TradeCancelledAlert) alert);
         } else if (alert.getType() == 6){
             handleTradeDeclinedAlert(menuPresenter, (TradeDeclinedAlert) alert);
         } else if (alert.getType() == 7) {
-            handleTradePastDateAlert(menuPresenter,userManager, tradeCreator, (TradePastDateAlert) alert);
+            handleTradePastDateAlert(menuPresenter,userManager, tradeCreator, (TradePastDateAlert) alert, itemManager);
         } else if (alert.getType() == 8){
-            handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert, menuPresenter);
+            handleTradeRequestAlert(userManager, tradeCreator, (TradeRequestAlert) alert, menuPresenter, itemManager);
         } else if (alert.getType() == 9) {
-            handleTradeRequestCancelledAlert(menuPresenter, userManager, tradeCreator, (TradeRequestCancelledAlert) alert);
+            handleTradeRequestCancelledAlert(menuPresenter, itemManager, tradeCreator, (TradeRequestCancelledAlert) alert);
         }
 
             //Each alert needs a handle method for its type, which prints/takes input and calls corresponding functions to
@@ -86,7 +87,7 @@ public class UserAlertManager {
     }
 
     private void handleExpirationAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                                       ExpirationAlert alert){
+                                       ExpirationAlert alert, ItemManager itemManager){
 
         // "The following EntityPack.TemporaryTrade has expired at" + alert.getDueDate() + ":\n" +
         //        tradeToString(userManager, tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId()))
@@ -122,20 +123,20 @@ public class UserAlertManager {
         } else {
             TradingUser user = (TradingUser)userManager.searchUser(alert.getUsername());
             TemporaryTrade trade = tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId());
-            tradeCreator.getTradeHistories().confirmReExchange(userManager, user, trade);
+            tradeCreator.getTradeHistories().confirmReExchange(itemManager, user, trade);
             // "EntityPack.Trade ReExchange confirmed"
             menuPresenter.printMenu(24, 6);
         }
     }
 
-    private void handleTradeRequestAlert(UserManager userManager, TradeCreator tradeCreator, TradeRequestAlert a, MenuPresenter menuPresenter){
+    private void handleTradeRequestAlert(UserManager userManager, TradeCreator tradeCreator, TradeRequestAlert a, MenuPresenter menuPresenter, ItemManager itemManager){
         if (a.getIsTempTrade()) {
             menuPresenter.printMenu(37, 0, a.getSenderUserName(), "");
-            menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
+            menuPresenter.printTradeToString(itemManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         } else {
             menuPresenter.printMenu(37, 1, a.getSenderUserName(), "");
 
-            menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
+            menuPresenter.printTradeToString(itemManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         }
         boolean canEditTrade = true;
         int input = 0;
@@ -209,14 +210,14 @@ public class UserAlertManager {
     }
 
 
-    private void handleTradeAcceptedAlert(MenuPresenter menuPresenter, UserManager userManager,
+    private void handleTradeAcceptedAlert(MenuPresenter menuPresenter, ItemManager itemManager,
                                           TradeCreator tradeCreator, TradeAcceptedAlert a){
 
         //a.getAcceptingUsername() +
         //        " has accepted the following trade request: \n" + tradeToString(userManager,
             Trade b = tradeCreator.searchTrades(a.getTradeID());
             menuPresenter.printMenu(26, 1);
-            menuPresenter.printTradeToString(userManager, b);
+            menuPresenter.printTradeToString(itemManager, b);
 
         boolean handled = false;
 
@@ -249,12 +250,12 @@ public class UserAlertManager {
 
     }
 
-    private void handleTradeCancelledAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradeCancelledAlert a) {
+    private void handleTradeCancelledAlert(MenuPresenter menuPresenter, ItemManager itemManager, TradeCreator tradeCreator, TradeCancelledAlert a) {
 
         // "The following pending trade has been cancelled as one of the users is no longer in possession of " +
         //         "a item in the proposed trade. EntityPack.Trade ID: " + a.getTradeID()
         menuPresenter.printMenu(28, 1);
-        menuPresenter.printTradeToString(userManager, tradeCreator.searchTrades(a.getTradeID()));
+        menuPresenter.printTradeToString(itemManager, tradeCreator.searchTrades(a.getTradeID()));
         boolean handled = false;
 
         int input = 0;
@@ -268,12 +269,12 @@ public class UserAlertManager {
         }
     }
 
-    private void handleTradeRequestCancelledAlert(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator, TradeRequestCancelledAlert a) {
+    private void handleTradeRequestCancelledAlert(MenuPresenter menuPresenter, ItemManager itemManager, TradeCreator tradeCreator, TradeRequestCancelledAlert a) {
 
         // "The following trade request has been cancelled as one of the users is no " +
         //         "longer in possession of an item in the proposed trade. EntityPack.Trade ID: " + a.getTradeID()
         menuPresenter.printMenu(28, 1);
-        menuPresenter.printTradeToString(userManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
+        menuPresenter.printTradeToString(itemManager, tradeCreator.searchPendingTradeRequest(a.getTradeID()));
         boolean handled = false;
 
         int input = 0;
@@ -319,7 +320,7 @@ public class UserAlertManager {
     }
 
     private void handleTradePastDateAlert(MenuPresenter menuPresenter, UserManager userManager,
-                                          TradeCreator tradeCreator, TradePastDateAlert a){
+                                          TradeCreator tradeCreator, TradePastDateAlert a, ItemManager itemManager){
 
         // "The following trade expired at" + a.getDueDate()+ "\n" +
         //         tradeToString(userManager, tradeCreator.searchPendingTrade(a.getTradeId()))
@@ -330,7 +331,7 @@ public class UserAlertManager {
         while (!flag) {
             x++;
             Scanner scan = new Scanner(System.in);
-            menuPresenter.printTradeToString(userManager, tradeCreator.searchTrades(a.getTradeId()));
+            menuPresenter.printTradeToString(itemManager, tradeCreator.searchTrades(a.getTradeId()));
 
             // "(1) Confirm EntityPack.Trade\n(2) I didn't show up\n(3) The other person didn't show up"
             menuPresenter.printMenu(30, 2);
@@ -340,7 +341,7 @@ public class UserAlertManager {
             if (input == 1) {
                 flag = true;
                 TradingUser user = (TradingUser)userManager.searchUser(a.getUsername());
-                tradeCreator.confirmTrade(userManager, user, tradeCreator.searchTrades(a.getTradeId()));
+                tradeCreator.confirmTrade(userManager, user, tradeCreator.searchTrades(a.getTradeId()), itemManager);
                 // "EntityPack.Trade confirmed. Your items have been exchanged on the system."
                 menuPresenter.printMenu(30, 5);
 

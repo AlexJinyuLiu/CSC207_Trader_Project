@@ -200,12 +200,12 @@ public class TradeHistories  implements Serializable {
      * @param n number of items
      * @return ArrayList</EntityPack.Item> (sorted by LocalTimeDate)
      */ //TradeManager
-    public ArrayList<Item> getNRecentItems(UserManager userManager, String user, int n) {
+    public ArrayList<Item> getNRecentItems(ItemManager itemManager, String user, int n) {
         ArrayList<Integer> orderedItemsID = this.getOrderedItemsID(user);
         ArrayList<Integer> orderedItemsIDClone = (ArrayList<Integer>) orderedItemsID.clone();
         ArrayList<Item> nOrderedItems = new ArrayList<Item>();
         while (nOrderedItems.size() < n && !orderedItemsIDClone.isEmpty()) {
-            nOrderedItems.add(userManager.searchItem(orderedItemsIDClone.get(orderedItemsIDClone.size() - 1)));
+            nOrderedItems.add(itemManager.searchItem(orderedItemsIDClone.get(orderedItemsIDClone.size() - 1)));
             orderedItemsIDClone.remove(orderedItemsIDClone.size() - 1);
         }
         return nOrderedItems;
@@ -349,7 +349,7 @@ public class TradeHistories  implements Serializable {
      * @param user user who is confirming the re-exchange of items.
      * @param temporaryTrade the temporary trade object.
      */ //TradeManager????
-    public void confirmReExchange(UserManager userManager, TradingUser user, TemporaryTrade temporaryTrade){
+    public void confirmReExchange(ItemManager itemManager, TradingUser user, TemporaryTrade temporaryTrade){
         if(user.getUsername().equals(temporaryTrade.getUsername1())){
             temporaryTrade.setUser1ItemReturnRequestAccepted(true);
         }
@@ -357,7 +357,7 @@ public class TradeHistories  implements Serializable {
             temporaryTrade.setUser2ItemReturnRequestAccepted(true);
         }
         if (temporaryTrade.getUser1ItemReturnRequestAccepted() && temporaryTrade.getUser2ItemReturnRequestAccepted()){
-            userManager.reExchangeItems(temporaryTrade);
+            itemManager.reExchangeItems(temporaryTrade);
         }
     }
 }
