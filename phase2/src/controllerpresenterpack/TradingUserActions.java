@@ -182,7 +182,7 @@ public class TradingUserActions implements UserBrowsing {
              //"Please enter the ID of the item you wish to remove"
              menuPresenter.printMenu(16, 10);
              int itemID = scan.nextInt();
-             if (userManager.checkIfUserContain(user, itemID)) {
+             if (itemManager.checkIfUserHas(user, itemID)) {
                  itemManager.removeFromInventory(itemID);
                  menuPresenter.printMenu(16, 15);
              }
@@ -273,7 +273,7 @@ public class TradingUserActions implements UserBrowsing {
             if (userToView instanceof TradingUser) {
                 //TODO: This might cause a bug if we enter an invalid number
                 TradingUser tradingUser = (TradingUser) userToView;
-                menuPresenter.printTradingUserToString((TradingUser)userToView);
+                menuPresenter.printTradingUserToString((TradingUser)userToView, itemManager);
                 //StringBuilder userString = new StringBuilder(userToView.toString());
                 //userString.append("(1) Send a message\n");
                 menuPresenter.printMenu(18, 1);
@@ -298,7 +298,7 @@ public class TradingUserActions implements UserBrowsing {
                     menuPresenter.printMenu(18, 8);
                     scan.nextLine();
                     int itemID = scan.nextInt();
-                    if (itemManager.checkIfUserContain(tradingUser, itemID)) {
+                    if (itemManager.checkIfUserHas(tradingUser, itemID)) {
                         Item item = itemManager.searchItem(itemID);
                         userManager.addToWishlist(tradingUser, item.getName());
                         menuPresenter.printMenu(18, 9);
@@ -407,20 +407,19 @@ public class TradingUserActions implements UserBrowsing {
             // "Your available items to trade:"
             menuPresenter.printMenu(19, 9);
             StringBuilder availableItems = new StringBuilder();
-            for (int i = 0; i < userSending.getAvailableItems().size() - 1; i++) {
-                availableItems.append(userSending.getAvailableItems().get(i).getName() +
-                        " (ID: " + userSending.getAvailableItems().get(i).getId() + "), ");
+            for (int i = 0; i < sendersItems.size() - 1; i++) {
+                availableItems.append(sendersItems.get(i).getName() +
+                        " (ID: " + sendersItems.get(i).getId() + "), ");
             }
             // menuPresenter.printMenu(20, 10);
-            availableItems.append(userSending.getAvailableItems().get(userSending.getAvailableItems().size() -
-                    1).getName() + " (ID: " +
-                    userSending.getAvailableItems().get(userSending.getAvailableItems().size() - 1).getId() + ") ");
+            availableItems.append(sendersItems.get(sendersItems.size() - 1).getName() + " (ID: " +
+                    sendersItems.get(sendersItems.size() - 1).getId() + ") ");
             menuPresenter.printMenu(35, 0, availableItems);
             // menuPresenter.printMenu(20, 10);
 
             int ID2 = scan.nextInt();
             boolean validID2 = false;
-            for (Item item : userSending.getAvailableItems()) {
+            for (Item item : sendersItems) {
                 if (item.getId() == ID2) {
                     itemIDsSent.add(ID2);
                     validID2 = true;

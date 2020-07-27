@@ -175,13 +175,6 @@ public class UserManager implements Serializable{
     public boolean checkIfUserContain(TradingUser user, String itemName) { return user.containItemInWishlist(itemName); }
 
     /**
-     * @param user the trading user that the items in their inventory are being inspected
-     * @param itemID the ID of the item that is being searched for
-     * @return true iff user contains the item with itemID in their inventory
-     */
-    public boolean checkIfUserContain(TradingUser user, int itemID) { return user.containItemInInventory(itemID); }
-
-    /**
      * Return a list of all adminAlerts from this class. Also empties the adminAlerts member.
      * @return the list of adminAlerts
      */

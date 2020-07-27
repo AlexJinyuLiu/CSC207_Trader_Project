@@ -137,27 +137,32 @@ public class MenuPresenter {
      * Prints a string representation of a TradingUser
      * @param user the EntityPack.User in question.
      */
-    public void printTradingUserToString(TradingUser user){
+    public void printTradingUserToString(TradingUser user, ItemManager itemManager){
         StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
+        ArrayList<Item> usersItems = itemManager.getAvailableItems(user.getUsername());
 
-        if (user.getAvailableItems().size() == 0) {
+        if (usersItems.size() == 0) {
             userString.append("This User has no items available for trade. \n");
         } else {
             userString.append("Items available for trade: \n");
-            for (int i = 0; i < user.getAvailableItems().size() - 1; i++) {
-                userString.append(user.getAvailableItems().get(i).getName() + " (ID: " + user.getAvailableItems().get(i).getId() + "), ");
+            for (int i = 0; i < usersItems.size() - 1; i++) {
+                String str = usersItems.get(i).getName() + " (ID: " + usersItems.get(i).getId() + "), ";
+                userString.append(str);
             }
-            userString.append(user.getAvailableItems().get(user.getAvailableItems().size() - 1).getName() + " (ID: " +
-                    user.getAvailableItems().get(user.getAvailableItems().size() - 1).getId() + ")\n");
+            String str = usersItems.get(usersItems.size() - 1).getName() + " (ID: " +
+                    usersItems.get(usersItems.size() - 1).getId() + ")\n";
+            userString.append(str);
         }
         if (user.getWishlistItemNames().size() == 0) {
             userString.append("This User has no items in their wishlist. \n");
         } else {
             userString.append("Wishlist: \n");
             for (int i = 0; i < user.getWishlistItemNames().size() - 1; i++) {
-                userString.append(user.getWishlistItemNames().get(i) + ", ");
+                String str = user.getWishlistItemNames().get(i) + ", ";
+                userString.append(str);
             }
-            userString.append(user.getWishlistItemNames().get(user.getWishlistItemNames().size() - 1) + "\n");
+            String str = user.getWishlistItemNames().get(user.getWishlistItemNames().size() - 1) + "\n";
+            userString.append(str);
         }
         if (user.getFrozen()) {
             userString.append("This user is frozen, and thus cannot make a trade. \n");

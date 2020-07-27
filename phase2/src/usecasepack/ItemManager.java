@@ -99,6 +99,10 @@ public class ItemManager implements Serializable {
         items.remove(item);
     }
 
+    /**
+     * @param username the username of the user whose inventory is being searched for
+     * @return the list of available items of the user
+     */
     public ArrayList<Item> getAvailableItems(String username) {
         ArrayList<Item> usersItems = new ArrayList<Item>();
         for (Item item: items) {
@@ -109,7 +113,12 @@ public class ItemManager implements Serializable {
         return usersItems;
     }
 
-    public boolean checkIfUserContain(TradingUser user, int itemID) {
+    /**
+     * @param user the trading user that the items in their inventory are being inspected
+     * @param itemID the ID of the item that is being searched for
+     * @return true iff user contains itemName in their inventory
+     */
+    public boolean checkIfUserHas(TradingUser user, int itemID) {
         Item item = searchItem(itemID);
         if (item == null) {
             return false;

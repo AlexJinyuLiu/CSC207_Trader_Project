@@ -182,19 +182,6 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     * @param itemID the ID of the item that is being searched for
-     * @return true iff the user contains the item with itemID in their inventory
-     */
-    public boolean containItemInInventory(int itemID) {
-        for (Item item: getAvailableItems()) {
-            if (item.getId() == itemID) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      *
      * @param item item to be added to the user's borrowed items.
      */

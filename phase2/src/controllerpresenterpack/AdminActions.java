@@ -279,7 +279,7 @@ public class AdminActions implements UserBrowsing{
             if (userToView instanceof TradingUser) {
                 //TODO: This might cause a bug if we enter an invalid number
                 TradingUser tradingUser = (TradingUser) userToView;
-                menuPresenter.printTradingUserToString((TradingUser)userToView);
+                menuPresenter.printTradingUserToString((TradingUser)userToView, itemManager);
                 //StringBuilder userString = new StringBuilder(userToView.toString());
                 //userString.append("(1) Send a message\n");
                 menuPresenter.printMenu(45, 1);
@@ -314,7 +314,7 @@ public class AdminActions implements UserBrowsing{
                     menuPresenter.printMenu(45, 10);
                     scan.nextLine();
                     int itemID = scan.nextInt();
-                    if (userManager.checkIfUserContain(tradingUser, itemID)) {
+                    if (itemManager.checkIfUserHas(tradingUser, itemID)) {
                         itemManager.removeFromInventory(itemID);
                         menuPresenter.printMenu(45, 11);
                     }
