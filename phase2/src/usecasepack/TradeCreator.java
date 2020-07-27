@@ -1,6 +1,6 @@
 package usecasepack;
 
-import alertpack.*;
+
 import entitypack.*;
 
 import java.io.Serializable;
@@ -20,9 +20,9 @@ public class TradeCreator implements Serializable {
     private ArrayList<Trade> pendingTradeRequests = new ArrayList<Trade>(); // list of all trade requests which have not been accepted
     // by both parties - Louis
 
-    private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+    private ArrayList<Prompt> adminAlerts = new ArrayList<Prompt>();
 
-    private HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
+    private HashMap<String, ArrayList<Prompt>> userAlertsToDispatch = new HashMap<String, ArrayList<Prompt>>();
 
     /**
      * The instance of UseCasePack.TradeHistories for the program.
@@ -65,7 +65,7 @@ public class TradeCreator implements Serializable {
      * Fetches the userAlerts from tradeHistories by calling the equivalent method in tradeHistories.
      * @return A hashmap of all useralerts for all users.
      */
-    public HashMap<String, ArrayList<UserAlert>> fetchUserAlerts() {
+    public HashMap<String, ArrayList<Prompt>> fetchUserAlerts() {
         return tradeHistories.fetchUserAlerts();
     }
 
@@ -75,15 +75,21 @@ public class TradeCreator implements Serializable {
      * program is launched.
      */
     public void onStartup() {
+
+    }
+
+    /**
+     *
+     * @return An arraylist of all trade which have past their date of item exchange.
+     */
+    public ArrayList<Trade> fetchPastDateTrades(){
+        ArrayList<Trade> pastDateTrades = new ArrayList<Trade>();
         for (Trade trade : pendingTrades) {
             if (trade.getTimeOfTrade().isBefore(LocalDateTime.now()) && !trade.getUsersAlertedToPastDue()) {
-                UserAlert alertUser1 = new TradePastDateAlert(trade.getTimeOfTrade(), trade.getUsername1(), trade.getTradeID());
-                UserAlert alertUser2 = new TradePastDateAlert(trade.getTimeOfTrade(), trade.getUsername2(), trade.getTradeID());
-                alertUser(trade.getUsername1(), alertUser1);
-                alertUser(trade.getUsername2(), alertUser2);
-                trade.setUsersAlertedToPastDue(true);
+                pastDateTrades.add(trade);
             }
         }
+        return pastDateTrades;
     }
 
     /**
@@ -91,9 +97,9 @@ public class TradeCreator implements Serializable {
      *
      * @return an arraylist containing all admin alerts from this class and UseCasePack.TradeHistories.
      */
-    public ArrayList<AdminAlert> fetchAdminAlerts() {
-        ArrayList<AdminAlert> alerts = this.adminAlerts;
-        this.adminAlerts = new ArrayList<AdminAlert>();
+    public ArrayList<Prompt> fetchAdminAlerts() {
+        ArrayList<Prompt> alerts = this.adminAlerts;
+        this.adminAlerts = new ArrayList<Prompt>();
         alerts.addAll(tradeHistories.fetchAdminAlerts());
         return alerts;
     }
@@ -110,13 +116,14 @@ public class TradeCreator implements Serializable {
      * @param itemIDsSentToUser2 list of IDs of items which will be sent to user2
      * @param timeOfTrade        time & date of the trade
      * @param meetingPlace       location of the trade
+     * @return the ID of the created trade, or -1 if the trade could not be created.
      */ //TradeManager
-    public Boolean sendTradeRequest(TradingUser user1, TradingUser user2, //user1 is the one sending the request to user2.
+    public int createTradeRequest(TradingUser user1, TradingUser user2, //user1 is the one sending the request to user2.
                                     ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
                                     LocalDateTime timeOfTrade, String meetingPlace) {
 
         if (!beforeTrade(user1, user2)) {
-            return false;
+            return -1;
         }
         ArrayList<Integer> list1;
         if (itemIDsSentToUser1.size() == 0) {
@@ -138,10 +145,7 @@ public class TradeCreator implements Serializable {
         trade.setMeetingPlace(meetingPlace);
         trade.setUser1AcceptedRequest(true);
 
-        //Creating and adding an alert for user2
-        TradeRequestAlert alert = createTradeRequestAlert(trade, user1, false);
-        alertUser(user2, alert);
-        return true;
+        return trade.getTradeID();
 
     } //Does not remove item from user1 availableItems or user2 availableItems
 
@@ -157,13 +161,14 @@ public class TradeCreator implements Serializable {
      * @param itemIDsSentToUser2 list of IDs of items which will be sent to user2
      * @param timeOfTrade        time & date of the trade
      * @param meetingPlace       location of the trade
+     * @return the ID of the created trade, or -1 if the trade could not be created.
      */
-    public Boolean sendTemporaryTradeRequest(TradingUser user1, TradingUser user2, //user1 is the one sending the request to user2.
+    public int createTemporaryTradeRequest(TradingUser user1, TradingUser user2, //user1 is the one sending the request to user2.
                                              ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
                                              LocalDateTime timeOfTrade, String meetingPlace) {
 
         if (!beforeTrade(user1, user2)) {
-            return false;
+            return -1;
         }
         ArrayList<Integer> list1;
         if (itemIDsSentToUser1.size() == 0) {
@@ -186,24 +191,10 @@ public class TradeCreator implements Serializable {
         trade.setMeetingPlace(meetingPlace);
         trade.setUser1AcceptedRequest(true);
 
-        //Creating and adding an alert for user2
-        TradeRequestAlert alert = createTradeRequestAlert(trade, user1, true);
-        alertUser(user2, alert);
-        return true;
+        return trade.getTradeID();
 
     } //Does not remove item from user1 availableItems or user2 availableItems
 
-    /**
-     * Creates a TradeRequstAlert for <trade> object sent by <user1>. This method does not add said TradeRequestAlert
-     * to the alertSystem.
-     *
-     * @param trade the EntityPack.Trade object for the Alert.
-     * @param user1 the EntityPack.User who is sending the EntityPack.Trade request.
-     * @return A TradeRequestAlert corresponding to <trade>
-     */ //TradeManager
-    public TradeRequestAlert createTradeRequestAlert(Trade trade, TradingUser user1, boolean isTempTrade) {
-        return new TradeRequestAlert(user1.getUsername(), trade.getTradeID(), isTempTrade);
-    }
 
     /**
      * Method which allows a user to accept a trade request
@@ -212,48 +203,28 @@ public class TradeCreator implements Serializable {
      *
      * @param trade    trade object
      * @param username username of EntityPack.User which is accepting the trade request
-     */ //TradeManager
+     */
     public void acceptTradeRequest(Trade trade, String username) {
-        String otherUserName;
-
         if (trade.getUsername1().equals(username)) {
             trade.setUser1AcceptedRequest(true);
-            otherUserName = trade.getUsername2();
         } else {
             // I am not sure if we have function to check if user is in the trade, commented by Tingyu
             assert trade.getUsername2().equals(username);
             trade.setUser2AcceptedRequest(true);
-            otherUserName = trade.getUsername1();
         }
         pendingTradeRequests.remove(trade);
         pendingTrades.add(trade);
-
-        TradeAcceptedAlert alert = new TradeAcceptedAlert(username, trade.getTradeID());
-        alertUser(otherUserName, alert);
     }
 
 
     /**
-     * Decline trade request <trade> sent to EntityPack.User <user>. Also sends a TradeDeclinedAlert to send to the requesting
-     * EntityPack.User.
+     * Decline trade request <trade> sent to EntityPack.User <user>.
      *
      * @param trade         The trade request to be declined.
-     * @param decliningUser username of The EntityPack.User declining the request.
      *///TradeManager
-    public void declineTradeRequest(Trade trade, String decliningUser) {
-
+    public void declineTradeRequest(Trade trade) {
         pendingTradeRequests.remove(trade);
-
-        TradeDeclinedAlert alert = new TradeDeclinedAlert(decliningUser, trade.getTradeID());
-
-        String otherUserName;
-
-        if (trade.getUsername1().equals(decliningUser)) {
-            otherUserName = trade.getUsername2();
-        } else {
-            otherUserName = trade.getUsername1();
-        }
-        alertUser(otherUserName, alert);
+        tradeHistories.addDeadTrade(trade);
     }
 
 
@@ -281,18 +252,6 @@ public class TradeCreator implements Serializable {
             trade.incrementUser2NumRequests();
         }
 
-        TradeRequestAlert alert = createTradeRequestAlert(trade, (TradingUser)userManager.searchUser(UserEditingName),
-                trade instanceof TemporaryTrade);
-
-        String otherUserName;
-
-        if (trade.getUsername1().equals(UserEditingName)) {
-            otherUserName = trade.getUsername2();
-        } else {
-            otherUserName = trade.getUsername1();
-        }
-
-        alertUser(otherUserName, alert);
     }
 
 
@@ -395,16 +354,21 @@ public class TradeCreator implements Serializable {
      *
      * @param user  who is confirming the trade
      * @param trade the trade object
+     * @return an arraylist of all IDs of pending trades and pending trade requests that have been cancelled as a
+     * result of <trade> going through.
      */ //TradeManager????
-    public void confirmTrade(UserManager userManager, TradingUser user, Trade trade, ItemManager itemManager) {
+    public ArrayList<ArrayList<Trade>> confirmTrade(UserManager userManager, TradingUser user, Trade trade,
+                                           ItemManager itemManager, TradingUser user1, TradingUser user2) {
+        ArrayList<ArrayList<Trade>> IDsOfAllCancelledTrades = null;
         if (user.getUsername().equals(trade.getUsername1())) {
             trade.setUser1TradeConfirmed(true);
         } else if (user.getUsername().equals(trade.getUsername2())) {
             trade.setUser2TradeConfirmed(true);
         }
         if (trade.isTradeCompleted()) {
-            afterTrade(userManager, trade, itemManager);
+            IDsOfAllCancelledTrades = afterTrade(userManager, trade, itemManager, user1, user2);
         }
+        return IDsOfAllCancelledTrades;
     }
 
     /**
@@ -413,8 +377,11 @@ public class TradeCreator implements Serializable {
      * Author: Louis Scheffer V
      *
      * @param trade trade object
+     * @return an arraylist containing two lists. The first is a arraylist of all pending trade requests to remove,
+     * and the second is an arraylist of all pending trades to remove.
      */ //TradeManager
-    public void afterTrade(UserManager userManager, Trade trade, ItemManager itemManager) {
+    public ArrayList<ArrayList<Trade>> afterTrade(UserManager userManager, Trade trade, ItemManager itemManager, TradingUser user1,
+                           TradingUser user2) {
         pendingTrades.remove(trade);
         if (trade instanceof TemporaryTrade) {
             tradeHistories.addCurrentTemporaryTrade((TemporaryTrade) trade);
@@ -423,97 +390,91 @@ public class TradeCreator implements Serializable {
             tradeHistories.addCompletedTrade(trade);
         }
 
-        TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
-        TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
-
         itemManager.exchangeItems(trade, user1, user2);
-        checkPendingTradeRequests(userManager, itemManager);
-        checkPendingTrades(userManager, itemManager);
-
-
-        assert user1 != null;
-        //This might be > instead of >= idk lol
-        if (user1.getNumBorrowed() + borrowLendThreshold > user1.getNumLent()) {
-            FreezeUserAlert alert = new FreezeUserAlert(user1.getUsername(), user1.getNumLent(),
-                    user1.getNumBorrowed(), borrowLendThreshold);
-            alertAdmin(alert);
-        }
-        assert user2 != null;
-        if (user2.getNumBorrowed() + borrowLendThreshold > user2.getNumLent()) {
-            FreezeUserAlert alert = new FreezeUserAlert(user2.getUsername(), user2.getNumLent(),
-                    user2.getNumBorrowed(), borrowLendThreshold);
-            alertAdmin(alert);
-        }
+        //First list: cancelled pending trade requests.
+        //Second list: cancelled pending trades.
+        ArrayList<ArrayList<Trade>> listsOfCancelledTrades = new ArrayList<ArrayList<Trade>>();
+        listsOfCancelledTrades.add(checkPendingTradeRequests(userManager, itemManager));
+        listsOfCancelledTrades.add(checkPendingTrades(userManager, itemManager));
+        return listsOfCancelledTrades;
     }
 
 
     /**
-     * Method which checks all pending trades to see if the items are still available.If they are not then the trade
+     * Method which checks all pending trades to see if the items are still available. If they are not then the trade
      * request is deleted.
      * Author: Louis Scheffer V
+     * @return an arraylist of all pending trades which have been cancelled as a result of a previous trade being
+     * completed.
      */
     //TradeManager
-    public void checkPendingTrades(UserManager userManager, ItemManager itemManager) {
+    public ArrayList<Trade> checkPendingTrades(UserManager userManager, ItemManager itemManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTrades) {
-            TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
-            TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
             for (int itemID : trade.getItemIDsSentToUser1()) {
                 Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
-                    UserAlert alert = new TradeCancelledAlert(trade.getTradeID());
-                    alertUser(user1, alert);
-                    alertUser(user2, alert);
                 }
             }
             for (int itemID : trade.getItemIDsSentToUser2()) {
                 Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
-                    UserAlert alert = new TradeCancelledAlert(trade.getTradeID());
-                    alertUser(user1, alert);
-                    alertUser(user2, alert);
                 }
             }
         }
-        for(Trade trade: tradesToRemove){
-            pendingTrades.remove(trade);
-            tradeHistories.addDeadTrade(trade);
-        }
+
+        return tradesToRemove;
     }
 
     /**
      * Method which checks all pending trades to see if the items are still available. If they are not then the trade
      * request is deleted.
      * Author: Louis Scheffer V
+     * @return An arraylist of pending trade requests that have been cancelled because of annother trade
+     * happening first.
      */ //TradeManager
-    public void checkPendingTradeRequests(UserManager userManager, ItemManager itemManager) {
+    public ArrayList<Trade> checkPendingTradeRequests(UserManager userManager, ItemManager itemManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTradeRequests) {
-            TradingUser user1 = (TradingUser)userManager.searchUser(trade.getUsername1());
-            TradingUser user2 = (TradingUser)userManager.searchUser(trade.getUsername2());
             for (int itemID : trade.getItemIDsSentToUser1()) {
                 Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
-                    UserAlert alert = new TradeRequestCancelledAlert(trade.getTradeID());
-                    alertUser(user1, alert);
-                    alertUser(user2, alert);
                 }
             }
             for (int itemID : trade.getItemIDsSentToUser2()) {
                 Item item = itemManager.searchItem(itemID);
                 if (item == null) {
                     tradesToRemove.add(trade);
-                    UserAlert alert = new TradeRequestCancelledAlert(trade.getTradeID());
-                    alertUser(user1, alert);
-                    alertUser(user2, alert);
                 }
             }
         }
+
+        return tradesToRemove;
+    }
+
+    /**
+     * Removes all pending trade requests from pendingTradeRequests that match trades from tradeToRemove.
+     *
+     * @param tradesToRemove the list of trades to remove.
+     */
+    public void removePendingTradeRequests(ArrayList<Trade> tradesToRemove){
         for(Trade trade: tradesToRemove){
             pendingTradeRequests.remove(trade);
+            tradeHistories.addDeadTrade(trade);
+        }
+    }
+
+    /**
+     * Removes all pending trades from pendingTrades that match trades from tradesToRemove.
+     *
+     * @param tradesToRemove the list of trades to remove.
+     */
+    public void removePendingTrades(ArrayList<Trade> tradesToRemove){
+        for (Trade trade : tradesToRemove){
+            pendingTrades.remove(trade);
             tradeHistories.addDeadTrade(trade);
         }
     }
@@ -525,7 +486,7 @@ public class TradeCreator implements Serializable {
      * @param user  object of the user who will be receiving the alert
      * @param alert alert object to send to the user
      */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(User user, UserAlert alert) {
+    public void alertUser(User user, Prompt alert) {
         String username = user.getUsername();
         alertUser(username, alert);
     }
@@ -537,7 +498,7 @@ public class TradeCreator implements Serializable {
      * @param username username of the user receiving the alert
      * @param alert    alert object to send to the user
      */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(String username, UserAlert alert) {
+    public void alertUser(String username, Prompt alert) {
         tradeHistories.alertUser(username, alert);
     }
 
@@ -546,7 +507,7 @@ public class TradeCreator implements Serializable {
      *
      * @param a the AdminAlert being sent to the admin.
      */
-    private void alertAdmin(AdminAlert a) {
+    public void alertAdmin(Prompt a) {
         this.adminAlerts.add(a);
     }
 

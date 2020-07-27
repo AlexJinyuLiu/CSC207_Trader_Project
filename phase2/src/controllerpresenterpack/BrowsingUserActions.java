@@ -1,5 +1,7 @@
 package controllerpresenterpack;
 
+import alertpack.MessageAlert;
+import alertpack.UserAlert;
 import entitypack.BrowsingUser;
 import entitypack.MetroArea;
 import entitypack.TradingUser;
@@ -155,7 +157,8 @@ public class BrowsingUserActions implements UserBrowsing {
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(18, 6);
         String message = scan.nextLine();
-        userManager.sendMessageToUser(userViewing.getUsername(), userToView, message);
+        UserAlert alert = new MessageAlert(userViewing.getUsername(), message);
+        userManager.alertUser(userToView.getUsername(), alert);
         menuPresenter.printMenu(18, 7, userToView.getUsername());
     }
 }

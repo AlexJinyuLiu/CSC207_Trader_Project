@@ -1,6 +1,5 @@
 package usecasepack;
 
-import alertpack.*;
 import entitypack.*;
 
 import java.util.ArrayList;
@@ -21,10 +20,10 @@ public class UserManager implements Serializable{
     private ArrayList<User> listUsers = new ArrayList<User>(); // List of all users - Jinyu
 
     //TradeManager AND UseCasePack.UserManager
-    private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+    private ArrayList<Prompt> adminAlerts = new ArrayList<Prompt>();
 
     //UseCasePack.UserManager
-    private HashMap<String, ArrayList<UserAlert>> alertSystem = new HashMap<String, ArrayList<UserAlert>>();
+    private HashMap<String, ArrayList<Prompt>> alertSystem = new HashMap<String, ArrayList<Prompt>>();
 
     //UseCasePack.UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
@@ -36,29 +35,17 @@ public class UserManager implements Serializable{
      * @param tradeCreator the UseCasePack.TradeCreator used in this program.
      */
     public void onStartUp(TradeCreator tradeCreator){
-        HashMap<String, ArrayList<UserAlert>> alertsToAdd = tradeCreator.fetchUserAlerts();
+        HashMap<String, ArrayList<Prompt>> alertsToAdd = tradeCreator.fetchUserAlerts();
 
         for (String key : alertsToAdd.keySet()){
             if (alertSystem.containsKey(key)){
-                ArrayList<UserAlert> alertsForUser = alertSystem.get(key);
+                ArrayList<Prompt> alertsForUser = alertSystem.get(key);
                 alertsForUser.addAll(alertsToAdd.get(key));
                 alertSystem.put(key, alertsForUser);
             } else {
                 alertSystem.put(key, alertsToAdd.get(key));
             }
         }
-    }
-
-    /**
-     * Method for a EntityPack.User to send a reportAlert to Administrator
-     * @param sender the username of the USer sending the report
-     * @param reportedUser  the username of the EntityPack.User to whom the sender wishes to report
-     * @param message the message the sender would like to include
-     * @param isTradeComplete whether the trade between the user is complete
-     */
-    public void reportUser(String sender, String reportedUser, String message, boolean isTradeComplete){
-        AdminAlert alert = new ReportAlert(sender, reportedUser, isTradeComplete, message);
-        this.alertAdmin(alert);
     }
 
     /**
@@ -73,7 +60,7 @@ public class UserManager implements Serializable{
      * clears all admin alerts.
      */
     public void clearAdminAlerts(){
-        adminAlerts = new ArrayList<AdminAlert>();
+        adminAlerts = new ArrayList<Prompt>();
     }
 
     /**
@@ -81,7 +68,7 @@ public class UserManager implements Serializable{
      * @param username the username in question
      * @return an arraylist containing all alerts for that user.
      */
-    public ArrayList<UserAlert> getUserAlerts(String username){
+    public ArrayList<Prompt> getUserAlerts(String username){
         return alertSystem.get(username);
     }
 
@@ -89,24 +76,19 @@ public class UserManager implements Serializable{
      * Alerts the admin.
      * @param alert alert
      */ //TradeManager and UseCasePack.UserManager
-    public void alertAdmin(AdminAlert alert){
+    public void alertAdmin(Prompt alert){
         this.adminAlerts.add(alert);
     }
 
 
-    /** 3-arg method which creates and instantiates an ItemvalidationRequest.
-     * Author: Jinyu Liu
-     * @param name name of the item
-     * @param description description of the item
-     * @param owner username of the user who will own the item
-     * @return The ItemValidationRequestAlert in question.
-     */ //TradeManager for cohesion reasons with alerting admin.
-    public ItemValidationRequestAlert sendValidationRequest(String name, String description, String owner) {
-        // reworked by Tingyu since the itemValidationRequestQueue has been moved to UseCasePack.UserManager
-        ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemIDGenerator, owner, name, description);
+    /**
+     *
+     * @return A new ID for an item.
+     */
+    public int getNewItemID() {
+        int newID = itemIDGenerator;
         itemIDGenerator++;
-        alertAdmin(alert);
-        return alert;
+        return newID;
     }
 
     /** Method which creates a user and adds it to the list of users
@@ -124,7 +106,7 @@ public class UserManager implements Serializable{
         TradingUser newUser = new TradingUser(username);
         newUser.setPassword(password);
         listUsers.add(newUser);
-        alertSystem.put(username, new ArrayList<UserAlert>());
+        alertSystem.put(username, new ArrayList<Prompt>());
         return newUser;
     }
 
@@ -143,7 +125,7 @@ public class UserManager implements Serializable{
         BrowsingUser newUser = new BrowsingUser(username);
         newUser.setPassword(password);
         listUsers.add(newUser);
-        alertSystem.put(username, new ArrayList<UserAlert>());
+        alertSystem.put(username, new ArrayList<Prompt>());
         return newUser;
     }
 
@@ -178,9 +160,9 @@ public class UserManager implements Serializable{
      * Return a list of all adminAlerts from this class. Also empties the adminAlerts member.
      * @return the list of adminAlerts
      */
-    public ArrayList<AdminAlert> fetchAdminAlerts(){
-        ArrayList<AdminAlert> alerts = this.adminAlerts;
-        this.adminAlerts = new ArrayList<AdminAlert>();
+    public ArrayList<Prompt> fetchAdminAlerts(){
+        ArrayList<Prompt> alerts = this.adminAlerts;
+        this.adminAlerts = new ArrayList<Prompt>();
         return alerts;
     }
 
@@ -203,7 +185,7 @@ public class UserManager implements Serializable{
      * @param user object of the user who will be receiving the alert
      * @param alert alert object to send to the user
      */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(User user, UserAlert alert){
+    public void alertUser(User user, Prompt alert){
         String username = user.getUsername();
         alertUser(username, alert);
     }
@@ -213,19 +195,8 @@ public class UserManager implements Serializable{
      * @param username username of the user receiving the alert
      * @param alert alert object to send to the user
      */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(String username, UserAlert alert){
+    public void alertUser(String username, Prompt alert){
         alertSystem.get(username).add(alert);
-    }
-
-    /** Method which allows a user to send a message to another user, using the alert system.
-     * Author: Louis Scheffer V
-     * @param sender user object who is sending the message.
-     * @param recipient user object who is receiving the message.
-     * @param message message text.
-     */ //UseCasePack.UserManager
-    public void sendMessageToUser(String sender, User recipient, String message){
-        UserAlert alert = new MessageAlert(sender, message);
-        alertUser(recipient, alert);
     }
 
     /**

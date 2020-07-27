@@ -1,6 +1,5 @@
 package usecasepack;
 
-import alertpack.*;
 import entitypack.Item;
 import entitypack.TradingUser;
 import usecasepack.UserManager;

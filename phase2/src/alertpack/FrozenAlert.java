@@ -1,6 +1,13 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class FrozenAlert extends UserAlert implements Serializable {
     /** Alert which tells a user that they have been frozen by an admin. Displays the number of items borrowed and lent.
@@ -30,6 +37,30 @@ public class FrozenAlert extends UserAlert implements Serializable {
         numIncomplete = numIncomp;
         thresholdIncomplete = thresholdIncomp;
 
+    }
+
+
+    /** Handles the frozen alert by informing the user receiving it.
+     *
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                        TradeCreator tradeCreator, ItemManager itemManager){
+        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        menuPresenter.printMenu(23, 1); // Your account has been frozen by the administrator.
+        menuPresenter.printMenu(23, 2, getNumBorrowedofUser()); // Number of items you borrowed:
+        menuPresenter.printMenu(23, 3, getNumLentofUser()); // Number of items you lent:
+        menuPresenter.printMenu(23, 4, getThreshholdNumofUser()); // Number of items you need to lend before you can borrow:
+        menuPresenter.printMenu(23, 6, getNumIncomplete());
+        menuPresenter.printMenu(23, 7, getThresholdIncomplete());
+        boolean flag = true;
+        int input = 0;
+        while (flag) {
+            Scanner scan = new Scanner(System.in);
+            // "(1) Dismiss"
+            menuPresenter.printMenu(23, 5);
+            input = scan.nextInt();
+            if (input == 1) flag = false;
+        }
     }
 
     /**

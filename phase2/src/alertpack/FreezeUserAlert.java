@@ -1,6 +1,14 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import entitypack.TradingUser;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class FreezeUserAlert extends AdminAlert implements Serializable {
     /** Alert which is generated when a EntityPack.User crosses the threshold of borrowed minus lent that they are required to
@@ -26,6 +34,49 @@ public class FreezeUserAlert extends AdminAlert implements Serializable {
         this.lent = lent;
         this.borrowed = borrowed;
         this.thresholdRequired = thresholdRequired;
+    }
+
+    /** Method that handles a FreezeUserAlert by freezing the user or dismissing the alert
+     *
+     * @param menuPresenterObject menu presenter for the output statements
+     * @param adminUser for freezing the user
+     * @param userManager for searching the username of the user to be frozen
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                       TradeCreator tradeCreator, ItemManager itemManager){
+        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        menuPresenter.printMenu(13,0); // Freeze EntityPack.User Alert
+        // "Freeze EntityPack.User Alert" +
+        //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
+        //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
+        //         "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed"
+        menuPresenter.printMenu(13, 3, getUsername());
+        menuPresenter.printMenu(13, 4, getLent());
+        menuPresenter.printMenu(13, 5, getBorrowed());
+        menuPresenter.printMenu(13, 6, getThresholdRequired());
+        boolean flag = true;
+        int input = 0;
+        while (flag) {
+            Scanner scan = new Scanner(System.in);
+            // "(1) Freeze EntityPack.User"
+            menuPresenter.printMenu(13,1);
+            // "(2) Dismiss"
+            menuPresenter.printMenu(13,2);
+            input = scan.nextInt();
+            if (input == 1) {
+                TradingUser user = (TradingUser)userManager.searchUser(getUsername());
+                assert user != null;
+                adminUser.freezeUser(user);
+                int numBorrowed = user.getNumBorrowed();
+                int numLent = user.getNumLent();
+                int incompleteT = user.getNumIncompleteTrades();
+                FrozenAlert frozenAlert = new FrozenAlert(numBorrowed, numLent, tradeCreator.getBorrowLendThreshold(),
+                        incompleteT, userManager.getIncompleteThreshold());
+                userManager.alertUser(user.getUsername(), frozenAlert);
+                flag = false;
+            }
+            if (input == 2) flag = false;
+        }
     }
 
     /**

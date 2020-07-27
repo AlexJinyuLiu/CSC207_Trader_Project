@@ -1,6 +1,15 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import entitypack.TradingUser;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
+import java.awt.*;
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class ReportAlert extends AdminAlert implements Serializable {
     /** Alert in which a user has been reported by another user for not showing up to a trade.
@@ -28,6 +37,55 @@ public class ReportAlert extends AdminAlert implements Serializable {
         this.reportDescription = reportDescription;
     }
 
+
+    /** Method that handles a ReportAlert by accepting the report or dismissing it
+     *
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                                   TradeCreator tradeCreator, ItemManager itemManager){
+        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        menuPresenter.printMenu(12,0); // Handle Report Alert
+        // alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
+        //         " whose trade status is " + alert.getIsTradeComplete()
+        //         + "\n" + "Details: " + alert.getReportDescription()
+        menuPresenter.printMenu(12, 3, getSenderUserName(), getReportedUserName());
+        menuPresenter.printMenu(12, 4, getIsTradeComplete());
+        menuPresenter.printMenu(12, 5, getReportDescription());
+
+        boolean flag = true;
+        int input = 0;
+        int numIncompTrades = 0;
+        int threshold = 0; // threshold of incomplete trades
+        while (flag){
+            Scanner scan = new Scanner(System.in);
+            // "(1) Accept report"
+            menuPresenter.printMenu(12,1);
+            // "(2) Dismiss"
+            menuPresenter.printMenu(12,2);
+            input = scan.nextInt();
+            if (input == 1){
+                userManager.increaseUserIncompleteTrades(
+                        (TradingUser)userManager.searchUser(getReportedUserName()));
+                int numIncompleteTrades =
+                        ((TradingUser)userManager.searchUser(getReportedUserName())).getNumIncompleteTrades();
+                threshold = userManager.getIncompleteThreshold();
+                if (numIncompleteTrades > threshold){
+                    TradingUser reportedUser = (TradingUser)userManager.searchUser(getReportedUserName());
+                    adminUser.freezeUser(reportedUser);
+                    int numBorrowed = reportedUser.getNumBorrowed();
+                    int numLent = reportedUser.getNumLent();
+                    int incompleteT = reportedUser.getNumIncompleteTrades();
+                    FrozenAlert frozenAlert = new FrozenAlert(numBorrowed, numLent, tradeCreator.getBorrowLendThreshold(), incompleteT,
+                            userManager.getIncompleteThreshold());
+                    userManager.alertUser(reportedUser.getUsername(), frozenAlert);
+                }
+                flag = false;
+            }
+            if (input == 2){
+                flag = false;
+            }
+        }
+    }
     /**
      *
      * @return the username of the user who is sending the report.

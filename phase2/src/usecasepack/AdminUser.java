@@ -1,6 +1,5 @@
 package usecasepack;
 
-import alertpack.*;
 import entitypack.Item;
 import entitypack.TradingUser;
 
@@ -23,7 +22,7 @@ public class AdminUser implements Serializable {
     /**
      * Stores the list of alerts to be processed by the admin
      */
-    private ArrayList<AdminAlert> adminAlerts;
+    private ArrayList<Prompt> adminAlerts;
 
      // Not really sure how we want to do this. Hardcoded for simplicity in the meanwhile - Louis
 
@@ -33,7 +32,7 @@ public class AdminUser implements Serializable {
      * @param password string for the admin's password
      */
     public AdminUser(String username, String password) {
-        adminAlerts = new ArrayList<AdminAlert>();
+        adminAlerts = new ArrayList<Prompt>();
         loginInfo = new HashMap<String, String>();
         addLogin(username, password);
 
@@ -67,7 +66,7 @@ public class AdminUser implements Serializable {
      * Getter for the admin alert list.
      * @return the list of admin alerts.
      */
-    public ArrayList<AdminAlert> getAdminAlerts() {
+    public ArrayList<Prompt> getAdminAlerts() {
         return adminAlerts;
     }
 
@@ -114,26 +113,21 @@ public class AdminUser implements Serializable {
     /**
      * Determines acceptance of item validation request and either creates/adds the new item,
      * or provides an alert that it has been declined
-     * @param accepted boolean for whether or not the request has been accepted
-     * @param request corresponding ItemValidationRequestAlert object
-     * @param message validation request message
+     * @param itemName the name of the item
+     * @param itemID the ID of the item being validated
+     * @param description a description of the item
      */
-    public void pollValidationRequest(UserManager userManager,
-                                      boolean accepted, ItemValidationRequestAlert request, String message) {
-        if (accepted) {
-            TradingUser user = (TradingUser)userManager.searchUser(request.getOwner());
-            Item item = new Item(request.getName(), request.getItemID(), request.getOwner());
-            item.setDescription(request.getDescription());
-            assert user != null;
-            user.addAvailableItem(item);   //Changed this to fail when user is null. We don't want the program
-            // to fail silently.
-            // request.getOwner().availableItems.add(request.getObj());
-        }
-        else{
-            UserAlert alert = new ItemValidationDeclinedAlert(request.getOwner(), request.getOwner(),
-                    request.getDescription(), request.getItemID(), message);
-            userManager.alertUser(request.getOwner(), alert);
-        }
+    public void pollValidationRequest(UserManager userManager, String usernameOfOwner, String itemName, int itemID,
+                                      String description) {
+
+        TradingUser user = (TradingUser)userManager.searchUser(usernameOfOwner);
+        Item item = new Item(itemName, itemID, usernameOfOwner);
+        item.setDescription(description);
+        assert user != null;
+        user.addAvailableItem(item);   //Changed this to fail when user is null. We don't want the program
+        // to fail silently.
+        // request.getOwner().availableItems.add(request.getObj());
+
     }
 
 
@@ -141,14 +135,8 @@ public class AdminUser implements Serializable {
      * author: tian
      * @param user user object to freeze
      */
-    public void freezeUser(UserManager userManager, TradingUser user, TradeCreator tradeCreator){
+    public void freezeUser(TradingUser user){
         user.setFrozen(true);
-        int numBorrowed = user.getNumBorrowed();
-        int numLent = user.getNumLent();
-        int incompleteT = user.getNumIncompleteTrades();
-        FrozenAlert alert = new FrozenAlert(numBorrowed, numLent, tradeCreator.getBorrowLendThreshold(), incompleteT,
-                userManager.getIncompleteThreshold());
-        userManager.alertUser(user.getUsername(), alert);
     }
 
     /**

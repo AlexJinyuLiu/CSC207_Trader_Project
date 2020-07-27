@@ -1,6 +1,6 @@
 package controllerpresenterpack;
 
-import alertpack.UnfreezeRequestAlert;
+import alertpack.*;
 import entitypack.*;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -177,7 +177,9 @@ public class TradingUserActions implements UserBrowsing {
              menuPresenter.printMenu(16, 9);
              String description = scan.nextLine();
              String username = user.getUsername();
-             userManager.sendValidationRequest(name,description,username);
+             int itemID = userManager.getNewItemID();
+             ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemID, username, name, description);
+             userManager.alertAdmin(alert);
          } else if (input == 2){
              //"Please enter the ID of the item you wish to remove"
              menuPresenter.printMenu(16, 10);
@@ -335,7 +337,8 @@ public class TradingUserActions implements UserBrowsing {
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(18, 6);
         String message = scan.nextLine();
-        userManager.sendMessageToUser(userViewing.getUsername(), userToView, message);
+        UserAlert alert = new MessageAlert(userViewing.getUsername(), message);
+        userManager.alertUser(userToView.getUsername(), alert);
         menuPresenter.printMenu(18, 7, userToView.getUsername());
     }
 
@@ -490,21 +493,24 @@ public class TradingUserActions implements UserBrowsing {
                 menuPresenter.printMenu(36, 1);
             }
         }
-
-        Boolean canBeProcessed;
+        int tradeID;
         if (isTempTrade) {
-            canBeProcessed = tradeCreator.sendTemporaryTradeRequest(userSending, userReceiving, itemIDsReceived, itemIDsSent,
-                    meetingTime, meetingPlace);
+            tradeID = tradeCreator.createTemporaryTradeRequest(userSending, userReceiving, itemIDsReceived,
+                    itemIDsSent, meetingTime, meetingPlace);
+
         } else {
-            canBeProcessed = tradeCreator.sendTradeRequest(userSending, userReceiving, itemIDsReceived, itemIDsSent,
+            tradeID = tradeCreator.createTradeRequest(userSending, userReceiving, itemIDsReceived, itemIDsSent,
                     meetingTime, meetingPlace);
         }
-        if (!canBeProcessed){
+        if (tradeID == -1){
             //"Your trade could not be processed. This could have happened if you have completed " +
              //       "too many trades this week or if one of the users was frozen"
             menuPresenter.printMenu(19, 14);
             menuPresenter.printMenu(19, 15);
         }else{
+            TradeRequestAlert alert = new TradeRequestAlert(userSending.getUsername(), tradeID,
+                    isTempTrade);
+            tradeCreator.alertUser(userReceiving, alert);
         // "Successfully created and sent trade request. You will be notified when they respond."
             menuPresenter.printMenu(19, 16);
         }

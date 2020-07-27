@@ -1,7 +1,7 @@
 package alertpack;
-
+import usecasepack.Prompt;
 import java.io.Serializable;
-public abstract class Alert implements Serializable{
+public abstract class Alert implements Serializable, Prompt {
     /** Messages which will be presented to users and may require action.
      *
      */

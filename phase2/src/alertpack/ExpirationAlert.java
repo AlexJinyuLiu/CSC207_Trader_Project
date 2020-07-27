@@ -1,7 +1,17 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import entitypack.TemporaryTrade;
+import entitypack.Trade;
+import entitypack.TradingUser;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class ExpirationAlert extends UserAlert implements Serializable {
     /** An alert which is tells a user that a temporary trade they are involved in has expired.
@@ -23,6 +33,56 @@ public class ExpirationAlert extends UserAlert implements Serializable {
         this.dueDate = dueDate;
         this.username = username;
         this.tradeId = tradeId;
+    }
+
+    /** Handles the ExpirationAlert by prompting the user to either confirm that they showed up or report the other
+     *  user for not showing up.
+     *
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                       TradeCreator tradeCreator, ItemManager itemManager){
+
+        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        // "The following EntityPack.TemporaryTrade has expired at" + alert.getDueDate() + ":\n" +
+        //        tradeToString(userManager, tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId()))
+        menuPresenter.printMenu(24, 1);
+        boolean flag = true;
+        int input = 0;
+
+        while (flag) {
+            Scanner scan = new Scanner(System.in);
+            // "(1) Report the other user \n (2) Confirm ReExchange"
+            menuPresenter.printMenu(24, 2);
+            menuPresenter.printMenu(24, 3);
+            input = scan.nextInt();
+            if (input == 1 || input == 2) flag = false;
+        }
+        if (input == 1) {
+            Trade trade = tradeCreator.getTradeHistories().searchTemporaryTrade(getTradeId());
+            Scanner scan = new Scanner(System.in);
+            // "Reason for reporting: + \n"
+            menuPresenter.printMenu(24, 4);
+            String message = scan.nextLine();
+
+            String user2 = getUsername();
+            String user1;
+            if (user2.equals(trade.getUsername2())){
+                user1 = trade.getUsername1();
+            } else user1 = trade.getUsername2();
+
+
+            AdminAlert reportAlert = new ReportAlert(user1, user2, false, message);
+            userManager.alertAdmin(reportAlert);
+            // "Report has been sent to the tribunal"
+            menuPresenter.printMenu(24, 5);
+
+        } else {
+            TradingUser user = (TradingUser)userManager.searchUser(getUsername());
+            TemporaryTrade trade = tradeCreator.getTradeHistories().searchTemporaryTrade(getTradeId());
+            tradeCreator.getTradeHistories().confirmReExchange(itemManager, user, trade);
+            // "EntityPack.Trade ReExchange confirmed"
+            menuPresenter.printMenu(24, 6);
+        }
     }
 
     /**

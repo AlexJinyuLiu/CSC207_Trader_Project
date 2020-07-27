@@ -1,6 +1,14 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import entitypack.Trade;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class TradeAcceptedAlert extends UserAlert implements Serializable {
     /** An alert which tells a user that a trade they have proposed has been accepted.
@@ -19,6 +27,32 @@ public class TradeAcceptedAlert extends UserAlert implements Serializable {
         super(4);
         this.acceptingUsername = acceptingUsername;
         this.tradeID = tradeID;
+    }
+
+    /** Handles the TradeAcceptedAlert by informing the user that their pending trade request has been accepted.
+     *
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                       TradeCreator tradeCreator, ItemManager itemManager){
+        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        //a.getAcceptingUsername() +
+        //        " has accepted the following trade request: \n" + tradeToString(userManager,
+        Trade b = tradeCreator.searchTrades(getTradeID());
+        menuPresenter.printMenu(26, 1);
+        menuPresenter.printTradeToString(itemManager, b);
+
+        boolean handled = false;
+
+        int input = 0;
+
+        while (!handled){
+            Scanner scan = new Scanner(System.in);
+            // "(1) Dismiss"
+            menuPresenter.printMenu(26, 2);
+            input = scan.nextInt();
+            if (input == 1) handled = true;
+        }
+
     }
 
     /**

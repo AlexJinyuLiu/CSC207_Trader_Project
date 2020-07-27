@@ -1,8 +1,5 @@
 package usecasepack;
 
-import alertpack.AdminAlert;
-import alertpack.ExpirationAlert;
-import alertpack.UserAlert;
 import entitypack.*;
 
 import java.io.Serializable;
@@ -22,16 +19,16 @@ public class TradeHistories  implements Serializable {
 
     private ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability - Louis
 
-    private ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+    private ArrayList<Prompt> adminAlerts = new ArrayList<Prompt>();
 
-    private HashMap<String, ArrayList<UserAlert>> userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
+    private HashMap<String, ArrayList<Prompt>> userAlertsToDispatch = new HashMap<String, ArrayList<Prompt>>();
     /**
      * Return a list of all adminAlerts stored in this class. Also empties the adminAlerts member.
      * @return an ArrayList of admin alerts
      */
-    public ArrayList<AdminAlert> fetchAdminAlerts() {
-        ArrayList<AdminAlert> alerts = this.adminAlerts;
-        this.adminAlerts = new ArrayList<AdminAlert>();
+    public ArrayList<Prompt> fetchAdminAlerts() {
+        ArrayList<Prompt> alerts = this.adminAlerts;
+        this.adminAlerts = new ArrayList<Prompt>();
         return alerts;
     }
 
@@ -39,9 +36,9 @@ public class TradeHistories  implements Serializable {
      * Return a list of all user Alerts stored in this class. Also empties the userAlertsToDispatch member.
      * @return an ArrayList of admin alerts
      */
-    public HashMap<String, ArrayList<UserAlert>> fetchUserAlerts(){
-        HashMap<String, ArrayList<UserAlert>> alerts = userAlertsToDispatch;
-        this.userAlertsToDispatch = new HashMap<String, ArrayList<UserAlert>>();
+    public HashMap<String, ArrayList<Prompt>> fetchUserAlerts(){
+        HashMap<String, ArrayList<Prompt>> alerts = userAlertsToDispatch;
+        this.userAlertsToDispatch = new HashMap<String, ArrayList<Prompt>>();
         return alerts;
     }
 
@@ -50,7 +47,7 @@ public class TradeHistories  implements Serializable {
      * @param user the user to alert.
      * @param alert the alert to be sent.
      */
-    public void alertUser(User user, UserAlert alert){
+    public void alertUser(User user, Prompt alert){
         String username = user.getUsername();
         alertUser(username, alert);
     }
@@ -60,12 +57,12 @@ public class TradeHistories  implements Serializable {
      * @param username the username of the user to alert.
      * @param alert the alert to be sent.
      */
-    public void alertUser(String username, UserAlert alert){
-        ArrayList<UserAlert> userAlerts;
+    public void alertUser(String username, Prompt alert){
+        ArrayList<Prompt> userAlerts;
         if (userAlertsToDispatch.containsKey(username)) {
             userAlerts = userAlertsToDispatch.get(username);
         } else{
-            userAlerts = new ArrayList<UserAlert>();
+            userAlerts = new ArrayList<Prompt>();
         }
         userAlerts.add(alert);
         userAlertsToDispatch.put(username, userAlerts);
@@ -318,28 +315,18 @@ public class TradeHistories  implements Serializable {
 
 
     /**
-     * Check to see if any TemporaryTrades have expired and if so, add an alert to the EntityPack.User's alertQueue.
-     * Author: Murray Smith
-     * Rework by Louis Scheffer V 6/30/20 // modifications made to work with the alert system.
-     * Rework by Tian Yue Dong 7/1/2020 ; made it so it only sends alert to user who didn't confirm the reexchange
+     * Check to see if any TemporaryTrades have expired and if so, return them in an arraylist.
+     *
+     * @return An arraylist of all expired temporary trades.
      */ //TradeManager
-    public void checkForExpiredTempTrades(){
+    public ArrayList<TemporaryTrade> fetchExpiredTempTrades(){
+        ArrayList<TemporaryTrade> expiredTempTrades = new ArrayList<TemporaryTrade>();
         for (TemporaryTrade tempTrade : currentTemporaryTrades) {
             if (LocalDateTime.now().isAfter(tempTrade.getDueDate())) {
-                LocalDateTime dueDate = tempTrade.getDueDate();
-                int tradeID = tempTrade.getTradeID();
-
-                if (!tempTrade.getUser1ItemReturnRequestAccepted()){
-                    UserAlert alert = new ExpirationAlert(dueDate,tempTrade.getUsername1(), tradeID);
-                    alertUser(tempTrade.getUsername1(), alert);
-                }
-                if (!tempTrade.getUser2ItemReturnRequestAccepted()){
-                    UserAlert alert = new ExpirationAlert(dueDate, tempTrade.getUsername2(), tradeID);
-                    alertUser(tempTrade.getUsername2(), alert);
-                }
-
+                expiredTempTrades.add(tempTrade);
             }
         }
+        return expiredTempTrades;
     }
 
     /** Method which allows a user to confirm the re-exchange of items has occurred in the real world. If the other

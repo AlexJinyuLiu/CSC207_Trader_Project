@@ -1,12 +1,10 @@
 import alertpack.*;
 import controllerpresenterpack.*;
-import entitypack.BrowsingUser;
-import entitypack.MetroArea;
-import entitypack.TradingUser;
-import entitypack.User;
+import entitypack.*;
 import usecasepack.*;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,7 +65,10 @@ public class TradeSystem {
         tradeCreator = FileManager.loadTradeCreator();
         itemManager = FileManager.loadItemManager();
 
-        tradeCreator.getTradeHistories().checkForExpiredTempTrades();
+
+        checkForExpiredTempTrades();
+
+        checkForPastDateTrades();
         tradeCreator.onStartup();
 
         User loggedIn = null;
@@ -101,18 +102,27 @@ public class TradeSystem {
         if (isAdmin) {
 
             adminUser.onStartUp(userManager, tradeCreator);
-            ArrayList<AdminAlert> adminAlerts = adminUser.getAdminAlerts();
-            adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, adminAlerts);
+            ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+            for (Prompt prompt : adminUser.getAdminAlerts()){
+                adminAlerts.add((AdminAlert)prompt);
+            }
+            adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, itemManager,
+                    adminAlerts);
             adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager, itemManager);
         } else {
             if (loggedIn == null) {
                 return;
             }
             userManager.onStartUp(tradeCreator);
-            ArrayList<UserAlert> userAlerts = userManager.getUserAlerts(loggedIn.getUsername());
-            userAlertManager.handleAlertQueue(menuPresenter, userManager, tradeCreator, itemManager, userAlerts);
+            ArrayList<UserAlert> userAlerts = new ArrayList<UserAlert>();
+            for (Prompt prompt : userManager.getUserAlerts(loggedIn.getUsername())){
+                userAlerts.add((UserAlert)prompt);
+            }
+            userAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, itemManager,
+                    userAlerts);
             if (loggedIn instanceof TradingUser) {
-                tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn, itemManager);
+                tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn,
+                        itemManager);
             } else if (loggedIn instanceof BrowsingUser){
                 browsingUserActions.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator,
                         (BrowsingUser)loggedIn, itemManager);
@@ -123,6 +133,43 @@ public class TradeSystem {
         FileManager.saveTradeCreatorToFile(tradeCreator);
         FileManager.saveUserManagerToFile(userManager);
 
+    }
+
+    /**
+     * Checks for any expired temporary trades, and then alerts the users involved that they must return their items.
+     */
+    private void checkForExpiredTempTrades(){
+        ArrayList<TemporaryTrade> expiredTempTrade = tradeCreator.getTradeHistories().fetchExpiredTempTrades();
+
+        for(TemporaryTrade tempTrade : expiredTempTrade) {
+            LocalDateTime dueDate = tempTrade.getDueDate();
+            int tradeID = tempTrade.getTradeID();
+
+            if (!tempTrade.getUser1ItemReturnRequestAccepted()) {
+                UserAlert alert = new ExpirationAlert(dueDate, tempTrade.getUsername1(), tradeID);
+                tradeCreator.alertUser(tempTrade.getUsername1(), alert);
+            }
+            if (!tempTrade.getUser2ItemReturnRequestAccepted()) {
+                UserAlert alert = new ExpirationAlert(dueDate, tempTrade.getUsername2(), tradeID);
+                tradeCreator.alertUser(tempTrade.getUsername2(), alert);
+            }
+        }
+    }
+
+    /**
+     * Checks for trades that have passed and alerts users that they must confirm whether or not the trade has happened.
+     */
+    private void checkForPastDateTrades(){
+        ArrayList<Trade> pastDateTrades = tradeCreator.fetchPastDateTrades();
+        for (Trade trade : pastDateTrades) {
+            UserAlert alertUser1 = new TradePastDateAlert(trade.getTimeOfTrade(), trade.getUsername1(),
+                    trade.getTradeID());
+            UserAlert alertUser2 = new TradePastDateAlert(trade.getTimeOfTrade(), trade.getUsername2(),
+                    trade.getTradeID());
+            tradeCreator.alertUser(trade.getUsername1(), alertUser1);
+            tradeCreator.alertUser(trade.getUsername2(), alertUser2);
+            trade.setUsersAlertedToPastDue(true);
+        }
     }
 
 //in main:

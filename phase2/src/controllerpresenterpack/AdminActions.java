@@ -1,5 +1,7 @@
 package controllerpresenterpack;
 
+import alertpack.MessageAlert;
+import alertpack.UserAlert;
 import entitypack.BrowsingUser;
 import entitypack.*;
 import usecasepack.AdminUser;
@@ -350,7 +352,8 @@ public class AdminActions implements UserBrowsing{
         Scanner scan = new Scanner(System.in);
         menuPresenter.printMenu(45, 6);
         String message = scan.nextLine();
-        userManager.sendMessageToUser("Admin", userToView, message);
+        UserAlert alert = new MessageAlert("Admin", message);
+        userManager.alertUser(userToView.getUsername(), alert);
         menuPresenter.printMenu(45, 7, userToView.getUsername());
     }
 }

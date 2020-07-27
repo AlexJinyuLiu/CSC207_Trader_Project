@@ -1,6 +1,13 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class ItemValidationRequestAlert extends AdminAlert implements Serializable{
     /** AdminAlert which is created from ControllerPresenterPack.UserActions when a user requests that an item be validated.
@@ -43,6 +50,52 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
         this.itemID = itemID;
         idGenerator++;
     }
+
+    /** Method that handles an ItemValidationRequestAlert by approving or denying the request
+     *
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                        TradeCreator tradeCreator, ItemManager itemManager){
+        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        // "EntityPack.Item validation request\nUser: " + alert.getOwner() + "\nEntityPack.Item name: " + alert.getName() +
+        //         "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID()
+        menuPresenter.printMenu(11,0);
+        menuPresenter.printMenu(11,1, getOwner()) ;
+        menuPresenter.printMenu(11,2, getName());
+        menuPresenter.printMenu(11,3, getDescription());
+        menuPresenter.printMenu(11,4, getItemID());
+
+        Scanner scanner = new Scanner(System.in);
+        String message;
+        // "(1) Approve this item"
+        menuPresenter.printMenu(11,5);
+        // "(2) Deny this item"
+        menuPresenter.printMenu(11,6);
+        // "Please enter one of the numbers listed above"
+        menuPresenter.printMenu(5,1);
+        int choice = scanner.nextInt();
+        while(choice > 2 || choice < 0){
+            // "The number you entered was not listed above. Please enter a choice between 1 and " + x
+            menuPresenter.printMenu(5,2, 2);
+            choice = scanner.nextInt();
+        }
+        if (choice == 2){
+            // "Please enter a reason why this request was declined."
+            menuPresenter.printMenu(11,7);
+            message = scanner.next();
+        }else{
+            message = "";
+        }
+        if (choice == 1) {
+            adminUser.pollValidationRequest(userManager, getOwner(), getName(), getItemID(),
+                    getDescription());
+        } else{
+            UserAlert declinedAlert = new ItemValidationDeclinedAlert(getOwner(), getOwner(),
+                    getDescription(), getItemID(), message);
+            userManager.alertUser(getOwner(), declinedAlert);
+        }
+    }
+
 
     /**
      *

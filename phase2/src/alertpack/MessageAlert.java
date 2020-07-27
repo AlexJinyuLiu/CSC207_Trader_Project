@@ -1,6 +1,13 @@
 package alertpack;
 
+import controllerpresenterpack.MenuPresenter;
+import usecasepack.AdminUser;
+import usecasepack.ItemManager;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
+
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class MessageAlert extends UserAlert implements Serializable {
     /** Alert which gives a message to a user from another user.
@@ -21,6 +28,28 @@ public class MessageAlert extends UserAlert implements Serializable {
         this.senderUsername = senderUsername;
     }
 
+    /** Handles the message alert by displaying the message to the user receiving it.
+     *
+     */
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+                       TradeCreator tradeCreator, ItemManager itemManager){
+        MenuPresenter menuPresenter = (MenuPresenter)menuPresenterObject;
+        // "From: " + a.getSenderUsername() + "\n" + a.getMessage()
+        menuPresenter.printMenu(31, 1, getSenderUsername());
+        menuPresenter.printMenu(35, 0, getMessage());
+        boolean handled = false;
+
+        int input = 0;
+
+        while (!handled){
+            Scanner scan = new Scanner(System.in);
+            // "(1) Dismiss"
+            menuPresenter.printMenu(31, 2);
+            input = scan.nextInt();
+            if (input == 1) handled = true;
+        }
+
+    }
     /**
      *
      * @return the username of the sender.
