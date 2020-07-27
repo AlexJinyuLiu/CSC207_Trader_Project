@@ -99,4 +99,24 @@ public class ItemManager implements Serializable {
         items.remove(item);
     }
 
+    public ArrayList<Item> getAvailableItems(String username) {
+        ArrayList<Item> usersItems = new ArrayList<Item>();
+        for (Item item: items) {
+            if (item.getName().equals(username)) {
+                usersItems.add(item);
+            }
+        }
+        return usersItems;
+    }
+
+    public boolean checkIfUserContain(TradingUser user, int itemID) {
+        Item item = searchItem(itemID);
+        if (item == null) {
+            return false;
+        }
+        else {
+            return item.getInPossessionOf().equals(user.getUsername());
+        }
+    }
+
 }

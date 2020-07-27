@@ -136,13 +136,14 @@ public class TradingUserActions implements UserBrowsing {
         boolean flag = true;
         int input = 0;
         Scanner scan = new Scanner(System.in);
-        if (user.getAvailableItems().size() == 0){
+        ArrayList<Item> availableItems = itemManager.getAvailableItems(user.getUsername());
+        if (availableItems.size() == 0){
             //"You have no items."
             menuPresenter.printMenu(16, 1);
         } else {
             //"Your available items:"
             menuPresenter.printMenu(16, 2);
-            for (Item item : user.getAvailableItems()) {
+            for (Item item : availableItems) {
                 menuPresenter.printMenu(35, 0);
                 menuPresenter.printItemToString(item);
             }
@@ -297,14 +298,14 @@ public class TradingUserActions implements UserBrowsing {
                     menuPresenter.printMenu(18, 8);
                     scan.nextLine();
                     int itemID = scan.nextInt();
-                    if (userManager.checkIfUserContain((TradingUser)userToView, itemID)) {
+                    if (itemManager.checkIfUserContain(tradingUser, itemID)) {
                         Item item = itemManager.searchItem(itemID);
-                        userManager.addToWishlist((TradingUser)userViewing, item.getName());
+                        userManager.addToWishlist(tradingUser, item.getName());
                         menuPresenter.printMenu(18, 9);
                     }
                     else { menuPresenter.printMenu(18,10); }
                 } else if (input == 3 && !tradingUser.getFrozen()){
-                    formTradeRequest(menuPresenter, tradeCreator, (TradingUser)userViewing, tradingUser);
+                    formTradeRequest(menuPresenter, tradeCreator, (TradingUser)userViewing, tradingUser, itemManager);
                 } else if (input == 0){
                     handled = true;
 
@@ -344,11 +345,13 @@ public class TradingUserActions implements UserBrowsing {
      * @param userReceiving user that will receive the trade request
      */
     private void formTradeRequest(MenuPresenter menuPresenter, TradeCreator tradeCreator, TradingUser userSending,
-                                  TradingUser userReceiving) {
+                                  TradingUser userReceiving, ItemManager itemManager) {
         Scanner scan = new Scanner(System.in);
         boolean finished = false;
-        ArrayList<Integer> itemIDsRecieved = new ArrayList<Integer>();
-        if (userReceiving.getAvailableItems().size() == 0){
+        ArrayList<Integer> itemIDsReceived = new ArrayList<Integer>();
+        ArrayList<Item> sendersItems = itemManager.getAvailableItems(userSending.getUsername());
+        ArrayList<Item> receiversItems = itemManager.getAvailableItems(userReceiving.getUsername());
+        if (receiversItems.size() == 0){
             // "The other user has no available items. You will not receive anything in this trade."
             menuPresenter.printMenu(19, 1);
             finished = true;
@@ -358,9 +361,9 @@ public class TradingUserActions implements UserBrowsing {
             menuPresenter.printMenu(19, 2);
             int ID = scan.nextInt();
             boolean validID = false;
-            for (Item item : userReceiving.getAvailableItems()) {
+            for (Item item : receiversItems) {
                 if (item.getId() == ID) {
-                    itemIDsRecieved.add(ID);
+                    itemIDsReceived.add(ID);
                     validID = true;
                 } else if (ID == -1) {
                     validID = true;
@@ -393,7 +396,7 @@ public class TradingUserActions implements UserBrowsing {
         ArrayList<Integer> itemIDsSent = new ArrayList<Integer>();
 
         boolean finished2 = false;
-        if (userSending.getAvailableItems().size() == 0){
+        if (sendersItems.size() == 0){
             // "You will not be offering anything with this trade."
             menuPresenter.printMenu(19, 7);
             finished2 = true;
@@ -491,10 +494,10 @@ public class TradingUserActions implements UserBrowsing {
 
         Boolean canBeProcessed;
         if (isTempTrade) {
-            canBeProcessed = tradeCreator.sendTemporaryTradeRequest(userSending, userReceiving, itemIDsRecieved, itemIDsSent,
+            canBeProcessed = tradeCreator.sendTemporaryTradeRequest(userSending, userReceiving, itemIDsReceived, itemIDsSent,
                     meetingTime, meetingPlace);
         } else {
-            canBeProcessed = tradeCreator.sendTradeRequest(userSending, userReceiving, itemIDsRecieved, itemIDsSent,
+            canBeProcessed = tradeCreator.sendTradeRequest(userSending, userReceiving, itemIDsReceived, itemIDsSent,
                     meetingTime, meetingPlace);
         }
         if (!canBeProcessed){
