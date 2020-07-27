@@ -19,21 +19,50 @@ public class FileManager {
     private final static String dir = "phase2/data/"; //file directory
 
     /**
-     * Serializes an admin object to a .ser file
-     * @param admin admin which is being saved to a file
+     * Serializes an object to a file
+     * @param obj object to be serialized
+     * @param fileName name of file
      */
-    public static void saveAdminToFile(AdminUser admin) {
-        //serializes the given user's information in a .ser file with the title of their username
+    private static void saveToFile(Object obj, String fileName) {
         try {
-            FileOutputStream file = new FileOutputStream(dir + "adminUser.ser");
+            FileOutputStream file = new FileOutputStream(dir + fileName);
             ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(admin);
+            out.writeObject(obj);
             out.close();
             file.close();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Deserializes an object from a file
+     * @param fileName name of file
+     * @return de-serialized object
+     */
+    private static Object loadFromFile(String fileName){
+        Object obj;
+        try {
+            FileInputStream file = new FileInputStream(dir + fileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+            obj = (Object) in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj;
+    }
+
+    /**
+     * Serializes an admin object to a .ser file
+     * @param admin admin which is being saved to a file
+     */
+    public static void saveAdminToFile(AdminUser admin) {
+        saveToFile(admin, "adminUser.ser");
     }
 
     /**
@@ -41,17 +70,7 @@ public class FileManager {
      * @param userManager which is being saved to a file
      */
     public static void saveUserManagerToFile(UserManager userManager) {
-        //serializes the given user manager information in a .ser file
-        try {
-            FileOutputStream file = new FileOutputStream(dir + "userManager.ser");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(userManager);
-            out.close();
-            file.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        saveToFile(userManager, "userManager.ser");
     }
 
     /**
@@ -59,30 +78,15 @@ public class FileManager {
      * @param tradeCreator which is being saved to a file
      */
     public static void saveTradeCreatorToFile(TradeCreator tradeCreator) {
-        //serializes the given trade creator information in a .ser file
-        try {
-            FileOutputStream file = new FileOutputStream(dir + "tradeCreator.ser");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(tradeCreator);
-            out.close();
-            file.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        saveToFile(tradeCreator, "tradeCreator.ser");
     }
 
+    /**
+     * Serializes a UseCasePack.ItemManager object to a .ser file
+     * @param itemManager which is being saved to a file
+     */
     public static void saveItemManagerToFile(ItemManager itemManager){
-        try {
-            FileOutputStream file = new FileOutputStream(dir + "itemManager.ser");
-            ObjectOutputStream out = new ObjectOutputStream(file);
-            out.writeObject(itemManager);
-            out.close();
-            file.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        saveToFile(itemManager, "itemManager.ser");
     }
 
     /**
@@ -90,20 +94,7 @@ public class FileManager {
      * @return UseCasePack.AdminUser object
      */
     public static AdminUser loadAdminUser(){
-        // deserializes UseCasePack.AdminUser object
-        AdminUser adminUsr;
-        try {
-            FileInputStream file = new FileInputStream(dir + "adminUser.ser");
-            ObjectInputStream in = new ObjectInputStream(file);
-            adminUsr = (AdminUser) in.readObject();
-            in.close();
-            file.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return adminUsr;
+        return (AdminUser) loadFromFile("adminUser.ser");
     }
 
     /**
@@ -111,20 +102,7 @@ public class FileManager {
      * @return the UseCasePack.UserManager object stored in the file
      */
     public static UserManager loadUserManager(){
-        UserManager userManager;
-        try {
-            FileInputStream file = new FileInputStream(dir + "userManager.ser");
-            ObjectInputStream in = new ObjectInputStream(file);
-            userManager = (UserManager) in.readObject();
-            in.close();
-            file.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            // ClassNotFoundException if EntityPack.User class is not recognized
-            e.printStackTrace();
-            return null;
-        }
-        return userManager;
+        return (UserManager) loadFromFile("userManager.ser");
     }
 
     /**
@@ -132,40 +110,14 @@ public class FileManager {
      * @return the UseCasePack.UserManager object stored in the file
      */
     public static TradeCreator loadTradeCreator(){
-        TradeCreator tradeCreator;
-        try {
-            FileInputStream file = new FileInputStream(dir + "tradeCreator.ser");
-            ObjectInputStream in = new ObjectInputStream(file);
-            tradeCreator = (TradeCreator) in.readObject();
-
-            in.close();
-            file.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            // ClassNotFoundException if EntityPack.User class is not recognized
-            e.printStackTrace();
-            return null;
-        }
-
-        return tradeCreator;
+        return (TradeCreator) loadFromFile("tradeCreator.ser");
     }
 
+    /**
+     * Loads a UseCasePack.ItemManager from a .ser file
+     * @return the UseCasePack.ItemManager object stored in the file
+     */
     public static ItemManager loadItemManager(){
-        ItemManager itemManager;
-        try {
-            FileInputStream file = new FileInputStream(dir + "itemManager.ser");
-            ObjectInputStream in = new ObjectInputStream(file);
-            itemManager = (ItemManager) in.readObject();
-
-            in.close();
-            file.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            // ClassNotFoundException if EntityPack.User class is not recognized
-            e.printStackTrace();
-            return null;
-        }
-
-        return itemManager;
+        return (ItemManager) loadFromFile("itemManager.ser");
     }
 }
