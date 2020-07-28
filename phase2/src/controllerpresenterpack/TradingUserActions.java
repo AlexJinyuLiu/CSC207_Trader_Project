@@ -160,21 +160,22 @@ public class TradingUserActions implements UserBrowsing {
             menuPresenter.printMenu(16, 4);
             menuPresenter.printMenu(16, 5);
             menuPresenter.printMenu(16, 6);
-            menuPresenter.printMenu(16, 14);
+            menuPresenter.printMenu(16, 7);
+            menuPresenter.printMenu(16, 15);
             input = scan.nextInt();
-            if (input < 0 || input > 3){
+            if (input < 0 || input > 4){
                 //"Please enter a number from 1 to 3"
-                menuPresenter.printMenu(16, 7);
+                menuPresenter.printMenu(16, 8);
             } else flag = false;
 
          if (input == 1){
              String name = null;
              //"Please enter the name of your item"
-             menuPresenter.printMenu(16, 8);
+             menuPresenter.printMenu(16, 9);
              scan.nextLine();
              name = scan.nextLine();
              //"Please enter the item description"
-             menuPresenter.printMenu(16, 9);
+             menuPresenter.printMenu(16, 10);
              String description = scan.nextLine();
              String username = user.getUsername();
              int itemID = itemManager.getNewItemID();
@@ -182,29 +183,44 @@ public class TradingUserActions implements UserBrowsing {
              userManager.alertAdmin(alert);
          } else if (input == 2){
              //"Please enter the ID of the item you wish to remove"
-             menuPresenter.printMenu(16, 10);
+             menuPresenter.printMenu(16, 11);
              int itemID = scan.nextInt();
              if (itemManager.checkIfUserHas(user, itemID)) {
                  itemManager.removeFromInventory(itemID);
-                 menuPresenter.printMenu(16, 15);
+                 menuPresenter.printMenu(16, 16);
              }
              else {
-                 menuPresenter.printMenu(16, 12);
+                 menuPresenter.printMenu(16, 13);
              }
 
          } else if (input == 3){
              //"Please enter the name of the item on your wishlist you wish to remove"
-             menuPresenter.printMenu(16, 13);
+             menuPresenter.printMenu(16, 14);
              scan.nextLine();
              String wishlistItem = scan.nextLine();
              if (userManager.checkIfUserContain(user, wishlistItem)) {
                  userManager.removeFromWishList(user, wishlistItem);
-                 menuPresenter.printMenu(16, 15);
-             }
-             else {
                  menuPresenter.printMenu(16, 16);
              }
-         } else if (input == 0){
+             else {
+                 menuPresenter.printMenu(16, 17);
+             }
+         } else if (input == 4) {
+             ArrayList<Item> listItems = new ArrayList<Item>();
+             for (String wish : user.getWishlistItemNames()) {
+                 for (Item item : itemManager.getItems()) {
+                     if (item.getName().toLowerCase().contains(wish.toLowerCase())) {
+                         listItems.add(item);
+                     }
+                 }
+             }
+             if (listItems.size() == 0) {
+                 menuPresenter.printMenu(16, 18);
+             } else for (Item wishItem : listItems) {
+                 menuPresenter.printItemToString(wishItem);
+             }
+         }
+         else if (input == 0){
              return;
          }
 
@@ -302,7 +318,7 @@ public class TradingUserActions implements UserBrowsing {
                     int itemID = scan.nextInt();
                     if (itemManager.checkIfUserHas(tradingUser, itemID)) {
                         Item item = itemManager.searchItem(itemID);
-                        userManager.addToWishlist(tradingUser, item.getName());
+                        userManager.addToWishlist((TradingUser) userViewing, item.getName());
                         menuPresenter.printMenu(18, 9);
                     }
                     else { menuPresenter.printMenu(18,10); }

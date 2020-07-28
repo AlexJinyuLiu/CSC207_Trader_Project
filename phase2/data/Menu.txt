@@ -143,7 +143,8 @@ Your wishlist:
 (1) Send Item Validation request
 (2) Remove an item from available items
 (3) Remove an item from your wishlist
-Please enter a number from 1 to 3
+(4) View wishlist suggestions
+Please enter a number from 1 to 4
 Please enter the name of your item
 Please enter the item description
 Please enter the ID of the item you wish to remove
@@ -153,6 +154,7 @@ Please enter the name of the item on your wishlist you wish to remove.
 (0) Exit to main menu
 The item has been removed.
 Item has not been found.
+No matches, please add more items to your wishlist or try again later.
 }
 
 MENU{ - 17
