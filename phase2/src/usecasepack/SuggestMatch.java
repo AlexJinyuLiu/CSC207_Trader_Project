@@ -31,7 +31,7 @@ public class SuggestMatch {
             // checkMatch for user2
             if (wishlistItem.getName().equals(user1WishlistItems.get(i))) {
                 // checkMatch(user1, user2);
-                checkMatch(user1, user2, user1WishlistItems.get(i));
+
 
             }
         }
