@@ -434,3 +434,9 @@ Item has not been found.
 Please enter the username of the user.
 User has not been found. Redirected to the menu.
 }
+
+MENU{ - 46
+Select Language:
+(1) English
+(2) Français
+}

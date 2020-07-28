@@ -17,7 +17,7 @@ public class TradeSystem {
     private UserManager userManager;
     private TradeCreator tradeCreator;
     private ItemManager itemManager;
-    private MenuPresenter menuPresenter = new MenuPresenter();
+    private MenuPresenter menuPresenter;
 
     private UserAlertManager userAlertManager = new UserAlertManager();
 
@@ -56,6 +56,8 @@ public class TradeSystem {
             createItemManager();
         }
 
+        setLanguage();
+        //ASCII ART
         for (int i = 0; i < 5; i++){
             menuPresenter.printMenu(40, i);
         }
@@ -134,6 +136,27 @@ public class TradeSystem {
         FileManager.saveUserManagerToFile(userManager);
         FileManager.saveItemManagerToFile(itemManager);
 
+    }
+
+
+    /**
+     * Sets language of the program
+     */
+    private void setLanguage(){
+        System.out.println("Choose Language:");
+        System.out.println("(1) English ");
+        System.out.println("(2) Francais");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        while(choice < 1 || choice > 2){
+            System.out.println("Enter number from 1-2");
+            choice = scan.nextInt();
+        }
+        if (choice == 1) {
+            menuPresenter = new MenuPresenter("English");
+        } else if (choice == 2){
+            menuPresenter = new MenuPresenter("French");
+        }
     }
 
     /**

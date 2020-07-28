@@ -23,9 +23,13 @@ public class MenuPresenter {
     /**
      * Initializes a new ControllerPresenterPack.MenuPresenter object, while also populating the menusMap HashMap with the lines from Menu.txt
      */
-    public MenuPresenter() {
+    public MenuPresenter(String language) {
         try {
-            menu = new File("phase2/data/Menu.txt");
+            if (language.equals("English")){
+                menu = new File("phase2/data/Menu.txt");
+            } else if (language.equals("French")){
+                menu = new File("phase2/data/FrenchMenu.txt");
+            }
             BufferedReader br = new BufferedReader(new FileReader(menu));
 
             try {
