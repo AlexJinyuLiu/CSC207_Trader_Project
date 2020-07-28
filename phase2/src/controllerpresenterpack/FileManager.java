@@ -37,27 +37,6 @@ public class FileManager {
     }
 
     /**
-     * Deserializes an object from a file
-     * @param fileName name of file
-     * @return de-serialized object
-     */
-    private static Object loadFromFile(String fileName){
-        Object obj;
-        try {
-            FileInputStream file = new FileInputStream(dir + fileName);
-            ObjectInputStream in = new ObjectInputStream(file);
-            obj = (Object) in.readObject();
-            in.close();
-            file.close();
-        }
-        catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return obj;
-    }
-
-    /**
      * Serializes an admin object to a .ser file
      * @param admin admin which is being saved to a file
      */
@@ -94,7 +73,19 @@ public class FileManager {
      * @return UseCasePack.AdminUser object
      */
     public static AdminUser loadAdminUser(){
-        return (AdminUser) loadFromFile("adminUser.ser");
+        AdminUser obj;
+        try {
+            FileInputStream file = new FileInputStream(dir + "adminUser.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+            obj = (AdminUser) in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj;
     }
 
     /**
@@ -102,7 +93,19 @@ public class FileManager {
      * @return the UseCasePack.UserManager object stored in the file
      */
     public static UserManager loadUserManager(){
-        return (UserManager) loadFromFile("userManager.ser");
+        UserManager obj;
+        try {
+            FileInputStream file = new FileInputStream(dir + "userManager.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+            obj = (UserManager) in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj;
     }
 
     /**
@@ -110,7 +113,19 @@ public class FileManager {
      * @return the UseCasePack.UserManager object stored in the file
      */
     public static TradeCreator loadTradeCreator(){
-        return (TradeCreator) loadFromFile("tradeCreator.ser");
+        TradeCreator obj;
+        try {
+            FileInputStream file = new FileInputStream(dir + "tradeCreator.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+            obj = (TradeCreator) in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj;
     }
 
     /**
@@ -118,6 +133,18 @@ public class FileManager {
      * @return the UseCasePack.ItemManager object stored in the file
      */
     public static ItemManager loadItemManager(){
-        return (ItemManager) loadFromFile("itemManager.ser");
+        ItemManager obj;
+        try {
+            FileInputStream file = new FileInputStream(dir + "itemManager.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+            obj = (ItemManager) in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj;
     }
 }
