@@ -434,3 +434,9 @@ L'élément n'a pas été trouvé.
 Veuillez saisir le nom d'utilisateur de l'utilisateur.
 L'utilisateur n'a pas été trouvé. Redirigé vers le menu.
 }
+
+MENU{ - 46
+Choisir la langue:
+(1) English
+(2) Français
+}
