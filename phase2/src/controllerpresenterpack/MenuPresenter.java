@@ -153,6 +153,8 @@ public class MenuPresenter {
                     usersItems.get(usersItems.size() - 1).getId() + ")\n";
             userString.append(str);
         }
+        //TODO: delete the line below after debug
+        System.out.println(itemManager.getItems());
         if (user.getWishlistItemNames().size() == 0) {
             userString.append("This User has no items in their wishlist. \n");
         } else {

@@ -94,7 +94,7 @@ public class ItemValidationDeclinedAlert extends UserAlert implements Serializab
             menuPresenter.printMenu(29, 9);
             String description = scan.nextLine();
             String username = getOwner();
-            int itemID = userManager.getNewItemID();
+            int itemID = itemManager.getNewItemID();
 
             ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemID, username, name, description);
             userManager.alertAdmin(alert);

@@ -9,9 +9,28 @@ public class ItemManager implements Serializable {
     /**
      * Class which handles all of the items that are within the trading system.
      */
-    public ArrayList<Item> items = new ArrayList<Item>();
+    private ArrayList<Item> items = new ArrayList<Item>();
 
+    private int itemIDGenerator = 0;
 
+    public void createItem(String itemName, int itemID, String usernameOfOwner, String description) {
+        Item newItem = new Item(itemName, description, itemID, usernameOfOwner);
+        items.add(newItem);
+    }
+    //TODO: delete the function below after debug
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    /**
+     *
+     * @return A new ID for an item.
+     */
+    public int getNewItemID() {
+        int newID = itemIDGenerator;
+        itemIDGenerator++;
+        return newID;
+    }
 
     /** Method which returns a item (that is in a user's available items) when given its ID number.
      * Returns null if an invalid ID is given
@@ -106,7 +125,9 @@ public class ItemManager implements Serializable {
     public ArrayList<Item> getAvailableItems(String username) {
         ArrayList<Item> usersItems = new ArrayList<Item>();
         for (Item item: items) {
-            if (item.getName().equals(username)) {
+            //Dunno if borrowed items will be shown in user's inventory - Tingyu
+            //Does inventory means the item originally owned by the user only?
+            if (item.getInPossessionOf().equals(username)) {
                 usersItems.add(item);
             }
         }
@@ -124,6 +145,7 @@ public class ItemManager implements Serializable {
             return false;
         }
         else {
+            //Dunno if borrowed items will be shown in user's inventory - Tingyu
             return item.getInPossessionOf().equals(user.getUsername());
         }
     }

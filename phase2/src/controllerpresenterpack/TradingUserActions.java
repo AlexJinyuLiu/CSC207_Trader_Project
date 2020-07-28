@@ -140,6 +140,8 @@ public class TradingUserActions implements UserBrowsing {
         if (availableItems.size() == 0){
             //"You have no items."
             menuPresenter.printMenu(16, 1);
+            //TODO delete the line below after debug
+            System.out.println(itemManager.getItems());
         } else {
             //"Your available items:"
             menuPresenter.printMenu(16, 2);
@@ -177,7 +179,7 @@ public class TradingUserActions implements UserBrowsing {
              menuPresenter.printMenu(16, 9);
              String description = scan.nextLine();
              String username = user.getUsername();
-             int itemID = userManager.getNewItemID();
+             int itemID = itemManager.getNewItemID();
              ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemID, username, name, description);
              userManager.alertAdmin(alert);
          } else if (input == 2){

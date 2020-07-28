@@ -19,7 +19,6 @@ public class TradingUser implements Serializable, User {
     private int numIncompleteTrades;
     private boolean frozen = false; // true being frozen or Lent>Borrowed; false being no violations
     private boolean active = true;
-    private ArrayList<Item> availableItems = new ArrayList<Item>(); // if this was protected then our presenters can't access it
     private ArrayList<Item> borrowedItems = new ArrayList<Item>();// items that the user is currently borrowing via EntityPack.TemporaryTrade - Louis
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
     private MetroArea metro;
@@ -128,12 +127,6 @@ public class TradingUser implements Serializable, User {
 
     /**
      *
-     * @return a list of the user's available items.
-     */
-    public ArrayList<Item> getAvailableItems() {return this.availableItems;}
-
-    /**
-     *
      * @return The wish list of the user.
      */
     public ArrayList<String> getWishlistItemNames() {return this.wishlistItemNames;}
@@ -165,20 +158,6 @@ public class TradingUser implements Serializable, User {
             }
         }
         return false;
-    }
-    /**
-     *
-     * @param item item to be added to the user's available items.
-     */
-    public void addAvailableItem(Item item){
-        availableItems.add(item);
-    }
-
-    /**
-     *
-     * @param item item to be removed from the user's available items.
-     */
-    public void removeAvailableItem(Item item){ availableItems.remove(item);
     }
 
     /**

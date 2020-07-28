@@ -34,6 +34,7 @@ public class Item implements Serializable {
         this.description = description;
         this.id = itemID; // id number is taken from the item validation request when the item is created within ControllerPresenterPack.AdminAlertManager
         this.owner = owner;
+        this.inPossessionOf = owner;
     }
 
     /**
@@ -45,6 +46,7 @@ public class Item implements Serializable {
         this.name = name;
         this.id = itemID;
         this.owner = owner;
+        this.inPossessionOf = owner;
     }
 
 

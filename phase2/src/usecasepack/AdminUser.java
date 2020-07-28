@@ -117,17 +117,12 @@ public class AdminUser implements Serializable {
      * @param itemID the ID of the item being validated
      * @param description a description of the item
      */
-    public void pollValidationRequest(UserManager userManager, String usernameOfOwner, String itemName, int itemID,
+    public void pollValidationRequest(UserManager userManager, ItemManager itemManager, String usernameOfOwner, String itemName, int itemID,
                                       String description) {
 
         TradingUser user = (TradingUser)userManager.searchUser(usernameOfOwner);
-        Item item = new Item(itemName, itemID, usernameOfOwner);
-        item.setDescription(description);
         assert user != null;
-        user.addAvailableItem(item);   //Changed this to fail when user is null. We don't want the program
-        // to fail silently.
-        // request.getOwner().availableItems.add(request.getObj());
-
+        itemManager.createItem(itemName, itemID, usernameOfOwner, description);
     }
 
 

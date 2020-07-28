@@ -87,7 +87,7 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
             message = "";
         }
         if (choice == 1) {
-            adminUser.pollValidationRequest(userManager, getOwner(), getName(), getItemID(),
+            adminUser.pollValidationRequest(userManager, itemManager, getOwner(), getName(), getItemID(),
                     getDescription());
         } else{
             UserAlert declinedAlert = new ItemValidationDeclinedAlert(getOwner(), getOwner(),

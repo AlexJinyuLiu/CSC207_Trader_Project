@@ -28,7 +28,6 @@ public class UserManager implements Serializable{
     //UseCasePack.UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
 
-    private int itemIDGenerator = 0;
 
     /**
      * Method called on program Start up. Currently fetches all userAlerts from other places in the program.
@@ -80,16 +79,6 @@ public class UserManager implements Serializable{
         this.adminAlerts.add(alert);
     }
 
-
-    /**
-     *
-     * @return A new ID for an item.
-     */
-    public int getNewItemID() {
-        int newID = itemIDGenerator;
-        itemIDGenerator++;
-        return newID;
-    }
 
     /** Method which creates a user and adds it to the list of users
      * Author: Jinyu Liu
