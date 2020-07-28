@@ -114,14 +114,4 @@ public class Item implements Serializable {
         this.owner = owner;
     }
 
-    /**
-     *
-     * @return whether an item is currently being possessed by someone other than its owner as part a of a temporary trade.
-     */
-    public boolean isOnLoan(){
-        if(inPossessionOf == null){
-            return true;
-        }
-        return false;
-    }
 }

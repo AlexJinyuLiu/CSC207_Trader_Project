@@ -132,6 +132,7 @@ public class TradeSystem {
         FileManager.saveAdminToFile(adminUser);
         FileManager.saveTradeCreatorToFile(tradeCreator);
         FileManager.saveUserManagerToFile(userManager);
+        FileManager.saveItemManagerToFile(itemManager);
 
     }
 

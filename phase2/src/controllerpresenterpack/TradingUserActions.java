@@ -140,8 +140,6 @@ public class TradingUserActions implements UserBrowsing {
         if (availableItems.size() == 0){
             //"You have no items."
             menuPresenter.printMenu(16, 1);
-            //TODO delete the line below after debug
-            System.out.println(itemManager.getItems());
         } else {
             //"Your available items:"
             menuPresenter.printMenu(16, 2);

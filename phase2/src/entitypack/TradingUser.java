@@ -19,7 +19,6 @@ public class TradingUser implements Serializable, User {
     private int numIncompleteTrades;
     private boolean frozen = false; // true being frozen or Lent>Borrowed; false being no violations
     private boolean active = true;
-    private ArrayList<Item> borrowedItems = new ArrayList<Item>();// items that the user is currently borrowing via EntityPack.TemporaryTrade - Louis
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
     private MetroArea metro;
 
@@ -160,21 +159,7 @@ public class TradingUser implements Serializable, User {
         return false;
     }
 
-    /**
-     *
-     * @param item item to be added to the user's borrowed items.
-     */
-    public void addBorrowedItem(Item item){
-        borrowedItems.add(item);
-    }
 
-    /**
-     *
-     * @param item item to be removed from the user's borrowed items.
-     */
-    public void removeBorrowedItem(Item item){
-        borrowedItems.remove(item);
-    }
 
     /**
      *
@@ -201,13 +186,6 @@ public class TradingUser implements Serializable, User {
     this.frozen = frozen;
     } // whether the account is set to frozen or not
 
-    /**
-     *
-     * @return list of all items this user is currently borrowing.
-     */
-    public ArrayList<Item> getBorrowedItems() {
-        return borrowedItems;
-    }
 
     /**
      *
