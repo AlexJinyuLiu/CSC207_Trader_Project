@@ -35,7 +35,7 @@ public class MenuPresenter {
                 ArrayList<String> section = new ArrayList<String>();
                 while (readBuff != null) {
                     readBuff = readBuff.split("-")[0];
-                    if (readBuff.equals("MENU{ ") || readBuff.equals("Alert{ ")) {
+                    if (readBuff.equals("MENU{ ") || readBuff.equals("Alert{ ") || readBuff.equals("Alerte{ ")) {
                         readBuff = br.readLine();
                         section.clear();
                         while (!readBuff.equals("}")){

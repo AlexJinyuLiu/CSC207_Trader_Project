@@ -1,0 +1,436 @@
+MENU{ - 0
+Menu principal
+Bienvenue dans le système de trading Insert_name_here!
+Souhaitez-vous créer un compte ou vous connecter?
+(1) Créer un compte
+(2) Connectez-vous à un compte
+(0) Quitter
+}
+
+MENU{ - 1
+Menu Créer un compte
+Saisissez le nom d'utilisateur désiré
+Entrez votre mot de passe désiré
+Ce compte doit-il être accessible uniquement sur la navigation (ne peut pas faire de transactions ou avoir des objets). Veuillez entrer Y pour oui et N pour non.
+Veuillez entrer Y ou N.
+}
+
+MENU{ - 2
+Menu de connexion du nom d'utilisateur
+Entrez votre nom d'utilisateur:
+}
+
+MENU{ - 3
+Menu de connexion du mot de passe utilisateur
+s'il vous plait entrez votre mot de passe
+connecté en tant que
+Mot de passe incorrect. Veuillez réessayer ou saisir 0 pour revenir au menu principal.
+Connecté en tant qu'administrateur
+}
+
+MENU{ - 4
+Menu de connexion administrateur
+(1) Définir le seuil d'emprunt / prêt
+(2) Définir le seuil de transaction complet
+(3) Fixer un seuil d'échange incomplet
+(4) Ajouter un nouvel administrateur
+(5) Afficher les valeurs de seuil actuelles
+(6) Modifier ou annuler une transaction
+(0) Quitter
+Le numéro que vous avez entré ne figure pas dans la liste ci-dessus. Veuillez saisir un numéro de choix valide.
+(7) Voir tous les utilisateurs
+(8) Rechercher un utilisateur par nom d'utilisateur
+}
+
+MENU{ - 5
+optionChoix Menu
+Veuillez saisir l'un des numéros ci-dessus
+Le numéro que vous avez entré ne figure pas dans la liste ci-dessus. Veuillez saisir un numéro de choix valide.
+}
+
+MENU{ - 6
+Menu Modifier le seuil d'emprunt / de prêt
+Veuillez saisir la nouvelle valeur seuil pour les prêts et les emprunts:
+Le numéro que vous avez entré n’était pas valide. Veuillez saisir un numéro de seuil valide.
+}
+
+MENU{ - 7
+Ajouter un nouveau menu d'administration
+Saisissez le nom d'utilisateur de l'administrateur que vous souhaitez ajouter:
+Saisissez le mot de passe de l'administrateur que vous souhaitez ajouter:
+}
+
+MENU{ - 8
+Nom d'utilisateur pris. Veuillez saisir un autre nom d'utilisateur.
+Nom d'utilisateur invalide. Veuillez saisir un autre nom d'utilisateur.
+Mot de passe incorrect. Veuillez réessayer.
+Connexion réussie.
+}
+
+MENU{ - 9
+Modifier le menu de seuil de transaction complet
+Veuillez saisir la nouvelle valeur seuil pour les transactions complètes qu'un utilisateur peut effectuer:
+Le numéro que vous avez entré n’était pas valide. Veuillez saisir un numéro de seuil valide.
+}
+
+MENU{ - 10
+Bienvenue dans le Trade Master 9000!
+Souhaitez-vous créer un compte ou vous connecter?
+(1) Créer un nouveau compte
+(2) Connectez-vous en tant qu'utilisateur
+(3) Connectez-vous en tant qu'administrateur
+(0) Quitter
+}
+
+Alerte{ - 11
+Demande de validation d'article
+Utilisateur:
+Nom de l'article:
+Description de l'objet:
+Numéro d'identification de l'article:
+(1) Approuver cet article
+(2) Refuser cet article
+Veuillez expliquer pourquoi cet article a été refusé:
+}
+
+Alerte{ - 12
+Alerte de rapport de gestion
+(1) Accepter le rapport
+(2) Rejeter
+  a signalé un utilisateur
+Statut commercial de l'utilisateur signalé:
+Description du rapport:
+}
+
+Alerte{ - 13
+Gérer l'alerte utilisateur de gel
+(1) Figer l'utilisateur
+(2) Rejeter
+Utilisateur:
+Objets que cet utilisateur a prêtés:
+Objets que cet utilisateur a empruntés:
+Nombre d'articles à prêter avant d'emprunter:
+Nombre de transactions incomplètes:
+Nombre de transactions incomplètes autorisées:
+}
+
+Alerte{ - 14
+Dégeler l'alerte de demande
+(1) Dégeler l'utilisateur
+(2) Rejeter
+}
+
+MENU{ - 15
+Menu utilisateur
+(1) Voir les articles et la liste de souhaits
+(2) Afficher les statistiques utilisateur
+(3) Demander un dégel
+(4) Voir les autres utilisateurs
+(5) Consultez vos transactions en attente
+(6) Voir les métiers temporaires actifs
+(0) Quitter
+Veuillez saisir un nombre correspondant à un paramètre ci-dessus:
+Veuillez saisir un nombre de 0 à 8
+(7) Définir l'état actif
+(8) Changez votre région métropolitaine
+}
+
+MENU{ - 16
+Articles et liste de souhaits
+Vous n'avez aucun article.
+Vos articles disponibles:
+Votre liste de souhaits:
+(1) Envoyer une demande de validation d'article
+(2) Supprimer un article des articles disponibles
+(3) Supprimer un article de votre liste de souhaits
+Veuillez saisir un nombre de 1 à 3
+Veuillez saisir le nom de votre article
+Veuillez saisir la description de l'article
+Veuillez saisir l'ID de l'élément que vous souhaitez supprimer
+Élément supprimé
+ID d'élément non valide
+Veuillez saisir le nom de l'article de votre liste de souhaits que vous souhaitez supprimer.
+(0) Quitter au menu principal
+L'élément a été supprimé.
+L'élément n'a pas été trouvé.
+}
+
+MENU{ - 17
+Voir les autres utilisateurs
+Entrez un numéro pour afficher la page d'un utilisateur:
+Retour au menu principal
+(0) Page suivante (page actuelle:
+Veuillez saisir une entrée valide.
+Affichage de l'utilisateur:
+}
+
+MENU{ - 18
+Affichage de l'utilisateur
+(1) Envoyer un message
+(2) Ajoutez l'un de leurs articles à votre liste de souhaits
+(3) Envoyer une demande d'échange
+(0) Retour au menu principal
+Veuillez saisir une entrée valide
+Entrez le contenu de votre message:
+Message envoyé à
+Entrez l'ID de l'article que vous souhaitez ajouter à votre liste de souhaits:
+Article ajouté avec succès à la liste de souhaits.
+L'article n'a pas été trouvé dans l'inventaire de cet utilisateur.
+}
+
+MENU{ - 19
+Formulaire de demande d'échange
+L'autre utilisateur n'a aucun élément disponible. Vous ne recevrez rien dans ce commerce.
+Entrez l'ID d'un objet que vous souhaitez pour ce commerce ou -1 si vous ne voulez aucun objet de ce commerce:
+ID invalide. Veuillez réessayer.
+Souhaitez-vous ajouter un autre élément? (O / N)
+Passer à autre chose ...
+Veuillez entrer O ou N.
+Vous n'offrirez rien avec ce commerce.
+Entrez l'ID d'un article que vous souhaitez proposer ou -1 si vous ne souhaitez proposer aucun article:
+Vos articles disponibles à échanger:
+ID:
+Entrez une heure de réunion (format: aaaa-MM-jj HH: mm):
+Format non valide pour la date et l'heure, réessayez (format: aaaa-MM-jj HH: mm):
+Entrez un lieu de rencontre:
+Votre transaction n'a pas pu être traitée.
+Cela pourrait se produire si vous avez effectué trop de transactions cette semaine ou si l'un des utilisateurs a été gelé.
+Demande d'échange créée et envoyée avec succès. Vous serez averti lorsqu'ils répondront.
+}
+
+MENU{ - 20
+Afficher les statistiques des utilisateurs
+(1) Afficher le nombre d'articles que l'utilisateur a empruntés
+(2) Afficher le nombre d'articles prêtés par l'utilisateur
+(3) Afficher l'état gelé
+(4) Voir le nombre de transactions impliquant un utilisateur qui n'ont pas été terminées
+(5) Voir le nombre de transactions cette semaine
+(6) Voir les objets récemment échangés
+(7) Voir les partenaires commerciaux les plus fréquents
+(8) Retour au menu utilisateur
+Veuillez saisir un nombre de 1 à 8
+Nombre d'articles empruntés:
+Nombre d'articles prêtés:
+Votre compte a été gelé.
+Votre compte n'est pas gelé.
+Nombre de transactions incomplètes:
+Nombre de transactions cette semaine:
+}
+
+Alerte{ - 21
+Envoyer une demande de dégel
+Votre compte n'est pas gelé.
+Votre demande de dégel a été envoyée.
+}
+
+MENU{ - 22
+Afficher les transactions en attente
+Options:
+(1) Quittez ce menu
+=====================
+Vos transactions en attente:
+tradeToString doit être appelé ici (?)
+Votre choix n'était pas valide, veuillez choisir un choix valide.
+Vos métiers temporaires actifs:
+}
+
+Alerte{ - 23
+Gérer l'alerte gelée
+Votre compte a été gelé par l'administrateur.
+Nombre d'articles que vous avez empruntés:
+Nombre d'articles que vous avez prêtés:
+Nombre d'articles que vous devez prêter avant de pouvoir emprunter:
+(1) Ignorer
+Nombre de transactions incomplètes:
+Nombre de transactions incomplètes autorisées:
+}
+
+Alerte{ - 24
+Gérer l'alerte d'expiration
+Le commerce temporaire suivant a expiré à:
+(1) Signaler l'autre utilisateur
+(2) Confirmer la rééchange
+Raison du signalement:
+Le rapport a été envoyé au tribunal.
+Re-échange commercial confirmé.
+}
+
+Alerte{ - 25
+Gérer l'alerte de demande d'échange
+Demande commerciale faite par
+(1) Accepter
+(2) Refuser
+(3) Modifier l'heure et le lieu
+Remarque: le nombre de modifications restantes autorisées est
+Demande commerciale acceptée. Rencontrez la personne à l'heure et à l'endroit indiqués ci-dessus.
+N'oubliez pas de vous connecter pour confirmer les suites de l'échange!
+Demande d'échange refusée.
+Modification de la demande d'échange. Entrez la nouvelle heure de réunion (format: aaaa-MM-jj HH: mm):
+Format non valide pour la date et l'heure, réessayez (format: aaaa-MM-jj HH: mm):
+Entrez un nouveau lieu de rencontre:
+Commerce modifié avec succès. Rendez-vous à:
+}
+
+Alerte{ - 26
+Gérer l'alerte d'acceptation du commerce
+La demande commerciale suivante a été acceptée:
+(1) Ignorer
+}
+
+Alerte{ - 27
+Gérer l'alerte de refus de transaction
+Votre demande d'échange a été refusée:
+(1) Ignorer
+}
+
+Alerte{ - 28
+Gérer l'alerte de transaction annulée
+L'échange suivant a été annulé car l'un des utilisateurs n'est plus en possession d'un article. Identifiant commercial:
+(1) Ignorer
+}
+
+Alerte{ - 29
+Gérer l'alerte de refus de validation d'élément
+Votre demande de validation d'article a été refusée pour la raison suivante:
+Utilisateur:
+Nom de l'article:
+Description de l'article:
+ID de l'article:
+(1) Ignorer
+(2) Envoyer une nouvelle demande de validation d'article
+Veuillez saisir le nom de votre article
+Veuillez saisir la description de l'article
+}
+
+Alerte{ - 30
+Gérer l'alerte de date passée sur la transaction
+La transaction suivante a dépassé l'heure et la date de l'échange prévu:
+(1) Confirmer le commerce
+(2) je ne suis pas venu
+(3) L'autre personne ne s'est pas présentée
+Commerce confirmé. Vos articles seront échangés dans le système dès que les deux utilisateurs auront confirmé.
+}
+
+Alerte{ - 31
+Gérer l'alerte de message
+De:
+(1) Ignorer
+}
+
+Alerte{ - 32
+Commerce en chaîne
+Utilisateur 1:
+Utilisateur 2:
+Objets échangés de l'utilisateur 1 à l'utilisateur 2:
+Objets échangés de l'utilisateur 2 à l'utilisateur 1:
+Heure et date de l'échange:
+Lieu de commerce:
+Identifiant commercial:
+}
+
+MENU{ - 33
+Créer un utilisateur
+Entré:
+Ce nom d'utilisateur est déjà pris.
+}
+
+MENU{ - 34
+Modifier le menu du seuil de transaction incomplet
+Veuillez saisir la nouvelle valeur seuil pour les transactions incomplètes qu'un utilisateur peut effectuer:
+Le numéro que vous avez entré n’était pas valide. Veuillez saisir un numéro de seuil valide.
+}
+
+MENU{ - 35
+
+Affichage de l'utilisateur
+}
+
+MENU{ - 36
+Cela devrait-il être un commerce temporaire? (O / N)
+Veuillez entrer O ou N:
+}
+
+MENU{ - 37
+
+ a proposé le métier suivant:
+ a proposé l'échange temporaire suivant (articles dus dans 30 jours):
+}
+
+MENU{ - 38
+Utilisateur:
+Cet utilisateur n'a aucun objet disponible pour l'échange.
+Articles disponibles pour le commerce:
+ID:
+Cet utilisateur n'a aucun article dans sa liste de souhaits.
+Liste de souhaits:
+Cet utilisateur est gelé et ne peut donc pas effectuer de transaction.
+}
+
+MENU{ - 39
+Valeurs de seuil actuelles:
+Seuil d'emprunt / prêt:
+Seuil des transactions terminées par semaine:
+Seuil autorisé pour les transactions incomplètes:
+}
+
+MENU{ - 40
+______            ______  ___      ___ //|____                  _________           _________                                                        ____________________________
+___  / _____      ___   |/  /_____ ___|/||_  /____________      ______  /___  __    __  ____/____________ __________ __________________________      __  __ \_  __ \_  __ \_  __ \
+__  /  _  _ \     __  /|_/ /_  __ `/_  / _  __/_  ___/  _ \     _  __  /_  / / /    _  /    _  __ \_  __ `__ \_  __ `__ \  _ \_  ___/  ___/  _ \     _  /_/ /  / / /  / / /  / / /
+_  /___/  __/     _  /  / / / /_/ /_  /  / /_ _  /   /  __/     / /_/ / / /_/ /     / /___  / /_/ /  / / / / /  / / / / /  __/  /   / /__ /  __/     _\__, // /_/ // /_/ // /_/ /
+/_____/\___/      /_/  /_/  \__,_/ /_/   \__/ /_/    \___/      \__,_/  \__,_/      \____/  \____//_/ /_/ /_//_/ /_/ /_/\___//_/    \___/ \___/      /____/ \____/ \____/ \____/
+}
+
+MENU{ - 41
+Votre compte est:
+Souhaitez-vous activer votre compte?
+Souhaitez-vous définir votre compte comme inactif?
+Votre compte a été désactivé
+Votre compte a été activé
+(1) Oui
+(0) Non, retour au menu principal
+}
+
+MENU{ - 42
+Dans quelle région métropolitaine vous situez-vous:
+(1) Toronto
+(2) Vancouver
+(3) Ottawa
+}
+
+MENU{ - 43
+Menu utilisateur
+(1) Voir les autres utilisateurs
+(0) Quitter
+Veuillez saisir un nombre correspondant à un paramètre ci-dessus:
+Veuillez saisir un nombre de 0 à
+}
+
+MENU{ - 44
+Modifier le menu commercial
+(1) Recherche de commerce par ID
+(2) Recherche de commerce en naviguant
+(0) Quitter
+Veuillez saisir un entier valide
+(1) Annuler la confirmation du commerce
+(2) Annuler le commerce
+(3) Re-échange d'articles
+}
+
+MENU{ - 45
+Affichage de l'utilisateur
+(1) Envoyer un message
+(2) Supprimer l'un des articles de leur liste de souhaits
+(3) Retirez l'un des objets de leur inventaire
+(0) Retour au menu principal
+Veuillez saisir une entrée valide
+Entrez le contenu de votre message:
+Message envoyé à
+Entrez le nom de l'article que vous souhaitez supprimer de leur liste de souhaits:
+L'article a été supprimé avec succès de la liste de souhaits.
+Saisissez l'ID de l'article que vous souhaitez supprimer de leur inventaire:
+L'article a bien été supprimé de l'inventaire.
+L'élément n'a pas été trouvé.
+Veuillez saisir le nom d'utilisateur de l'utilisateur.
+L'utilisateur n'a pas été trouvé. Redirigé vers le menu.
+}
