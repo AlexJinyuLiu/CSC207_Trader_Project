@@ -28,11 +28,11 @@ public class SuggestMatch {
         return user2;
     }
 
-    public Item getItemMatch(TradingUser user1, TradingUser user2){
+    public Item getItem2Match(TradingUser user1, TradingUser user2, ItemManager itemManager){
         for (int i = 0; i < user2.getWishlistItemNames().size(); i++){
-            for (int n =0; n < user1.getItems().size(); n++) {
-                if (user2.getWishlistItemNames().get(i).equals(user1.getItems().get(n))){
-                    item2 = user1.getItems.get(n);
+            for (int n =0; n < itemManager.getAvailableItems(user1.getUsername()).size(); n++) {
+                if (user2.getWishlistItemNames().get(i).equals(itemManager.getAvailableItems(user1.getUsername()).get(n))){
+                    item2 = itemManager.getAvailableItems(user1.getUsername()).get(n);
                 }
             }
 
