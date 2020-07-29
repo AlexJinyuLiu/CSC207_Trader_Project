@@ -2,6 +2,7 @@ package usecasepack;
 
 import entitypack.Item;
 import entitypack.TradingUser;
+import entitypack.User;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
@@ -19,8 +20,24 @@ public class SuggestMatch {
         item1ID = item.getId();
     }
 
-    public void getUser2(TradingUser user2) {
-        // item1.getOwner()
+    public TradingUser getUser2(UserManager userManager) {
+        for (int i = 0; i < userManager.getListUsers().size(); i++)
+            if (userManager.getListUsers().get(i).toString().equals(item1.getOwner())) {
+                user2 = (TradingUser) userManager.getListUsers().get(i); //needed to cast, not wrap
+            }
+        return user2;
+    }
+
+    public Item getItemMatch(TradingUser user1, TradingUser user2){
+        for (int i = 0; i < user2.getWishlistItemNames().size(); i++){
+            for (int n =0; n < user1.getItems().size(); n++) {
+                if (user2.getWishlistItemNames().get(i).equals(user1.getItems().get(n))){
+                    item2 = user1.getItems.get(n);
+                }
+            }
+
+        }
+        return item2;
     }
 
     public void checkUserWishlist(TradingUser user1, TradingUser user2, Item wishlistItem) {
