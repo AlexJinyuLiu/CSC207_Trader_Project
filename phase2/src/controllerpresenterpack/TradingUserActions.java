@@ -6,6 +6,7 @@ import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -206,19 +207,7 @@ public class TradingUserActions implements UserBrowsing {
                  menuPresenter.printMenu(16, 17);
              }
          } else if (input == 4) {
-             ArrayList<Item> listItems = new ArrayList<Item>();
-             for (String wish : user.getWishlistItemNames()) {
-                 for (Item item : itemManager.getItems()) {
-                     if (item.getName().toLowerCase().contains(wish.toLowerCase())) {
-                         listItems.add(item);
-                     }
-                 }
-             }
-             if (listItems.size() == 0) {
-                 menuPresenter.printMenu(16, 18);
-             } else for (Item wishItem : listItems) {
-                 menuPresenter.printItemToString(wishItem);
-             }
+             SuggestMatch(user,itemManager, menuPresenter);
          }
          else if (input == 0){
              return;
@@ -226,6 +215,29 @@ public class TradingUserActions implements UserBrowsing {
 
         }
 
+    }
+
+    /**
+     * Method that prints out items that user1 can lend to user2 after adding an item to their wishlist from user2's
+     * available items
+     * @param user
+     * @param itemManager
+     * @param menuPresenter
+     */
+    private void SuggestMatch(TradingUser user, ItemManager itemManager, MenuPresenter menuPresenter){
+        ArrayList<Item> listItems = new ArrayList<Item>();
+        for (String wish : user.getWishlistItemNames()) {
+            for (Item item : itemManager.getItems()) {
+                if (item.getName().toLowerCase().contains(wish.toLowerCase())) {
+                    listItems.add(item);
+                }
+            }
+        }
+        if (listItems.size() == 0) {
+            menuPresenter.printMenu(16, 18);
+        } else for (Item wishItem : listItems) {
+            menuPresenter.printItemToString(wishItem);
+        }
     }
 
     /**
@@ -320,6 +332,7 @@ public class TradingUserActions implements UserBrowsing {
                         Item item = itemManager.searchItem(itemID);
                         userManager.addToWishlist((TradingUser) userViewing, item.getName());
                         menuPresenter.printMenu(18, 9);
+                        SuggestMatch((TradingUser) userToView,itemManager, menuPresenter);
                     }
                     else { menuPresenter.printMenu(18,10); }
                 } else if (input == 3 && !tradingUser.getFrozen()){

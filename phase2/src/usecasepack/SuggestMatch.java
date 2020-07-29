@@ -14,10 +14,11 @@ public class SuggestMatch {
     private TradingUser user2; // takes care of checking ifthey're frozen? check that's implemented
     private int item1ID;
     private Item item2;
+    // ^bad
+    //TODO: WHAT IS THE PURPOSE OF THIS CLASS? this can all be done in a helper method in TradingUserActions, also dont store item and user objects in this
 
-    public void setItem1(Item item) {
-        item1 = item;
-        item1ID = item.getId();
+    public SuggestMatch(String user1name, String user2nam){
+
     }
 
     public TradingUser getUser2(UserManager userManager) {
