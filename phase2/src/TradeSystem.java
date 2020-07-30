@@ -3,6 +3,7 @@ import controllerpresenterpack.*;
 import entitypack.*;
 import usecasepack.*;
 
+import javax.swing.*;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -158,6 +159,8 @@ public class TradeSystem {
             createItemManager();
         }
 
+
+
         setLanguage();
         //ASCII ART
         for (int i = 0; i < 5; i++){
@@ -177,6 +180,9 @@ public class TradeSystem {
 
         User loggedIn = null;
         boolean isAdmin = false;
+
+
+
         for (int i = 0; i < 6; i++){
             menuPresenter.printMenu(10, i);
         }
