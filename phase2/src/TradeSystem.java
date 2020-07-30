@@ -139,6 +139,107 @@ public class TradeSystem {
     }
 
 
+    public void runGUI() throws InputZeroException {
+        File directory = new File("phase1/data");
+        if (! directory.exists()) {
+            directory.mkdir();
+        }
+
+        if (!((new File(dir + "adminUser.ser"))).exists()) {
+            createAdminUser();
+        }
+        if (!((new File(dir + "userManager.ser"))).exists()) {
+            createUserManager();
+        }
+        if (!((new File(dir + "tradeCreator.ser"))).exists()){
+            createTradeCreator();
+        }
+        if (!((new File(dir + "itemManager.ser"))).exists()){
+            createItemManager();
+        }
+
+        setLanguage();
+        //ASCII ART
+        for (int i = 0; i < 5; i++){
+            menuPresenter.printMenu(40, i);
+        }
+
+        adminUser = FileManager.loadAdminUser();
+        userManager = FileManager.loadUserManager();
+        tradeCreator = FileManager.loadTradeCreator();
+        itemManager = FileManager.loadItemManager();
+
+
+        checkForExpiredTempTrades();
+
+        checkForPastDateTrades();
+        tradeCreator.onStartup();
+
+        User loggedIn = null;
+        boolean isAdmin = false;
+        for (int i = 0; i < 6; i++){
+            menuPresenter.printMenu(10, i);
+        }
+
+        int input = optionChoice(0,3);
+        try {
+            if (input == 1) {
+                loggedIn = createAccount();
+            } else if (input == 2) {
+                User x = login();
+                if (x == null) return;
+                loggedIn = x;
+            } else if (input == 3) {
+                isAdmin = adminLogin();
+                while (!isAdmin) {
+                    isAdmin = adminLogin();
+                }
+            } else if (input == 0) {
+                return;
+            }
+        } catch (InputZeroException e) {
+            run();
+        }
+
+
+//buildAdminUser method
+        if (isAdmin) {
+
+            adminUser.onStartUp(userManager, tradeCreator);
+            ArrayList<AdminAlert> adminAlerts = new ArrayList<AdminAlert>();
+            for (Prompt prompt : adminUser.getAdminAlerts()){
+                adminAlerts.add((AdminAlert)prompt);
+            }
+            adminAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, itemManager,
+                    adminAlerts);
+            adminActions.runAdminMenu(menuPresenter, adminUser, tradeCreator, userManager, itemManager);
+        } else {
+            if (loggedIn == null) {
+                return;
+            }
+            userManager.onStartUp(tradeCreator);
+            ArrayList<UserAlert> userAlerts = new ArrayList<UserAlert>();
+            for (Prompt prompt : userManager.getUserAlerts(loggedIn.getUsername())){
+                userAlerts.add((UserAlert)prompt);
+            }
+            userAlertManager.handleAlertQueue(menuPresenter, adminUser, userManager, tradeCreator, itemManager,
+                    userAlerts);
+            if (loggedIn instanceof TradingUser) {
+                tradingUserActions.runTradingUserMenu(menuPresenter, userManager, tradeCreator, (TradingUser)loggedIn,
+                        itemManager);
+            } else if (loggedIn instanceof BrowsingUser){
+                browsingUserActions.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator,
+                        (BrowsingUser)loggedIn, itemManager);
+            }
+        }
+
+        FileManager.saveAdminToFile(adminUser);
+        FileManager.saveTradeCreatorToFile(tradeCreator);
+        FileManager.saveUserManagerToFile(userManager);
+        FileManager.saveItemManagerToFile(itemManager);
+
+    }
+
     /**
      * Sets language of the program
      */
