@@ -173,6 +173,14 @@ public class TradeHistories  implements Serializable {
         return null;
     }
 
+
+    /**
+     * @return
+     */
+    public ArrayList<Trade> getCompletedTrades() {
+        return completedTrades;
+    }
+
     /** Helper function that returns an ordered list of all items' ID that the user traded away. The list is ordered by
      * the date that the user traded the item away.
      * @param username username of EntityPack.User being evaluated
