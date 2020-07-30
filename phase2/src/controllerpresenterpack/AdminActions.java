@@ -23,7 +23,7 @@ public class AdminActions implements UserBrowsing{
      * @param userManager the UseCasePack.UserManager initialized in the program.
      */
     public void runAdminMenu(MenuPresenter menuPresenter, AdminUser adminUser, TradeCreator tradeCreator,
-                             UserManager userManager, ItemManager itemManager, TradeHistories tradeHistories) {
+                             UserManager userManager, ItemManager itemManager) {
         boolean running = true;
         while (running) {
             int input = -1;
@@ -60,7 +60,8 @@ public class AdminActions implements UserBrowsing{
                     valid_input = true;
                 } else if (input == 6) {
                     //TODO: Finish similar browsing system for trades.
-                    editTrade(menuPresenter, userManager, tradeCreator, adminUser, tradeHistories, itemManager);
+                    editTrade(menuPresenter, userManager, tradeCreator, adminUser, tradeCreator.getTradeHistories(),
+                            itemManager);
                     valid_input = true;
                 } else if (input == 7) {
                     viewAllUsers(menuPresenter, userManager, itemManager);
