@@ -1,4 +1,4 @@
 package controllerpresenterpack;
 
-public class startupController {
+public class StartupController {
 }
