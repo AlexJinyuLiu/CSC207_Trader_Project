@@ -25,19 +25,13 @@ public class LanguagePrompt {
         englishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainMenu mainMenu = new MainMenu(true);
-                frame.dispose();
-
-
-
+                MainMenu mainMenu = new MainMenu(true, frame);
             }
         });
         frenchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainMenu mainMenu = new MainMenu(false);
-                frame.dispose();
-
+                MainMenu mainMenu = new MainMenu(false, frame);
             }
         });
     }

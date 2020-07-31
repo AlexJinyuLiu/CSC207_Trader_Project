@@ -8,10 +8,7 @@ public class MainMenu {
     private JButton loginAsAdminButton;
     private JPanel mainPanel;
 
-    public MainMenu(boolean english) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
-        mainPanel.setSize(350, 350);
+    public MainMenu(boolean english, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

@@ -65,8 +65,7 @@ public class Login extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainMenu mainMenu = new MainMenu(english);
-                frame.dispose();
+                MainMenu mainMenu = new MainMenu(english, frame);
             }
         });
     }
