@@ -4,10 +4,7 @@ import alertpack.MessageAlert;
 import alertpack.UserAlert;
 import entitypack.BrowsingUser;
 import entitypack.*;
-import usecasepack.AdminUser;
-import usecasepack.ItemManager;
-import usecasepack.TradeCreator;
-import usecasepack.UserManager;
+import usecasepack.*;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -63,7 +60,8 @@ public class AdminActions implements UserBrowsing{
                     valid_input = true;
                 } else if (input == 6) {
                     //TODO: Finish similar browsing system for trades.
-                    editTrade(menuPresenter, userManager, tradeCreator, adminUser);
+                    editTrade(menuPresenter, userManager, tradeCreator, adminUser, tradeCreator.getTradeHistories(),
+                            itemManager);
                     valid_input = true;
                 } else if (input == 7) {
                     viewAllUsers(menuPresenter, userManager, itemManager);
@@ -182,7 +180,7 @@ public class AdminActions implements UserBrowsing{
     }
 
     private void editTrade(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                           AdminUser adminUser) {
+                           AdminUser adminUser, TradeHistories tradeHistories, ItemManager itemManager) {
         boolean flag = true;
         int input = -1;
         while (flag) {
@@ -199,6 +197,20 @@ public class AdminActions implements UserBrowsing{
                 // trade lookup by ID
                 flag = false;
             } else if (input == 2) {
+                ArrayList<Trade> listTrades = new ArrayList<Trade>();
+                for (Trade pendingTradeRequest : tradeCreator.getPendingTradeRequests()) {
+                    listTrades.add(pendingTradeRequest);
+                }
+                for (Trade pendingTrade : tradeCreator.getPendingTrades()) {
+                    listTrades.add(pendingTrade);
+                }
+                for (Trade compTrade : tradeHistories.getCompletedTrades()) {
+                    listTrades.add(compTrade);
+                }
+                for (Trade trade : listTrades) {
+                    menuPresenter.printTradeToString(itemManager, trade);
+                }
+
                 // trade lookup by browsing
                 // BrowsingUserActions browse = new BrowsingUserActions();
                 // browse.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator, adminUser);
