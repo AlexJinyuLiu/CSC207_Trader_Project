@@ -1,12 +1,15 @@
+import entitypack.TradingUser;
+import entitypack.User;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame{
 
-    private JFormattedTextField username;
+     JFormattedTextField username;
     private JPasswordField password;
-    private JButton Login;
+    private JButton loginButton;
     private JPanel mainPanel;
     private JButton backButton;
     private JLabel usernameLabel = new JLabel();
@@ -25,21 +28,37 @@ public class Login extends JFrame{
             //do we want to user the presenter here?? -Louis
             usernameLabel.setText("Username");
             passwordLabel.setText("Password");
+            backButton.setText("back");
+            loginButton.setText("login");
+
         }else{
         //TODO set the labels text to french
         }
-        if(isAdmin){
-        Login.addActionListener(new ActionListener() {
+        loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String pass = new String(password.getPassword());
                 String user = username.getText();
-                //TODO replace this with an actual way to log in
-                if (pass.length() > 1 && user.length() > 1){
-                    //TODO send user to Options
+                if(isAdmin) {
+                    //TODO replace this with an actual way to log in
+                    if (true) {
+                        //TODO send user to Options
+                        UserActionsMenu userActionsMenu = new UserActionsMenu(english, new TradingUser("test" ));
+                        frame.dispose();
 
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Username and Password not recognized");
+                    }
                 }else{
-                    JOptionPane.showMessageDialog(frame, "Username and Password not recognized");
+                    //TODO replace if statement with an actual way to log in
+                    if (true) {
+                        //TODO send admin to adminActionsMenu instead of userActionsMenu
+                        UserActionsMenu userActionsMenu = new UserActionsMenu(english, new TradingUser("test"));
+                        frame.dispose();
+
+                    } else {
+                        JOptionPane.showMessageDialog(frame, "Username and Password not recognized");
+                    }
                 }
             }
         });
@@ -51,6 +70,6 @@ public class Login extends JFrame{
             }
         });
     }
-    }
+
 
 }
