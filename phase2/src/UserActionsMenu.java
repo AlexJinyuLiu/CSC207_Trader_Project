@@ -31,7 +31,7 @@ public class UserActionsMenu {
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+            viewItemsAndWishlistMenu viewItemsAndWishlistMenu = new viewItemsAndWishlistMenu(english, user);
             }
         });
         viewUserStatsButton.addActionListener(new ActionListener() {
