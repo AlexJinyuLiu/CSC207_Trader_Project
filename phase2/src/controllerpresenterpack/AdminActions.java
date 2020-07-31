@@ -185,7 +185,7 @@ public class AdminActions implements UserBrowsing{
         int input = -1;
         while (flag) {
             Scanner scan = new Scanner(System.in);
-            menuPresenter.printMenu(44,0);
+            /** menuPresenter.printMenu(44,0);
             menuPresenter.printMenu(44,1);
             menuPresenter.printMenu(44,2);
             menuPresenter.printMenu(44,3);
@@ -196,11 +196,16 @@ public class AdminActions implements UserBrowsing{
             } else if (input == 1) {
                 // trade lookup by ID
                 flag = false;
-            } else if (input == 2) {
+            } else if (input == 2) { **/
                 ArrayList<Trade> listTrades = new ArrayList<Trade>();
                 listTrades.addAll(tradeCreator.getPendingTradeRequests());
                 listTrades.addAll(tradeCreator.getPendingTrades());
                 listTrades.addAll(tradeHistories.getCompletedTrades());
+                if (listTrades.isEmpty()) {
+                    menuPresenter.printMenu(44, 12);
+                    flag = false;
+                    return;
+                }
                 for (Trade trade : listTrades) {
                     menuPresenter.printTradeToString(itemManager, trade);
                 }
@@ -274,11 +279,11 @@ public class AdminActions implements UserBrowsing{
                 // BrowsingUserActions browse = new BrowsingUserActions();
                 // browse.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator, adminUser);
                 flag = false;
-            } else if (input == 0) {
+            } /** else if (input == 0) {
                 // quit
                 flag = false;
             }
-        }
+        } **/
     }
 
     private void viewThresholdValues(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator){
