@@ -201,6 +201,11 @@ public class AdminActions implements UserBrowsing{
                 listTrades.addAll(tradeCreator.getPendingTradeRequests());
                 listTrades.addAll(tradeCreator.getPendingTrades());
                 listTrades.addAll(tradeHistories.getCompletedTrades());
+                if (listTrades.isEmpty()) {
+                    menuPresenter.printMenu(44, 12);
+                    flag = false;
+                    return;
+                }
                 for (Trade trade : listTrades) {
                     menuPresenter.printTradeToString(itemManager, trade);
                 }

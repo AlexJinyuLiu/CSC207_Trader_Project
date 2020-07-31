@@ -421,6 +421,7 @@ Re-exchange items?
 (0) No
 Please enter the id of the trade you want to view or -1 to quit
 Trade not found, please enter the id of the trade you want to view or -1 to quit
+There are no trades available to edit!
 }
 
 MENU{ - 45
