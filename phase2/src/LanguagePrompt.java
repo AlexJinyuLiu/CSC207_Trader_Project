@@ -16,17 +16,17 @@ public class LanguagePrompt {
     public LanguagePrompt() {
         JFrame frame = new JFrame("Trade System");
         frame.setBounds(400, 400, 400, 400);
-        frame.setVisible(true);
-        frame.setContentPane(new LanguagePrompt().panelMain);
+        panelMain.setSize(400, 400);
+        frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setVisible(true);
 
         englishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login();
+                MainMenu mainMenu = new MainMenu(true);
                 frame.dispose();
-                login.setVisible(true);
 
 
 
@@ -35,9 +35,9 @@ public class LanguagePrompt {
         frenchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-            Login login = new Login();
-            frame.dispose();
-            login.setVisible(true);
+                MainMenu mainMenu = new MainMenu(false);
+                frame.dispose();
+
             }
         });
     }

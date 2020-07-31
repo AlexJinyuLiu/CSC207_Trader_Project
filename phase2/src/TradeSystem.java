@@ -383,6 +383,7 @@ public class TradeSystem {
         return null;
     }
 
+
     private boolean adminLogin() throws InputZeroException {
         Scanner scanner = new Scanner(System.in);
         menuPresenter.printMenu(2, 1);

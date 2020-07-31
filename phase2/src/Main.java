@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args) throws InputZeroException {
         TradeSystem ts = new TradeSystem();
-        //ts.run();
-        ts.runGUI();
+        ts.run();
+        //ts.runGUI();
 
     }
 }
