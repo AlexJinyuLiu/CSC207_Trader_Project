@@ -343,7 +343,7 @@ public class TradeCreator implements Serializable {
     public Boolean beforeTrade(TradingUser u1, TradingUser u2) {
         if (tradeHistories.getNumTradesThisWeek(u1.getUsername()) > completeThreshold ||
                 tradeHistories.getNumTradesThisWeek(u2.getUsername()) > completeThreshold ||
-                !u1.isActive() || u2.isActive()) {
+                !u1.isActive() || !u2.isActive()) {
             return false;
         }
         return !(u1.getFrozen() || u1.getFrozen());
