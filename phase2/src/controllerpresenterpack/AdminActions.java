@@ -198,19 +198,78 @@ public class AdminActions implements UserBrowsing{
                 flag = false;
             } else if (input == 2) {
                 ArrayList<Trade> listTrades = new ArrayList<Trade>();
-                for (Trade pendingTradeRequest : tradeCreator.getPendingTradeRequests()) {
-                    listTrades.add(pendingTradeRequest);
-                }
-                for (Trade pendingTrade : tradeCreator.getPendingTrades()) {
-                    listTrades.add(pendingTrade);
-                }
-                for (Trade compTrade : tradeHistories.getCompletedTrades()) {
-                    listTrades.add(compTrade);
-                }
+                listTrades.addAll(tradeCreator.getPendingTradeRequests());
+                listTrades.addAll(tradeCreator.getPendingTrades());
+                listTrades.addAll(tradeHistories.getCompletedTrades());
                 for (Trade trade : listTrades) {
                     menuPresenter.printTradeToString(itemManager, trade);
                 }
+                menuPresenter.printMenu(44, 10);
+                boolean selectedTrade = false;
+                input = scan.nextInt();
+                while (!selectedTrade) {
+                    for (Trade trade : listTrades) {
+                        if (trade.getTradeID() == input) {
+                            if (tradeCreator.getPendingTradeRequests().contains(trade)) {
+                                boolean actionMade = false;
+                                while (!actionMade) {
+                                    menuPresenter.printMenu(44, 5);
+                                    menuPresenter.printMenu(44, 8);
+                                    menuPresenter.printMenu(44, 9);
+                                    input = scan.nextInt();
+                                    if (input == 1) {
+                                        actionMade = true;
+                                        //AdminUser.unsendTraderequest()
+                                    } else if (input == 0) {
+                                        actionMade = true;
+                                    } else {
+                                        menuPresenter.printMenu(44, 4);
+                                    }
+                                }
+                            } else if (tradeCreator.getPendingTrades().contains(trade)) {
+                                boolean actionMade = false;
+                                while (!actionMade) {
+                                    menuPresenter.printMenu(44, 6);
+                                    menuPresenter.printMenu(44, 8);
+                                    menuPresenter.printMenu(44, 9);
+                                    input = scan.nextInt();
+                                    input = scan.nextInt();
+                                    if (input == 1) {
+                                        actionMade = true;
+                                        //AdminUser.cancelTraderequest()
+                                    } else if (input == 0) {
+                                        actionMade = true;
+                                    } else {
+                                        menuPresenter.printMenu(44, 4);
+                                    }
+                                }
+                            } else if (tradeHistories.getCompletedTrades().contains(trade)) {
+                                boolean actionMade = false;
+                                while (!actionMade) {
+                                    menuPresenter.printMenu(44, 6);
+                                    menuPresenter.printMenu(44, 8);
+                                    menuPresenter.printMenu(44, 9);
+                                    input = scan.nextInt();
+                                    input = scan.nextInt();
+                                    if (input == 1) {
+                                        actionMade = true;
+                                        //AdminUser.cancelTraderequest()
+                                    } else if (input == 0) {
+                                        actionMade = true;
+                                    } else {
+                                        menuPresenter.printMenu(44, 4);
+                                    }
+                                }
+                            } else if (input == -1) {
+                                selectedTrade = true;
+                            } else {
+                                menuPresenter.printMenu(44, 11);
+                            }
+                        }
+                    }
+                }
 
+                // Could be refactored (duplicate code)
                 // trade lookup by browsing
                 // BrowsingUserActions browse = new BrowsingUserActions();
                 // browse.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator, adminUser);

@@ -414,9 +414,13 @@ Edit Trade Menu
 (2) Lookup trade by browsing
 (0) Quit
 Please enter a valid integer
-(1) Un-confirm trade
-(2) Un-accept trade
-(3) Re-exchange items
+Delete trade request?
+Un-accept trade?
+Re-exchange items?
+(1) Yes
+(0) No
+Please enter the id of the trade you want to view or -1 to quit
+Trade not found, please enter the id of the trade you want to view or -1 to quit
 }
 
 MENU{ - 45
