@@ -15,9 +15,7 @@ public class Login extends JFrame{
     private JLabel usernameLabel = new JLabel();
     private JLabel passwordLabel = new JLabel();
 
-    public Login(boolean english, boolean isAdmin) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+    public Login(boolean english, boolean isAdmin, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -43,8 +41,7 @@ public class Login extends JFrame{
                     //TODO replace this with an actual way to log in
                     if (true) {
                         //TODO send user to Options
-                        UserActionsMenu userActionsMenu = new UserActionsMenu(english, new TradingUser("test" ));
-                        frame.dispose();
+                        UserActionsMenu userActionsMenu = new UserActionsMenu(english, new TradingUser("test" ), frame);
 
                     } else {
                         JOptionPane.showMessageDialog(frame, "Username and Password not recognized");
@@ -53,8 +50,7 @@ public class Login extends JFrame{
                     //TODO replace if statement with an actual way to log in
                     if (true) {
                         //TODO send admin to adminActionsMenu instead of userActionsMenu
-                        UserActionsMenu userActionsMenu = new UserActionsMenu(english, new TradingUser("test"));
-                        frame.dispose();
+                        UserActionsMenu userActionsMenu = new UserActionsMenu(english, new TradingUser("test"), frame);
 
                     } else {
                         JOptionPane.showMessageDialog(frame, "Username and Password not recognized");

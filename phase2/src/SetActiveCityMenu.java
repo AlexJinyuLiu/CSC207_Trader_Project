@@ -13,9 +13,7 @@ public class SetActiveCityMenu {
     private JButton setCityButton;
 
 
-    public SetActiveCityMenu(boolean english, User user) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+    public SetActiveCityMenu(boolean english, User user, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -37,7 +35,7 @@ public class SetActiveCityMenu {
                 //TODO set the users city
                 JOptionPane.showMessageDialog(frame, "City selected successfully");
                 frame.dispose();
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user);
+                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
 
             }
         });
@@ -45,7 +43,7 @@ public class SetActiveCityMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 frame.dispose();
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user);
+                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
             }
 
         });

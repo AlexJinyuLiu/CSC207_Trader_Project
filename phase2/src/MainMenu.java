@@ -16,22 +16,22 @@ public class MainMenu {
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                CreateAccount createAccount = new CreateAccount(english);
-                frame.dispose();
+                CreateAccount createAccount = new CreateAccount(english, frame);
+
             }
         });
         loginAsUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(english, false);
-                frame.dispose();
+                Login login = new Login(english, false, frame);
+
             }
         });
         loginAsAdminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(english, true);
-                frame.dispose();
+                Login login = new Login(english, true, frame);
+
             }
         });
     }

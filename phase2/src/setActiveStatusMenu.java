@@ -10,9 +10,7 @@ public class setActiveStatusMenu {
     private JButton backButton;
     private JPanel mainPanel;
 
-    public setActiveStatusMenu(boolean english, User user) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+    public setActiveStatusMenu(boolean english, User user, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -30,15 +28,13 @@ public class setActiveStatusMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO set the status here
                 JOptionPane.showMessageDialog(frame, "Status set successfully");
-                frame.dispose();
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user);
+                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
             }
         });
         setStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                frame.dispose();
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user);
+                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
             }
         });
     }

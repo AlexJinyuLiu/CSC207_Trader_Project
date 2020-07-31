@@ -10,9 +10,7 @@ public class viewItemsAndWishlistMenu {
     private JButton createItemValidationRequestButton;
     private JButton backButton;
 
-    public viewItemsAndWishlistMenu(boolean english, User user) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+    public viewItemsAndWishlistMenu(boolean english, User user, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -28,14 +26,13 @@ public class viewItemsAndWishlistMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO open a menu to create an itemValidationRequest
-                frame.dispose();
+
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                frame.dispose();
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user);
+                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
             }
         });
     }

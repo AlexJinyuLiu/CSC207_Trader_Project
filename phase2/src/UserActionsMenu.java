@@ -14,9 +14,7 @@ public class UserActionsMenu {
     private JButton requestUnfreezeButton;
     private JPanel mainPanel;
 
-    public UserActionsMenu(boolean english, User user) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+    public UserActionsMenu(boolean english, User user, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -31,7 +29,7 @@ public class UserActionsMenu {
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-            viewItemsAndWishlistMenu viewItemsAndWishlistMenu = new viewItemsAndWishlistMenu(english, user);
+            viewItemsAndWishlistMenu viewItemsAndWishlistMenu = new viewItemsAndWishlistMenu(english, user, frame);
             }
         });
         viewUserStatsButton.addActionListener(new ActionListener() {
@@ -61,8 +59,7 @@ public class UserActionsMenu {
         changeMetropolitanAreaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(true, user);
-                frame.dispose();
+                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(true, user, frame);
             }
         });
         requestUnfreezeButton.addActionListener(new ActionListener() {

@@ -18,9 +18,7 @@ public class CreateAccount {
     private JTextField usernameTextField;
     private JLabel citySelectorLabel;
 
-    public CreateAccount(boolean english) {
-        JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+    public CreateAccount(boolean english, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
