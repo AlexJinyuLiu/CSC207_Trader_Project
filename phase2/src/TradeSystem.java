@@ -259,6 +259,7 @@ public class TradeSystem {
             System.out.println("Enter number from 1-2");
             choice = scan.nextInt();
         }
+
         if (choice == 1) {
             menuPresenter = new MenuPresenter("English");
         } else if (choice == 2){
