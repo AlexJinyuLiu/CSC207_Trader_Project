@@ -1,16 +1,17 @@
+import entitypack.Trade;
 import entitypack.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class viewItemsAndWishlistMenu {
-    private JScrollPane itemPane;
-    private JPanel mainPanel;
-    private JButton createItemValidationRequestButton;
+public class ViewPendingTradesMenu {
+    private JComboBox pendingTradesBox;
     private JButton backButton;
+    private JButton selectItemButton;
+    private JPanel mainPanel;
 
-    public viewItemsAndWishlistMenu(boolean english, User user, JFrame frame) {
+    public ViewPendingTradesMenu(boolean english, User user, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -22,10 +23,15 @@ public class viewItemsAndWishlistMenu {
         }else {
 
         }
-        createItemValidationRequestButton.addActionListener(new ActionListener() {
+
+        //TODO populate the drop down box with pending trade IDs
+
+
+        selectItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO open a menu to create an itemValidationRequest
+                int tradeID = (int) pendingTradesBox.getSelectedItem();
+
 
             }
         });

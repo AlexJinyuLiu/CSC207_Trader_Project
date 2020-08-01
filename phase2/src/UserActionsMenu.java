@@ -22,38 +22,45 @@ public class UserActionsMenu {
 
         //Todo set button text to english or french options from menu presenter
         if(english){
-
+            //TODO un hard code below
+            viewItemsAndWishlistButton.setText("view items and wishlist");
+            viewOtherUsersButton.setText("view other users");
+            viewUserStatsButton.setText("view user stats");
+            viewPendingTradesButton.setText("view pending trades");
+            setActiveStatusButton.setText("set active status");
+            changeMetropolitanAreaButton.setText("change metro area");
+            requestUnfreezeButton.setText("request unfreeze");
         }else {
 
         }
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-            viewItemsAndWishlistMenu viewItemsAndWishlistMenu = new viewItemsAndWishlistMenu(english, user, frame);
+            ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(english, user, frame);
             }
         });
         viewUserStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                ViewUserStatsMenu viewUserStatsMenu = new ViewUserStatsMenu(english, user, frame);
             }
         });
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                ViewOtherUsersMenu viewOtherUsersMenu = new ViewOtherUsersMenu(english, user, frame);
             }
         });
         viewPendingTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(english, user, frame);
             }
         });
         setActiveStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                SetActiveStatusMenu setActiveStatusMenu = new SetActiveStatusMenu(true, user, frame);
             }
         });
         changeMetropolitanAreaButton.addActionListener(new ActionListener() {
@@ -65,11 +72,12 @@ public class UserActionsMenu {
         requestUnfreezeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO if the user is frozen call method to request unfreeze
                 if(true){
-                    //call method here
+                    //TODO send the unfreeze request here
+                    //TODO replace this with presenter call
                     JOptionPane.showMessageDialog(frame, "Your unfreeze request has been sent to the admin team for review");
                 }else {
+                    //TODO replace this with a presenter call
                     JOptionPane.showMessageDialog(frame, "You are not currently Frozen");
                 }
             }

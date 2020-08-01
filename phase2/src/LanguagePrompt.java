@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +16,7 @@ public class LanguagePrompt {
 
     public LanguagePrompt() {
         JFrame frame = new JFrame("Trade System");
-        frame.setBounds(400, 400, 400, 400);
+        frame.setMinimumSize(new Dimension(400, 400));
         panelMain.setSize(400, 400);
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class setActiveStatusMenu {
-    private JComboBox statusBox;
-    private JButton setStatusButton;
-    private JButton backButton;
+public class ViewItemsAndWishlistMenu {
+    private JScrollPane itemPane;
     private JPanel mainPanel;
+    private JButton createItemValidationRequestButton;
+    private JButton backButton;
 
-    public setActiveStatusMenu(boolean english, User user, JFrame frame) {
+    public ViewItemsAndWishlistMenu(boolean english, User user, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -22,16 +22,14 @@ public class setActiveStatusMenu {
         }else {
 
         }
-
-        backButton.addActionListener(new ActionListener() {
+        createItemValidationRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO set the status here
-                JOptionPane.showMessageDialog(frame, "Status set successfully");
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
+                //TODO open a menu to create an itemValidationRequest
+
             }
         });
-        setStatusButton.addActionListener(new ActionListener() {
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
