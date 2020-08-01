@@ -38,13 +38,15 @@ public class LanguagePrompt {
 
     public LanguagePrompt(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper) {
         JFrame frame = new JFrame("Trade System");
+        frenchButton.setIcon(new ImageIcon("phase2/data/baguette.png"));
+        frenchButton.setSize(110, 110);
         frame.setMinimumSize(new Dimension(400, 400));
         panelMain.setSize(400, 400);
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
 
+        frame.setVisible(true);
         englishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

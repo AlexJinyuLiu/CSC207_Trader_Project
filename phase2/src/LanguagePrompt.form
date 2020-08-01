@@ -8,20 +8,22 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="515fe" class="javax.swing.JButton" binding="frenchButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Francais"/>
-        </properties>
-      </component>
       <component id="c07c1" class="javax.swing.JButton" binding="englishButton" default-binding="true">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="English"/>
+        </properties>
+      </component>
+      <component id="515fe" class="javax.swing.JButton" binding="frenchButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font/>
+          <text value=""/>
+          <verticalAlignment value="0"/>
         </properties>
       </component>
     </children>
