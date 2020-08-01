@@ -6,7 +6,6 @@ import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,7 +15,7 @@ import java.util.Scanner;
 /**
  * A controller class describing the actions a user can take from the menu in the trade system.
  */
-public class TradingUserActions implements UserBrowsing {
+public class TradingUserActions extends UserActions implements UserBrowsing{
 
     /**
      * runs the usermenu as normal.
@@ -82,6 +81,25 @@ public class TradingUserActions implements UserBrowsing {
         }
     }
 
+    /**
+     * Adds a new login to the system. Return false iff the login could not be added.
+     * @param username the username to be registered.
+     * @param password the password to be registered.
+     * @param isTrading specifies whether or not the user is trading or not.
+     * @param metro the metro area of the user.
+     * @return a boolean determining whether or not the login was added.
+     */
+    public boolean addNewLogin(UserManager userManager, String username, String password, boolean isTrading,
+                               MetroArea metro){
+        return userManager.addNewLogin(username, password, isTrading, metro);
+    }
+
+
+    /**
+     *
+     * @param menuPresenter
+     * @param user
+     */
     public void setActive(MenuPresenter menuPresenter, TradingUser user){
         String act = "";
         Scanner scan = new Scanner(System.in);

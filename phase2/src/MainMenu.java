@@ -1,3 +1,7 @@
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +12,7 @@ public class MainMenu {
     private JButton loginAsAdminButton;
     private JPanel mainPanel;
 
-    public MainMenu(boolean english, JFrame frame) {
+    public MainMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -16,21 +20,21 @@ public class MainMenu {
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                CreateAccount createAccount = new CreateAccount(english, frame);
+                CreateUserAccount createAccount = new CreateUserAccount(useCases, controllerPresenterGrouper, frame);
 
             }
         });
         loginAsUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(english, false, frame);
+                Login login = new Login(useCases, controllerPresenterGrouper, false, frame);
 
             }
         });
         loginAsAdminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(english, true, frame);
+                Login login = new Login(useCases, controllerPresenterGrouper, true, frame);
 
             }
         });

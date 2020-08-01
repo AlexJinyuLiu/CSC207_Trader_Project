@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * A use case class describing the business rules of the users in the trade system.
  */
-public class UserManager implements Serializable{
+public class UserManager implements Serializable, AccountDataOperations {
     //Note: We are aware this is static. We are afraid to delete it because we don't remember who put it here and why,
     // also we have to submit our phase 1 in an hour so please ignore this its probably not nescesary. Ty <3
     private static final long serialVersionUID = 886852790530090694L;
@@ -48,6 +48,31 @@ public class UserManager implements Serializable{
     }
 
     /**
+     * Return true iff username and password are a valid user login.
+     * @param username the username in question
+     * @param password the password in question
+     * @return a boolean determining whether or not the login info is valid.
+     */
+    public boolean validateLogin(String username, String password){
+        User user = searchUser(username);
+        if (user == null){
+            return false;
+        } else{
+            return user.getPassword().equals(password);
+        }
+    }
+
+    /**
+     * Return true iff the user with username is a TradingUser
+     * @param username the username of the user.
+     * @return a boolean determining whether or not the user is a TradingUser
+     */
+    public boolean isTradingUser(String username){
+        User user = searchUser(username);
+        return user instanceof TradingUser;
+    }
+
+    /**
      * Return a list of all users registered in the program.
      * @return an arraylist of all users.
      */
@@ -79,14 +104,39 @@ public class UserManager implements Serializable{
         this.adminAlerts.add(alert);
     }
 
+    /**
+     * Adds a new user to the system
+     * @param username the username of the new user
+     * @param password the password of the new user
+     * @param isBrowsingOnly a boolean specifying whether or not the user can have and trade items
+     * @param metro the metro area of the user.
+     * @return true iff the account creation was successful, else return false.
+     */
+    public boolean addNewLogin(String username, String password, boolean isBrowsingOnly, MetroArea metro){
+        if (isBrowsingOnly){
+            try {
+                createBrowsingUser(username, password, metro);
+            } catch(UserNameTakenException e){
+                return false;
+            }
+        } else{
+            try {
+                createTradingUser(username, password, metro);
+            } catch(UserNameTakenException e){
+                return false;
+            }
+        }
+        return true;
+    }
 
     /** Method which creates a user and adds it to the list of users
      * Author: Jinyu Liu
      * @param username username of user
      * @param password password of user
      * @return the created user
-     */ //UseCasePack.UserManager
-    public TradingUser createTradingUser(String username, String password) throws UserNameTakenException {
+     */
+    public TradingUser createTradingUser(String username, String password, MetroArea metro)
+            throws UserNameTakenException {
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
                 throw new UserNameTakenException();
@@ -94,6 +144,7 @@ public class UserManager implements Serializable{
         }
         TradingUser newUser = new TradingUser(username);
         newUser.setPassword(password);
+        newUser.setMetro(metro);
         listUsers.add(newUser);
         alertSystem.put(username, new ArrayList<Prompt>());
         return newUser;
@@ -105,7 +156,8 @@ public class UserManager implements Serializable{
      * @param password password of user
      * @return the created user
      */ //UseCasePack.UserManager
-    public BrowsingUser createBrowsingUser(String username, String password) throws UserNameTakenException {
+    public BrowsingUser createBrowsingUser(String username, String password, MetroArea metro)
+            throws UserNameTakenException {
         for (User user : listUsers) {
             if (user.getUsername().equals(username)) {
                 throw new UserNameTakenException();
@@ -113,6 +165,7 @@ public class UserManager implements Serializable{
         }
         BrowsingUser newUser = new BrowsingUser(username);
         newUser.setPassword(password);
+        newUser.setMetro(metro);
         listUsers.add(newUser);
         alertSystem.put(username, new ArrayList<Prompt>());
         return newUser;

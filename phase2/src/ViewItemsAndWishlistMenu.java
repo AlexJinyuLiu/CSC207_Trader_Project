@@ -1,3 +1,5 @@
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
 import entitypack.User;
 
 import javax.swing.*;
@@ -10,18 +12,16 @@ public class ViewItemsAndWishlistMenu {
     private JButton createItemValidationRequestButton;
     private JButton backButton;
 
-    public ViewItemsAndWishlistMenu(boolean english, User user, JFrame frame) {
+    public ViewItemsAndWishlistMenu(ControllerPresenterGrouper controllerPresenterGrouper,
+                                    String username, JFrame frame) {
+
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
         //Todo set button text to english or french options from menu presenter
-        if(english){
 
-        }else {
-
-        }
         createItemValidationRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -32,7 +32,8 @@ public class ViewItemsAndWishlistMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                        username, frame);
             }
         });
     }

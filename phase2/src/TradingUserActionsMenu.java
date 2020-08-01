@@ -1,10 +1,13 @@
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
+import entitypack.TradingUser;
 import entitypack.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserActionsMenu {
+public class TradingUserActionsMenu {
     private JButton viewItemsAndWishlistButton;
     private JButton viewUserStatsButton;
     private JButton viewOtherUsersButton;
@@ -14,59 +17,57 @@ public class UserActionsMenu {
     private JButton requestUnfreezeButton;
     private JPanel mainPanel;
 
-    public UserActionsMenu(boolean english, User user, JFrame frame) {
+    public TradingUserActionsMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-        //Todo set button text to english or french options from menu presenter
-        if(english){
-            //TODO un hard code below
-            viewItemsAndWishlistButton.setText("view items and wishlist");
-            viewOtherUsersButton.setText("view other users");
-            viewUserStatsButton.setText("view user stats");
-            viewPendingTradesButton.setText("view pending trades");
-            setActiveStatusButton.setText("set active status");
-            changeMetropolitanAreaButton.setText("change metro area");
-            requestUnfreezeButton.setText("request unfreeze");
-        }else {
 
-        }
+        //TODO un hard code below. do this by calling menuPresenter.getText (create this method)
+        viewItemsAndWishlistButton.setText("view items and wishlist");
+        viewOtherUsersButton.setText("view other users");
+        viewUserStatsButton.setText("view user stats");
+        viewPendingTradesButton.setText("view pending trades");
+        setActiveStatusButton.setText("set active status");
+        changeMetropolitanAreaButton.setText("change metro area");
+        requestUnfreezeButton.setText("request unfreeze");
+
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-            ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(english, user, frame);
+            ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(controllerPresenterGrouper,
+                    username, frame);
             }
         });
         viewUserStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewUserStatsMenu viewUserStatsMenu = new ViewUserStatsMenu(english, user, frame);
+                ViewUserStatsMenu viewUserStatsMenu = new ViewUserStatsMenu(controllerPresenterGrouper, username, frame);
             }
         });
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewOtherUsersMenu viewOtherUsersMenu = new ViewOtherUsersMenu(english, user, frame);
+                ViewOtherUsersMenu viewOtherUsersMenu = new ViewOtherUsersMenu(controllerPresenterGrouper, username, frame);
             }
         });
         viewPendingTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(english, user, frame);
+                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(controllerPresenterGrouper, username, frame);
             }
         });
         setActiveStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveStatusMenu setActiveStatusMenu = new SetActiveStatusMenu(true, user, frame);
+                SetActiveStatusMenu setActiveStatusMenu = new SetActiveStatusMenu(controllerPresenterGrouper, username, frame);
             }
         });
         changeMetropolitanAreaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(true, user, frame);
+                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(controllerPresenterGrouper, username, frame);
             }
         });
         requestUnfreezeButton.addActionListener(new ActionListener() {

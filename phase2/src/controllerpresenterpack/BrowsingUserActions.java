@@ -13,7 +13,7 @@ import usecasepack.UserManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BrowsingUserActions implements UserBrowsing {
+public class BrowsingUserActions extends UserActions implements UserBrowsing{
     //TODO: Create the BrowsingOnlyUser menu from here.
 
     public void runBrowsingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * A controller class that dictates what can be done on the Admin's menu.
  */
-public class AdminActions implements UserBrowsing{
+public class AdminActions implements UserBrowsing, ActionController, Login{
 
     /**
      * Starts and calls the presenter class stuff to display the admin main menu and take user input.
@@ -53,7 +53,7 @@ public class AdminActions implements UserBrowsing{
                     changeIncompleteThreshold(menuPresenter, adminUser, userManager);
                     valid_input = true;
                 } else if (input == 4) {
-                    addNewAdmin(menuPresenter, adminUser);
+                    //addNewLogin(adminUser, enuPresenter, adminUser);
                     valid_input = true;
                 } else if (input == 5){
                     viewThresholdValues(menuPresenter, userManager, tradeCreator);
@@ -87,6 +87,16 @@ public class AdminActions implements UserBrowsing{
     public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
                          User userToView, User userViewing,ItemManager itemManager){
 
+    }
+
+    /**
+     * Return true iff username and password is a valid admin login.
+     * @param username the username in question
+     * @param password the password in question
+     * @return a boolean determining the validity of the login info.
+     */
+    public boolean validateLogin(AccountDataOperations adminUser, String username, String password){
+        return adminUser.validateLogin(username, password);
     }
 
 
@@ -154,11 +164,12 @@ public class AdminActions implements UserBrowsing{
 
     /** Method that creates additional logins for UseCasePack.AdminUser account
      *
-     * @param adminUser UseCasePack.AdminUser logged in making changes
-     * @param menuPresenter menu presenter
+     * @param username the username of the new login
+     * @param password the password of the new login
      */
-    private void addNewAdmin(MenuPresenter menuPresenter, AdminUser adminUser) {
-        boolean flag = true;
+    public boolean addNewLogin(AccountDataOperations loginData, String username, String password, boolean isTrading,
+                               MetroArea metro) {
+        /*boolean flag = true;
         String inputUsername;
         String inputPassword;
         while (flag) {
@@ -170,13 +181,14 @@ public class AdminActions implements UserBrowsing{
             // "Enter the password of the administrator you want to add: "
             menuPresenter.printMenu(7,2);
             inputPassword = scan.next();
-            if (adminUser.addLogin(inputUsername, inputPassword)){
-                flag = false;
+            if (*/
+        return loginData.addNewLogin(username, password, isTrading, metro);//){
+                /*flag = false;
             } else{
                 // "That username is taken."
                 menuPresenter.printMenu(33,2);
             }
-        }
+        }*/
     }
 
     private void editTrade(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,

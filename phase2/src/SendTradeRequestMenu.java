@@ -1,3 +1,5 @@
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
 import entitypack.User;
 
 import javax.swing.*;
@@ -12,7 +14,8 @@ public class SendTradeRequestMenu {
     private JList wishList;
     private JPanel mainPanel;
 
-    public SendTradeRequestMenu(boolean english, User user, User userToView, JFrame frame, ArrayList<Integer> itemIDsToTrade) {
+    public SendTradeRequestMenu(ControllerPresenterGrouper controllerPresenterGrouper, String activeUsername,
+                                String userToViewUsername, JFrame frame, ArrayList<Integer> itemIDsToTrade) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -22,12 +25,7 @@ public class SendTradeRequestMenu {
 
 
         //TODO use presenter and use-case to fill in buttons text and message text
-        if(english){
-            //TODO set message here.
-        }else {
-            //TODO set message here.
 
-        }
 
         //TODO use use-cases to fill in the users items and wish list
 
@@ -38,13 +36,15 @@ public class SendTradeRequestMenu {
                 //TODO gather selected items and send the trade request
 
                 JOptionPane.showMessageDialog(frame, message);
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                        activeUsername, frame);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewUserMenu viewUserMenu = new ViewUserMenu(english, user, userToView, frame);
+                ViewUserMenu viewUserMenu = new ViewUserMenu(controllerPresenterGrouper, activeUsername,
+                        userToViewUsername, frame);
             }
         });
     }

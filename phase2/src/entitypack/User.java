@@ -18,5 +18,7 @@ public interface User {
 
     void setPassword(String password);
 
+    String getPassword();
+
     boolean checkPassword(String password);
 }

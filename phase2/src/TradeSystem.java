@@ -356,10 +356,10 @@ public class TradeSystem {
                 while(!valid_input){
                     YNInput = scan.nextLine();
                     if (YNInput.equals("Y")){
-                        user = userManager.createBrowsingUser(inputUsername, password);
+                        //user = userManager.createBrowsingUser(inputUsername, password);
                         valid_input = true;
                     } else if (YNInput.equals("N")){
-                        user = userManager.createTradingUser(inputUsername, password);
+                        //user = userManager.createTradingUser(inputUsername, password);
                         valid_input = true;
                     } else{
                         menuPresenter.printMenu(1, 4);
@@ -367,7 +367,7 @@ public class TradeSystem {
                 }
                 pickCity(inputUsername);
                 return user;
-            } catch (UserNameTakenException e) {
+            } catch (Exception e){//UserNameTakenException e) {
             } menuPresenter.printMenu(8, 0);
         }
     }

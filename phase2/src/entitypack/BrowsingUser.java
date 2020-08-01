@@ -29,6 +29,10 @@ public class BrowsingUser implements Serializable, User {
         return this.username;
     }
 
+    public String getPassword(){
+        return this.password;
+    }
+
     public MetroArea getMetro(){
         return this.metro;
     }

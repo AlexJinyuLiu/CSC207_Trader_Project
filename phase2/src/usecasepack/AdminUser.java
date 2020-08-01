@@ -1,6 +1,6 @@
 package usecasepack;
 
-import entitypack.Item;
+import entitypack.MetroArea;
 import entitypack.TradingUser;
 
 import java.io.Serializable;
@@ -10,14 +10,13 @@ import java.util.HashMap;
 /**
  * A use case class describing the business rules for admin functionality.
  */
-public class AdminUser implements Serializable {
+public class AdminUser implements Serializable, AccountDataOperations {
     //author: Tingyu Liang, Riya Razdan in group 0110 for CSC207H1 summer 2020 project
 
     /**
      * Stores the login info for admin acccounts
      */
     private HashMap<String, String> loginInfo;
-
 
     /**
      * Stores the list of alerts to be processed by the admin
@@ -27,6 +26,20 @@ public class AdminUser implements Serializable {
      // Not really sure how we want to do this. Hardcoded for simplicity in the meanwhile - Louis
 
     /**
+     * Return true iff username and password are a valid admin login.
+     * @param username the username in question
+     * @param password the password being validated
+     * @return a boolean determining whether or not the login is valid.
+     */
+    public boolean validateLogin(String username, String password){
+        String passwordFromMap = loginInfo.get(username);
+        if (passwordFromMap != null){
+            return passwordFromMap.equals(password);
+        } else{
+            return false;
+        }
+    }
+    /**
      * Constructor for UseCasePack.AdminUser
      * @param username string for the admin's username
      * @param password string for the admin's password
@@ -34,8 +47,19 @@ public class AdminUser implements Serializable {
     public AdminUser(String username, String password) {
         adminAlerts = new ArrayList<Prompt>();
         loginInfo = new HashMap<String, String>();
-        addLogin(username, password);
+        addNewLogin(username, password, false, null);
 
+    }
+
+    //Implemented this to appease LoginData interface
+    /**
+     * Return whether or not this admin can trade, which will always be false
+     * @param username the username of the admin
+     * @return false
+     */
+    @Override
+    public boolean isTradingUser(String username) {
+        return false;
     }
 
     /**
@@ -51,9 +75,11 @@ public class AdminUser implements Serializable {
      * Adds a login (username and password) for a user on the system.
      * @param username the inputed username
      * @param password the password associated with the account
+     * @param isTrading whether or not the new account can trade, so always false for admins.
+     * @param metro  the metro area of the new login (currently not assigned to admins)
      * @return a boolean describing whether or not the login was successfully added.
      */
-    public boolean addLogin(String username, String password){
+    public boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro){
         if (loginInfo.containsKey(username)){
             return false;
         } else {

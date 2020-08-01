@@ -1,4 +1,5 @@
-import entitypack.Trade;
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
 import entitypack.User;
 
 import javax.swing.*;
@@ -11,18 +12,14 @@ public class ViewPendingTradesMenu {
     private JButton selectItemButton;
     private JPanel mainPanel;
 
-    public ViewPendingTradesMenu(boolean english, User user, JFrame frame) {
+    public ViewPendingTradesMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
         //Todo set button text to english or french options from menu presenter
-        if(english){
 
-        }else {
-
-        }
 
         //TODO populate the drop down box with pending trade IDs
 
@@ -38,7 +35,7 @@ public class ViewPendingTradesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper, username, frame);
             }
         });
     }

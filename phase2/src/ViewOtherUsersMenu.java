@@ -1,3 +1,5 @@
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
 import entitypack.User;
 
 import javax.swing.*;
@@ -10,33 +12,31 @@ public class ViewOtherUsersMenu {
     private JButton backButton;
     private JButton selectUserButton;
 
-    public ViewOtherUsersMenu(boolean english, User user, JFrame frame) {
+    public ViewOtherUsersMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
         //TODO use presenter and use-case to fill in labels
-        if(english){
 
-        }else {
-
-        }
 
         //TODO use use-cases to fill in the users
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                        username, frame);
             }
         });
         selectUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO Call method to view the selected user
+                //TODO: I don't know if this actually returns the user object
                 User userToView = (User) selectUserBox.getSelectedItem();
-                ViewUserMenu viewUserMenu = new ViewUserMenu(english, user, userToView, frame);
+                ViewUserMenu viewUserMenu = new ViewUserMenu(controllerPresenterGrouper, username, userToView.getUsername(), frame);
             }
         });
     }

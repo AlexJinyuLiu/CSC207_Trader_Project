@@ -1,3 +1,5 @@
+import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.MenuPresenter;
 import entitypack.User;
 
 import javax.swing.*;
@@ -22,18 +24,14 @@ public class ViewUserStatsMenu {
     private JLabel mostFrequentTradingPartnersLabel;
     private JLabel mostFrequentTradingPartnersValue;
 
-    public ViewUserStatsMenu(boolean english, User user, JFrame frame) {
+    public ViewUserStatsMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
         //TODO use presenter and use-case to fill in labels
-        if(english){
 
-        }else {
-
-        }
 
         //TODO use use-cases to fill in the stats
 
@@ -41,7 +39,8 @@ public class ViewUserStatsMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                UserActionsMenu userActionsMenu = new UserActionsMenu(english, user, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                        username, frame);
             }
         });
     }
