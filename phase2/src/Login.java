@@ -23,7 +23,8 @@ public class Login extends JFrame{
         frame.setVisible(true);
 
         //TODO: Do this through menuPresenter, it already deals with the language abstraction
-        passwordLabel.setText("Password");
+
+        passwordLabel.setText("PasswordYeer");
         usernameLabel.setText("Username");
         backButton.setText("back");
         loginButton.setText("login");

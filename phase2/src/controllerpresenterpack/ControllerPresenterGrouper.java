@@ -2,7 +2,7 @@ package controllerpresenterpack;
 
 public class ControllerPresenterGrouper {
 
-    public MenuPresenter menuPresenter;
+    public GuiMenuPresenter menuPresenter;
     public AdminActions adminActions;
     public TradingUserActions tradingUserActions;
     public BrowsingUserActions browsingUserActions;
@@ -14,7 +14,7 @@ public class ControllerPresenterGrouper {
         this.browsingUserActions = browsingUserActions;
     }
 
-    public void setMenuPresenter(MenuPresenter menuPresenter){
-        this.menuPresenter = menuPresenter;
+    public void setMenuPresenter(GuiMenuPresenter guiMenuPresenter){
+        this.menuPresenter = guiMenuPresenter;
     }
 }

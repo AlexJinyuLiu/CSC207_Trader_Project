@@ -350,6 +350,7 @@ public class TradeSystem {
                 menuPresenter.printMenu(1, 2);
                 String password = scan.nextLine();
                 menuPresenter.printMenu(1, 3);
+                menuPresenter.printMenu(1,4);
                 boolean valid_input = false;
                 String YNInput;
                 User user = null;

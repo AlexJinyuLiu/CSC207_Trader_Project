@@ -11,8 +11,12 @@ MENU{ - 1
 Create Account Menu
 Enter your desired username
 Enter your desired password
-Should this account be browse-only (cannot make trades or have items). Please enter Y for yes and N for no.
+Should this account be browse-only (cannot make trades or have items)
 Please enter either Y or N.
+Confirm Password
+Passwords are not the same length. Please ensure the same password is entered in both fields!
+Passwords do not match. Please ensure the same password is entered in both fields
+Could not register this account
 }
 
 MENU{ - 2
@@ -396,7 +400,7 @@ Your account has been activated
 }
 
 MENU{ - 42
-Which metropolitan area are you located in:
+Metropolitan area :
 (1) Toronto
 (2) Vancouver
 (3) Ottawa
@@ -408,6 +412,7 @@ User Menu
 (0) Quit
 Please enter a number corresponding to a setting above:
 Please enter a number from 0 to
+(Browsing)
 }
 
 MENU{ - 44
@@ -448,4 +453,12 @@ MENU{ - 46
 Select Language:
 (1) English
 (2) Français
+}
+
+MENU{ - 47
+Username
+Password
+Back
+Login
+Confirm
 }
