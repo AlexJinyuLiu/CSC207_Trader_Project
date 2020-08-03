@@ -225,7 +225,10 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
                  menuPresenter.printMenu(16, 17);
              }
          } else if (input == 4) {
-             SuggestMatch(user,itemManager, menuPresenter);
+             menuPresenter.printMenu(16, 18);
+             scan.nextLine();
+             String wishItem = scan.nextLine();
+             user.addItemToWishList(wishItem);
          }
          else if (input == 0){
              return;
@@ -238,21 +241,23 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
     /**
      * Method that prints out items that user1 can lend to user2 after adding an item to their wishlist from user2's
      * available items
-     * @param user
+     * @param userToView
      * @param itemManager
      * @param menuPresenter
      */
-    private void SuggestMatch(TradingUser user, ItemManager itemManager, MenuPresenter menuPresenter){
+    private void suggestMatch(TradingUser userToView, TradingUser userGetSuggestions, ItemManager itemManager,
+                              MenuPresenter menuPresenter){
         ArrayList<Item> listItems = new ArrayList<Item>();
-        for (String wish : user.getWishlistItemNames()) {
-            for (Item item : itemManager.getItems()) {
-                if (item.getName().toLowerCase().contains(wish.toLowerCase())) {
+        for (String wish : userToView.getWishlistItemNames()) {
+            for (Item item : itemManager.getAvailableItems(userGetSuggestions.getUsername())) {
+                if ((item.getName().toLowerCase().contains(wish.toLowerCase()) ||
+                        item.getDescription().toLowerCase().contains(wish.toLowerCase()))) {
                     listItems.add(item);
                 }
             }
         }
         if (listItems.size() == 0) {
-            menuPresenter.printMenu(16, 18);
+            menuPresenter.printMenu(18, 12);
         } else for (Item wishItem : listItems) {
             menuPresenter.printItemToString(wishItem);
         }
@@ -350,12 +355,15 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
                         Item item = itemManager.searchItem(itemID);
                         userManager.addToWishlist((TradingUser) userViewing, item.getName());
                         menuPresenter.printMenu(18, 9);
-                        SuggestMatch((TradingUser) userToView,itemManager, menuPresenter);
+                        suggestMatch((TradingUser) userToView, (TradingUser) userViewing,itemManager, menuPresenter);
                     }
                     else { menuPresenter.printMenu(18,10); }
                 } else if (input == 3 && !tradingUser.getFrozen()){
                     formTradeRequest(menuPresenter, tradeCreator, (TradingUser)userViewing, tradingUser, itemManager);
-                } else if (input == 0){
+                } else if (input == 3 && tradingUser.getFrozen()) {
+                    menuPresenter.printMenu(18, 11);
+                }
+                else if (input == 0){
                     handled = true;
 
                 }

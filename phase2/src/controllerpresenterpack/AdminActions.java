@@ -206,7 +206,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
                 // "Please enter a valid integer"
                 menuPresenter.printMenu(44,4);
             } else if (input == 1) {
-                // trade lookup by ID
+                // trade lookup by ID (don't think we still need this)
                 flag = false;
             } else if (input == 2) { **/
                 ArrayList<Trade> listTrades = new ArrayList<Trade>();
@@ -236,7 +236,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
                                     input = scan.nextInt();
                                     if (input == 1) {
                                         actionMade = true;
-                                        //AdminUser.unsendTraderequest()
+                                        adminUser.unsendTradeRequest(trade.getTradeID(), tradeCreator);
                                     } else if (input == 0) {
                                         actionMade = true;
                                     } else {
@@ -253,7 +253,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
                                     input = scan.nextInt();
                                     if (input == 1) {
                                         actionMade = true;
-                                        //AdminUser.cancelTraderequest()
+                                        adminUser.cancelTradeRequest(trade.getTradeID(), tradeCreator);
                                     } else if (input == 0) {
                                         actionMade = true;
                                     } else {
@@ -270,7 +270,8 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
                                     input = scan.nextInt();
                                     if (input == 1) {
                                         actionMade = true;
-                                        //AdminUser.cancelTraderequest()
+                                        adminUser.undoTrade(trade.getTradeID(), tradeHistories, itemManager,
+                                                userManager);
                                     } else if (input == 0) {
                                         actionMade = true;
                                     } else {

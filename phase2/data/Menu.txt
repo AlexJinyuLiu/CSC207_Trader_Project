@@ -154,7 +154,7 @@ Please enter the name of the item on your wishlist you wish to remove.
 (0) Exit to main menu
 The item has been removed.
 Item has not been found.
-No matches, please add more items to your wishlist or try again later.
+Please enter the name of the item you want to add to your wishlist
 }
 
 MENU{ - 17
@@ -178,6 +178,8 @@ Sent message to
 Enter the ID of the item you would like added to your wishlist:
 Item successfully added to wishlist.
 Item has not been found in this user's inventory.
+User is froze, unable to send trade request
+No matches, please add more items to your wishlist or try again later.
 }
 
 MENU{ - 19

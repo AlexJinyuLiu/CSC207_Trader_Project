@@ -339,7 +339,7 @@ public class TradeSystem {
         FileManager.saveItemManagerToFile(itemManager);
     }
 
-    private User createAccount(){  // does not check that the username is taken
+    private User createAccount(){
         while (true) {
             try {
                 Scanner scan = new Scanner(System.in);

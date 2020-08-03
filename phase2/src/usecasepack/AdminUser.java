@@ -1,7 +1,9 @@
 package usecasepack;
 
 import entitypack.MetroArea;
+import entitypack.Trade;
 import entitypack.TradingUser;
+import entitypack.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -176,7 +178,27 @@ public class AdminUser implements Serializable, AccountDataOperations {
         tradeCreator.setBorrowLendThreshold(newThreshold);
     }
 
+    public void unsendTradeRequest(int tradeID, TradeCreator tradeCreator) {
+        tradeCreator.getPendingTradeRequests().removeIf(trade -> trade.getTradeID() == tradeID);
+    }
 
+    public void cancelTradeRequest(int tradeID, TradeCreator tradeCreator) {
+        tradeCreator.getPendingTrades().removeIf(trade -> trade.getTradeID() == tradeID);
+    }
+
+    public void undoTrade(int tradeID, TradeHistories tradeHistories, ItemManager itemManager, UserManager userManager){
+        for (Trade trade : tradeHistories.getCompletedTrades()) {
+            if (trade.getTradeID() == tradeID) {
+                tradeHistories.getCompletedTrades().remove(trade);
+                tradeHistories.getDeadTrades().add(trade);
+                User user1 = userManager.searchUser(trade.getUsername1());
+                User user2 = userManager.searchUser(trade.getUsername2());
+                itemManager.exchangeItems(trade, (TradingUser) user2, (TradingUser) user1);
+                ((TradingUser) user1).increaseNumBorrowed(-2);
+                ((TradingUser) user2).increaseNumBorrowed(-1);
+            }
+        }
+    }
     /**
      * Checks if password is correct
      * @param pass string of password attempt to check
