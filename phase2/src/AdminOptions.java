@@ -7,9 +7,16 @@ import controllerpresenterpack.UseCaseGrouper;
 
 public class AdminOptions {
     public JPanel mainPanel;
+    private JButton setBorrowLendThreshold;
+    private JButton setCompleteTradeThreshold;
     public JButton setThreshold;
     public JButton addNewAdmin;
+    private JButton viewThresholdValues;
+    private JButton setIncompleteTradeThreshold;
+    private JButton editUndoTrade;
     public JButton viewAllUsers;
+    private JButton searchUsername;
+    private JButton backToMainMenu;
     public JButton searchUser;
 
     public AdminOptions(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, boolean isAdmin, JFrame window){
