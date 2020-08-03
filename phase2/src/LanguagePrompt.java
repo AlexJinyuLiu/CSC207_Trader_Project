@@ -17,27 +17,7 @@ public class LanguagePrompt {
 
 
 
-
-    public static void main(String[] args) {
-        //TODO: Delete these once we've linked the whole program together
-        AdminUser adminUser = new AdminUser("admin", "admin");
-        UserManager userManager = new UserManager();
-        TradeCreator tradeCreator = new TradeCreator();
-        ItemManager itemManager = new ItemManager();
-        UseCaseGrouper useCases = new UseCaseGrouper(adminUser, userManager, tradeCreator, itemManager);
-
-        AdminActions adminActions = new AdminActions();
-        TradingUserActions tradingUserActions = new TradingUserActions();
-        BrowsingUserActions browsingUserActions = new BrowsingUserActions();
-        ControllerPresenterGrouper controllerPresenterGrouper = new ControllerPresenterGrouper(adminActions,
-                tradingUserActions, browsingUserActions);
-
-        LanguagePrompt languagePrompt = new LanguagePrompt(useCases, controllerPresenterGrouper);
-    }
-
-
-    public LanguagePrompt(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper) {
-        JFrame frame = new JFrame("Trade System");
+    public LanguagePrompt(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame){
         frenchButton.setIcon(new ImageIcon("phase2/data/baguette.png"));
         frame.setMinimumSize(new Dimension(800, 600));
         panelMain.setSize(800, 600);

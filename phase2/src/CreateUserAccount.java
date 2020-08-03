@@ -83,6 +83,7 @@ public class CreateUserAccount {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(1,8));
                     return;
                 }
+
                 if (isBrowsingUser){
                     BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(cpg, username, frame);
 

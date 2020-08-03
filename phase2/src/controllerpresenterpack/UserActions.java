@@ -1,6 +1,8 @@
 package controllerpresenterpack;
 
 import usecasepack.AccountDataOperations;
+import usecasepack.TradeCreator;
+import usecasepack.UserManager;
 
 public class UserActions implements ActionController{
 
@@ -22,4 +24,5 @@ public class UserActions implements ActionController{
     public boolean isTradingUser(AccountDataOperations userManager, String username){
         return userManager.isTradingUser(username);
     }
+
 }
