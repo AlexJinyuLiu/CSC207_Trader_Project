@@ -7,7 +7,6 @@ import controllerpresenterpack.UseCaseGrouper;
 
 public class AdminOptions {
     public JPanel mainPanel;
-    private JButton setBorrowLendThreshold;
     private JButton setCompleteTradeThreshold;
     public JButton setThreshold;
     public JButton addNewAdmin;
