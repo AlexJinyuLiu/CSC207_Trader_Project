@@ -5,13 +5,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class browsingUserActionsMenu {
+public class BrowsingUserActionsMenu {
 
     private JPanel mainPanel;
     private JButton viewOtherUsersButton;
     private JLabel Loggedin;
 
-    public browsingUserActionsMenu(ControllerPresenterGrouper cpg, String username, JFrame frame){
+    public BrowsingUserActionsMenu(ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

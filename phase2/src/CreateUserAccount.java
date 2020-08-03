@@ -84,7 +84,7 @@ public class CreateUserAccount {
                     return;
                 }
                 if (isBrowsingUser){
-                    //BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu();
+                    BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(cpg, username, frame);
 
                 } else {
                     TradingUserActionsMenu tradingUserActionsMenu = new
