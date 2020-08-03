@@ -39,9 +39,8 @@ public class LanguagePrompt {
     public LanguagePrompt(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper) {
         JFrame frame = new JFrame("Trade System");
         frenchButton.setIcon(new ImageIcon("phase2/data/baguette.png"));
-        frenchButton.setSize(110, 110);
-        frame.setMinimumSize(new Dimension(400, 400));
-        panelMain.setSize(400, 400);
+        frame.setMinimumSize(new Dimension(800, 600));
+        panelMain.setSize(800, 600);
         frame.setContentPane(panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -52,7 +51,7 @@ public class LanguagePrompt {
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO: Storing menuPresenter here might have some unforseen consequences when we want to access it
                 //  from outside the UI layer (do we need to do that?)
-                MenuPresenter menuPresenter = new MenuPresenter("English");
+                GuiMenuPresenter menuPresenter = new GuiMenuPresenter("English");
                 controllerPresenterGrouper.setMenuPresenter(menuPresenter);
                 MainMenu mainMenu = new MainMenu(useCases, controllerPresenterGrouper, frame);
             }
@@ -60,7 +59,7 @@ public class LanguagePrompt {
         frenchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MenuPresenter menuPresenter = new MenuPresenter("French");
+                GuiMenuPresenter menuPresenter = new GuiMenuPresenter("French");
                 controllerPresenterGrouper.setMenuPresenter(menuPresenter);
                 MainMenu mainMenu = new MainMenu(useCases, controllerPresenterGrouper, frame);
             }

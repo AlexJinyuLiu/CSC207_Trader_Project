@@ -1,5 +1,4 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
 
 import javax.swing.*;
@@ -15,6 +14,10 @@ public class MainMenu {
     public MainMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        createAccountButton.setText(controllerPresenterGrouper.menuPresenter.getText(10,2));
+        loginAsAdminButton.setText(controllerPresenterGrouper.menuPresenter.getText(10,4));
+        loginAsUserButton.setText(controllerPresenterGrouper.menuPresenter.getText(10,3));
+
         frame.pack();
         frame.setVisible(true);
         createAccountButton.addActionListener(new ActionListener() {
