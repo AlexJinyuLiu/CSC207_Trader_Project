@@ -94,6 +94,26 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         return userManager.addNewLogin(username, password, isTrading, metro);
     }
 
+    /**
+     * Get all available items for the user with specified username.
+     * @param tradingUserUsername the username of the user from which to fetch the items
+     * @return an arraylist of all items this user has available for trade
+     */
+    public ArrayList<Item> getAvailableItems(ItemManager itemManager, String tradingUserUsername){
+        return itemManager.getAvailableItems(tradingUserUsername);
+    }
+
+    /**
+     * Get all wishlist item names for the user with the specified username.
+     *
+     * Precondition: tradingUserUserName must be the username of a trading user.
+     *
+     * @param tradingUserUsername the username of the trading user from which to fetch the wishlist entries.
+     * @return an arraylist of strings representing wishlist items for the user.
+     */
+    public ArrayList<String> getWishListItems(UserManager userManager, String tradingUserUsername){
+        return ((TradingUser)userManager.searchUser(tradingUserUsername)).getWishlistItemNames();
+    }
 
     /**
      *

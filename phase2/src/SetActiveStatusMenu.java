@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.User;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class SetActiveStatusMenu {
     private JButton backButton;
     private JPanel mainPanel;
 
-    public SetActiveStatusMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
+    public SetActiveStatusMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -26,14 +27,14 @@ public class SetActiveStatusMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO set the status here
                 JOptionPane.showMessageDialog(frame, "Status set successfully");
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
                         username, frame);
             }
         });
         setStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
                         username, frame);
             }
         });

@@ -1,8 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
-import entitypack.TradingUser;
-import entitypack.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +16,7 @@ public class TradingUserActionsMenu {
     private JButton requestUnfreezeButton;
     private JPanel mainPanel;
 
-    public TradingUserActionsMenu(ControllerPresenterGrouper cpg, String username, JFrame frame){
+    public TradingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -37,37 +35,38 @@ public class TradingUserActionsMenu {
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-            ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(cpg, username, frame);
+            ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(useCases, cpg, username,
+                    frame);
             }
         });
         viewUserStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewUserStatsMenu viewUserStatsMenu = new ViewUserStatsMenu(cpg, username, frame);
+                ViewUserStatsMenu viewUserStatsMenu = new ViewUserStatsMenu(useCases, cpg, username, frame);
             }
         });
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewOtherUsersMenu viewOtherUsersMenu = new ViewOtherUsersMenu(cpg, username, frame);
+                ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame, true);
             }
         });
         viewPendingTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(cpg, username, frame);
+                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(useCases, cpg, username, frame);
             }
         });
         setActiveStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveStatusMenu setActiveStatusMenu = new SetActiveStatusMenu(cpg, username, frame);
+                SetActiveStatusMenu setActiveStatusMenu = new SetActiveStatusMenu(useCases, cpg, username, frame);
             }
         });
         changeMetropolitanAreaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(cpg, username, frame);
+                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(useCases, cpg, username, frame);
             }
         });
         requestUnfreezeButton.addActionListener(new ActionListener() {

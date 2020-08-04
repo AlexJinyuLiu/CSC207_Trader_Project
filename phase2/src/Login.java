@@ -56,9 +56,9 @@ public class Login extends JFrame{
                         boolean isTradingUser = userActions.isTradingUser(useCases.userManager, user);
                         if (isTradingUser) {
                             TradingUserActionsMenu tradingUserActionsMenu =
-                                    new TradingUserActionsMenu(cpg, user, frame);
+                                    new TradingUserActionsMenu(useCases, cpg, user, frame);
                         } else{
-                            BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(cpg,
+                            BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases, cpg,
                                     user, frame);
                         }
 

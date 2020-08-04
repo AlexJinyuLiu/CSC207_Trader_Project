@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.User;
 
 import javax.swing.*;
@@ -12,7 +13,8 @@ public class ViewPendingTradesMenu {
     private JButton selectItemButton;
     private JPanel mainPanel;
 
-    public ViewPendingTradesMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
+    public ViewPendingTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                                 String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -35,7 +37,8 @@ public class ViewPendingTradesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper, username, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
+                        controllerPresenterGrouper, username, frame);
             }
         });
     }

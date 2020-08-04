@@ -48,17 +48,25 @@ public class CreateUserAccount {
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                MainMenu mainMenu = new MainMenu(useCases, cpg, frame);
             }
         });
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String username = usernameTextField.getText();
+                if (username.equals("")){
+                    JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEUSERACCOUNT, 11));
+                    return;
+                }
                 boolean isBrowsingUser = tradingUserCheckBox.isSelected();
                 MetroArea metroArea = (MetroArea)citySelectorComboBox.getSelectedItem();
 
                 char[] passwordCharArr = passwordField.getPassword();
+                if (passwordCharArr.length == 0){
+                    JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEUSERACCOUNT, 10));
+                    return;
+                }
                 char[] passwordConfirmationArr = passwordConfirmationField.getPassword();
                 if (passwordCharArr.length != passwordConfirmationArr.length){
                     //"Passwords are not the same length. " +
@@ -76,21 +84,23 @@ public class CreateUserAccount {
                     password.append(passwordCharArr[i]);
                 }
 
-                //TODO: boolean stuff with this method
                 boolean userRegistered = cpg.tradingUserActions.addNewLogin(useCases.userManager,
                         username, password.toString(), isBrowsingUser, metroArea);
                 if (!userRegistered){
-                    //"Could not register this account."
+                    //"Could not register this account because the username is taken."
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEUSERACCOUNT,9));
                     return;
                 }
 
+                //"Account successfully created."
+                JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEUSERACCOUNT, 12));
                 if (isBrowsingUser){
-                    BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(cpg, username, frame);
+                    BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases,
+                            cpg, username, frame);
 
                 } else {
                     TradingUserActionsMenu tradingUserActionsMenu = new
-                            TradingUserActionsMenu(cpg, username, frame);
+                            TradingUserActionsMenu(useCases, cpg, username, frame);
                 }
 
 

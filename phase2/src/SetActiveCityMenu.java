@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.MetroArea;
 import entitypack.User;
 
@@ -14,7 +15,8 @@ public class SetActiveCityMenu {
     private JButton setCityButton;
 
 
-    public SetActiveCityMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
+    public SetActiveCityMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                             String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -34,7 +36,7 @@ public class SetActiveCityMenu {
                 //TODO set the users city
                 JOptionPane.showMessageDialog(frame, "City selected successfully");
                 frame.dispose();
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
                         username, frame);
 
             }
@@ -43,7 +45,7 @@ public class SetActiveCityMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 frame.dispose();
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
                         username, frame);
             }
 

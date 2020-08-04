@@ -32,6 +32,21 @@ public class ItemManager implements Serializable {
         return newID;
     }
 
+    /**
+     * Get all available items for the user with specified username.
+     * @param tradingUserUsername the username of the user from which to fetch the items
+     * @return an arraylist of all items this user has available for trade
+     */
+    public ArrayList<Item> getAvailableItems(String tradingUserUsername){
+        ArrayList<Item> availableItems = new ArrayList<Item>();
+        for (Item item : items){
+            if (item.getOwner().equals(tradingUserUsername) && item.getOwner().equals(item.getInPossessionOf())){
+                availableItems.add(item);
+            }
+        }
+        return availableItems;
+    }
+
     /** Method which returns a item (that is in a user's available items) when given its ID number.
      * Returns null if an invalid ID is given
      * Author: Louis Scheffer V
@@ -116,22 +131,6 @@ public class ItemManager implements Serializable {
         Item item = searchItem(itemID);
         assert item != null;
         items.remove(item);
-    }
-
-    /**
-     * @param username the username of the user whose inventory is being searched for
-     * @return the list of available items of the user
-     */
-    public ArrayList<Item> getAvailableItems(String username) {
-        ArrayList<Item> usersItems = new ArrayList<Item>();
-        for (Item item: items) {
-            //Dunno if borrowed items will be shown in user's inventory - Tingyu
-            //Does inventory means the item originally owned by the user only?
-            if (item.getInPossessionOf().equals(username)) {
-                usersItems.add(item);
-            }
-        }
-        return usersItems;
     }
 
     /**

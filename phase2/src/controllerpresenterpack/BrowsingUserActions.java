@@ -54,6 +54,7 @@ public class BrowsingUserActions extends UserActions implements UserBrowsing{
         }
     }
 
+
     /**
      * Allow user to view all the users in the trading system
      * @param userViewing user logged in viewing other users

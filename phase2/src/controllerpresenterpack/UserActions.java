@@ -1,8 +1,12 @@
 package controllerpresenterpack;
 
+import entitypack.MetroArea;
+import entitypack.User;
 import usecasepack.AccountDataOperations;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
+
+import java.util.ArrayList;
 
 public class UserActions implements ActionController{
 
@@ -23,6 +27,33 @@ public class UserActions implements ActionController{
      */
     public boolean isTradingUser(AccountDataOperations userManager, String username){
         return userManager.isTradingUser(username);
+    }
+
+    /**
+     * Gets a list of all users in the specified MetroArea
+     * @param metroArea the area to search for user in
+     * @return an arraylist of all users in that area.
+     */
+    public ArrayList<User> getLocalUsers(UserManager userManager, MetroArea metroArea){
+        return userManager.searchUsersByMetro(metroArea);
+    }
+
+    /**
+     * fetch the MetroArea of the user with specified username
+     * @param username the username of the user.
+     * @return the metro area of the user.
+     */
+    public MetroArea getUsersMetroArea(UserManager userManager, String username){
+        return userManager.searchUser(username).getMetro();
+    }
+
+    /**
+     * Returns the user object associated with specified username
+     * @param username the username of the user to search for.
+     * @return the user object associated with username
+     */
+    public User searchUser(UserManager userManager, String username){
+        return userManager.searchUser(username);
     }
 
 }

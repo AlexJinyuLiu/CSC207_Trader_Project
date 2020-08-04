@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.User;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class ViewTrade {
     private JLabel user2ConfirmedLabel;
     private JButton backButton;
 
-    public ViewTrade(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
+    public ViewTrade(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -44,7 +45,7 @@ public class ViewTrade {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(controllerPresenterGrouper,
+                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(useCases, controllerPresenterGrouper,
                         username, frame);
             }
         });

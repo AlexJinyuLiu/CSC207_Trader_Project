@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.User;
 
 import javax.swing.*;
@@ -24,7 +25,8 @@ public class ViewUserStatsMenu {
     private JLabel mostFrequentTradingPartnersLabel;
     private JLabel mostFrequentTradingPartnersValue;
 
-    public ViewUserStatsMenu(ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
+    public ViewUserStatsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                             String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -39,8 +41,8 @@ public class ViewUserStatsMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
-                        username, frame);
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
+                        controllerPresenterGrouper, username, frame);
             }
         });
     }

@@ -14,7 +14,10 @@ Back
 Confirm
 Passwords are not the same length. Please ensure the same password is entered in both fields.
 Passwords do not match. Please ensure the same password is entered in both fields.
-Could not register this account.
+Could not register this account because the username is taken.
+Password field is empty. Please enter or confirm your password.
+Username field is empty. Please enter a username.
+Account successfully created.
 }
 
 Frame{ - LOGIN
@@ -27,7 +30,7 @@ Username and Password not recognized
 
 Frame{ - TRADINGUSERACTIONSMENU
 View items and wishlist
-View other users
+View other users in your area
 View user stats
 View pending trades
 Set active status
@@ -39,5 +42,20 @@ You are not currently Froze
 
 Frame{ - BROWSINGUSERACTIONSMENU
 (Browsing)
-View other users
+View other users in your area
+}
+
+Frame{ - VIEWALLOTHERUSERSMENU
+Select a user to view...
+Back
+Confirm
+}
+
+Frame{ - VIEWUSERMENU
+Viewing User:
+The users items are displayed on the left, and their wishlist is displayed on the right.
+This user is Browsing only, meaning they have no items available for trade.
+Back
+Create Trade Request
+Your account is browsing only, and thus cannot make trade requests.
 }

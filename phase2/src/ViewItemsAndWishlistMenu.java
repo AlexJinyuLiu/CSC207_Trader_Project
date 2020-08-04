@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.User;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class ViewItemsAndWishlistMenu {
     private JButton createItemValidationRequestButton;
     private JButton backButton;
 
-    public ViewItemsAndWishlistMenu(ControllerPresenterGrouper controllerPresenterGrouper,
+    public ViewItemsAndWishlistMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                     String username, JFrame frame) {
 
         frame.setContentPane(mainPanel);
@@ -32,7 +33,7 @@ public class ViewItemsAndWishlistMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
                         username, frame);
             }
         });

@@ -1,4 +1,5 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class BrowsingUserActionsMenu {
     private JButton viewOtherUsersButton;
     private JLabel Loggedin;
 
-    public BrowsingUserActionsMenu(ControllerPresenterGrouper cpg, String username, JFrame frame){
+    public BrowsingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -23,7 +24,7 @@ public class BrowsingUserActionsMenu {
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewOtherUsersMenu viewOtherUsersMenu = new ViewOtherUsersMenu(cpg, username, frame);
+                ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame, false);
             }
         });
     }
