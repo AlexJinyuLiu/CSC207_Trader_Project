@@ -1,0 +1,43 @@
+Frame{ - MAINMENU
+Create account
+Log in as admin
+Log in as user
+}
+
+Frame{ - CREATEUSERACCOUNT
+Browse-only? (cannot make trades)
+Username
+Password
+Confirm password
+Metropolitan area :
+Back
+Confirm
+Passwords are not the same length. Please ensure the same password is entered in both fields.
+Passwords do not match. Please ensure the same password is entered in both fields.
+Could not register this account.
+}
+
+Frame{ - LOGIN
+Username
+Password
+Back
+Log in
+Username and Password not recognized
+}
+
+Frame{ - TRADINGUSERACTIONSMENU
+View items and wishlist
+View other users
+View user stats
+View pending trades
+Set active status
+Change metro area
+Request unfreeze
+Your unfreeze request has been sent to the admin team for review
+You are not currently Froze
+}
+
+Frame{ - BROWSINGUSERACTIONSMENU
+(Browsing)
+View other users
+}

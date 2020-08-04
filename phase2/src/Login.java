@@ -1,4 +1,5 @@
 import controllerpresenterpack.*;
+import entitypack.Frame;
 import entitypack.TradingUser;
 
 import javax.swing.*;
@@ -15,8 +16,7 @@ public class Login extends JFrame{
     private JLabel usernameLabel = new JLabel();
     private JLabel passwordLabel = new JLabel();
 
-    public Login(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
-                 boolean isAdmin, JFrame frame) {
+    public Login(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, boolean isAdmin, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -24,10 +24,10 @@ public class Login extends JFrame{
 
         //TODO: Do this through menuPresenter, it already deals with the language abstraction
 
-        passwordLabel.setText("PasswordYeer");
-        usernameLabel.setText("Username");
-        backButton.setText("back");
-        loginButton.setText("login");
+        passwordLabel.setText(cpg.menuPresenter.getText(Frame.LOGIN,0));
+        usernameLabel.setText(cpg.menuPresenter.getText(Frame.LOGIN,1));
+        backButton.setText(cpg.menuPresenter.getText(Frame.LOGIN,2));
+        loginButton.setText(cpg.menuPresenter.getText(Frame.LOGIN,3));
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +45,7 @@ public class Login extends JFrame{
                                 user, frame);*/
 
                     } else {
-                        JOptionPane.showMessageDialog(frame, "Username and Password not recognized");
+                        JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));
                     }
                 }else{
                     UserActions userActions = new UserActions();
@@ -55,19 +55,15 @@ public class Login extends JFrame{
                     if (validLogin) {
                         boolean isTradingUser = userActions.isTradingUser(useCases.userManager, user);
                         if (isTradingUser) {
-                            //Trading User
                             TradingUserActionsMenu tradingUserActionsMenu =
-                                    new TradingUserActionsMenu(controllerPresenterGrouper, user, frame);
+                                    new TradingUserActionsMenu(cpg, user, frame);
                         } else{
-                            //Browsing User
-                            //TODO: Implement this
-                            /*BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(english,
-                                    user, frame);*/
+                            BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(cpg,
+                                    user, frame);
                         }
 
                     } else {
-                        //TODO: Un-hard code this
-                        JOptionPane.showMessageDialog(frame, "Username and Password not recognized");
+                        JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));
                     }
                 }
             }
@@ -77,7 +73,7 @@ public class Login extends JFrame{
             //  Maybe have a .run() method in all the UI classes and call that instead of making a new object each time?
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainMenu mainMenu = new MainMenu(useCases, controllerPresenterGrouper, frame);
+                MainMenu mainMenu = new MainMenu(useCases, cpg, frame);
             }
         });
     }

@@ -1,4 +1,5 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
+import entitypack.Frame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,8 +17,8 @@ public class BrowsingUserActionsMenu {
         frame.pack();
         frame.setVisible(true);
 
-        Loggedin.setText(cpg.menuPresenter.getText(43,5) + username);
-        viewOtherUsersButton.setText(cpg.menuPresenter.getText(43,1));
+        Loggedin.setText(cpg.menuPresenter.getText(Frame.BROWSINGUSERACTIONSMENU,0) + username);
+        viewOtherUsersButton.setText(cpg.menuPresenter.getText(Frame.BROWSINGUSERACTIONSMENU,1));
 
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override

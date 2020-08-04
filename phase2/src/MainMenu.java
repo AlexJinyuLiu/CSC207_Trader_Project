@@ -4,6 +4,7 @@ import controllerpresenterpack.UseCaseGrouper;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import entitypack.Frame;
 
 public class MainMenu {
     private JButton createAccountButton;
@@ -14,9 +15,9 @@ public class MainMenu {
     public MainMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createAccountButton.setText(controllerPresenterGrouper.menuPresenter.getText(10,2));
-        loginAsAdminButton.setText(controllerPresenterGrouper.menuPresenter.getText(10,4));
-        loginAsUserButton.setText(controllerPresenterGrouper.menuPresenter.getText(10,3));
+        createAccountButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.MAINMENU,0));
+        loginAsAdminButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.MAINMENU,1));
+        loginAsUserButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.MAINMENU,2));
 
         frame.pack();
         frame.setVisible(true);

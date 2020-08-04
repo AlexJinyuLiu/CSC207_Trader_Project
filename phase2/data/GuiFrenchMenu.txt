@@ -1,0 +1,43 @@
+Cadre{ - MAINMENU
+Créer un compte
+Connectez-vous en tant qu'administrateur
+Connectez-vous en tant qu'utilisateur
+}
+
+Cadre{ - CREATEUSERACCOUNT
+Parcourir uniquement? (ne peut pas faire de transactions)
+Nom d'utilisateur
+Mot de passe
+Confirmez le mot de passe
+Zone métropolitaine :
+Arrière
+Confirmer
+Les mots de passe ne sont pas de la même longueur. Veuillez vous assurer que le même mot de passe est entré dans les deux champs.
+Les mots de passe ne correspondent pas. Veuillez vous assurer que le même mot de passe est entré dans les deux champs.
+Impossible d'enregistrer ce compte.
+}
+
+Cadre{ - LOGIN
+Nom d'utilisateur
+Mot de passe
+Arrière
+S'identifier
+Nom d'utilisateur et mot de passe non reconnus
+}
+
+Cadre{ - TRADINGUSERACTIONSMENU
+Voir les articles et la liste de souhaits
+Voir les autres utilisateurs
+Afficher les statistiques utilisateur
+Afficher les transactions en attente
+Définir le statut actif
+Changer de zone métropolitaine
+Demander le dégel
+Votre demande de dégel a été envoyée à l'équipe d'administration pour examen
+Vous n'êtes pas actuellement gelé
+}
+
+Cadre{ - BROWSINGUSERACTIONSMENU
+(Navigation)
+Voir les autres utilisateurs
+}
