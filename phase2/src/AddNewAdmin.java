@@ -12,8 +12,7 @@ public class AddNewAdmin {
     private JPasswordField newPassword;
     private JButton submitButton;
 
-    public AddNewAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
-                 boolean isAdmin, JFrame frame) {
+    public AddNewAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

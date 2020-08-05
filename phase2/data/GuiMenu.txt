@@ -40,6 +40,16 @@ Your unfreeze request has been sent to the admin team for review
 You are not currently Froze
 }
 
+Frame{ - ADMINACTIONSMENU
+Set borrow/lend threshold
+Set complete trade threshold
+Set incomplete trade threshold
+Add new admin
+View current threshold values
+Edit or undo a trade
+View users
+}
+
 Frame{ - BROWSINGUSERACTIONSMENU
 (Browsing)
 View other users in your area
@@ -59,3 +69,4 @@ Back
 Create Trade Request
 Your account is browsing only, and thus cannot make trade requests.
 }
+

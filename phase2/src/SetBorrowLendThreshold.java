@@ -12,7 +12,7 @@ public class SetBorrowLendThreshold {
     private JButton submitButton;
     private JPanel mainPanel;
 
-    public SetBorrowLendThreshold(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, boolean isAdmin, JFrame window){
+    public SetBorrowLendThreshold(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window){
         window.setContentPane(mainPanel);
         window.setBounds(450, 450, 500, 400);
         mainPanel.setSize(350, 350);
