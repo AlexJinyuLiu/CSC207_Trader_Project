@@ -124,3 +124,47 @@ Handle Trade Accepted Alert
 The following trade request has been accepted:
 (1) Dismiss
 }
+
+Frame{ - TRADECANCELLEDALERT
+Handle Trade Cancelled Alert
+The following trade has been cancelled as one of the users is no longer in possession of an item. Trade ID:
+(1) Dismiss
+}
+
+Frame{ - TRADEDECLINEDALERT
+Handle Trade Declined Alert
+Your trade request has been declined:
+(1) Dismiss
+}
+
+Frame{ - EXPIRATIONALERT
+The following trade has expired at
+Report
+Confirm re-exchange
+}
+
+Frame{ - ITEMVALIDATIONDECLINEDALERT
+Handle Item Validation Declined Alert
+Your item validation request has been declined for the following reason:
+User:
+Item name:
+Item description:
+Item ID:
+(1) Dismiss
+(2) Send a new item validation request
+Please enter the name of your item
+Please enter the item description
+Send a new item validation request
+Dismiss
+}
+
+Frame{ - TRADETOSTRING
+Trade to String
+User 1:
+User 2:
+Items being traded from User 1 to User 2:
+Items being traded from User 2 to User 1:
+Time and date of exchange:
+Location of trade:
+Trade ID:
+}

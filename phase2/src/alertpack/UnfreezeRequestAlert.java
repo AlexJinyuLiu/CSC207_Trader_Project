@@ -1,6 +1,7 @@
 package alertpack;
 
-import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.GuiMenuPresenter;
+import entitypack.Frame;
 import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -54,8 +55,8 @@ public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                         TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
-        menuPresenter.printMenu(14,0);
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
+        /**menuPresenter.printMenu(14,0);
         // "Unfreeze EntityPack.User Request Alert" +
         //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
         //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
@@ -81,7 +82,22 @@ public class UnfreezeRequestAlert extends AdminAlert implements Serializable {
                 flag = false;
             }
             if (input == 2) flag = false;
-        }
+        }**/
+
+        String desc =
+        // "Unfreeze EntityPack.User Request Alert" +
+        //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
+        //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
+        //         "\n" + "Required to lend " + alert.getThresholdRequired() + " more items than borrowed"
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 3, getUsername()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 4, getLent()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 5, getBorrowed()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 6, getThresholdRequired()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 7, getIncompleteT()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 8, getIncompThreshold());
+
+        AcceptableAlertPrompt unfreezeRequestAlertPrompt = new AcceptableAlertPrompt(getType(), desc, getUsername(),
+                menuPresenter, userManager, adminUser, tradeCreator);
     }
     /**
      *

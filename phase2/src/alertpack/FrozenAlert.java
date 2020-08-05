@@ -1,7 +1,6 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
-import controllerpresenterpack.MenuPresenter;
 import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -9,7 +8,6 @@ import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class FrozenAlert extends UserAlert implements Serializable {
     /** Alert which tells a user that they have been frozen by an admin. Displays the number of items borrowed and lent.
@@ -71,7 +69,7 @@ public class FrozenAlert extends UserAlert implements Serializable {
                 menuPresenter.getText(Frame.FROZENALERT, 6, getNumIncomplete()) +
                 menuPresenter.getText(Frame.FROZENALERT, 7, getThresholdIncomplete());
 
-        DismissibleAlert freezeUserAlert = new DismissibleAlert(desc, menuPresenter);
+        DismissibleAlertPrompt freezeUserAlert = new DismissibleAlertPrompt(desc, menuPresenter);
     }
 
     /**

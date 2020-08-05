@@ -1,7 +1,6 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
-import controllerpresenterpack.MenuPresenter;
 import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -9,7 +8,6 @@ import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class MessageAlert extends UserAlert implements Serializable {
     /** Alert which gives a message to a user from another user.
@@ -53,7 +51,7 @@ public class MessageAlert extends UserAlert implements Serializable {
             if (input == 1) handled = true;
         }**/
 
-        DismissibleAlert messageAlert = new DismissibleAlert(desc, menuPresenter);
+        DismissibleAlertPrompt messageAlert = new DismissibleAlertPrompt(desc, menuPresenter);
 
     }
     /**

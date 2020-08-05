@@ -98,89 +98,89 @@ public class GuiMenuPresenter {
         }
     }
 
-//    /**
-//     *  Prints a string representation of a trade.
-//     * @param trade a trade object
-//     */
-//    public String printTradeToString(ItemManager itemManager, Trade trade){
-//        // "EntityPack.User 1: " + trade.getUsername1() + "\nEntityPack.User 2: " + trade.getUsername2() +
-//        //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
-//        //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
-//        //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
-//        //        "\nLocation of EntityPack.Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
-//        System.out.println(trade);
-//        StringBuilder acc = new StringBuilder();
-//        acc.append(getText(32, 1, trade.getUsername1()));
-//        acc.append(getText(32, 2, trade.getUsername2()));
-//        acc.append(getText(32, 3, GetItemNamesFromUser1ToUser2(trade, itemManager)));
-//        acc.append(getText(32, 4, GetItemNamesFromUser2ToUser1(trade, itemManager)));
-//        acc.append(getText(32, 5, trade.getTimeOfTrade().toString()));
-//        acc.append(getText(32, 6, trade.getMeetingPlace()));
-//        acc.append(getText(32, 7, trade.getTradeID()));
-//        // return "EntityPack.User 1: " + trade.getUsername1(); // to be changed
-//        return acc.toString();
-//    }
-//    // helper method which lists the names of the items going from user 1 to user 2 - Louis
-//    private String GetItemNamesFromUser1ToUser2(Trade trade, ItemManager itemManager){
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for(int itemID: trade.getItemIDsSentToUser2()){
-//            Item item = itemManager.searchItem(itemID);
-//            stringBuilder.append(item.getName()).append(" ");
-//            return stringBuilder.toString();
-//        }
-//        return null;
-//    }
-//    // helper method which lists the names of the items going from user 2 to user 1 - Louis
-//    private String GetItemNamesFromUser2ToUser1(Trade trade, ItemManager itemManager){
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for(int itemID: trade.getItemIDsSentToUser1()){
-//            Item item = itemManager.searchItem(itemID);
-//            stringBuilder.append(item.getName()).append(" ");
-//            return stringBuilder.toString();
-//        }
-//        return null;
-//    }
-//
-//    /**
-//     * Prints a string representation of a TradingUser
-//     * @param user the EntityPack.User in question.
-//     */
-//    public void printTradingUserToString(TradingUser user, ItemManager itemManager){
-//        StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
-//        ArrayList<Item> usersItems = itemManager.getAvailableItems(user.getUsername());
-//
-//        if (usersItems.size() == 0) {
-//            userString.append("This User has no items available for trade. \n");
-//        } else {
-//            userString.append("Items available for trade: \n");
-//            for (int i = 0; i < usersItems.size() - 1; i++) {
-//                String str = usersItems.get(i).getName() + " (ID: " + usersItems.get(i).getId() + "), ";
-//                userString.append(str);
-//            }
-//            String str = usersItems.get(usersItems.size() - 1).getName() + " (ID: " +
-//                    usersItems.get(usersItems.size() - 1).getId() + ")\n";
-//            userString.append(str);
-//        }
-//        //TODO: delete the line below after debug
-//        System.out.println(itemManager.getItems());
-//        if (user.getWishlistItemNames().size() == 0) {
-//            userString.append("This User has no items in their wishlist. \n");
-//        } else {
-//            userString.append("Wishlist: \n");
-//            for (int i = 0; i < user.getWishlistItemNames().size() - 1; i++) {
-//                String str = user.getWishlistItemNames().get(i) + ", ";
-//                userString.append(str);
-//            }
-//            String str = user.getWishlistItemNames().get(user.getWishlistItemNames().size() - 1) + "\n";
-//            userString.append(str);
-//        }
-//        if (user.getFrozen()) {
-//            userString.append("This user is frozen, and thus cannot make a trade. \n");
-//        }
-//
-//
-//        System.out.println(userString.toString());
-//    }
+    /**
+     *  Prints a string representation of a trade.
+     * @param trade a trade object
+     */
+    public String printTradeToString(ItemManager itemManager, Trade trade){
+        // "EntityPack.User 1: " + trade.getUsername1() + "\nEntityPack.User 2: " + trade.getUsername2() +
+        //        "\nItems being traded from user 1 to user 2: " + GetItemNamesFromUser1ToUser2(userManager, trade) +
+        //"\nItems being traded from user 2 to user 1: " + GetItemNamesFromUser2ToUser1(userManager, trade) +
+        //        "\nTime & Date of item exchange: " + trade.getTimeOfTrade().toString() +
+        //        "\nLocation of EntityPack.Trade: " + trade.getMeetingPlace() + "\nTradeID: " + trade.getTradeID();
+        System.out.println(trade);
+        StringBuilder acc = new StringBuilder();
+        acc.append(getText(Frame.TRADETOSTRING, 1, trade.getUsername1()));
+        acc.append(getText(Frame.TRADETOSTRING, 2, trade.getUsername2()));
+        acc.append(getText(Frame.TRADETOSTRING, 3, GetItemNamesFromUser1ToUser2(trade, itemManager)));
+        acc.append(getText(Frame.TRADETOSTRING, 4, GetItemNamesFromUser2ToUser1(trade, itemManager)));
+        acc.append(getText(Frame.TRADETOSTRING, 5, trade.getTimeOfTrade().toString()));
+        acc.append(getText(Frame.TRADETOSTRING, 6, trade.getMeetingPlace()));
+        acc.append(getText(Frame.TRADETOSTRING, 7, trade.getTradeID()));
+        // return "EntityPack.User 1: " + trade.getUsername1(); // to be changed
+        return acc.toString();
+    }
+    // helper method which lists the names of the items going from user 1 to user 2 - Louis
+    private String GetItemNamesFromUser1ToUser2(Trade trade, ItemManager itemManager){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int itemID: trade.getItemIDsSentToUser2()){
+            Item item = itemManager.searchItem(itemID);
+            stringBuilder.append(item.getName()).append(" ");
+            return stringBuilder.toString();
+        }
+        return null;
+    }
+    // helper method which lists the names of the items going from user 2 to user 1 - Louis
+    private String GetItemNamesFromUser2ToUser1(Trade trade, ItemManager itemManager){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int itemID: trade.getItemIDsSentToUser1()){
+            Item item = itemManager.searchItem(itemID);
+            stringBuilder.append(item.getName()).append(" ");
+            return stringBuilder.toString();
+        }
+        return null;
+    }
+
+    /**
+     * Prints a string representation of a TradingUser
+     * @param user the EntityPack.User in question.
+     */
+    public void printTradingUserToString(TradingUser user, ItemManager itemManager){
+        StringBuilder userString = new StringBuilder("User: " + user.getUsername() + "\n");
+        ArrayList<Item> usersItems = itemManager.getAvailableItems(user.getUsername());
+
+        if (usersItems.size() == 0) {
+            userString.append("This User has no items available for trade. \n");
+        } else {
+            userString.append("Items available for trade: \n");
+            for (int i = 0; i < usersItems.size() - 1; i++) {
+                String str = usersItems.get(i).getName() + " (ID: " + usersItems.get(i).getId() + "), ";
+                userString.append(str);
+            }
+            String str = usersItems.get(usersItems.size() - 1).getName() + " (ID: " +
+                    usersItems.get(usersItems.size() - 1).getId() + ")\n";
+            userString.append(str);
+        }
+        //TODO: delete the line below after debug
+        System.out.println(itemManager.getItems());
+        if (user.getWishlistItemNames().size() == 0) {
+            userString.append("This User has no items in their wishlist. \n");
+        } else {
+            userString.append("Wishlist: \n");
+            for (int i = 0; i < user.getWishlistItemNames().size() - 1; i++) {
+                String str = user.getWishlistItemNames().get(i) + ", ";
+                userString.append(str);
+            }
+            String str = user.getWishlistItemNames().get(user.getWishlistItemNames().size() - 1) + "\n";
+            userString.append(str);
+        }
+        if (user.getFrozen()) {
+            userString.append("This user is frozen, and thus cannot make a trade. \n");
+        }
+
+
+        System.out.println(userString.toString());
+    }
 //
 //    /**
 //     *

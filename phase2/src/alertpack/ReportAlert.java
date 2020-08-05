@@ -1,16 +1,13 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
-import controllerpresenterpack.MenuPresenter;
-import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
+import entitypack.Frame;
 
-import java.awt.*;
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class ReportAlert extends AdminAlert implements Serializable {
     /** Alert in which a user has been reported by another user for not showing up to a trade.
@@ -95,7 +92,8 @@ public class ReportAlert extends AdminAlert implements Serializable {
                 menuPresenter.getText(Frame.REPORTALERT, 4, getIsTradeComplete()) +
                 menuPresenter.getText(Frame.REPORTALERT, 5, getReportDescription());
         //TODO
-        AcceptableAlert reportAlert = new AcceptableAlert();
+        AcceptableAlertPrompt reportAlertPrompt = new AcceptableAlertPrompt(getType(), desc, getReportedUserName(),
+                menuPresenter, userManager, adminUser, tradeCreator);
     }
     /**
      *

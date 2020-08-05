@@ -53,12 +53,12 @@ public class TradeAcceptedAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(26, 2);
             input = scan.nextInt();
             if (input == 1) handled = true;
-        }**/
+        }
 
         String desc = menuPresenter.getText(Frame.TRADEACCEPTEDALERT, 1) +
                 menuPresenter.printTradeToString(itemManager, b);
 
-        DismissibleAlert tradeAcceptedAlert = new DismissibleAlert(desc, menuPresenter);
+        DismissibleAlert tradeAcceptedAlert = new DismissibleAlert(desc, menuPresenter);**/
 
     }
 

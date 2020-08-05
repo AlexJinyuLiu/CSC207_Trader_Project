@@ -1,16 +1,13 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
-import controllerpresenterpack.MenuPresenter;
 import entitypack.Frame;
-import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class FreezeUserAlert extends AdminAlert implements Serializable {
     /** Alert which is generated when a EntityPack.User crosses the threshold of borrowed minus lent that they are required to
@@ -84,7 +81,8 @@ public class FreezeUserAlert extends AdminAlert implements Serializable {
                 menuPresenter.getText(Frame.FREEZEUSERALERT, 5, getBorrowed()) +
                 menuPresenter.getText(Frame.FREEZEUSERALERT, 6, getThresholdRequired());
 
-        AcceptableAlert freezeUserAlert = new AcceptableAlert(desc, getUsername(), menuPresenter);
+        AcceptableAlertPrompt freezeUserAlertPrompt = new AcceptableAlertPrompt(getType(), desc, getUsername(),
+                menuPresenter, userManager, adminUser, tradeCreator);
     }
 
     /**

@@ -1,7 +1,6 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
-import controllerpresenterpack.MenuPresenter;
 import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -9,7 +8,6 @@ import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class ItemValidationRequestAlert extends AdminAlert implements Serializable{
     /** AdminAlert which is created from ControllerPresenterPack.UserActions when a user requests that an item be validated.
@@ -103,7 +101,8 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
                 menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,3, getDescription()) +
                 menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,4, getItemID());
 
-        AcceptableAlert itemValidationRequestAlert = new AcceptableAlert(desc, getOwner(), menuPresenter);
+        AcceptableAlertPrompt itemValidationRequestAlertPrompt = new AcceptableAlertPrompt(getType(), desc, getOwner(),
+                menuPresenter, userManager, adminUser, tradeCreator, itemManager);
     }
 
 

@@ -1,9 +1,11 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
 import entitypack.TemporaryTrade;
 import entitypack.Trade;
 import entitypack.TradingUser;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -42,10 +44,10 @@ public class ExpirationAlert extends UserAlert implements Serializable {
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
 
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         // "The following EntityPack.TemporaryTrade has expired at" + alert.getDueDate() + ":\n" +
         //        tradeToString(userManager, tradeCreator.getTradeHistories().searchTemporaryTrade(alert.getTradeId()))
-        menuPresenter.printMenu(24, 1);
+        /**menuPresenter.printMenu(24, 1);
         boolean flag = true;
         int input = 0;
 
@@ -82,7 +84,10 @@ public class ExpirationAlert extends UserAlert implements Serializable {
             tradeCreator.getTradeHistories().confirmReExchange(itemManager, user, trade);
             // "EntityPack.Trade ReExchange confirmed"
             menuPresenter.printMenu(24, 6);
-        }
+        }**/
+
+        ExpirationAlertPrompt expirationAlertPrompt = new ExpirationAlertPrompt(getDueDate(), getUsername(), getTradeId(),
+                menuPresenter, tradeCreator, itemManager);
     }
 
     /**

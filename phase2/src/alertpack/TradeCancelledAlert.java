@@ -1,13 +1,13 @@
 package alertpack;
 
-import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.GuiMenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 public class TradeCancelledAlert extends UserAlert implements Serializable {
     /** Alert which tells a user that a pending trade in which they were involved has been cancelled as one of the users
@@ -32,10 +32,10 @@ public class TradeCancelledAlert extends UserAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager) {
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         // "The following pending trade has been cancelled as one of the users is no longer in possession of " +
         //         "a item in the proposed trade. EntityPack.Trade ID: " + a.getTradeID()
-        menuPresenter.printMenu(28, 1);
+        /**menuPresenter.printMenu(28, 1);
         menuPresenter.printTradeToString(itemManager, tradeCreator.searchTrades(getTradeID()));
         boolean handled = false;
 
@@ -47,7 +47,12 @@ public class TradeCancelledAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(28, 2);
             input = scan.nextInt();
             if (input == 1) {handled = true;}
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.TRADECANCELLEDALERT, 1) +
+                menuPresenter.printTradeToString(itemManager, tradeCreator.searchTrades(getTradeID()));
+
+        DismissibleAlertPrompt dismissibleAlert = new DismissibleAlertPrompt(desc, menuPresenter);
     }
 
     /**

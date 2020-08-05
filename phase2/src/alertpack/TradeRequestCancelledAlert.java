@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -32,10 +34,10 @@ public class TradeRequestCancelledAlert extends UserAlert implements Serializabl
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager) {
-        MenuPresenter menuPresenter = (MenuPresenter)menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         // "The following trade request has been cancelled as one of the users is no " +
         //         "longer in possession of an item in the proposed trade. EntityPack.Trade ID: " + a.getTradeID()
-        menuPresenter.printMenu(28, 1);
+        /**menuPresenter.printMenu(28, 1);
         menuPresenter.printTradeToString(itemManager, tradeCreator.searchPendingTradeRequest(getTradeID()));
         boolean handled = false;
 
@@ -47,7 +49,12 @@ public class TradeRequestCancelledAlert extends UserAlert implements Serializabl
             menuPresenter.printMenu(28, 2);
             input = scan.nextInt();
             if (input == 1) {handled = true;}
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.TRADECANCELLEDALERT,1) +
+                menuPresenter.printTradeToString(itemManager, tradeCreator.searchPendingTradeRequest(getTradeID()));
+
+        DismissibleAlertPrompt tradeRequestCancelledAlertPrompt = new DismissibleAlertPrompt(desc, menuPresenter);
     }
 
     /**

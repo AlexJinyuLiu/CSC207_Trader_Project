@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -61,12 +63,12 @@ public class ItemValidationDeclinedAlert extends UserAlert implements Serializab
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
 
         //"Your item validation request has been declined for the following reason: \n" +
         //        a.getMessage()+ ".\nUser: " + a.getOwner() + "EntityPack.Item name: " + a.getName() + "\nEntityPack.Item description: " +
         //        a.getDescription() + "\nItem ID number: " + a.getItemID()
-        menuPresenter.printMenu(29, 1);
+        /**menuPresenter.printMenu(29, 1);
         menuPresenter.printMenu(29, 2);
         menuPresenter.printMenu(29, 3);
         menuPresenter.printMenu(29, 4);
@@ -98,7 +100,15 @@ public class ItemValidationDeclinedAlert extends UserAlert implements Serializab
 
             ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemID, username, name, description);
             userManager.alertAdmin(alert);
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.ITEMVALIDATIONDECLINEDALERT, 1) + "\n" + getMessage() + "\n" +
+        menuPresenter.getText(Frame.ITEMVALIDATIONDECLINEDALERT, 2) + getOwner() + "\n" +
+        menuPresenter.getText(Frame.ITEMVALIDATIONDECLINEDALERT, 3) + getName() + "\n" +
+        menuPresenter.getText(Frame.ITEMVALIDATIONDECLINEDALERT, 4) + "\n" + getDescription() + "\n" +
+        menuPresenter.getText(Frame.ITEMVALIDATIONDECLINEDALERT, 5) + getItemID();
+
+        ItemValidationDeclinedAlertPrompt itemValidationDeclinedAlertPrompt = new ItemValidationDeclinedAlertPrompt(desc, menuPresenter);
     }
 
     /**

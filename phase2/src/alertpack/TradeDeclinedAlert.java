@@ -1,13 +1,13 @@
 package alertpack;
 
-import controllerpresenterpack.MenuPresenter;
+import controllerpresenterpack.GuiMenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 /**
  * An user alert sent to a user when a trade request they have sent has been declined by the recieving user.
@@ -33,9 +33,9 @@ public class TradeDeclinedAlert extends UserAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         // a.getDecliningUserName() + " has declined your trade request with ID " + a.getTradeID())
-        menuPresenter.printMenu(27, 1);
+        /**menuPresenter.printMenu(27, 1);
         boolean handled = false;
 
         int input = 0;
@@ -46,7 +46,11 @@ public class TradeDeclinedAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(27, 2);
             input = scan.nextInt();
             if (input == 1) handled = true;
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.TRADEDECLINEDALERT, 1);
+
+        DismissibleAlertPrompt tradeDeclinedAlertPrompt = new DismissibleAlertPrompt(desc, menuPresenter);
 
     }
 
