@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -33,11 +35,13 @@ public class MessageAlert extends UserAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter)menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter)menuPresenterObject;
         // "From: " + a.getSenderUsername() + "\n" + a.getMessage()
-        menuPresenter.printMenu(31, 1, getSenderUsername());
-        menuPresenter.printMenu(35, 0, getMessage());
-        boolean handled = false;
+        // String desc = menuPresenter.printMenu(31, 1, getSenderUsername()) +
+        //        menuPresenter.printMenu(35, 0, getMessage());
+        String desc = menuPresenter.getText(Frame.MESSAGEALERT, 1) + getSenderUsername() +
+                menuPresenter.getText(Frame.MESSAGEALERT, 2) + getMessage();
+        /**boolean handled = false;
 
         int input = 0;
 
@@ -47,7 +51,9 @@ public class MessageAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(31, 2);
             input = scan.nextInt();
             if (input == 1) handled = true;
-        }
+        }**/
+
+        DismissibleAlert messageAlert = new DismissibleAlert(desc, menuPresenter);
 
     }
     /**

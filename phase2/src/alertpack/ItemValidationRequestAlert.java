@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -56,10 +58,10 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                         TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         // "EntityPack.Item validation request\nUser: " + alert.getOwner() + "\nEntityPack.Item name: " + alert.getName() +
         //         "\nItem description: " + alert.getDescription() + "\nItem ID number: " + alert.getItemID()
-        menuPresenter.printMenu(11,0);
+        /**menuPresenter.printMenu(11,0);
         menuPresenter.printMenu(11,1, getOwner()) ;
         menuPresenter.printMenu(11,2, getName());
         menuPresenter.printMenu(11,3, getDescription());
@@ -93,7 +95,15 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
             UserAlert declinedAlert = new ItemValidationDeclinedAlert(getOwner(), getOwner(),
                     getDescription(), getItemID(), message);
             userManager.alertUser(getOwner(), declinedAlert);
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,0) +
+                menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,1, getOwner()) +
+                menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,2, getName()) +
+                menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,3, getDescription()) +
+                menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,4, getItemID());
+
+        AcceptableAlert itemValidationRequestAlert = new AcceptableAlert(desc, getOwner(), menuPresenter);
     }
 
 

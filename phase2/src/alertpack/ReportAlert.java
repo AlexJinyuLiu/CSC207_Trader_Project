@@ -1,5 +1,6 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
 import entitypack.TradingUser;
 import usecasepack.AdminUser;
@@ -43,8 +44,8 @@ public class ReportAlert extends AdminAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                                    TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
-        menuPresenter.printMenu(12,0); // Handle Report Alert
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
+        /**menuPresenter.printMenu(12,0); // Handle Report Alert
         // alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
         //         " whose trade status is " + alert.getIsTradeComplete()
         //         + "\n" + "Details: " + alert.getReportDescription()
@@ -84,7 +85,17 @@ public class ReportAlert extends AdminAlert implements Serializable {
             if (input == 2){
                 flag = false;
             }
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.REPORTALERT,0) + // Handle Report Alert
+        // alert.getSenderUserName() + " has reported user " + alert.getReportedUserName() +
+        //         " whose trade status is " + alert.getIsTradeComplete()
+        //         + "\n" + "Details: " + alert.getReportDescription()
+                menuPresenter.getText(Frame.REPORTALERT, 3, getSenderUserName(), getReportedUserName()) +
+                menuPresenter.getText(Frame.REPORTALERT, 4, getIsTradeComplete()) +
+                menuPresenter.getText(Frame.REPORTALERT, 5, getReportDescription());
+        //TODO
+        AcceptableAlert reportAlert = new AcceptableAlert();
     }
     /**
      *

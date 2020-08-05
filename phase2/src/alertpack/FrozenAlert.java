@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -45,8 +47,8 @@ public class FrozenAlert extends UserAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                         TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
-        menuPresenter.printMenu(23, 1); // Your account has been frozen by the administrator.
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
+        /**menuPresenter.printMenu(23, 1); // Your account has been frozen by the administrator.
         menuPresenter.printMenu(23, 2, getNumBorrowedofUser()); // Number of items you borrowed:
         menuPresenter.printMenu(23, 3, getNumLentofUser()); // Number of items you lent:
         menuPresenter.printMenu(23, 4, getThreshholdNumofUser()); // Number of items you need to lend before you can borrow:
@@ -60,7 +62,16 @@ public class FrozenAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(23, 5);
             input = scan.nextInt();
             if (input == 1) flag = false;
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.FROZENALERT, 1) + // Your account has been frozen by the administrator.
+                menuPresenter.getText(Frame.FROZENALERT, 2, getNumBorrowedofUser()) + // Number of items you borrowed:
+                menuPresenter.getText(Frame.FROZENALERT, 3, getNumLentofUser()) + // Number of items you lent:
+                menuPresenter.getText(Frame.FROZENALERT, 4, getThreshholdNumofUser()) +  // Number of items you need to lend before you can borrow:
+                menuPresenter.getText(Frame.FROZENALERT, 6, getNumIncomplete()) +
+                menuPresenter.getText(Frame.FROZENALERT, 7, getThresholdIncomplete());
+
+        DismissibleAlert freezeUserAlert = new DismissibleAlert(desc, menuPresenter);
     }
 
     /**

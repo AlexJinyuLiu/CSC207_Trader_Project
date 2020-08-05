@@ -1,3 +1,4 @@
+import alertpack.MessageAlert;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
@@ -15,6 +16,7 @@ public class ViewUserMenu {
     private JButton createTradeRequestButton;
     private JTextPane userTitle;
     private JTextPane wishList;
+    private JButton sendMessageButton;
 
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                         String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing) {
@@ -78,6 +80,14 @@ public class ViewUserMenu {
                     return;
                 }
 
+            }
+        });
+        /**The button is only for testing now**/
+        sendMessageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MessageAlert messageAlert = new MessageAlert("sender", "message");
+                useCases.userManager.alertUser(userToViewUsername, messageAlert);
             }
         });
     }

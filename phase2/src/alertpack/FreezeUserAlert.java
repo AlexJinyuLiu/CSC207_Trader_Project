@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -44,8 +46,8 @@ public class FreezeUserAlert extends AdminAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
-        menuPresenter.printMenu(13,0); // Freeze EntityPack.User Alert
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
+        /**menuPresenter.printMenu(13,0); // Freeze EntityPack.User Alert
         // "Freeze EntityPack.User Alert" +
         //         "\n" + alert.getUsername() + " has lent: " + alert.getLent() + " items" +
         //         "\n" + alert.getUsername() + " has borrowed: " + alert.getBorrowed() + " items" +
@@ -76,7 +78,13 @@ public class FreezeUserAlert extends AdminAlert implements Serializable {
                 flag = false;
             }
             if (input == 2) flag = false;
-        }
+        }**/
+        String desc = menuPresenter.getText(Frame.FREEZEUSERALERT, 3, getUsername()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 4, getLent()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 5, getBorrowed()) +
+                menuPresenter.getText(Frame.FREEZEUSERALERT, 6, getThresholdRequired());
+
+        AcceptableAlert freezeUserAlert = new AcceptableAlert(desc, getUsername(), menuPresenter);
     }
 
     /**

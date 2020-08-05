@@ -4,10 +4,7 @@ import alertpack.*;
 import entitypack.TemporaryTrade;
 import entitypack.Trade;
 import entitypack.TradingUser;
-import usecasepack.AdminUser;
-import usecasepack.ItemManager;
-import usecasepack.TradeCreator;
-import usecasepack.UserManager;
+import usecasepack.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,8 +22,8 @@ public class UserAlertManager {
      * Iterate through each alert in alerts, handle it and remove it from the list
      * @param alerts list of alert that are sent in
      */
-    public void handleAlertQueue(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager,
-                                 ArrayList<UserAlert> alerts){
+    public void handleAlertQueue(GuiMenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager,
+                                 ArrayList<Prompt> alerts){
         while(!(alerts.size() == 0)){
             alerts.get(0).handle(menuPresenter, adminUser, userManager, tradeCreator, itemManager);
             alerts.remove(0);

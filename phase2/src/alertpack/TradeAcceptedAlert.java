@@ -1,6 +1,8 @@
 package alertpack;
 
+import controllerpresenterpack.GuiMenuPresenter;
 import controllerpresenterpack.MenuPresenter;
+import entitypack.Frame;
 import entitypack.Trade;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -34,11 +36,11 @@ public class TradeAcceptedAlert extends UserAlert implements Serializable {
      */
     public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
-        MenuPresenter menuPresenter = (MenuPresenter) menuPresenterObject;
+        GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         //a.getAcceptingUsername() +
         //        " has accepted the following trade request: \n" + tradeToString(userManager,
         Trade b = tradeCreator.searchTrades(getTradeID());
-        menuPresenter.printMenu(26, 1);
+        /**menuPresenter.printMenu(26, 1);
         menuPresenter.printTradeToString(itemManager, b);
 
         boolean handled = false;
@@ -51,7 +53,12 @@ public class TradeAcceptedAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(26, 2);
             input = scan.nextInt();
             if (input == 1) handled = true;
-        }
+        }**/
+
+        String desc = menuPresenter.getText(Frame.TRADEACCEPTEDALERT, 1) +
+                menuPresenter.printTradeToString(itemManager, b);
+
+        DismissibleAlert tradeAcceptedAlert = new DismissibleAlert(desc, menuPresenter);
 
     }
 

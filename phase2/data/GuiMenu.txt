@@ -70,3 +70,57 @@ Create Trade Request
 Your account is browsing only, and thus cannot make trade requests.
 }
 
+Frame{ - MESSAGEALERT
+Dismiss
+From:
+
+}
+
+Frame{ - FREEZEUSERALERT
+Handle Freeze User Alert
+(1) Freeze User
+(2) Dismiss
+User:
+Items this user has lent:
+Items this user has borrowed:
+Number of items required to lend before borrowing:
+Number of incomplete transactions:
+Number of incomplete transactions permitted:
+}
+
+Frame{ - FROZENALERT
+Handle Frozen Alert
+Your account has been frozen by the administrator.
+Number of items you borrowed:
+Number of items you lent:
+Number of items you need to lend before you can borrow:
+(1) Dismiss
+Number of incomplete transactions:
+Number of incomplete transactions permitted:
+}
+
+Frame{ - ITEMVALIDATIONREQUESTALERT
+Item Validation Request
+User:
+Item Name:
+Item Description:
+Item ID Number:
+(1) Approve this item
+(2) Deny this item
+Please explain why this item was declined:
+}
+
+Frame{ - REPORTALERT
+Handle Report Alert
+(1) Accept Report
+(2) Dismiss
+ has reported user
+Trade status of reported user:
+Report Description:
+}
+
+Frame{ - TRADEACCEPTEDALERT
+Handle Trade Accepted Alert
+The following trade request has been accepted:
+(1) Dismiss
+}

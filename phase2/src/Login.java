@@ -53,6 +53,8 @@ public class Login extends JFrame{
                     validLogin = userActions.validateLogin(useCases.userManager, user, pass);
                     if (validLogin) {
                         boolean isTradingUser = userActions.isTradingUser(useCases.userManager, user);
+                        // cpg.userAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser, useCases.userManager,
+                        //         useCases.tradeCreator, useCases.itemManager, useCases.userManager.getUserAlerts(user));
                         if (isTradingUser) {
                             TradingUserActionsMenu tradingUserActionsMenu =
                                     new TradingUserActionsMenu(useCases, cpg, user, frame);

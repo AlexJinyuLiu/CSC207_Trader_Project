@@ -69,21 +69,21 @@ public class MenuPresenter {
      * @param menuIndex the index of menu at which the line is located
      * @param lineIndex the index of the line within the menu.
      */
-    public void printMenu(int menuIndex, int lineIndex) {
+    public String printMenu(int menuIndex, int lineIndex) {
         try{
-            System.out.println(menusMap.get(menuIndex).get(lineIndex));
+            return (menusMap.get(menuIndex).get(lineIndex));
         } catch (IndexOutOfBoundsException e){
-            System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
             e.printStackTrace();
+            return ("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
         }
     }
 
-    public void printMenu (int menuIndex, int lineIndex, Object variable){
+    public String printMenu (int menuIndex, int lineIndex, Object variable){
         try{
-            System.out.println(menusMap.get(menuIndex).get(lineIndex) + variable);
+            return (menusMap.get(menuIndex).get(lineIndex) + variable);
         } catch (IndexOutOfBoundsException e){
-            System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
             e.printStackTrace();
+            return ("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
         }
     }
 
