@@ -64,7 +64,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
                             itemManager);
                     valid_input = true;
                 } else if (input == 7) {
-                    viewAllUsers(menuPresenter, userManager, itemManager);
+                    viewAllUsers(userManager);
                     valid_input = true;
                 } else if (input == 8) {
                     searchUser(menuPresenter, userManager, itemManager);
@@ -320,8 +320,9 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
 
     }
 
-    private void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, ItemManager itemManager){
-        boolean handled = false;
+    public ArrayList<User> viewAllUsers(UserManager userManager){
+        return userManager.getListUsers();
+        /*boolean handled = false;
         Scanner scan = new Scanner(System.in);
         // "--- View other users ---"
         menuPresenter.printMenu(17, 0);
@@ -357,7 +358,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
                     viewUser(menuPresenter, userManager, allUsers.get(input - 1), itemManager);
                 }
             }
-        }
+        }*/
     }
 
     private void viewUser(MenuPresenter menuPresenter, UserManager userManager, User userToView, ItemManager itemManager) {

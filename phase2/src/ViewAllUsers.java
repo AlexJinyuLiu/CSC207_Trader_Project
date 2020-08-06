@@ -27,8 +27,7 @@ public class ViewAllUsers {
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 1));
         confirmButton.setText(cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 2));
         //TODO Fix this in AdminActions
-        ArrayList<User> allUsers = cpg.adminActions.viewAllUsers(cpg.menuPresenter, useCases.userManager,
-                useCases.itemManager);
+        ArrayList<User> allUsers = cpg.adminActions.viewAllUsers(useCases.userManager);
         for (int i = 0; i < allUsers.size(); i++){
             selectUserBox.addItem(allUsers.get(i).getUsername());
         }
@@ -38,5 +37,12 @@ public class ViewAllUsers {
             public void actionPerformed(ActionEvent actionEvent) {
             }});
 
-}}
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewingUserAsAdmin viewingUserAsAdmin = new ViewingUserAsAdmin(useCases, cpg,
+                        (String)selectUserBox.getSelectedItem(), frame);
+            }
+        });
+    }}
 
