@@ -54,4 +54,8 @@ public class ViewAllOtherUsersMenu {
             }
         });
     }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }

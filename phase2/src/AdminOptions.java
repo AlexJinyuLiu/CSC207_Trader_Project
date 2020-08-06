@@ -43,8 +43,9 @@ public class AdminOptions {
         viewAllUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(useCases, controllerPresenterGrouper, true, window);
-                window.dispose();
+                ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, controllerPresenterGrouper,)
+                /*Login login = new Login(useCases, controllerPresenterGrouper, true, window);
+                window.dispose();*/
             }
         });
     }

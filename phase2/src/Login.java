@@ -41,7 +41,7 @@ public class Login extends JFrame{
                     if (validLogin) {
                         //TODO send user to Options
                         //TODO send admin to adminActionsMenu instead of userActionsMenu
-                        AdminActionsMenu userActionsMenu = new AdminActionsMenu(useCases,
+                        AdminOptions userActionsMenu = new AdminOptions(useCases,
                                 cpg, isAdmin, frame);
                     } else {
                         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));
