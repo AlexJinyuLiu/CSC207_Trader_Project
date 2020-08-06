@@ -9,7 +9,7 @@ import usecasepack.UserManager;
 
 import java.io.Serializable;
 
-public class MessageAlert extends UserAlert implements Serializable {
+public class MessageAlert extends UserAlert implements Serializable, DismissableAlert {
     /** Alert which gives a message to a user from another user.
      *
      */
@@ -31,7 +31,7 @@ public class MessageAlert extends UserAlert implements Serializable {
     /** Handles the message alert by displaying the message to the user receiving it.
      *
      */
-    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+    public String handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                        TradeCreator tradeCreator, ItemManager itemManager){
         GuiMenuPresenter menuPresenter = (GuiMenuPresenter)menuPresenterObject;
         // "From: " + a.getSenderUsername() + "\n" + a.getMessage()
@@ -51,7 +51,8 @@ public class MessageAlert extends UserAlert implements Serializable {
             if (input == 1) handled = true;
         }**/
 
-        DismissibleAlertPrompt messageAlert = new DismissibleAlertPrompt(desc, menuPresenter);
+        //DismissibleAlertPrompt messageAlert = new DismissibleAlertPrompt(desc, menuPresenter);
+        return desc;
 
     }
     /**

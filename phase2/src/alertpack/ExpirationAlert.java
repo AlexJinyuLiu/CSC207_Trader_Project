@@ -90,6 +90,8 @@ public class ExpirationAlert extends UserAlert implements Serializable {
                 menuPresenter, tradeCreator, itemManager);
     }
 
+
+
     /**
      *
      * @return The date & time at which the temporary trade is over and the items should be returned.

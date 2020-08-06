@@ -24,10 +24,22 @@ public class UserAlertManager {
      */
     public void handleAlertQueue(GuiMenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager,
                                  ArrayList<Prompt> alerts){
+
         while(!(alerts.size() == 0)){
             alerts.get(0).handle(menuPresenter, adminUser, userManager, tradeCreator, itemManager);
             alerts.remove(0);
         }
+
+    }
+
+    /**
+     *
+     * @param username username who we are querying
+     * @param userManager UserManager Object
+     * @return List of User alerts
+     */
+    public ArrayList<Prompt> getUserAlerts(String username, UserManager userManager){
+        return  userManager.getUserAlerts(username);
     }
 
 

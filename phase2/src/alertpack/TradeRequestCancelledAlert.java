@@ -15,7 +15,7 @@ import java.util.Scanner;
  * A user alert that alerts a user when their trade request has been cancelled because one of the items in that request
  * has been traded away to annother user.
  */
-public class TradeRequestCancelledAlert extends UserAlert implements Serializable {
+public class TradeRequestCancelledAlert extends UserAlert implements Serializable, DismissableAlert{
     //author: Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
     protected int tradeID;
 

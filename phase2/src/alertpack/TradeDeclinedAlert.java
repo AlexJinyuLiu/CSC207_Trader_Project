@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * An user alert sent to a user when a trade request they have sent has been declined by the recieving user.
  */
-public class TradeDeclinedAlert extends UserAlert implements Serializable {
+public class TradeDeclinedAlert extends UserAlert implements Serializable, DismissableAlert {
     private String decliningUserName;
     private int tradeID;
 

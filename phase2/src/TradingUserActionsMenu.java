@@ -1,6 +1,10 @@
+import alertpack.Alert;
+import alertpack.DismissableAlert;
+import alertpack.DismissibleAlertPrompt;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
+import usecasepack.Prompt;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,6 +26,11 @@ public class TradingUserActionsMenu {
         frame.pack();
         frame.setVisible(true);
 
+        for(Prompt alert: cpg.userAlertManager.getUserAlerts(username, useCases.userManager)){
+            if (alert instanceof DismissableAlert){
+                //DismissibleAlertPrompt dismissibleAlertPrompt = new DismissibleAlertPrompt(alert.handle(cpg.menuPresenter, useCases.adminUser, useCases.userManager, useCases.tradeCreator, useCases.itemManager), cpg.menuPresenter);
+            }
+        }
 
         //TODO un hard code below. do this by calling menuPresenter.getText (create this method)
         viewItemsAndWishlistButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 0));

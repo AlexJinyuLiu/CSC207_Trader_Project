@@ -101,8 +101,8 @@ public class ItemValidationRequestAlert extends AdminAlert implements Serializab
                 menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,3, getDescription()) +
                 menuPresenter.getText(Frame.ITEMVALIDATIONREQUESTALERT,4, getItemID());
 
-        AcceptableAlertPrompt itemValidationRequestAlertPrompt = new AcceptableAlertPrompt(getType(), desc, getOwner(),
-                menuPresenter, userManager, adminUser, tradeCreator, itemManager);
+        //AcceptableAlertPrompt itemValidationRequestAlertPrompt = new AcceptableAlertPrompt(getType(), desc, getOwner(),
+                //menuPresenter, userManager, adminUser, tradeCreator, itemManager);
     }
 
 

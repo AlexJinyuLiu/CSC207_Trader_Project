@@ -12,7 +12,7 @@ import usecasepack.UserManager;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class TradeAcceptedAlert extends UserAlert implements Serializable {
+public class TradeAcceptedAlert extends UserAlert implements Serializable, DismissableAlert {
     /** An alert which tells a user that a trade they have proposed has been accepted.
      *
      */

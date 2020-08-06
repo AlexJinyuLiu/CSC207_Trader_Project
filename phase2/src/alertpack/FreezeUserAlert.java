@@ -85,6 +85,7 @@ public class FreezeUserAlert extends AdminAlert implements Serializable {
                 menuPresenter, userManager, adminUser, tradeCreator);
     }
 
+
     /**
      *
      * @return returns the username of the user who should be frozen.
