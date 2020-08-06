@@ -1,5 +1,6 @@
 package usecasepack;
 
+import entitypack.AdminLogin;
 import entitypack.MetroArea;
 
 public interface AccountDataOperations {

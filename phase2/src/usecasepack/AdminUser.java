@@ -1,9 +1,6 @@
 package usecasepack;
 
-import entitypack.MetroArea;
-import entitypack.Trade;
-import entitypack.TradingUser;
-import entitypack.User;
+import entitypack.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,10 +12,6 @@ import java.util.HashMap;
 public class AdminUser implements Serializable, AccountDataOperations {
     //author: Tingyu Liang, Riya Razdan in group 0110 for CSC207H1 summer 2020 project
 
-    /**
-     * Stores the login info for admin acccounts
-     */
-    private HashMap<String, String> loginInfo;
 
     /**
      * Stores the list of alerts to be processed by the admin
@@ -33,8 +26,8 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param password the password being validated
      * @return a boolean determining whether or not the login is valid.
      */
-    public boolean validateLogin(String username, String password){
-        String passwordFromMap = loginInfo.get(username);
+    public boolean validateLogin(String username, String password, AdminLogin loginInfo){
+        String passwordFromMap = loginInfo.getValidLogins().get(username);
         if (passwordFromMap != null){
             return passwordFromMap.equals(password);
         } else{
@@ -48,7 +41,6 @@ public class AdminUser implements Serializable, AccountDataOperations {
      */
     public AdminUser(String username, String password) {
         adminAlerts = new ArrayList<Prompt>();
-        loginInfo = new HashMap<String, String>();
         addNewLogin(username, password, false, null);
 
     }
@@ -69,8 +61,9 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param username the username in question.
      * @return a boolean determining whether or not the username is valid.
      */
-    public boolean isValidUsername(String username){
-        return loginInfo.containsKey(username);
+    public boolean isValidUsername(String username, AdminLogin loginInfo)
+    {
+        return loginInfo.getValidLogins().containsKey(username);
     }
 
     /**
@@ -81,11 +74,12 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param metro  the metro area of the new login (currently not assigned to admins)
      * @return a boolean describing whether or not the login was successfully added.
      */
-    public boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro){
-        if (loginInfo.containsKey(username)){
+    public boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro,
+                               AdminLogin loginInfo){
+        if (loginInfo.getValidLogins().containsKey(username)){
             return false;
         } else {
-            this.loginInfo.put(username, password);
+            loginInfo.getValidLogins().put(username, password);
             return true;
         }
     }
@@ -204,7 +198,7 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param pass string of password attempt to check
      * @return whether or not password is correct
      */
-    public boolean checkPassword(String username, String pass) {
-        return loginInfo.get(username).equals(pass);
+    public boolean checkPassword(String username, String pass, AdminLogin loginInfo) {
+        return loginInfo.getValidLogins().get(username).equals(pass);
     }
 }
