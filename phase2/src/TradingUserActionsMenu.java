@@ -20,18 +20,16 @@ public class TradingUserActionsMenu {
     private JButton changeMetropolitanAreaButton;
     private JButton requestUnfreezeButton;
     private JPanel mainPanel;
+    private JButton viewDeadTradesButton;
+    private JButton viewPendingTradeRequestsButton;
+    private JButton viewCompletedTradesButton;
+    private JButton viewActiveTempTradesButton;
 
     public TradingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
-        for(Prompt alert: cpg.userAlertManager.getUserAlerts(username, useCases.userManager)){
-            if (alert instanceof DismissableAlert){
-                //DismissibleAlertPrompt dismissibleAlertPrompt = new DismissibleAlertPrompt(alert.handle(cpg.menuPresenter, useCases.adminUser, useCases.userManager, useCases.tradeCreator, useCases.itemManager), cpg.menuPresenter);
-            }
-        }
 
         //TODO un hard code below. do this by calling menuPresenter.getText (create this method)
         viewItemsAndWishlistButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 0));
@@ -41,6 +39,13 @@ public class TradingUserActionsMenu {
         setActiveStatusButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 4));
         changeMetropolitanAreaButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 5));
         requestUnfreezeButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 6));
+        viewActiveTempTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 11));
+        viewDeadTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 10));
+        viewCompletedTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 12));
+        viewPendingTradeRequestsButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 13));
+
+
+
 
         if (((TradingUser)useCases.userManager.searchUser(username)).getFrozen()){
             //Your account has been frozen.
@@ -95,6 +100,30 @@ public class TradingUserActionsMenu {
                     //TODO replace this with a presenter call
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 8));
                 }
+            }
+        });
+        viewDeadTradesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ViewDeadTradesMenu viewDeadTradesMenu = new ViewDeadTradesMenu(useCases, cpg, username, frame);
+            }
+        });
+        viewPendingTradeRequestsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ViewPendingTradeRequestsMenu viewPendingTradeRequestsMenu = new ViewPendingTradeRequestsMenu(useCases, cpg, username, frame);
+            }
+        });
+        viewActiveTempTradesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ViewActiveTemporaryTradesMenu viewActiveTemporaryTradesMenu = new ViewActiveTemporaryTradesMenu(useCases, cpg, username, frame);
+            }
+        });
+        viewCompletedTradesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ViewCompletedTradesMenu viewCompletedTradesMenu = new ViewCompletedTradesMenu(useCases, cpg, username, frame);
             }
         });
     }

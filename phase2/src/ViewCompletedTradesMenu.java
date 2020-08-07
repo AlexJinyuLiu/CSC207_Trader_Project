@@ -1,27 +1,22 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
-import controllerpresenterpack.UserActions;
 import entitypack.Frame;
-import entitypack.TemporaryTrade;
 import entitypack.Trade;
-import entitypack.User;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ViewPendingTradesMenu {
+public class ViewCompletedTradesMenu {
     private JComboBox pendingTradesBox;
     private JButton backButton;
     private JButton selectItemButton;
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
-    public ViewPendingTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
-                                 String username, JFrame frame) {
+    public ViewCompletedTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                                        String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -62,3 +57,4 @@ public class ViewPendingTradesMenu {
         });
     }
 }
+

@@ -13,14 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ViewPendingTradesMenu {
+public class ViewDeadTradesMenu {
     private JComboBox pendingTradesBox;
     private JButton backButton;
     private JButton selectItemButton;
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
-    public ViewPendingTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+    public ViewDeadTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                  String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +32,7 @@ public class ViewPendingTradesMenu {
 
 
         //TODO populate the drop down box with pending trade IDs
-        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchPendingTradesUser(username, useCases.userManager, useCases.tradeCreator);
+        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchDeadTradesUser(username, useCases.userManager, useCases.tradeCreator.getTradeHistories());
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
             generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));

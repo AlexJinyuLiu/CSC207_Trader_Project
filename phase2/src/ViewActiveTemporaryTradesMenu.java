@@ -1,26 +1,22 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
-import controllerpresenterpack.UserActions;
 import entitypack.Frame;
 import entitypack.TemporaryTrade;
 import entitypack.Trade;
-import entitypack.User;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ViewPendingTradesMenu {
+public class ViewActiveTemporaryTradesMenu {
     private JComboBox pendingTradesBox;
     private JButton backButton;
     private JButton selectItemButton;
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
-    public ViewPendingTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+    public ViewActiveTemporaryTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                  String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +28,7 @@ public class ViewPendingTradesMenu {
 
 
         //TODO populate the drop down box with pending trade IDs
-        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchPendingTradesUser(username, useCases.userManager, useCases.tradeCreator);
+        ArrayList<TemporaryTrade> trades = controllerPresenterGrouper.tradingUserActions.searchCurrentTempTradesUser(username, useCases.userManager, useCases.tradeCreator.getTradeHistories());
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
             generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));

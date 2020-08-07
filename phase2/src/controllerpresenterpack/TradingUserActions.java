@@ -4,6 +4,7 @@ import alertpack.*;
 import entitypack.*;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
+import usecasepack.TradeHistories;
 import usecasepack.UserManager;
 
 import java.time.LocalDateTime;
@@ -765,6 +766,28 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
             choice = scanner.nextInt();
         }
         return choice;
+    }
+
+    //TODO JAVAdocs for these methods
+
+    public ArrayList<Trade> searchPendingTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
+        return tradeCreator.searchPendingTradesByUser((TradingUser) userManager.searchUser(username));
+    }
+
+    public ArrayList<Trade> searchPendingTradeRequestsUser(String username, UserManager userManager, TradeCreator tradeCreator){
+        return tradeCreator.searchPendingTradeRequestsByUser((TradingUser) userManager.searchUser(username));
+    }
+
+    public ArrayList<TemporaryTrade> searchCurrentTempTradesUser(String username, UserManager userManager, TradeHistories tradeHistories){
+        return tradeHistories.searchActiveTempTradesByUser((TradingUser) userManager.searchUser(username));
+    }
+
+    public ArrayList<Trade> searchCompletedTradesUser(String username, UserManager userManager, TradeHistories tradeHistories){
+        return tradeHistories.searchCompletedTradesByUser((TradingUser) userManager.searchUser(username));
+    }
+
+    public ArrayList<Trade> searchDeadTradesUser(String username, UserManager userManager, TradeHistories tradeHistories){
+        return tradeHistories.searchDeadTradesByUser((TradingUser) userManager.searchUser(username));
     }
 
 }

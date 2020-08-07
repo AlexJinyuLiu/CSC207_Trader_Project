@@ -13,15 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ViewPendingTradesMenu {
+public class ViewPendingTradeRequestsMenu {
     private JComboBox pendingTradesBox;
     private JButton backButton;
     private JButton selectItemButton;
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
-    public ViewPendingTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
-                                 String username, JFrame frame) {
+    public ViewPendingTradeRequestsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                              String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

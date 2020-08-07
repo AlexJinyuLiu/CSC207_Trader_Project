@@ -1,10 +1,12 @@
 package entitypack;
 
 
+import java.io.Serializable;
+
 /**
  * An entity class storing login info for a single admin account.
  */
-public class AdminLogin {
+public class AdminLogin implements Serializable {
 
     private String username;
     private String password;

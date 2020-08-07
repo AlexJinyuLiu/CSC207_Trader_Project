@@ -275,7 +275,7 @@ public class TradeCreator implements Serializable {
      * Searches pending trades by user and returns the trades of the user
      *
      * @param user the user whose pending trades are being searched
-     * @return the trades of the yser
+     * @return the pending trades involving the user
      */ //TradeManager
     public ArrayList<Trade> searchPendingTradesByUser(TradingUser user) {
         ArrayList<Trade> userTrades = new ArrayList<Trade>();
@@ -286,6 +286,23 @@ public class TradeCreator implements Serializable {
         }
         return userTrades;
     }
+
+    /**
+     * Searches pending trades requests by user and returns the trades of the user
+     *
+     * @param user the user whose pending trades are being searched
+     * @return the pending trade requests which involve the user
+     */ //TradeManager
+    public ArrayList<Trade> searchPendingTradeRequestsByUser(TradingUser user) {
+        ArrayList<Trade> userTrades = new ArrayList<Trade>();
+        for (Trade trade : pendingTradeRequests) {
+            if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
+                userTrades.add(trade);
+            }
+        }
+        return userTrades;
+    }
+
 
     /**
      * Method which searches pending trades when given the trade's ID number and returns the trade.

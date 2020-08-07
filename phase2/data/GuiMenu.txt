@@ -39,6 +39,11 @@ Request unfreeze
 Your unfreeze request has been sent to the admin team for review
 You are not currently Frozen
 Your account has been frozen.
+View dead trades
+View trade requests
+View completed trades
+View active temporary trades
+
 }
 
 Frame{ - ADMINACTIONSMENU
@@ -168,4 +173,9 @@ Items being traded from User 2 to User 1:
 Time and date of exchange:
 Location of trade:
 Trade ID:
+}
+
+Frame{ - VIEWPENDINGTRADESMENU
+Back
+View SelectedTrade
 }

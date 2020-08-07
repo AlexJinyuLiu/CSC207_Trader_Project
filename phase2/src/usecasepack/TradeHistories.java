@@ -321,6 +321,34 @@ public class TradeHistories  implements Serializable {
         return userTrades;
     }
 
+    /** Searches dead trades by user and returns the trades of the user
+     * @param user the user whose trades are being searched
+     * @return the trades of the user
+     */ //TradeManager
+    public ArrayList<Trade> searchDeadTradesByUser(TradingUser user) {
+        ArrayList<Trade> userTrades = new ArrayList<Trade>();
+        for (Trade trade: deadTrades) {
+            if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
+                userTrades.add(trade);
+            }
+        }
+        return userTrades;
+    }
+
+    /** Searches completed trades by user and returns the trades of the user
+     * @param user the user whose trades are being searched
+     * @return the trades of the user
+     */ //TradeManager
+    public ArrayList<Trade> searchCompletedTradesByUser(TradingUser user) {
+        ArrayList<Trade> userTrades = new ArrayList<Trade>();
+        for (Trade trade: completedTrades) {
+            if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
+                userTrades.add(trade);
+            }
+        }
+        return userTrades;
+    }
+
 
     /**
      * Check to see if any TemporaryTrades have expired and if so, return them in an arraylist.
