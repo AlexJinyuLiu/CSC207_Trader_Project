@@ -9,7 +9,7 @@ import usecasepack.UserManager;
 
 import java.io.Serializable;
 
-public class TradeCancelledAlert extends UserAlert implements Serializable, DismissableAlert {
+public class TradeCancelledAlert extends UserAlert implements Serializable{//}, DismissableAlert {
     /** Alert which tells a user that a pending trade in which they were involved has been cancelled as one of the users
      * is no longer in possession of one of the items that was to be traded.
      */

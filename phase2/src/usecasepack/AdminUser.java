@@ -12,7 +12,10 @@ import java.util.HashMap;
 public class AdminUser implements Serializable, AccountDataOperations {
     //author: Tingyu Liang, Riya Razdan in group 0110 for CSC207H1 summer 2020 project
 
-
+    /**
+     * Stores all login info for admins.
+     */
+    private ArrayList<AdminLogin> adminLogins = new ArrayList<AdminLogin>();
     /**
      * Stores the list of alerts to be processed by the admin
      */
@@ -26,10 +29,15 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param password the password being validated
      * @return a boolean determining whether or not the login is valid.
      */
-    public boolean validateLogin(String username, String password, AdminLogin loginInfo){
-        String passwordFromMap = loginInfo.getValidLogins().get(username);
-        if (passwordFromMap != null){
-            return passwordFromMap.equals(password);
+    public boolean validateLogin(String username, String password){
+        AdminLogin login = null;
+        for (AdminLogin adminLogin : adminLogins){
+            if (adminLogin.getUsername().equals(username)){
+                login = adminLogin;
+            }
+        }
+        if (login != null){
+            return username.equals(login.getUsername()) && password.equals(login.getPassword());
         } else{
             return false;
         }
@@ -61,9 +69,14 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param username the username in question.
      * @return a boolean determining whether or not the username is valid.
      */
-    public boolean isValidUsername(String username, AdminLogin loginInfo)
+    public boolean isValidUsername(String username)
     {
-        return loginInfo.getValidLogins().containsKey(username);
+        for (AdminLogin adminLogin : adminLogins){
+            if (adminLogin.getUsername().equals(username)){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -74,14 +87,14 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param metro  the metro area of the new login (currently not assigned to admins)
      * @return a boolean describing whether or not the login was successfully added.
      */
-    public boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro,
-                               AdminLogin loginInfo){
-        if (loginInfo.getValidLogins().containsKey(username)){
+    public boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro){
+        if (!isValidUsername(username)){
             return false;
-        } else {
-            loginInfo.getValidLogins().put(username, password);
-            return true;
         }
+
+        AdminLogin login = new AdminLogin(username, password);
+        adminLogins.add(login);
+        return true;
     }
 
     /**
@@ -193,12 +206,5 @@ public class AdminUser implements Serializable, AccountDataOperations {
             }
         }
     }
-    /**
-     * Checks if password is correct
-     * @param pass string of password attempt to check
-     * @return whether or not password is correct
-     */
-    public boolean checkPassword(String username, String pass, AdminLogin loginInfo) {
-        return loginInfo.getValidLogins().get(username).equals(pass);
-    }
+
 }

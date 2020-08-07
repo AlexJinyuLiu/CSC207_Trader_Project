@@ -9,7 +9,7 @@ import usecasepack.UserManager;
 
 import java.io.Serializable;
 
-public class FrozenAlert extends UserAlert implements Serializable, DismissableAlert {
+public class FrozenAlert extends UserAlert implements Serializable{//}, DismissableAlert {
     /** Alert which tells a user that they have been frozen by an admin. Displays the number of items borrowed and lent.
      * Also displays the number on incomplete trades and the thresholds of incomplete trades and lent minus borrowed
      * the user is required to maintain.
@@ -43,7 +43,7 @@ public class FrozenAlert extends UserAlert implements Serializable, DismissableA
     /** Handles the frozen alert by informing the user receiving it.
      *
      */
-    public String handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+    public void handle(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                         TradeCreator tradeCreator, ItemManager itemManager){
         GuiMenuPresenter menuPresenter = (GuiMenuPresenter) menuPresenterObject;
         /**menuPresenter.printMenu(23, 1); // Your account has been frozen by the administrator.
@@ -69,7 +69,7 @@ public class FrozenAlert extends UserAlert implements Serializable, DismissableA
                 menuPresenter.getText(Frame.FROZENALERT, 6, getNumIncomplete()) +
                 menuPresenter.getText(Frame.FROZENALERT, 7, getThresholdIncomplete());
 
-        return desc;
+        //return desc;
         //DismissibleAlertPrompt freezeUserAlert = new DismissibleAlertPrompt(desc, menuPresenter);
     }
 

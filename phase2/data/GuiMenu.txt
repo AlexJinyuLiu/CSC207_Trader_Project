@@ -37,7 +37,8 @@ Set active status
 Change metro area
 Request unfreeze
 Your unfreeze request has been sent to the admin team for review
-You are not currently Froze
+You are not currently Frozen
+Your account has been frozen.
 }
 
 Frame{ - ADMINACTIONSMENU

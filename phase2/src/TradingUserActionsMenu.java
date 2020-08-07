@@ -4,6 +4,7 @@ import alertpack.DismissibleAlertPrompt;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
+import entitypack.TradingUser;
 import usecasepack.Prompt;
 
 import javax.swing.*;
@@ -40,6 +41,11 @@ public class TradingUserActionsMenu {
         setActiveStatusButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 4));
         changeMetropolitanAreaButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 5));
         requestUnfreezeButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 6));
+
+        if (((TradingUser)useCases.userManager.searchUser(username)).getFrozen()){
+            //Your account has been frozen.
+            JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 9));
+        }
 
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override

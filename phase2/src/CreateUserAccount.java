@@ -56,6 +56,7 @@ public class CreateUserAccount {
             public void actionPerformed(ActionEvent actionEvent) {
                 String username = usernameTextField.getText();
                 if (username.equals("")){
+                    //"Username field is empty"
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEUSERACCOUNT, 11));
                     return;
                 }
