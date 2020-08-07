@@ -1,6 +1,7 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 import entitypack.User;
 import entitypack.Item;
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ public class ViewItemsAndWishlistMenu {
     private JPanel mainPanel;
     private JButton createItemValidationRequestButton;
     private JButton backButton;
+    private JScrollPane wishlistItemPane;
+    private JTextPane itemTextPane;
+    private JTextPane wishlistTextPane;
 
     public ViewItemsAndWishlistMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                                     String username, JFrame frame) {
@@ -23,9 +27,29 @@ public class ViewItemsAndWishlistMenu {
         frame.pack();
         frame.setVisible(true);
 
-        ArrayList<Item> items = useCases.itemManager.getAvailableItems(username);
+        backButton.setText(cpg.menuPresenter.getText(Frame.VIEWITEMSANDWISHLISTMENU, 2));
+        createItemValidationRequestButton.setText(cpg.menuPresenter.getText(Frame.VIEWITEMSANDWISHLISTMENU, 3));
 
-        for (Item item: items){
+        StringBuilder availItemsString = new StringBuilder(
+                cpg.menuPresenter.getText(Frame.VIEWITEMSANDWISHLISTMENU, 0));
+        ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
+                username);
+        for (Item item : availableItems){
+            availItemsString.append(item.getName() + " ID: " + item.getId() + "\n");
+            //availableItemIDs.add(item.getId());
+        }
+        itemTextPane.setText(availItemsString.toString());
+
+        ArrayList<String> wishlistItems = cpg.tradingUserActions.getWishListItems(useCases.userManager,
+                username);
+        StringBuilder wishlistItemsString = new StringBuilder(cpg.menuPresenter.getText(
+                Frame.VIEWITEMSANDWISHLISTMENU, 1));
+        for (String wishlistItem : wishlistItems){
+            wishlistItemsString.append(wishlistItem + "\n");
+        }
+        wishlistTextPane.setText(wishlistItemsString.toString());
+
+        for (Item item: availableItems){
             JButton thing = new JButton();
             thing.setText(item.getName());
             itemPane.add(thing);
@@ -36,6 +60,16 @@ public class ViewItemsAndWishlistMenu {
                 }
             });
         }
+
+
+        createItemValidationRequestButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent){
+                //TODO: Implement this class
+                CreateItemValidationRequestMenu createItemValidationRequestMenu =
+                        new CreateItemValidationRequestMenu(useCases, cpg, username, frame);
+            }
+        });
 
 
 
