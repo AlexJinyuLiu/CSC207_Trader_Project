@@ -179,3 +179,10 @@ Frame{ - VIEWPENDINGTRADESMENU
 Back
 View SelectedTrade
 }
+
+Frame{ - VIEWITEMSANDWISHLISTMENU
+Items:
+Wishlist:
+Back
+Request to Add an Item to inventory
+}

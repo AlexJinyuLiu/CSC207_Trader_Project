@@ -31,7 +31,7 @@ public class TradingUserActionsMenu {
         frame.pack();
         frame.setVisible(true);
 
-        //TODO un hard code below. do this by calling menuPresenter.getText (create this method)
+
         viewItemsAndWishlistButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 0));
         viewOtherUsersButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 1));
         viewUserStatsButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 2));
@@ -68,7 +68,8 @@ public class TradingUserActionsMenu {
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame, true);
+                ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame,
+                        true);
             }
         });
         viewPendingTradesButton.addActionListener(new ActionListener() {
