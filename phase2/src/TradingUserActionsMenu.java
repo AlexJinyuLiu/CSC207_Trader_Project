@@ -94,12 +94,10 @@ public class TradingUserActionsMenu {
         requestUnfreezeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(true){
-                    //TODO send the unfreeze request here
-
+                if(cpg.tradingUserActions.isUserFrozen(useCases.userManager, username)){
+                    cpg.tradingUserActions.sendUnfreezeRequest(useCases.adminUser, username);
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 7));
                 }else {
-                    //TODO replace this with a presenter call
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 8));
                 }
             }

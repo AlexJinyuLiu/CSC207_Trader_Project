@@ -16,6 +16,12 @@ public class AdminUser implements Serializable{
      * Stores all login info for admins.
      */
     private ArrayList<AdminLogin> adminLogins = new ArrayList<AdminLogin>();
+
+    /**
+     * Stores all usernames of users who want to be unfrozen.
+     */
+    private ArrayList<String> unfreezeRequests = new ArrayList<String>();
+
     /**
      * Stores the list of alerts to be processed by the admin
      */
@@ -41,6 +47,14 @@ public class AdminUser implements Serializable{
     public AdminUser(String username, String password) {
         adminAlerts = new ArrayList<Prompt>();
         addNewLogin(username, password);
+    }
+
+    /**
+     * Adds a username to the list of usernames of users who want to be unfrozen.
+     * @param username the username of the user.
+     */
+    public void addUnfreezeRequest(String username){
+        this.unfreezeRequests.add(username);
     }
 
     /**

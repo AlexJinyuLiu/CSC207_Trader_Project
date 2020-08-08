@@ -15,7 +15,7 @@ public class ViewUserMenu {
     private JButton backButton;
     private JTextPane itemList;
     private JButton createTradeRequestButton;
-//    private JTextPane userTitle;
+//  private JTextPane userTitle;
     private JTextPane wishList;
     private JButton sendMessageButton;
     private JLabel frozenStatus;
@@ -23,7 +23,8 @@ public class ViewUserMenu {
     private JLabel isActive;
 
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
-                        String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing) {
+                        String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing,
+                        boolean isUserToViewTrading) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -32,15 +33,23 @@ public class ViewUserMenu {
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 3));
         createTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 4));
         sendMessageButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 8));
+        boolean userToViewIsFrozen;
+        boolean active;
 
-        boolean ViewingUserisFrozen = ((TradingUser)useCases.userManager.searchUser(userToViewUsername)).getFrozen();
-        boolean active = ((TradingUser) useCases.userManager.searchUser(userToViewUsername)).isActive();
+        if (isUserToViewTrading) {
+            userToViewIsFrozen =
+                    ((TradingUser) useCases.userManager.searchUser(userToViewUsername)).getFrozen();
+            active = ((TradingUser) useCases.userManager.searchUser(userToViewUsername)).isActive();
+        } else{
+            userToViewIsFrozen = false;
+            active = true;
+        }
         //TODO: Test this once item validation is working properly.
 
          if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
             userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
 
-             if (ViewingUserisFrozen){
+             if (userToViewIsFrozen){
                  frozenStatus.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
              }
 
@@ -93,7 +102,7 @@ public class ViewUserMenu {
                 if (isTradingUserViewing) {
                     //note: availableItemIDs here is a list of all possible items to select in the trade request, not
                     // the IDs the user already wants to trade for.
-                    if (ViewingUserisFrozen) {
+                    if (userToViewIsFrozen) {
                         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
                         return;
                     } else if (!active){

@@ -1,6 +1,7 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.TradingUser;
 import entitypack.User;
 
 import javax.swing.*;
@@ -45,7 +46,8 @@ public class SendTradeRequestMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, controllerPresenterGrouper, activeUsername,
-                        userToViewUsername, frame, true);
+                        userToViewUsername, frame, true,
+                        useCases.userManager.searchUser(userToViewUsername) instanceof TradingUser);
             }
         });
     }

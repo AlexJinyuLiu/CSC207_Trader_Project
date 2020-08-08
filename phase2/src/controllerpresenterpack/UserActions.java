@@ -56,4 +56,13 @@ public class UserActions implements ActionController{
         return userManager.searchUser(username);
     }
 
+    /**
+     * Sets the user's MetroArea to metro
+     * @param username the username of the user.
+     * @param metro the metro area to set.
+     */
+    public void setUsersCity(UserManager userManager, String username, MetroArea metro){
+        userManager.searchUser(username).setMetro(metro);
+    }
+
 }

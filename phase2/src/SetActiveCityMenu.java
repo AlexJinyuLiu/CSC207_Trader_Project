@@ -1,6 +1,7 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 import entitypack.MetroArea;
 import entitypack.User;
 
@@ -15,18 +16,20 @@ public class SetActiveCityMenu {
     private JButton setCityButton;
 
 
-    public SetActiveCityMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+    public SetActiveCityMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                              String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-        //TODO call on the presenter to set the city text instead of the enum itself
+        backButton.setText(cpg.menuPresenter.getText(Frame.SETACTIVECITYMENU, 0));
+
+        setCityButton.setText(cpg.menuPresenter.getText(Frame.SETACTIVECITYMENU, 1));
+
         for (MetroArea metroArea: MetroArea.values()){
             cities.addItem(metroArea);
         }
-        //TODO call on the presenter to set the button text
 
 
 
@@ -34,9 +37,11 @@ public class SetActiveCityMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO set the users city
+
+                cpg.tradingUserActions.setUsersCity(useCases.userManager, username,
+                        (MetroArea)cities.getSelectedItem());
                 JOptionPane.showMessageDialog(frame, "City selected successfully");
-                frame.dispose();
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
                         username, frame);
 
             }
@@ -44,8 +49,7 @@ public class SetActiveCityMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                frame.dispose();
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper,
+                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
                         username, frame);
             }
 
