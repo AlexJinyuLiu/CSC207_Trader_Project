@@ -1,12 +1,11 @@
 package entitypack;
 
-
 import java.io.Serializable;
 
 /**
  * An entity class storing login info for a single admin account.
  */
-public class AdminLogin extends LoginAccount implements Serializable {
+public class AdminLogin implements Serializable {
 
     private String username;
     private String password;
@@ -20,4 +19,8 @@ public class AdminLogin extends LoginAccount implements Serializable {
         this.username = username;
         this.password = password;
     }
+
+    public String getUsername() { return username; }
+
+    public String getPassword() {return password;}
 }

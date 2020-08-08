@@ -1,7 +1,5 @@
 package usecasepack;
 
-import entitypack.LoginAccount;
-
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -23,6 +21,7 @@ public class ValidateLoginStrategy implements Serializable {
     }
 
     public boolean usernameAvailable(String username, HashMap<String, String> validLogins) {
+        System.out.println(validLogins);
         if (validLogins.isEmpty()) {
             return true;
         }

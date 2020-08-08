@@ -29,16 +29,16 @@ public class AdminOptions {
         setThreshold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
-                window.dispose();
             }
         });
+
         addNewAdmin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(useCases, controllerPresenterGrouper, true, window);
-                window.dispose();
+                AddNewAdmin addNewAdmin = new AddNewAdmin(useCases, controllerPresenterGrouper, true, window);
+                System.out.println("Menu Opened");
             }
+
         });
         viewAllUsers.addActionListener(new ActionListener() {
             @Override
@@ -46,6 +46,13 @@ public class AdminOptions {
                 ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, controllerPresenterGrouper, isAdmin, window);
                 /*Login login = new Login(useCases, controllerPresenterGrouper, true, window);
                 window.dispose();*/
+            }
+        });
+        viewThresholdValues.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewCurrentThresholds viewCurrentThresholds = new ViewCurrentThresholds(useCases,
+                        controllerPresenterGrouper, isAdmin, window);
             }
         });
     }

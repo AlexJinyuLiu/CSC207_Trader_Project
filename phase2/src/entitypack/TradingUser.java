@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * An Entity class describing a user of a program.
  */
-public class TradingUser extends LoginAccount implements Serializable, User {
+public class TradingUser implements Serializable, User {
     //author: Melody Yang in group 0110 for CSC207H1 summer 2020 project
     // Sorting method orderPartners() is taken from https://howtodoinjava.com/sort/java-sort-map-by-values/
 
