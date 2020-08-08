@@ -35,6 +35,8 @@ public enum Frame {
 
     CREATEITEMVALIDATIONREQUESTMENU,
 
+    SETACTIVECITYMENU
+
 
 
 

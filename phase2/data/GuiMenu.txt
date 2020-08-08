@@ -210,3 +210,8 @@ The name field is empty. Please enter a name for your item.
 The description field is empty. Please enter a description for your item.
 Item Validation Request successfully created!
 }
+
+Frame{ - SETACTIVECITYMENU
+Back
+Set City
+}

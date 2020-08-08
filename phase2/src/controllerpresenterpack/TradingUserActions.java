@@ -2,10 +2,7 @@ package controllerpresenterpack;
 
 import alertpack.*;
 import entitypack.*;
-import usecasepack.ItemManager;
-import usecasepack.TradeCreator;
-import usecasepack.TradeHistories;
-import usecasepack.UserManager;
+import usecasepack.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -57,7 +54,7 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
                     runStats(menuPresenter, itemManager, tradeCreator, user);
                     valid_input = true;
                 } else if (input == 3) {
-                    sendUnfreezeRequest(menuPresenter, userManager, tradeCreator, user);
+
                     valid_input = true;
                 } else if (input == 4) {
                     viewAllUsers(menuPresenter, userManager, tradeCreator, user, itemManager);
@@ -672,28 +669,18 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
     }
 
     /**
-     * Send a unfreeze request to admin
-     * @param user user that sends the request
+     * @return a boolean specifying whether or not the Trading user with username is currently frozen.
      */
-    public void sendUnfreezeRequest(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                                    TradingUser user) {
-        if (!user.getFrozen()) {
-            // "Your account is not frozen"
-            menuPresenter.printMenu(21, 1);
-        }
-        else {
-            String username = user.getUsername();
-            int numLent = user.getNumLent();
-            int numBorrowed = user.getNumBorrowed();
-            int borrowLendThreshold = tradeCreator.getBorrowLendThreshold();
-            int incompleteTrades = user.getNumIncompleteTrades();
-            int incompThreshold = userManager.getIncompleteThreshold();
-            UnfreezeRequestAlert alert = new UnfreezeRequestAlert(username, numLent, numBorrowed, borrowLendThreshold,
-                    incompleteTrades, incompThreshold);
-            userManager.alertAdmin(alert);
-            // "Your request has been sent"
-            menuPresenter.printMenu(21, 2);
-        }
+    public boolean isUserFrozen(UserManager userManager, String username){
+        return ((TradingUser)userManager.searchUser(username)).getFrozen();
+    }
+
+    /**
+     * Send a unfreeze request to admin
+     * @param username the username of the user who wants to be unfrozen.
+     */
+    public void sendUnfreezeRequest(AdminUser adminUser, String username) {
+        adminUser.addUnfreezeRequest(username);
     }
 
     /**

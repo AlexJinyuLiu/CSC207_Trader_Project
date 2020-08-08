@@ -6,6 +6,7 @@ public enum MetroArea{
         TORONTO,
         VANCOUVER,
         OTTAWA,
+        MONTREAL,
 
     }
 

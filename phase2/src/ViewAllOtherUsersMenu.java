@@ -3,6 +3,7 @@ import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.BrowsingUser;
 import entitypack.Frame;
+import entitypack.TradingUser;
 import entitypack.User;
 
 import javax.swing.*;
@@ -50,7 +51,8 @@ public class ViewAllOtherUsersMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 String userToViewUsername = (String)selectUserBox.getSelectedItem();
                 ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg, username,
-                        userToViewUsername, frame, isTradingUser);
+                        userToViewUsername, frame, isTradingUser,
+                        useCases.userManager.searchUser(userToViewUsername) instanceof TradingUser);
             }
         });
     }
