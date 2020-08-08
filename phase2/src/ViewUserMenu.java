@@ -3,6 +3,7 @@ import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
 import entitypack.Item;
+import entitypack.TradingUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,9 +15,12 @@ public class ViewUserMenu {
     private JButton backButton;
     private JTextPane itemList;
     private JButton createTradeRequestButton;
-    private JTextPane userTitle;
+//    private JTextPane userTitle;
     private JTextPane wishList;
     private JButton sendMessageButton;
+    private JLabel frozenStatus;
+    private JLabel userTitleLabel;
+    private JLabel isActive;
 
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                         String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing) {
@@ -27,10 +31,24 @@ public class ViewUserMenu {
         ArrayList<Integer> availableItemIDs = new ArrayList<Integer>();
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 3));
         createTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 4));
+        sendMessageButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 8));
+
+        boolean ViewingUserisFrozen = ((TradingUser)useCases.userManager.searchUser(userToViewUsername)).getFrozen();
+        boolean active = ((TradingUser) useCases.userManager.searchUser(userToViewUsername)).isActive();
         //TODO: Test this once item validation is working properly.
-        if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
-            userTitle.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername + "\n\n" +
-                    cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 1));
+
+         if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
+            userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
+
+             if (ViewingUserisFrozen){
+                 frozenStatus.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
+             }
+
+             if (!active){
+                 isActive.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 7));
+             }
+
+
             ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
                     userToViewUsername);
             StringBuilder availItemsString = new StringBuilder();
@@ -38,7 +56,9 @@ public class ViewUserMenu {
                 availItemsString.append(item.getName() + " ID: " + item.getId() + "\n");
                 availableItemIDs.add(item.getId());
             }
-            itemList.setText(availItemsString.toString());
+
+            itemList.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 9) + "\n" +
+                    availItemsString.toString());
 
             ArrayList<String> wishlistItems = cpg.tradingUserActions.getWishListItems(useCases.userManager,
                     userToViewUsername);
@@ -46,11 +66,11 @@ public class ViewUserMenu {
             for (String wishlistItem : wishlistItems){
                 wishlistItemsString.append(wishlistItem + "\n");
             }
-            itemList.setText(wishlistItemsString.toString());
+            wishList.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 10) + "\n" +
+                    wishlistItemsString.toString());
 
         } else {
-            userTitle.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername + "\n\n" +
-                    cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 2));
+            userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
             createTradeRequestButton.setEnabled(false);
         }
 
@@ -68,14 +88,21 @@ public class ViewUserMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO take each selected item and populate a list of IDs
                 //TODO: Stop the user here if they're frozen or inactive.
+
+
                 if (isTradingUserViewing) {
                     //note: availableItemIDs here is a list of all possible items to select in the trade request, not
                     // the IDs the user already wants to trade for.
+                    if (ViewingUserisFrozen) {
+                        JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
+                        return;
+                    } else if (!active){
+                        JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 7));
+                        return;
+                    }
                     SendTradeRequestMenu sendTradeRequestMenu = new SendTradeRequestMenu(useCases, cpg, activeUsername,
                             userToViewUsername, frame, availableItemIDs);
                 } else{
-                    //TODO: Call a guiMenu.txt line saying something like "you cannot send trade requests as a browsing
-                    //  only user"
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 5));
                     return;
                 }
@@ -90,5 +117,9 @@ public class ViewUserMenu {
                 useCases.userManager.alertUser(userToViewUsername, messageAlert);
             }
         });
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
