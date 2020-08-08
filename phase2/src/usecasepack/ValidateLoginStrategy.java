@@ -3,20 +3,19 @@ package usecasepack;
 import entitypack.LoginAccount;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ValidateLoginStrategy implements Serializable {
 
     public boolean validateLogin(String username, String password, HashMap<String, String> validLogins) {
-        String loginUsername = null;
-        for (String adminUsername : validLogins.keySet()) {
-            if (adminUsername.equals(adminUsername)) {
-                loginUsername = adminUsername;
+        String login = null;
+        for (String loginUsername : validLogins.keySet()) {
+            if (loginUsername.equals(username)) {
+                login = loginUsername;
             }
         }
-        if (loginUsername != null) {
-            if (validLogins.get(loginUsername).equals(password)) {
+        if (login != null) {
+            if (validLogins.get(login).equals(password)) {
                 return true;
             }
         }
@@ -24,8 +23,11 @@ public class ValidateLoginStrategy implements Serializable {
     }
 
     public boolean usernameAvailable(String username, HashMap<String, String> validLogins) {
-        for (String adminUsername : validLogins.keySet()) {
-            if (adminUsername.equals(username)) {
+        if (validLogins.isEmpty()) {
+            return true;
+        }
+        for (String loginUsername : validLogins.keySet()) {
+            if (loginUsername.equals(username)) {
                 return false;
             }
         }

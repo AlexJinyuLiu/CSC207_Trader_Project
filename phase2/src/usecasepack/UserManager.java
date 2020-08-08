@@ -113,11 +113,10 @@ public class UserManager implements Serializable{
         if (strategy.usernameAvailable(username, strategy.turnListIntoHashMap(listUsers))) {
             if (isBrowsingOnly) {
                 createBrowsingUser(username, password, metro);
-                return true;
             } else {
                 createTradingUser(username, password, metro);
-                return true;
             }
+            return true;
         }
         return false;
     }

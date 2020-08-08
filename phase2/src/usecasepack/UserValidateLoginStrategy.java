@@ -1,6 +1,5 @@
 package usecasepack;
 
-import entitypack.LoginAccount;
 import entitypack.User;
 
 import java.io.Serializable;
@@ -15,5 +14,6 @@ public class UserValidateLoginStrategy extends ValidateLoginStrategy implements 
             loginHashMap.put(login.getUsername(), login.getPassword());
         }
         return loginHashMap;
+
     }
 }

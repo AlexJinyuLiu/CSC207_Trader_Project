@@ -39,6 +39,12 @@ public class TradingUser extends LoginAccount implements Serializable, User {
     }
 
     /**
+     *
+     * @param
+     */
+    public String getUsername() {return username;}
+
+    /**
      * Set the activeness of the User
      * @param active
      */
@@ -108,6 +114,11 @@ public class TradingUser extends LoginAccount implements Serializable, User {
      */
     public void setPassword(String password) { this.password = password; }// may want to extend a use case to change password if forgotten
 
+    /**
+     *
+     * @return the password of this user
+     */
+    public String getPassword() { return password; }
 
     /**
      *

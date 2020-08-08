@@ -18,6 +18,18 @@ public class BrowsingUser extends LoginAccount implements Serializable, User {
      */
     public boolean checkPassword(String pass){return pass.equals(password);}
 
+    /**
+     *
+     * @param
+     */
+    public String getUsername() {return username;}
+
+    /**
+     *
+     * @return the password of this user
+     */
+    public String getPassword() { return password; }
+
     public BrowsingUser(String username){
         this.username = username;
     }

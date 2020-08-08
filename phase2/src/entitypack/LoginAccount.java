@@ -8,10 +8,10 @@ public abstract class LoginAccount implements Serializable {
     private String password;
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 }
