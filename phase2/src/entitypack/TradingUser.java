@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * An Entity class describing a user of a program.
  */
-public class TradingUser implements Serializable, User {
+public class TradingUser extends LoginAccount implements Serializable, User {
     //author: Melody Yang in group 0110 for CSC207H1 summer 2020 project
     // Sorting method orderPartners() is taken from https://howtodoinjava.com/sort/java-sort-map-by-values/
 
@@ -108,12 +108,6 @@ public class TradingUser implements Serializable, User {
      */
     public void setPassword(String password) { this.password = password; }// may want to extend a use case to change password if forgotten
 
-    //do we want to have this?
-    /**
-     *
-     * @return returns the password of this user.
-     */
-    public String getPassword() { return this.password;}
 
     /**
      *
@@ -157,16 +151,6 @@ public class TradingUser implements Serializable, User {
             }
         }
         return false;
-    }
-
-
-
-    /**
-     *
-     * @return the username of the user.
-     */
-    public String getUsername() {
-        return username;
     }
 
     /**

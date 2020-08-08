@@ -16,7 +16,7 @@ public class UserActions implements ActionController{
      * @param password the password in question
      * @return a boolean determining whether or not the login info is valid.
      */
-    public boolean validateLogin(AccountDataOperations userManager, String username, String password){
+    public boolean validateLogin(UserManager userManager, String username, String password){
         return userManager.validateLogin(username, password);
     }
 
@@ -25,7 +25,7 @@ public class UserActions implements ActionController{
      * @param username the username of the user.
      * @return a boolean determining whether or not the user is a TradingUser
      */
-    public boolean isTradingUser(AccountDataOperations userManager, String username){
+    public boolean isTradingUser(UserManager userManager, String username){
         return userManager.isTradingUser(username);
     }
 

@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * A use case class describing the business rules of the users in the trade system.
  */
-public class UserManager implements Serializable, AccountDataOperations {
+public class UserManager implements Serializable{
     //Note: We are aware this is static. We are afraid to delete it because we don't remember who put it here and why,
     // also we have to submit our phase 1 in an hour so please ignore this its probably not nescesary. Ty <3
     private static final long serialVersionUID = 886852790530090694L;
@@ -27,6 +27,8 @@ public class UserManager implements Serializable, AccountDataOperations {
 
     //UseCasePack.UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
+
+    private UserValidateLoginStrategy strategy = new UserValidateLoginStrategy();
 
 
     /**
@@ -54,12 +56,7 @@ public class UserManager implements Serializable, AccountDataOperations {
      * @return a boolean determining whether or not the login info is valid.
      */
     public boolean validateLogin(String username, String password){
-        User user = searchUser(username);
-        if (user == null){
-            return false;
-        } else{
-            return user.getPassword().equals(password);
-        }
+        return strategy.validateLogin(username, password, strategy.turnListIntoHashMap(listUsers));
     }
 
     /**
@@ -112,21 +109,17 @@ public class UserManager implements Serializable, AccountDataOperations {
      * @param metro the metro area of the user.
      * @return true iff the account creation was successful, else return false.
      */
-    public boolean addNewLogin(String username, String password, boolean isBrowsingOnly, MetroArea metro){
-        if (isBrowsingOnly){
-            try {
+    public boolean addNewLogin(String username, String password, boolean isBrowsingOnly, MetroArea metro) {
+        if (strategy.usernameAvailable(username, strategy.turnListIntoHashMap(listUsers))) {
+            if (isBrowsingOnly) {
                 createBrowsingUser(username, password, metro);
-            } catch(UserNameTakenException e){
-                return false;
-            }
-        } else{
-            try {
+                return true;
+            } else {
                 createTradingUser(username, password, metro);
-            } catch(UserNameTakenException e){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /** Method which creates a user and adds it to the list of users
@@ -136,12 +129,7 @@ public class UserManager implements Serializable, AccountDataOperations {
      * @return the created user
      */
     public TradingUser createTradingUser(String username, String password, MetroArea metro)
-            throws UserNameTakenException {
-        for (User user : listUsers) {
-            if (user.getUsername().equals(username)) {
-                throw new UserNameTakenException();
-            }
-        }
+    {
         TradingUser newUser = new TradingUser(username);
         newUser.setPassword(password);
         newUser.setMetro(metro);
@@ -157,12 +145,7 @@ public class UserManager implements Serializable, AccountDataOperations {
      * @return the created user
      */ //UseCasePack.UserManager
     public BrowsingUser createBrowsingUser(String username, String password, MetroArea metro)
-            throws UserNameTakenException {
-        for (User user : listUsers) {
-            if (user.getUsername().equals(username)) {
-                throw new UserNameTakenException();
-            }
-        }
+    {
         BrowsingUser newUser = new BrowsingUser(username);
         newUser.setPassword(password);
         newUser.setMetro(metro);

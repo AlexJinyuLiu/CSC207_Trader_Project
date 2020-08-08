@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * A use case class describing the business rules for admin functionality.
  */
-public class AdminUser implements Serializable, AccountDataOperations {
+public class AdminUser implements Serializable{
     //author: Tingyu Liang, Riya Razdan in group 0110 for CSC207H1 summer 2020 project
 
     /**
@@ -21,7 +21,8 @@ public class AdminUser implements Serializable, AccountDataOperations {
      */
     private ArrayList<Prompt> adminAlerts;
 
-     // Not really sure how we want to do this. Hardcoded for simplicity in the meanwhile - Louis
+    private AdminValidateLoginStrategy strategy = new AdminValidateLoginStrategy();
+
 
     /**
      * Return true iff username and password are a valid admin login.
@@ -29,18 +30,8 @@ public class AdminUser implements Serializable, AccountDataOperations {
      * @param password the password being validated
      * @return a boolean determining whether or not the login is valid.
      */
-    public boolean validateLogin(String username, String password){
-        AdminLogin login = null;
-        for (AdminLogin adminLogin : adminLogins){
-            if (adminLogin.getUsername().equals(username)){
-                login = adminLogin;
-            }
-        }
-        if (login != null){
-            return username.equals(login.getUsername()) && password.equals(login.getPassword());
-        } else{
-            return false;
-        }
+    public boolean validateLogin(String username, String password) {
+        return strategy.validateLogin(username, password, strategy.turnListIntoHashMap(adminLogins));
     }
     /**
      * Constructor for UseCasePack.AdminUser
@@ -49,19 +40,7 @@ public class AdminUser implements Serializable, AccountDataOperations {
      */
     public AdminUser(String username, String password) {
         adminAlerts = new ArrayList<Prompt>();
-        addNewLogin(username, password, false, null);
-
-    }
-
-    //Implemented this to appease LoginData interface
-    /**
-     * Return whether or not this admin can trade, which will always be false
-     * @param username the username of the admin
-     * @return false
-     */
-    @Override
-    public boolean isTradingUser(String username) {
-        return false;
+        addNewLogin(username, password);
     }
 
     /**
@@ -71,23 +50,16 @@ public class AdminUser implements Serializable, AccountDataOperations {
      */
     public boolean isValidUsername(String username)
     {
-        for (AdminLogin adminLogin : adminLogins){
-            if (adminLogin.getUsername().equals(username)){
-                return false;
-            }
-        }
-        return true;
+        return strategy.usernameAvailable(username, strategy.turnListIntoHashMap(adminLogins));
     }
 
     /**
      * Adds a login (username and password) for a user on the system.
      * @param username the inputed username
      * @param password the password associated with the account
-     * @param isTrading whether or not the new account can trade, so always false for admins.
-     * @param metro  the metro area of the new login (currently not assigned to admins)
      * @return a boolean describing whether or not the login was successfully added.
      */
-    public boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro){
+    public boolean addNewLogin(String username, String password){
         if (!isValidUsername(username)){
             return false;
         }

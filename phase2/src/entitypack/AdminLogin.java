@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * An entity class storing login info for a single admin account.
  */
-public class AdminLogin implements Serializable {
+public class AdminLogin extends LoginAccount implements Serializable {
 
     private String username;
     private String password;
@@ -19,13 +19,5 @@ public class AdminLogin implements Serializable {
     public AdminLogin(String username, String password){
         this.username = username;
         this.password = password;
-    }
-
-    public String getUsername(){
-        return this.username;
-    }
-
-    public String getPassword(){
-        return this.password;
     }
 }

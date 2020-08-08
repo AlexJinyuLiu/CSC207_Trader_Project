@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * A controller class that dictates what can be done on the Admin's menu.
  */
-public class AdminActions implements UserBrowsing, ActionController, Login{
+public class AdminActions implements UserBrowsing, ActionController{
 
     /**
      * Starts and calls the presenter class stuff to display the admin main menu and take user input.
@@ -95,7 +95,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
      * @param password the password in question
      * @return a boolean determining the validity of the login info.
      */
-    public boolean validateLogin(AccountDataOperations adminUser, String username, String password){
+    public boolean validateLogin(AdminUser adminUser, String username, String password){
         return adminUser.validateLogin(username, password);
     }
 
@@ -167,8 +167,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
      * @param username the username of the new login
      * @param password the password of the new login
      */
-    public boolean addNewLogin(AccountDataOperations loginData, String username, String password, boolean isTrading,
-                               MetroArea metro) {
+    public boolean addNewLogin(AdminUser loginData, String username, String password) {
         /*boolean flag = true;
         String inputUsername;
         String inputPassword;
@@ -182,7 +181,7 @@ public class AdminActions implements UserBrowsing, ActionController, Login{
             menuPresenter.printMenu(7,2);
             inputPassword = scan.next();
             if (*/
-        return loginData.addNewLogin(username, password, isTrading, metro);//){
+        return loginData.addNewLogin(username, password);//){
                 /*flag = false;
             } else{
                 // "That username is taken."

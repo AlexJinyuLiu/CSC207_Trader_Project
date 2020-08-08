@@ -3,11 +3,12 @@ package usecasepack;
 import entitypack.AdminLogin;
 import entitypack.MetroArea;
 
+import java.util.HashMap;
+
 public interface AccountDataOperations {
 
-    boolean validateLogin(String username, String password);
+    boolean validateLogin(String username, String password, HashMap<String, String> validLogins);
 
-    boolean isTradingUser(String username);
+    boolean usernameAvailable(String username, HashMap<String, String> validLogins);
 
-    boolean addNewLogin(String username, String password, boolean isTrading, MetroArea metro);
 }
