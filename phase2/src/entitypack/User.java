@@ -1,5 +1,7 @@
 package entitypack;
 
+import java.util.ArrayList;
+
 /**
  * Interface defining common functionality to all users of the program.
  */
@@ -9,6 +11,8 @@ public interface User {
     String password = null;
 
     MetroArea metro = null;
+
+    ArrayList<String> messages = new ArrayList<String>();
 
     String getUsername();
 
@@ -21,4 +25,8 @@ public interface User {
     String getPassword();
 
     boolean checkPassword(String password);
+
+    void addMessage(String message);
+
+    ArrayList<String> getMessages();
 }

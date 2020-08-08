@@ -20,6 +20,7 @@ public class TradingUser implements Serializable, User {
     private boolean frozen = false; // true being frozen or Lent>Borrowed; false being no violations
     private boolean active = true;
     private ArrayList<String> wishlistItemNames = new ArrayList<String>();// presenter needs to access this as well
+    private ArrayList<String> messages = new ArrayList<String>();
     private MetroArea metro;
 
 
@@ -162,6 +163,14 @@ public class TradingUser implements Serializable, User {
             }
         }
         return false;
+    }
+
+    public void addMessage(String message) {
+        messages.add(message);
+    }
+
+    public ArrayList<String> getMessages() {
+        return messages;
     }
 
     /**
