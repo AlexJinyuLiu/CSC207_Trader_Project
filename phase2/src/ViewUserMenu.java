@@ -96,7 +96,7 @@ public class ViewUserMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO take each selected item and populate a list of IDs
-                //TODO: Stop the user here if they're frozen or inactive.
+
 
 
                 if (isTradingUserViewing) {

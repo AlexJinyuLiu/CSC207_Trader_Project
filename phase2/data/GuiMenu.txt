@@ -215,3 +215,14 @@ Frame{ - SETACTIVECITYMENU
 Back
 Set City
 }
+
+Frame{ - SENDTRADEREQUESTMENU
+'s items
+Meeting place:
+Meeting time (format: yyyy-MM-dd HH:mm):
+Invalid format for Date and Time, Try again (format: yyyy-MM-dd HH:mm):
+Trade Request sent successfully
+Send Trade Request
+Back
+Form trade request by checking the items you want from the selected user, and check the items that you want to trade away.
+}
