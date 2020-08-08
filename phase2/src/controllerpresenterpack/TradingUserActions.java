@@ -105,6 +105,17 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
     }
 
     /**
+     * Creates a new item validation request and stores it in itemManager.
+     * @param usernameOfCreator the username of the user creating the request.
+     * @param itemName the name of the proposed item.
+     * @param itemDescription a short description of the proposed item.
+     */
+    public void createItemValidationRequest(ItemManager itemManager, String usernameOfCreator,
+                                            String itemName, String itemDescription){
+        itemManager.createItemValidationRequest(usernameOfCreator, itemName, itemDescription);
+    }
+
+    /**
      * Get all wishlist item names for the user with the specified username.
      *
      * Precondition: tradingUserUserName must be the username of a trading user.

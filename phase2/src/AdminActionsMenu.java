@@ -16,7 +16,7 @@ public class AdminActionsMenu {
     private JButton editUndoTradeButton;
     private JButton viewUsers;
 
-    public AdminActionsMenu(UseCaseGrouper usecases, ControllerPresenterGrouper cpg, boolean isAdmin, JFrame jframe) {
+    public AdminActionsMenu(UseCaseGrouper usecases, ControllerPresenterGrouper cpg, JFrame jframe) {
         jframe.setContentPane(mainPanel);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.pack();

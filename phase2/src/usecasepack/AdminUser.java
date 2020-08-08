@@ -117,20 +117,7 @@ public class AdminUser implements Serializable{
      }
      */
 
-    /**
-     * Determines acceptance of item validation request and either creates/adds the new item,
-     * or provides an alert that it has been declined
-     * @param itemName the name of the item
-     * @param itemID the ID of the item being validated
-     * @param description a description of the item
-     */
-    public void pollValidationRequest(UserManager userManager, ItemManager itemManager, String usernameOfOwner, String itemName, int itemID,
-                                      String description) {
 
-        TradingUser user = (TradingUser)userManager.searchUser(usernameOfOwner);
-        assert user != null;
-        itemManager.createItem(itemName, itemID, usernameOfOwner, description);
-    }
 
 
     /** Method which freezes the user account and sends a FrozenAlert to the user

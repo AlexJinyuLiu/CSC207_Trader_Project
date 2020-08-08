@@ -15,7 +15,7 @@ public class AddNewAdmin {
     private JButton submitButton;
     private JButton backButton;
 
-    public AddNewAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, boolean isAdmin,
+    public AddNewAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                        JFrame frame) {
         System.out.println("Menu Created");
 
@@ -36,7 +36,7 @@ public class AddNewAdmin {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminOptions adminOptions = new AdminOptions(useCases, controllerPresenterGrouper, isAdmin, frame);
+                AdminOptions adminOptions = new AdminOptions(useCases, controllerPresenterGrouper, frame);
             }
         });
     }
