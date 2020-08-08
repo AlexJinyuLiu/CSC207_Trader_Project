@@ -1,6 +1,7 @@
 package entitypack;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * A class defining the data associated with a user who cannot make any trades, but only browses.
@@ -44,5 +45,13 @@ public class BrowsingUser implements Serializable, User {
 
     public void setPassword(String password){
         this.password = password;
+    }
+
+    public void addMessage(String message) {
+        messages.add(message);
+    }
+
+    public ArrayList<String> getMessages() {
+        return messages;
     }
 }

@@ -16,7 +16,8 @@ public class ViewCurrentThresholds {
     private JButton BackButton;
     private JLabel incompleteTradeThreshold;
 
-    public ViewCurrentThresholds(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, boolean isAdmin, JFrame window) {
+    public ViewCurrentThresholds(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                                 JFrame window) {
 
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +31,7 @@ public class ViewCurrentThresholds {
         BackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminOptions adminOptions = new AdminOptions(useCases, controllerPresenterGrouper, isAdmin, window);
+                AdminOptions adminOptions = new AdminOptions(useCases, controllerPresenterGrouper, window);
             }
         });
     }

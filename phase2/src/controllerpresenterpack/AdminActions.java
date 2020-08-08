@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class AdminActions implements UserBrowsing, ActionController{
 
+
     /**
      * Starts and calls the presenter class stuff to display the admin main menu and take user input.
      * @param menuPresenter the menuPresenter object to be used to print things.

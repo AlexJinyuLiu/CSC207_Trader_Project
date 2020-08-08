@@ -18,7 +18,7 @@ public class AdminOptions {
     private JButton backToMainMenu;
     public JButton searchUser;
 
-    public AdminOptions(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, boolean isAdmin, JFrame window){
+    public AdminOptions(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,  JFrame window){
         window.setContentPane(mainPanel);
         window.setBounds(450, 450, 500, 400);
         mainPanel.setSize(350, 350);
@@ -35,7 +35,7 @@ public class AdminOptions {
         addNewAdmin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AddNewAdmin addNewAdmin = new AddNewAdmin(useCases, controllerPresenterGrouper, true, window);
+                AddNewAdmin addNewAdmin = new AddNewAdmin(useCases, controllerPresenterGrouper,  window);
                 System.out.println("Menu Opened");
             }
 
@@ -43,7 +43,7 @@ public class AdminOptions {
         viewAllUsers.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, controllerPresenterGrouper, isAdmin, window);
+                ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, controllerPresenterGrouper, true, window);
                 /*Login login = new Login(useCases, controllerPresenterGrouper, true, window);
                 window.dispose();*/
             }
@@ -52,7 +52,7 @@ public class AdminOptions {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewCurrentThresholds viewCurrentThresholds = new ViewCurrentThresholds(useCases,
-                        controllerPresenterGrouper, isAdmin, window);
+                        controllerPresenterGrouper, window);
             }
         });
     }

@@ -24,6 +24,7 @@ public class TradingUserActionsMenu {
     private JButton viewPendingTradeRequestsButton;
     private JButton viewCompletedTradesButton;
     private JButton viewActiveTempTradesButton;
+    private JButton viewMessagesButton;
 
     public TradingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
@@ -125,6 +126,12 @@ public class TradingUserActionsMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ViewCompletedTradesMenu viewCompletedTradesMenu = new ViewCompletedTradesMenu(useCases, cpg, username, frame);
+            }
+        });
+        viewMessagesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewMessagesMenu viewMessagesMenu = new ViewMessagesMenu(useCases, cpg, username, frame);
             }
         });
     }

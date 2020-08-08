@@ -65,7 +65,7 @@ public class ViewItemsAndWishlistMenu {
         createItemValidationRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent){
-                //TODO: Implement this class
+
                 CreateItemValidationRequestMenu createItemValidationRequestMenu =
                         new CreateItemValidationRequestMenu(useCases, cpg, username, frame);
             }

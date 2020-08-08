@@ -2,6 +2,7 @@ package usecasepack;
 
 import entitypack.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -221,6 +222,14 @@ public class UserManager implements Serializable{
      */ //UseCasePack.UserManager AND TradeManager
     public void alertUser(String username, Prompt alert){
         alertSystem.get(username).add(alert);
+    }
+
+    public void messageUser(String sendersUsername, String receiversUsername, String messageBody) {
+        String message = "[" + sendersUsername + "] ------ " + LocalDateTime.now() + "\n" +
+                messageBody + "\n" +
+                "--------------------------------------------------------------------" + "\n";
+        User user = searchUser(receiversUsername);
+        user.addMessage(message);
     }
 
     /**

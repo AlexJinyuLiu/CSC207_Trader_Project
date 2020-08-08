@@ -5,14 +5,24 @@ import entitypack.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Class which handles all of the items that are within the trading system.
+ */
 public class ItemManager implements Serializable {
-    /**
-     * Class which handles all of the items that are within the trading system.
-     */
+
     private ArrayList<Item> items = new ArrayList<Item>();
+
+    private ArrayList<ItemValidationRequest> validationRequests = new ArrayList<ItemValidationRequest>();
 
     private int itemIDGenerator = 0;
 
+    /**
+     * Creates a new item with specified name, ID, username of owner, and description.
+     * @param itemName the name of the item
+     * @param itemID the ID of the item.
+     * @param usernameOfOwner the username of the item's owner.
+     * @param description a short description of the item.
+     */
     public void createItem(String itemName, int itemID, String usernameOfOwner, String description) {
         Item newItem = new Item(itemName, description, itemID, usernameOfOwner);
         items.add(newItem);
@@ -21,6 +31,31 @@ public class ItemManager implements Serializable {
     public ArrayList<Item> getItems() {
         return items;
     }
+
+    /**
+     * Creates and adds a new item validation request to the validationRequests arraylist.
+     * @param usernameOfOwner the username of the user sending the validationrequest.
+     * @param itemName the name of the item to be validated.
+     * @param description a short description of the item.
+     */
+    public void createItemValidationRequest(String usernameOfOwner, String itemName, String description){
+
+        ItemValidationRequest validationRequest = new ItemValidationRequest(usernameOfOwner, itemName, description);
+        validationRequests.add(validationRequest);
+    }
+
+    /**
+     * Return and pop a single itemValidationRequest from the list of validation requests.
+     * @return the item validation request at the end of the list, or null if there are none left.
+     */
+    public ItemValidationRequest pollValidationRequest() {
+        if (validationRequests.size() > 0) {
+            return validationRequests.remove(validationRequests.size() - 1);
+        } else{
+            return null;
+        }
+    }
+
 
     /**
      *

@@ -74,6 +74,11 @@ This user is Browsing only, meaning they have no items available for trade.
 Back
 Create Trade Request
 Your account is browsing only, and thus cannot make trade requests.
+This user is frozen, cannot make trades.
+This user is inactive, cannot make trades.
+Send Message
+Available Items
+Wishlist
 }
 
 Frame{ - MESSAGEALERT
@@ -194,4 +199,14 @@ Active
 Inactive
 Status set successfully
 This status is the same. No change occurred
+}
+
+Frame{ - CREATEITEMVALIDATIONREQUESTMENU
+Item name:
+Item description:
+Back
+Create Request
+The name field is empty. Please enter a name for your item.
+The description field is empty. Please enter a description for your item.
+Item Validation Request successfully created!
 }
