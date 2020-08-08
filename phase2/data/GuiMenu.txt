@@ -186,3 +186,12 @@ Wishlist:
 Back
 Request to Add an Item to inventory
 }
+
+Frame{ - SETACTIVESTATUSMENU
+Back
+Set Status
+Active
+Inactive
+Status set successfully
+This status is the same. No change occurred
+}

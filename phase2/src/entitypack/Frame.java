@@ -31,6 +31,8 @@ public enum Frame {
 
     VIEWITEMSANDWISHLISTMENU,
 
+    SETACTIVESTATUSMENU,
+
 
 
 
