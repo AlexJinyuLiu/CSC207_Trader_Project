@@ -21,7 +21,7 @@ public class ViewPendingRequests {
         window.setVisible(true);
 
         for (Trade pendingRequest : useCases.tradeCreator.getPendingTradeRequests())
-            pendingRequests.addItem(pendingRequest);
+            pendingRequests.addItem("Trade ID: " + pendingRequest.getTradeID());
 
         confirmButton.addActionListener(new ActionListener() {
             @Override
