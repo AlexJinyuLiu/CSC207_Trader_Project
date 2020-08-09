@@ -7,6 +7,7 @@ import entitypack.Trade;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class ViewPendingTrades {
     private JComboBox pendingTrades;
@@ -21,14 +22,15 @@ public class ViewPendingTrades {
         window.setVisible(true);
 
         for (Trade pendingTrade : useCases.tradeCreator.getPendingTrades()) {
-            pendingTrades.addItem(pendingTrade);
+            pendingTrades.addItem("Trade ID: " + pendingTrade.getTradeID());
         }
 
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Force User to select a pendingTrade
-                //TODO Show Trade and Give Option to undo
+                ViewTradeToUndo viewTradeToUndo = new ViewTradeToUndo(useCases, controllerPresenterGrouper,
+                        "Confirmed", Integer.parseInt(pendingTrades.getSelectedItem().toString().substring(10)),
+                        window);
             }
         });
         backButton.addActionListener(new ActionListener() {
