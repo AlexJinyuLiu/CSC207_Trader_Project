@@ -42,9 +42,9 @@ public class Login extends JFrame{
                         //TODO send admin to adminActionsMenu instead of userActionsMenu
                         AdminActionsMenu adminOptionsMenu = new AdminActionsMenu(useCases,
                                 cpg, frame);
-                        cpg.adminAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser,
-                                useCases.userManager, useCases.tradeCreator, useCases.itemManager,
-                                useCases.adminUser.getAdminAlerts());
+                        // cpg.adminAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser,
+                        //        useCases.userManager, useCases.tradeCreator, useCases.itemManager,
+                        //        useCases.adminUser.getAdminAlerts());
                     } else {
                         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));
                     }
