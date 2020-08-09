@@ -2,6 +2,7 @@ package AdminMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
