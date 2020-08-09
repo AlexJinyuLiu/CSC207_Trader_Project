@@ -2,7 +2,6 @@ package controllerpresenterpack;
 
 import alertpack.ExpirationAlert;
 import alertpack.TradePastDateAlert;
-import alertpack.UserAlert;
 import entitypack.TemporaryTrade;
 import entitypack.Trade;
 import usecasepack.AdminUser;

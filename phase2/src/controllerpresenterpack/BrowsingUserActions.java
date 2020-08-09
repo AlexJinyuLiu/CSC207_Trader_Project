@@ -1,7 +1,6 @@
 package controllerpresenterpack;
 
 import alertpack.MessageAlert;
-import alertpack.UserAlert;
 import entitypack.BrowsingUser;
 import entitypack.MetroArea;
 import entitypack.TradingUser;

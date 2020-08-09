@@ -1,7 +1,6 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
-import controllerpresenterpack.MenuPresenter;
 import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
@@ -9,9 +8,8 @@ import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
-public class ItemValidationDeclinedAlert extends UserAlert implements Serializable {
+public class ItemValidationDeclinedAlert extends AlertFactory implements Serializable {
     /** An alert which is created when an admin denies a ItemValidationRequest. Tells the user why the request was
      * declined.
      */

@@ -8,7 +8,6 @@ import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import java.util.Scanner;
 /**
  * A user alert that is sent to a user when the meetup date for one of their trades has passed.
  */
-public class TradePastDateAlert extends UserAlert implements Serializable {
+public class TradePastDateAlert extends AlertFactory implements Serializable {
 
     private LocalDateTime dueDate;
     private String username;
