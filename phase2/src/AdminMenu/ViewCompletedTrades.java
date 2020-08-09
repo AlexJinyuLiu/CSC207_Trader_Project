@@ -21,7 +21,7 @@ public class ViewCompletedTrades {
         window.setVisible(true);
 
         for (Trade completedTrade : useCases.tradeCreator.getTradeHistories().getCompletedTrades())
-            completedTrades.addItem("Trade ID: " + completedTrade.getTradeID());
+            completedTrades.addItem(completedTrade);
 
         confirmButton.addActionListener(new ActionListener() {
             @Override
