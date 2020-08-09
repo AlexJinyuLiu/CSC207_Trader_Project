@@ -20,7 +20,7 @@ public class ViewCompletedTrades {
         window.pack();
         window.setVisible(true);
 
-        for (Trade completedTrade : useCases.tradeHistories.getCompletedTrades())
+        for (Trade completedTrade : useCases.tradeCreator.getTradeHistories().getCompletedTrades())
             completedTrades.addItem(completedTrade);
 
         confirmButton.addActionListener(new ActionListener() {

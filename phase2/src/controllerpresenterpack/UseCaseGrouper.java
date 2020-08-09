@@ -12,14 +12,13 @@ public class UseCaseGrouper {
     public UserManager userManager;
     public TradeCreator tradeCreator;
     public ItemManager itemManager;
-    public TradeHistories tradeHistories;
+
 
     public UseCaseGrouper(AdminUser adminUser, UserManager userManager,
-                          TradeCreator tradeCreator, ItemManager itemManager, TradeHistories tradeHistories){
+                          TradeCreator tradeCreator, ItemManager itemManager){
         this.adminUser = adminUser;
         this.userManager = userManager;
         this.tradeCreator = tradeCreator;
         this.itemManager = itemManager;
-        this.tradeHistories = tradeHistories;
     }
 }

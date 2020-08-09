@@ -40,10 +40,10 @@ public class TradingUserActionsMenu {
         setActiveStatusButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 4));
         changeMetropolitanAreaButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 5));
         requestUnfreezeButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 6));
-        viewActiveTempTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 11));
+        viewActiveTempTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 13));
         viewDeadTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 10));
         viewCompletedTradesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 12));
-        viewPendingTradeRequestsButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 13));
+        viewPendingTradeRequestsButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 11));
 
 
 
@@ -111,7 +111,8 @@ public class TradingUserActionsMenu {
         viewPendingTradeRequestsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradeRequestsMenu viewPendingTradeRequestsMenu = new ViewPendingTradeRequestsMenu(useCases, cpg, username, frame);
+                ViewPendingTradeRequestsMenu viewPendingTradeRequestsMenu = new ViewPendingTradeRequestsMenu(useCases,
+                        cpg, username, frame);
             }
         });
         viewActiveTempTradesButton.addActionListener(new ActionListener() {

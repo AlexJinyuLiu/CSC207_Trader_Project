@@ -99,6 +99,23 @@ public class AdminActions implements UserBrowsing, ActionController{
         return adminUser.validateLogin(username, password);
     }
 
+    /**
+     *
+     * @return all pending item validation requests in an arraylist.
+     */
+    public ArrayList<ItemValidationRequest> getItemValidationRequests(ItemManager itemManager){
+        return itemManager.getValidationRequests();
+    }
+
+    /**
+     * Approves the specified ItemValidationRequest, deleting it from the list of requests and creating a corresponding
+     * item.
+     * @param validationRequest the ItemValidationRequest to approve.
+     */
+    public void approveItemValidationRequest(ItemManager itemManager, ItemValidationRequest validationRequest){
+        itemManager.approveValidationRequest(validationRequest);
+    }
+
 
     /** Method that takes user input and changes the threshold value (The necessary difference between the number of
      * items users have lent and borrowed before they can make another transaction)

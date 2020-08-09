@@ -29,7 +29,6 @@ public class ViewUserMenu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        ArrayList<Integer> availableItemIDs = new ArrayList<Integer>();
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 3));
         createTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 4));
         sendMessageButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 8));
@@ -47,7 +46,7 @@ public class ViewUserMenu {
         //TODO: Test this once item validation is working properly.
 
          if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
-            userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
+             userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
 
              if (userToViewIsFrozen){
                  frozenStatus.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
@@ -61,9 +60,9 @@ public class ViewUserMenu {
             ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
                     userToViewUsername);
             StringBuilder availItemsString = new StringBuilder();
+
             for (Item item : availableItems){
                 availItemsString.append(item.getName() + " ID: " + item.getId() + "\n");
-                availableItemIDs.add(item.getId());
             }
 
             itemList.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 9) + "\n" +
@@ -72,9 +71,11 @@ public class ViewUserMenu {
             ArrayList<String> wishlistItems = cpg.tradingUserActions.getWishListItems(useCases.userManager,
                     userToViewUsername);
             StringBuilder wishlistItemsString = new StringBuilder();
+
             for (String wishlistItem : wishlistItems){
                 wishlistItemsString.append(wishlistItem + "\n");
             }
+
             wishList.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 10) + "\n" +
                     wishlistItemsString.toString());
 
@@ -110,7 +111,7 @@ public class ViewUserMenu {
                         return;
                     }
                     SendTradeRequestMenu sendTradeRequestMenu = new SendTradeRequestMenu(useCases, cpg, activeUsername,
-                            userToViewUsername, frame, availableItemIDs);
+                            userToViewUsername, frame);
                 } else{
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 5));
                     return;

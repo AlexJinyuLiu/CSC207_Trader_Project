@@ -29,16 +29,27 @@ public class ViewPendingTradeRequestsMenu {
 
         backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
         selectItemButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 1));
+        JPanel content = new JPanel();
+        content.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
 
 
-        //TODO populate the drop down box with pending trade IDs
-        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchPendingTradesUser(username, useCases.userManager, useCases.tradeCreator);
+
+        int n = 0;
+        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchPendingTradeRequestsUser(username,
+                useCases.userManager, useCases.tradeCreator);
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));
+            generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,
+                    trade));
             pendingTradesBox.addItem(trade.getTradeID());
-            tradeInfoPane.add(generatedLabel);
+            c.gridy = n;
+            n++;
+            content.add(generatedLabel, c);
         }
+
+        tradeInfoPane.setViewportView(content);
 
         selectItemButton.addActionListener(new ActionListener() {
             @Override

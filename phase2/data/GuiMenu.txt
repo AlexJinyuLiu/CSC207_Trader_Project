@@ -47,13 +47,14 @@ View active temporary trades
 }
 
 Frame{ - ADMINACTIONSMENU
-Set borrow/lend threshold
-Set complete trade threshold
-Set incomplete trade threshold
-Add new admin
-View current threshold values
-Edit or undo a trade
-View users
+Set Borrow/Lend Threshold
+Set Complete Trade Threshold
+Set Incomplete Trade Threshold
+Add a New Admin
+View Current Threshold Values
+Edit or Undo a Trade
+View All Users
+View Item Validation Requests
 }
 
 Frame{ - BROWSINGUSERACTIONSMENU
@@ -172,12 +173,12 @@ Dismiss
 Frame{ - TRADETOSTRING
 Trade to String
 User 1:
-User 2:
-Items being traded from User 1 to User 2:
-Items being traded from User 2 to User 1:
-Time and date of exchange:
-Location of trade:
-Trade ID:
+, User 2:
+, Items being traded from User 1 to User 2:
+, Items being traded from User 2 to User 1:
+, Time and date of exchange:
+, Location of trade:
+, Trade ID:
 }
 
 Frame{ - VIEWPENDINGTRADESMENU
@@ -225,4 +226,13 @@ Trade Request sent successfully
 Send Trade Request
 Back
 Form trade request by checking the items you want from the selected user, and check the items that you want to trade away.
+}
+
+Frame{ - VIEWITEMVALIDATIONREQUESTS
+Back
+Viewing item validation requests. Press the button next to each item to approve the request.
+Item name:
+Item Description:
+User:
+Validate
 }

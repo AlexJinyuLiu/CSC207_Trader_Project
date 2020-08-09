@@ -45,7 +45,7 @@ public class EditTrade {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminOptions adminOptions = new AdminOptions(useCases, controllerPresenterGrouper, window);
+                AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
             }
         });
     }

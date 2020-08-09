@@ -1,6 +1,5 @@
 package AdminMenu;
 
-import AdminMenu.AdminOptions;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 
@@ -20,7 +19,6 @@ public class AddNewAdmin {
 
     public AddNewAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                        JFrame frame) {
-        System.out.println("Menu Created");
 
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +37,7 @@ public class AddNewAdmin {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminOptions adminOptions = new AdminOptions(useCases, controllerPresenterGrouper, frame);
+                AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, controllerPresenterGrouper, frame);
             }
         });
     }

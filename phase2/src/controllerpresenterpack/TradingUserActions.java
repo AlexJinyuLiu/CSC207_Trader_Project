@@ -226,9 +226,9 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
              menuPresenter.printMenu(16, 10);
              String description = scan.nextLine();
              String username = user.getUsername();
-             int itemID = itemManager.getNewItemID();
-             ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemID, username, name, description);
-             userManager.alertAdmin(alert);
+             //int itemID = itemManager.getNewItemID();
+             //ItemValidationRequestAlert alert = new ItemValidationRequestAlert(itemID, username, name, description);
+             //userManager.alertAdmin(alert);
          } else if (input == 2){
              //"Please enter the ID of the item you wish to remove"
              menuPresenter.printMenu(16, 11);
@@ -764,6 +764,16 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
             choice = scanner.nextInt();
         }
         return choice;
+    }
+
+    /**
+     * Creates a new trade request with the specified information.
+     */
+    public void createTradeRequest(TradeCreator tradeCreator, TradingUser user1, TradingUser user2,
+                                   ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
+                                   LocalDateTime meetingTime, String meetingPlace){
+        tradeCreator.createTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
+                meetingPlace);
     }
 
     //TODO JAVAdocs for these methods

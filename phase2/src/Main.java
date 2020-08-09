@@ -1,5 +1,6 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Trade;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;

@@ -12,6 +12,8 @@ public class ItemManager implements Serializable {
 
     private ArrayList<Item> items = new ArrayList<Item>();
 
+    private int validationRequestIDGenerator = 0;
+
     private ArrayList<ItemValidationRequest> validationRequests = new ArrayList<ItemValidationRequest>();
 
     private int itemIDGenerator = 0;
@@ -23,10 +25,11 @@ public class ItemManager implements Serializable {
      * @param usernameOfOwner the username of the item's owner.
      * @param description a short description of the item.
      */
-    public void createItem(String itemName, int itemID, String usernameOfOwner, String description) {
+    private void createItem(String itemName, int itemID, String usernameOfOwner, String description) {
         Item newItem = new Item(itemName, description, itemID, usernameOfOwner);
         items.add(newItem);
     }
+
     //TODO: delete the function below after debug
     public ArrayList<Item> getItems() {
         return items;
@@ -40,32 +43,32 @@ public class ItemManager implements Serializable {
      */
     public void createItemValidationRequest(String usernameOfOwner, String itemName, String description){
 
-        ItemValidationRequest validationRequest = new ItemValidationRequest(usernameOfOwner, itemName, description);
+        ItemValidationRequest validationRequest = new ItemValidationRequest(usernameOfOwner, itemName, description,
+                validationRequestIDGenerator);
+        validationRequestIDGenerator++;
         validationRequests.add(validationRequest);
     }
 
-    /**
-     * Return and pop a single itemValidationRequest from the list of validation requests.
-     * @return the item validation request at the end of the list, or null if there are none left.
-     */
-    public ItemValidationRequest pollValidationRequest() {
-        if (validationRequests.size() > 0) {
-            return validationRequests.remove(validationRequests.size() - 1);
-        } else{
-            return null;
+    public void approveValidationRequest(ItemValidationRequest validationRequest){
+        for (int i = 0; i < validationRequests.size(); i++){
+            if (validationRequest.getID() == validationRequests.get(i).getID()){
+                validationRequests.remove(i);
+                createItem(validationRequest.getItemName(), itemIDGenerator, validationRequest.getUsernameOfCreator(),
+                        validationRequest.getItemDescription());
+                itemIDGenerator++;
+                return;
+            }
         }
     }
 
-
     /**
      *
-     * @return A new ID for an item.
+     * @return all pending item validation requests in an arraylist.
      */
-    public int getNewItemID() {
-        int newID = itemIDGenerator;
-        itemIDGenerator++;
-        return newID;
+    public ArrayList<ItemValidationRequest> getValidationRequests(){
+        return this.validationRequests;
     }
+
 
     /**
      * Get all available items for the user with specified username.

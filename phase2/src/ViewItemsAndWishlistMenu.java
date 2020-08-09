@@ -34,6 +34,7 @@ public class ViewItemsAndWishlistMenu {
                 cpg.menuPresenter.getText(Frame.VIEWITEMSANDWISHLISTMENU, 0));
         ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
                 username);
+        availItemsString.append("\n");
         for (Item item : availableItems){
             availItemsString.append(item.getName() + " ID: " + item.getId() + "\n");
             //availableItemIDs.add(item.getId());
@@ -44,6 +45,7 @@ public class ViewItemsAndWishlistMenu {
                 username);
         StringBuilder wishlistItemsString = new StringBuilder(cpg.menuPresenter.getText(
                 Frame.VIEWITEMSANDWISHLISTMENU, 1));
+        wishlistItemsString.append("\n");
         for (String wishlistItem : wishlistItems){
             wishlistItemsString.append(wishlistItem + "\n");
         }
@@ -56,7 +58,7 @@ public class ViewItemsAndWishlistMenu {
             thing.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ItemViewer a = new ItemViewer(useCases, cpg, username, item.getId(),frame);
+                    ItemViewer a = new ItemViewer(useCases, cpg, username, item.getId(), frame);
                 }
             });
         }

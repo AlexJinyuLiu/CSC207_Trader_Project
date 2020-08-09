@@ -15,9 +15,6 @@ public class SetIncompleteTradeThreshold {
 
     public SetIncompleteTradeThreshold(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window){
         window.setContentPane(mainPanel);
-        window.setBounds(450, 450, 500, 400);
-        mainPanel.setSize(350, 350);
-        window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);

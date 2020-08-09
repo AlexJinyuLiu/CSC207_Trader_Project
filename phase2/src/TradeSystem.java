@@ -73,7 +73,7 @@ public class TradeSystem {
         itemManager = FileManager.loadItemManager();
         tradeHistories = FileManager.loadTradeHistories();
 
-        return new UseCaseGrouper(adminUser, userManager, tradeCreator, itemManager, tradeHistories);
+        return new UseCaseGrouper(adminUser, userManager, tradeCreator, itemManager);
     }
 
     /**

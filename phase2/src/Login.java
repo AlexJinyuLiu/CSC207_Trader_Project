@@ -1,4 +1,4 @@
-import AdminMenu.AdminOptions;
+import AdminMenu.AdminActionsMenu;
 import controllerpresenterpack.*;
 import entitypack.Frame;
 
@@ -41,7 +41,7 @@ public class Login extends JFrame{
                     if (validLogin) {
                         //TODO send user to Options
                         //TODO send admin to adminActionsMenu instead of userActionsMenu
-                        AdminOptions adminOptionsMenu = new AdminOptions(useCases,
+                        AdminActionsMenu adminOptionsMenu = new AdminActionsMenu(useCases,
                                 cpg, frame);
                     } else {
                         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));

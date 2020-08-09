@@ -8,6 +8,10 @@ import java.io.Serializable;
 public class ItemValidationRequest  implements Serializable {
 
     /**
+     * The unique Id of the validation request
+     */
+    private int ID;
+    /**
      * The name of the item
      */
     private String itemName;
@@ -25,10 +29,11 @@ public class ItemValidationRequest  implements Serializable {
     /**
      * Initialize a new itemvalidationrequest with specified username, item name, and description.
      */
-    public ItemValidationRequest(String usernameOfCreator, String itemName, String itemDescription){
+    public ItemValidationRequest(String usernameOfCreator, String itemName, String itemDescription, int ID){
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.usernameOfCreator = usernameOfCreator;
+        this.ID = ID;
     }
 
     /**
@@ -55,4 +60,11 @@ public class ItemValidationRequest  implements Serializable {
         return usernameOfCreator;
     }
 
+    /**
+     *
+     * @return The unique ID of the validation request.
+     */
+    public int getID(){
+        return this.ID;
+    }
 }
