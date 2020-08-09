@@ -1,9 +1,6 @@
 package controllerpresenterpack;
 
-import usecasepack.AdminUser;
-import usecasepack.ItemManager;
-import usecasepack.TradeCreator;
-import usecasepack.UserManager;
+import usecasepack.*;
 
 import java.io.*;
 
@@ -66,6 +63,14 @@ public class FileManager {
      */
     public static void saveItemManagerToFile(ItemManager itemManager){
         saveToFile(itemManager, "itemManager.ser");
+    }
+
+    /**
+     * Serializes a UseCasePack.TradeHistories object to a .ser file
+     * @param tradeHistories which is being saved to a file
+     */
+    public static void saveTradeHistoriesToFile(TradeHistories tradeHistories){
+        saveToFile(tradeHistories, "tradeHistories.ser");
     }
 
 
@@ -140,6 +145,26 @@ public class FileManager {
             FileInputStream file = new FileInputStream(dir + "itemManager.ser");
             ObjectInputStream in = new ObjectInputStream(file);
             obj = (ItemManager) in.readObject();
+            in.close();
+            file.close();
+        }
+        catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return obj;
+    }
+
+    /**
+     * Loads a UseCasePack.TradeHistories from a .ser file
+     * @return the UseCasePack.TradeHistories object stored in the file
+     */
+    public static TradeHistories loadTradeHistories(){
+        TradeHistories obj;
+        try {
+            FileInputStream file = new FileInputStream(dir + "tradeHistories.ser");
+            ObjectInputStream in = new ObjectInputStream(file);
+            obj = (TradeHistories) in.readObject();
             in.close();
             file.close();
         }

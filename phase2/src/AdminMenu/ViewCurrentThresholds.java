@@ -1,6 +1,8 @@
+package AdminMenu;
+
+import AdminMenu.AdminOptions;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
-import usecasepack.AdminUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,9 +1,7 @@
 package controllerpresenterpack;
 
-import usecasepack.AdminUser;
-import usecasepack.ItemManager;
-import usecasepack.TradeCreator;
-import usecasepack.UserManager;
+import entitypack.Trade;
+import usecasepack.*;
 
 /**
  * Class to group together our use cases for readability.
@@ -14,12 +12,14 @@ public class UseCaseGrouper {
     public UserManager userManager;
     public TradeCreator tradeCreator;
     public ItemManager itemManager;
+    public TradeHistories tradeHistories;
 
     public UseCaseGrouper(AdminUser adminUser, UserManager userManager,
-                          TradeCreator tradeCreator, ItemManager itemManager){
+                          TradeCreator tradeCreator, ItemManager itemManager, TradeHistories tradeHistories){
         this.adminUser = adminUser;
         this.userManager = userManager;
         this.tradeCreator = tradeCreator;
-        this.itemManager =itemManager;
+        this.itemManager = itemManager;
+        this.tradeHistories = tradeHistories;
     }
 }

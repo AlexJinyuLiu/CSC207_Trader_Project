@@ -18,6 +18,7 @@ public class TradeSystem {
     private UserManager userManager;
     private TradeCreator tradeCreator;
     private ItemManager itemManager;
+    private TradeHistories tradeHistories;
 
     private UserAlertManager userAlertManager = new UserAlertManager();
     private AdminAlertManager adminAlertManager = new AdminAlertManager();
@@ -59,16 +60,20 @@ public class TradeSystem {
         if (!((new File(dir + "tradeCreator.ser"))).exists()){
             createTradeCreator();
         }
-        if (!((new File(dir + "itemManager.ser"))).exists()){
+        if (!((new File(dir + "itemManager.ser"))).exists()) {
             createItemManager();
+        }
+        if (!((new File(dir +"tradeHistories.ser"))).exists()){
+            createTradeHistories();
         }
 
         adminUser = FileManager.loadAdminUser();
         userManager = FileManager.loadUserManager();
         tradeCreator = FileManager.loadTradeCreator();
         itemManager = FileManager.loadItemManager();
+        tradeHistories = FileManager.loadTradeHistories();
 
-        return new UseCaseGrouper(adminUser, userManager, tradeCreator, itemManager);
+        return new UseCaseGrouper(adminUser, userManager, tradeCreator, itemManager, tradeHistories);
     }
 
     /**
@@ -87,6 +92,7 @@ public class TradeSystem {
         FileManager.saveTradeCreatorToFile(tradeCreator);
         FileManager.saveUserManagerToFile(userManager);
         FileManager.saveItemManagerToFile(itemManager);
+        FileManager.saveTradeHistoriesToFile(tradeHistories);
 
     }
 
@@ -108,6 +114,11 @@ public class TradeSystem {
     private void createItemManager(){
         ItemManager itemManager = new ItemManager();
         FileManager.saveItemManagerToFile(itemManager);
+    }
+
+    private void createTradeHistories(){
+        TradeHistories tradeHistories = new TradeHistories();
+        FileManager.saveTradeHistoriesToFile(tradeHistories);
     }
 
 }

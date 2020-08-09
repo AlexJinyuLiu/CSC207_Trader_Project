@@ -1,3 +1,5 @@
+package AdminMenu;
+
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 

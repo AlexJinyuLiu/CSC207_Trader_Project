@@ -1,3 +1,5 @@
+package AdminMenu;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,6 @@ public class AdminOptions {
     private JButton setIncompleteTradeThreshold;
     private JButton editUndoTrade;
     public JButton viewAllUsers;
-    private JButton searchUsername;
     private JButton backToMainMenu;
     public JButton searchUser;
 
@@ -53,6 +54,12 @@ public class AdminOptions {
             public void actionPerformed(ActionEvent e) {
                 ViewCurrentThresholds viewCurrentThresholds = new ViewCurrentThresholds(useCases,
                         controllerPresenterGrouper, window);
+            }
+        });
+        editUndoTrade.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditTrade editTrade = new EditTrade(useCases, controllerPresenterGrouper, window);
             }
         });
     }

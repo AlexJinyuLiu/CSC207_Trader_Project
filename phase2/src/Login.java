@@ -1,6 +1,6 @@
+import AdminMenu.AdminOptions;
 import controllerpresenterpack.*;
 import entitypack.Frame;
-import entitypack.TradingUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
