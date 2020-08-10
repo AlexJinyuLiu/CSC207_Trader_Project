@@ -18,7 +18,7 @@ import java.util.Scanner;
 /**
  * A user alert that alerts a user when they have recieved a trade request from annother user.
  */
-public class TradeRequestAlert extends AlertFactory implements Serializable {
+public class TradeRequestAlert extends UserAlert implements Serializable {
     private String senderUserName;
     private int tradeID;
     private boolean isTempTrade;

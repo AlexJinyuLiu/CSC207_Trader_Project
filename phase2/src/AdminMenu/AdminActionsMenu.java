@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
-import usecasepack.AdminUser;
 
 public class AdminActionsMenu {
     public JPanel mainPanel;
@@ -38,8 +37,6 @@ public class AdminActionsMenu {
         setBorrowLendThreshold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //clicked on setting borrow/lend threshold, redirect  to SetBorrowLendThreshold.java menu
-                SetBorrowLendThreshold setBorrowLendThreshold = new SetBorrowLendThreshold(useCases, cpg, frame);
             }
         });
 

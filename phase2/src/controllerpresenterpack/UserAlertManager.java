@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class UserAlertManager {
 
+
     /**
      * Iterate through each alert in alerts, handle it and remove it from the list
      * @param alerts list of alert that are sent in

@@ -2,12 +2,14 @@ package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
 import entitypack.Frame;
+import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  * An admin alert that is sent to an admin when a user requests to unfreeze their account.

@@ -1,6 +1,11 @@
 package alertpack;
 
 import controllerpresenterpack.GuiMenuPresenter;
+import controllerpresenterpack.MenuPresenter;
+import entitypack.TemporaryTrade;
+import entitypack.Trade;
+import entitypack.TradingUser;
+import entitypack.Frame;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
@@ -8,8 +13,9 @@ import usecasepack.UserManager;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
-public class ExpirationAlert extends AlertFactory implements Serializable {
+public class ExpirationAlert extends UserAlert implements Serializable {
     /** An alert which is tells a user that a temporary trade they are involved in has expired.
      *
      */

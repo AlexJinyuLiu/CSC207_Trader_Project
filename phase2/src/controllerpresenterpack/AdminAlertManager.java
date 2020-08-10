@@ -1,12 +1,14 @@
 package controllerpresenterpack;
 
 import alertpack.*;
+import entitypack.TradingUser;
 import usecasepack.AdminUser;
 import usecasepack.ItemManager;
 import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Manages the handling of admin alerts.

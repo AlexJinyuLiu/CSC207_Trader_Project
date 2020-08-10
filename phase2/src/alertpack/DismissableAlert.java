@@ -7,8 +7,8 @@ import usecasepack.UserManager;
 
 import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 
-public interface Dismissable {
+public interface DismissableAlert {
 
-    String toString(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
+    public String getAlertText(Object menuPresenterObject, AdminUser adminUser, UserManager userManager,
                                TradeCreator tradeCreator, ItemManager itemManager);
 }
