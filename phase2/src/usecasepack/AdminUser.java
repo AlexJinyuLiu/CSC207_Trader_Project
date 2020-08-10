@@ -163,7 +163,13 @@ public class AdminUser implements Serializable{
     }
 
     public void cancelTradeRequest(int tradeID, TradeCreator tradeCreator) {
-        tradeCreator.getPendingTrades().removeIf(trade -> trade.getTradeID() == tradeID);
+        for (Trade pendingTrade : tradeCreator.getPendingTrades()) {
+            if (pendingTrade.getTradeID() == tradeID) {
+                tradeCreator.getPendingTrades().remove(pendingTrade);
+                tradeCreator.getPendingTradeRequests().add(pendingTrade);
+            }
+        }
+
     }
 
     public void undoTrade(int tradeID, TradeHistories tradeHistories, ItemManager itemManager, UserManager userManager){

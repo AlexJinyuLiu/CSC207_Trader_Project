@@ -26,8 +26,9 @@ public class ViewPendingRequests {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO Force User to select a pendingTrade
-                //TODO Show Trade and Give Option to undo
+                ViewTradeToUndo viewTradeToUndo = new ViewTradeToUndo(useCases, controllerPresenterGrouper,
+                        "Request", Integer.parseInt(pendingRequests.getSelectedItem().toString().substring(10)),
+                        window);
             }
         });
         backButton.addActionListener(new ActionListener() {

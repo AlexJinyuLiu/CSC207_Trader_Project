@@ -14,6 +14,7 @@ public class ViewTradeToUndo {
     private JButton backButton;
     private JLabel tradeToString;
     private JLabel description;
+    private JTextPane undoingARequestWillTextPane;
 
     public ViewTradeToUndo(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String tradeType, int tradeID, JFrame window) {
         window.setContentPane(mainPanel);
@@ -21,11 +22,7 @@ public class ViewTradeToUndo {
         window.pack();
         window.setVisible(true);
 
-        description.setText("Trade type: " + tradeType + ". Undoing a \"Request\" will remove the request " +
-                "from request queue of the person it was sent to. Undoing a \"Confirmed\" trade will remove a trade " +
-                "from both party's pending trades queue and put it in the sender's request queue for confirmation. " +
-                "Undoing a \"Completed\" trade will return the items to their respective owners prior to the trade and " +
-                "revert all userStats.");
+        description.setText("Trade type: " + tradeType);
 
         tradeToString.setText(cpg.menuPresenter.printTradeToString(useCases.itemManager, useCases.tradeCreator.searchTrades(tradeID)));
 

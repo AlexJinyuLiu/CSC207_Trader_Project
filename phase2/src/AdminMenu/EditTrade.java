@@ -24,14 +24,14 @@ public class EditTrade {
         viewPendingTrades.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewPendingTrades viewPendingTrades = new ViewPendingTrades(useCases, controllerPresenterGrouper,
+                ViewPendingRequests viewPendingRequests = new ViewPendingRequests(useCases, controllerPresenterGrouper,
                         window);
             }
         });
         viewConfirmedTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewPendingRequests viewConfirmedTrades = new ViewPendingRequests(useCases, controllerPresenterGrouper,
+                ViewPendingTrades viewPendingTrades = new ViewPendingTrades(useCases, controllerPresenterGrouper,
                         window);
             }
         });
