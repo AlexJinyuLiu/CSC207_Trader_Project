@@ -248,3 +248,13 @@ Username field is empty. Please enter a username.
 Account successfully created.
 Add a New Admin
 }
+
+Frame{ - VIEWUSERSTATSMENU
+Items Borrowed
+Items Lent
+Frozen Status
+Incomplete Trades
+Weekly Transactions
+Most Recently Traded Items
+Most Frequent Trading Partners
+}
