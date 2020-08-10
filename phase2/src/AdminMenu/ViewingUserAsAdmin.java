@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import UserMenu.SendMessageMenu;
+import entitypack.TradingUser;
+
 public class ViewingUserAsAdmin {
     private JButton sendAMessageButton;
     private JButton removeAnItemFromButton;
@@ -26,7 +29,9 @@ public class ViewingUserAsAdmin {
         sendAMessageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SendMessageMenu sendMessageMenu = new SendMessageMenu("admin", usernameViewed, cpg,
+                        useCases, window, false, useCases.userManager.searchUser(usernameViewed)
+                        instanceof TradingUser);
             }
         });
         removeAnItemFromButton.addActionListener(new ActionListener() {
