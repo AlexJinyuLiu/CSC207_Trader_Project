@@ -2,6 +2,7 @@ import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
+import entitypack.TradingUser;
 import entitypack.User;
 
 import javax.swing.*;
@@ -42,14 +43,28 @@ public class ViewUserStatsMenu {
         mostFrequentTradingPartnersLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,6));
 
 
-        //TODO use use-cases to fill in the stats
+        TradingUser user = (TradingUser) useCases.userManager.searchUser(username);
+        numberBorrowedAmount.setText(String.valueOf(user.getNumBorrowed()));
+        numberLentAmount.setText(String.valueOf(user.getNumLent()));
+        if (user.getFrozen()) {
+            frozenStatusBool.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,7));
+        }
+        else {
+            frozenStatusBool.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,8));
+        }
+        numIncompleteAmount.setText(String.valueOf(user.getNumIncompleteTrades()));
+        weeklyTransactionsAmount.setText(String.valueOf(useCases.tradeHistories.getNumTradesThisWeek(username)));
+        mostRecentlyTradedItemsAmount.setText(String.valueOf(useCases.tradeHistories.getNRecentItems(useCases.itemManager, username, 3)));
+        mostFrequentTradingPartnersValue.setText(String.valueOf(useCases.tradeHistories.getTopNTradingPartners(username, 3)));
 
 
+
+        backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,9));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
-                        controllerPresenterGrouper, username, frame);
+                        cpg, username, frame);
             }
         });
     }
