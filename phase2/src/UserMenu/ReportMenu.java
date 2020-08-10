@@ -39,7 +39,7 @@ public class ReportMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String reportText = reportTextPane.getText();
-                //TODO send the report to the admin
+                cpg.tradingUserActions.messageAdmin(username, reportText, useCases.adminUser);
 
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 15));
                 TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);

@@ -683,6 +683,17 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         adminUser.addUnfreezeRequest(username);
     }
 
+    public void messageUser(String sendersUsername, String receiversUsername, String messageBody, UserManager userManager) {
+        userManager.messageUser(sendersUsername, receiversUsername, messageBody);
+    }
+
+    public void messageAdmin(String sendersUsername, String messageBody, AdminUser adminUser) {
+        String message = "[" + sendersUsername + "] ------ " + LocalDateTime.now() + "\n" +
+                messageBody + "\n" +
+                "--------------------------------------------------------------------" + "\n";
+        adminUser.addAdminMessage(message);
+    }
+
     /**
      * Allow user to view their pending trade history
      * @param user user logged in

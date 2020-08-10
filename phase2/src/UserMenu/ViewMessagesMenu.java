@@ -1,5 +1,6 @@
 package UserMenu;
 
+import AdminMenu.AdminActionsMenu;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
@@ -22,12 +23,15 @@ public class ViewMessagesMenu {
 
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
 
-        ArrayList<String> messages = useCases.userManager.searchUser(username).getMessages();
+        ArrayList<String> messages;
         StringBuilder messageString = new StringBuilder();
+        if (!username.equals("admin")) {
+            messages = useCases.userManager.searchUser(username).getMessages();
+        }
+        else {
+            messages = useCases.adminUser.getAdminMessages();
+        }
         for (String message : messages) {
-            // JLabel generatedLabel = new JLabel();
-            // generatedLabel.setText(message);
-            // messagePane.add(generatedLabel);
             messageString.append(message);
         }
         messagePane.setText(messageString.toString());
@@ -35,7 +39,12 @@ public class ViewMessagesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                if (!username.equals("admin")) {
+                    TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                }
+                else {
+                    AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, frame);
+                }
             }
         });
     }

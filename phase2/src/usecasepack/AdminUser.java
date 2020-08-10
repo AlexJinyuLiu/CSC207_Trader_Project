@@ -25,6 +25,7 @@ public class AdminUser implements Serializable{
      * Stores the list of alerts to be processed by the admin
      */
     private ArrayList<Prompt> adminAlerts;
+    private ArrayList<String> adminMessages = new ArrayList<String>();
 
     private AdminValidateLoginStrategy strategy = new AdminValidateLoginStrategy();
 
@@ -88,6 +89,14 @@ public class AdminUser implements Serializable{
      */
     public ArrayList<Prompt> getAdminAlerts() {
         return adminAlerts;
+    }
+
+    public void addAdminMessage(String message) {
+        adminMessages.add(message);
+    }
+
+    public ArrayList<String> getAdminMessages() {
+        return adminMessages;
     }
 
     /**
