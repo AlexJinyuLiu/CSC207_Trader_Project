@@ -6,6 +6,7 @@ import entitypack.Frame;
 import entitypack.Trade;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,17 +27,27 @@ public class ViewPendingTradesMenu {
 
         backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
         selectItemButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 1));
+        JPanel content = new JPanel();
+        content.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
 
 
-        //TODO populate the drop down box with pending trade IDs
-        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchPendingTradesUser(username, useCases.userManager, useCases.tradeCreator);
+
+        int n = 0;
+        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchPendingTradesUser(username,
+                useCases.userManager, useCases.tradeCreator);
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));
+            generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,
+                    trade));
             pendingTradesBox.addItem(trade.getTradeID());
-            tradeInfoPane.add(generatedLabel);
+            c.gridy = n;
+            n++;
+            content.add(generatedLabel, c);
         }
 
+        tradeInfoPane.setViewportView(content);
         selectItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -45,7 +56,8 @@ public class ViewPendingTradesMenu {
                     JOptionPane.showMessageDialog(frame, "Please Pick a Trade");
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
-                    ViewTrade viewTrade = new ViewTrade(useCases, controllerPresenterGrouper, username, frame);
+                    Trade trade = useCases.tradeCreator.searchTrades(tradeID);
+                    ConfirmTradeMenu confirmTradeMenu = new ConfirmTradeMenu(useCases, controllerPresenterGrouper, username, frame, trade);
                 }
 
             }

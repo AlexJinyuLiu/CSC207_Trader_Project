@@ -288,3 +288,23 @@ You have already accepted this trade request.
 This trade request has been accepted.
 This trade request has been declined. This trade will be marked as dead.
 }
+
+Frame{ - CONFIRMTRADEMENU
+Back
+Confirm trade has occurred
+User 1:
+User 2:
+Items being transferred from user 1 to user 2:
+Items being transferred from user 2 to user 2:
+Meeting Location:
+Meeting Time:
+User 1 accepted:
+User 2 accepted:
+User 1 number of counter-offers remaining:
+User 2 number of counter-offers remaining:
+Trade ID number:
+You have marked this trade as confirmed.
+Report trade to admin
+Report sent to admin
+Please detail why you are reporting this trade to the admin team.
+}

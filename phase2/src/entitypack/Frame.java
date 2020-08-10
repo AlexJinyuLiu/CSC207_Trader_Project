@@ -44,5 +44,6 @@ public enum Frame {
 
     ADDNEWADMIN,
 
-    ACCEPTTRADEMENU
+    ACCEPTTRADEMENU,
+    CONFIRMTRADEMENU
 }

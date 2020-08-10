@@ -776,6 +776,9 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
                 meetingPlace);
     }
 
+    //TODO JAVAdocs for these methods
+
+
     public void acceptTradeRequest(TradeCreator tradeCreator, String username, Trade trade){
         tradeCreator.acceptTradeRequest(trade, username);
     }
@@ -788,7 +791,13 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         tradeCreator.editTradeRequest(trade, newDateTime, newMeetingPlace, username);
     }
 
-    //TODO JAVAdocs for these methods
+    public void confirmTrade(UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager, Trade trade, String username){
+        TradingUser user1 = (TradingUser) userManager.searchUser(trade.getUsername1());
+        TradingUser user2 = (TradingUser) userManager.searchUser(trade.getUsername2());
+        TradingUser userAccepting = (TradingUser) userManager.searchUser(username);
+        tradeCreator.confirmTrade(userManager, userAccepting, trade, itemManager, user1, user2);
+    }
+
 
     public ArrayList<Trade> searchPendingTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
