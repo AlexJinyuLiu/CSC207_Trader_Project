@@ -44,6 +44,7 @@ View trade requests
 View completed trades
 View active temporary trades
 
+View messages
 }
 
 Frame{ - ADMINACTIONSMENU
@@ -247,6 +248,13 @@ Password field is empty. Please enter or confirm your password.
 Username field is empty. Please enter a username.
 Account successfully created.
 Add a New Admin
+}
+
+Frame{ - SENDMESSAGEMENU
+Send
+Back
+Enter your message here
+The message has been successfully sent!
 }
 
 Frame{ - VIEWUSERSTATSMENU
