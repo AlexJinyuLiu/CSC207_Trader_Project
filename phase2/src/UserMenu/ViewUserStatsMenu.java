@@ -55,9 +55,9 @@ public class ViewUserStatsMenu {
             frozenStatusBool.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,8));
         }
         numIncompleteAmount.setText(String.valueOf(user.getNumIncompleteTrades()));
-        weeklyTransactionsAmount.setText(String.valueOf(useCases.tradeHistories.getNumTradesThisWeek(username)));
-        mostRecentlyTradedItemsAmount.setText(String.valueOf(useCases.tradeHistories.getNRecentItems(useCases.itemManager, username, 3)));
-        mostFrequentTradingPartnersValue.setText(String.valueOf(useCases.tradeHistories.getTopNTradingPartners(username, 3)));
+        weeklyTransactionsAmount.setText(String.valueOf(useCases.tradeCreator.getTradeHistories().getNumTradesThisWeek(username)));
+        mostRecentlyTradedItemsAmount.setText(String.valueOf(useCases.tradeCreator.getTradeHistories().getNRecentItems(useCases.itemManager, username, 3)));
+        mostFrequentTradingPartnersValue.setText(String.valueOf(useCases.tradeCreator.getTradeHistories().getTopNTradingPartners(username, 3)));
 
 
 
