@@ -1,6 +1,7 @@
 package UserMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.TradingUserActions;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
 import entitypack.Item;
@@ -106,7 +107,7 @@ public class AcceptTradeMenu {
                     JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 14));
                     controllerPresenterGrouper.tradingUserActions.acceptTradeRequest(useCases.tradeCreator, username, trade);
                 }
-
+                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         backButton.addActionListener(new ActionListener() {
@@ -126,6 +127,7 @@ public class AcceptTradeMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 15));
                 useCases.tradeCreator.declineTradeRequest(trade);
+                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
     }

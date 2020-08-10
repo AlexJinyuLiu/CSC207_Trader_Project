@@ -30,7 +30,7 @@ public class ViewActiveTemporaryTradesMenu {
 
 
         //TODO populate the drop down box with pending trade IDs
-        ArrayList<TemporaryTrade> trades = controllerPresenterGrouper.tradingUserActions.searchCurrentTempTradesUser(username, useCases.userManager, useCases.tradeCreator.getTradeHistories());
+        ArrayList<TemporaryTrade> trades = controllerPresenterGrouper.tradingUserActions.searchCurrentTempTradesUser(username, useCases.userManager, useCases.tradeCreator);
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
             generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));

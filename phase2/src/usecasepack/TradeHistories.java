@@ -326,7 +326,8 @@ public class TradeHistories  implements Serializable {
      * @return the trades of the user
      */ //TradeManager
     public ArrayList<Trade> searchDeadTradesByUser(TradingUser user) {
-        ArrayList<Trade> userTrades = new ArrayList<Trade>();
+        ArrayList<Trade> userTrades = new ArrayList<>();
+        System.out.println(deadTrades);
         for (Trade trade: deadTrades) {
             if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
                 userTrades.add(trade);
@@ -340,7 +341,7 @@ public class TradeHistories  implements Serializable {
      * @return the trades of the user
      */ //TradeManager
     public ArrayList<Trade> searchCompletedTradesByUser(TradingUser user) {
-        ArrayList<Trade> userTrades = new ArrayList<Trade>();
+        ArrayList<Trade> userTrades = new ArrayList<>();
         for (Trade trade: completedTrades) {
             if (trade.getUsername1().equals(user.getUsername()) || trade.getUsername2().equals(user.getUsername())) {
                 userTrades.add(trade);

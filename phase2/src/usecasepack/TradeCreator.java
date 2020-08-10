@@ -248,7 +248,7 @@ public class TradeCreator implements Serializable {
             trade.incrementUser1NumRequests();
         } else if (UserEditingName.equals(trade.getUsername2())) {
             trade.setUser2AcceptedRequest(true);
-            trade.setUser2AcceptedRequest(false);
+            trade.setUser1AcceptedRequest(false);
             trade.incrementUser2NumRequests();
         }
 

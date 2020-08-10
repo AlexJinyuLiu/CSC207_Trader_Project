@@ -791,23 +791,31 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
     //TODO JAVAdocs for these methods
 
     public ArrayList<Trade> searchPendingTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
-        return tradeCreator.searchPendingTradesByUser((TradingUser) userManager.searchUser(username));
+        TradingUser user = (TradingUser) userManager.searchUser(username);
+        return tradeCreator.searchPendingTradesByUser(user);
     }
 
     public ArrayList<Trade> searchPendingTradeRequestsUser(String username, UserManager userManager, TradeCreator tradeCreator){
-        return tradeCreator.searchPendingTradeRequestsByUser((TradingUser) userManager.searchUser(username));
+        TradingUser user = (TradingUser) userManager.searchUser(username);
+        return tradeCreator.searchPendingTradeRequestsByUser(user);
     }
 
-    public ArrayList<TemporaryTrade> searchCurrentTempTradesUser(String username, UserManager userManager, TradeHistories tradeHistories){
-        return tradeHistories.searchActiveTempTradesByUser((TradingUser) userManager.searchUser(username));
+    public ArrayList<TemporaryTrade> searchCurrentTempTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
+        TradingUser user = (TradingUser) userManager.searchUser(username);
+        TradeHistories tradeHistories = tradeCreator.getTradeHistories();
+        return tradeHistories.searchActiveTempTradesByUser(user);
     }
 
-    public ArrayList<Trade> searchCompletedTradesUser(String username, UserManager userManager, TradeHistories tradeHistories){
-        return tradeHistories.searchCompletedTradesByUser((TradingUser) userManager.searchUser(username));
+    public ArrayList<Trade> searchCompletedTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
+        TradingUser user = (TradingUser) userManager.searchUser(username);
+        TradeHistories tradeHistories = tradeCreator.getTradeHistories();
+        return tradeHistories.searchCompletedTradesByUser(user);
     }
 
-    public ArrayList<Trade> searchDeadTradesUser(String username, UserManager userManager, TradeHistories tradeHistories){
-        return tradeHistories.searchDeadTradesByUser((TradingUser) userManager.searchUser(username));
+    public ArrayList<Trade> searchDeadTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
+        TradingUser user = (TradingUser) userManager.searchUser(username);
+        TradeHistories tradeHistories = tradeCreator.getTradeHistories();
+        return tradeHistories.searchDeadTradesByUser(user);
     }
 
 }

@@ -6,6 +6,7 @@ import entitypack.Frame;
 import entitypack.Trade;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,14 +24,25 @@ public class ViewDeadTradesMenu {
         frame.setVisible(true);
 
         backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
+        JPanel content = new JPanel();
+        content.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
 
 
-        //TODO populate the drop down box with pending trade IDs
-        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchDeadTradesUser(username, useCases.userManager, useCases.tradeCreator.getTradeHistories());
-        for (Trade trade: trades){
-            JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));
-            tradeInfoPane.add(generatedLabel);
+
+        int n = 0;
+        ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchDeadTradesUser(username,
+                useCases.userManager, useCases.tradeCreator);
+        if(trades != null) {
+            for (Trade trade : trades) {
+                JLabel generatedLabel = new JLabel();
+                generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,
+                        trade));
+                c.gridy = n;
+                n++;
+                content.add(generatedLabel, c);
+            }
         }
 
         backButton.addActionListener(new ActionListener() {
