@@ -35,8 +35,8 @@ public class AddNewAdmin {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = newUsername.getSelectedText();
-                String password = newPassword.getSelectedText();
+                String username = newUsername.getText();
+                String password = new String(newPassword.getPassword());
                 controllerPresenterGrouper.adminActions.addNewLogin(useCases.adminUser, username, password);
 
                 char[] passwordCharArr = newPassword.getPassword();
