@@ -59,9 +59,7 @@ public class AdminActions implements UserBrowsing, ActionController{
                     viewThresholdValues(menuPresenter, userManager, tradeCreator);
                     valid_input = true;
                 } else if (input == 6) {
-                    //TODO: Finish similar browsing system for trades.
-                    editTrade(menuPresenter, userManager, tradeCreator, adminUser, tradeCreator.getTradeHistories(),
-                            itemManager);
+                    //TODO: EditTrade
                     valid_input = true;
                 } else if (input == 7) {
                     viewAllUsers(userManager);
@@ -207,25 +205,25 @@ public class AdminActions implements UserBrowsing, ActionController{
         }*/
     }
 
-    private void editTrade(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                           AdminUser adminUser, TradeHistories tradeHistories, ItemManager itemManager) {
-        boolean flag = true;
+    public void editTrade(int tradeID, String input, AdminUser adminUser, TradeCreator tradeCreator,
+                          ItemManager itemManager, UserManager userManager) {
+        /*boolean flag = true;
         int input = -1;
         while (flag) {
             Scanner scan = new Scanner(System.in);
             /** menuPresenter.printMenu(44,0);
-            menuPresenter.printMenu(44,1);
-            menuPresenter.printMenu(44,2);
-            menuPresenter.printMenu(44,3);
-            input = scan.nextInt();
-            if (input > 50 || input < -1) {
-                // "Please enter a valid integer"
-                menuPresenter.printMenu(44,4);
-            } else if (input == 1) {
-                // trade lookup by ID (don't think we still need this)
-                flag = false;
-            } else if (input == 2) { **/
-                ArrayList<Trade> listTrades = new ArrayList<Trade>();
+             menuPresenter.printMenu(44,1);
+             menuPresenter.printMenu(44,2);
+             menuPresenter.printMenu(44,3);
+             input = scan.nextInt();
+             if (input > 50 || input < -1) {
+             // "Please enter a valid integer"
+             menuPresenter.printMenu(44,4);
+             } else if (input == 1) {
+             // trade lookup by ID (don't think we still need this)
+             flag = false;
+             } else if (input == 2) { **/
+                /*ArrayList<Trade> listTrades = new ArrayList<Trade>();
                 listTrades.addAll(tradeCreator.getPendingTradeRequests());
                 listTrades.addAll(tradeCreator.getPendingTrades());
                 listTrades.addAll(tradeHistories.getCompletedTrades());
@@ -308,13 +306,20 @@ public class AdminActions implements UserBrowsing, ActionController{
                 // BrowsingUserActions browse = new BrowsingUserActions();
                 // browse.runBrowsingUserMenu(menuPresenter, userManager, tradeCreator, adminUser);
                 flag = false;
-            } /** else if (input == 0) {
-                // quit
-                flag = false;
+            } *//** else if (input == 0) {
+             // quit
+             flag = false;
+             }
+             } **//*
+    }*/
+            if (input.equals("Request")) {
+                adminUser.unsendTradeRequest(tradeID, tradeCreator);
+            } else if (input.equals("Confirmed")) {
+                adminUser.cancelTradeRequest(tradeID, tradeCreator);
+            } else if (input.equals("Completed")) {
+                adminUser.undoTrade(tradeID, tradeCreator.getTradeHistories(), itemManager, userManager);
             }
-        } **/
-    }
-
+        }
     private void viewThresholdValues(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator){
         menuPresenter.printMenu(39, 0);
         menuPresenter.printMenu(39, 1, tradeCreator.getBorrowLendThreshold());
