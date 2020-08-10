@@ -3,6 +3,8 @@ package AdminMenu;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import UserMenu.ViewMessagesMenu;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
@@ -17,6 +19,7 @@ public class AdminActionsMenu {
     private JButton editUndoTrade;
     public JButton viewAllUsers;
     private JButton viewItemValidationRequests;
+    private JButton viewMessages;
     public JButton searchUser;
 
     public AdminActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, JFrame frame){
@@ -33,6 +36,7 @@ public class AdminActionsMenu {
         editUndoTrade.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 5));
         viewAllUsers.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 6));
         viewItemValidationRequests.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 7));
+        viewMessages.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 8));
 
         setBorrowLendThreshold.addActionListener(new ActionListener() {
             @Override
@@ -74,6 +78,12 @@ public class AdminActionsMenu {
             public void actionPerformed(ActionEvent e) {
                 ViewItemValidationRequests viewItemValidationRequests = new ViewItemValidationRequests(useCases,
                         cpg, frame);
+            }
+        });
+        viewMessages.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewMessagesMenu viewMessagesMenu = new ViewMessagesMenu(useCases, cpg, "admin", frame);
             }
         });
     }

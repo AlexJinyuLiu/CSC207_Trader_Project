@@ -33,7 +33,7 @@ public class SendMessageMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String messageBody = messageTextPane.getText();
-                useCases.userManager.messageUser(sendersUsername, receiversUsername, messageBody);
+                cpg.tradingUserActions.messageUser(sendersUsername, receiversUsername, messageBody, useCases.userManager);
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 3));
             }
         });
