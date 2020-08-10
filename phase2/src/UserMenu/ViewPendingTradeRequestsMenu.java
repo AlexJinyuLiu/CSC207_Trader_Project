@@ -57,7 +57,7 @@ public class ViewPendingTradeRequestsMenu {
                     JOptionPane.showMessageDialog(frame, "Please Pick a Trade");
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
-                    ViewTrade viewTrade = new ViewTrade(useCases, controllerPresenterGrouper, username, frame);
+                    AcceptTradeMenu acceptTradeMenu = new AcceptTradeMenu(useCases,controllerPresenterGrouper, username, frame, useCases.tradeCreator.searchTrades(tradeID));
                 }
 
             }

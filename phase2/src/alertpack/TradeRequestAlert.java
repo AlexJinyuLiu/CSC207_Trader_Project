@@ -134,7 +134,7 @@ public class TradeRequestAlert extends UserAlert implements Serializable {
             menuPresenter.printMenu(25, 11);
             String inputMeetingPlace = scan.nextLine();
             assert meetingTime != null;
-            tradeCreator.editTradeRequest(userManager, trade, meetingTime, inputMeetingPlace, thisUser.getUsername());
+            tradeCreator.editTradeRequest(trade, meetingTime, inputMeetingPlace, thisUser.getUsername());
 
             TradeRequestAlert alert = new TradeRequestAlert(thisUser.getUsername(), trade.getTradeID(),
                     trade instanceof TemporaryTrade);

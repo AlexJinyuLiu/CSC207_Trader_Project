@@ -202,15 +202,23 @@
           <text value="Label"/>
         </properties>
       </component>
-      <component id="956f5" class="javax.swing.JLabel" binding="user2EditsMadeLabel">
+      <component id="1e9ed" class="javax.swing.JButton" binding="counterOfferButton">
         <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <text value="Button"/>
         </properties>
       </component>
-      <component id="786ac" class="javax.swing.JLabel" binding="user2EditsMadeValue">
+      <component id="306f5" class="javax.swing.JButton" binding="declineTradeButton">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Button"/>
+        </properties>
+      </component>
+      <component id="956f5" class="javax.swing.JLabel" binding="user2EditsMadeLabel">
         <constraints>
           <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -218,12 +226,12 @@
           <text value="Label"/>
         </properties>
       </component>
-      <component id="1e9ed" class="javax.swing.JButton" binding="counterOfferButton">
+      <component id="3022f" class="javax.swing.JLabel" binding="user2EditsMadeValue">
         <constraints>
-          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Button"/>
+          <text value="Label"/>
         </properties>
       </component>
     </children>

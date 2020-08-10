@@ -281,4 +281,10 @@ Meeting Location:
 Meeting Time:
 User 1 accepted:
 User 2 accepted:
+User 1 number of counter-offers remaining:
+User 2 number of counter-offers remaining:
+Trade ID number:
+You have already accepted this trade request.
+This trade request has been accepted.
+This trade request has been declined. This trade will be marked as dead.
 }

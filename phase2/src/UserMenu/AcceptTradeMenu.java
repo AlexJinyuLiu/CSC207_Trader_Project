@@ -39,6 +39,7 @@ public class AcceptTradeMenu {
     private JButton counterOfferButton;
     private JLabel user1EditsMadeValue;
     private JLabel user2EditsMadeValue;
+    private JButton declineTradeButton;
 
     public AcceptTradeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                            String username, JFrame frame, Trade trade) {
@@ -99,19 +100,32 @@ public class AcceptTradeMenu {
         acceptRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                if((username.equals(trade.getUsername1()) && trade.getUser1AcceptedRequest()) || username.equals(trade.getUsername2()) && trade.getUser2AcceptedRequest()){
+                    JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 13));
+                }else {
+                    JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 14));
+                    controllerPresenterGrouper.tradingUserActions.acceptTradeRequest(useCases.tradeCreator, username, trade);
+                }
 
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                ViewPendingTradeRequestsMenu viewPendingTradeRequestsMenu = new ViewPendingTradeRequestsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         counterOfferButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                CounterOfferMenu counterOfferMenu = new CounterOfferMenu(useCases, controllerPresenterGrouper, username, frame, trade);
+            }
+        });
+        declineTradeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 15));
+                useCases.tradeCreator.declineTradeRequest(trade);
             }
         });
     }

@@ -776,6 +776,18 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
                 meetingPlace);
     }
 
+    public void acceptTradeRequest(TradeCreator tradeCreator, String username, Trade trade){
+        tradeCreator.acceptTradeRequest(trade, username);
+    }
+
+    public void declineTradeRequest(TradeCreator tradeCreator, Trade trade){
+        tradeCreator.declineTradeRequest(trade);
+    }
+
+    public void counterTradeRequest(TradeCreator tradeCreator, String username, Trade trade, String newMeetingPlace, LocalDateTime newDateTime){
+        tradeCreator.editTradeRequest(trade, newDateTime, newMeetingPlace, username);
+    }
+
     //TODO JAVAdocs for these methods
 
     public ArrayList<Trade> searchPendingTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){

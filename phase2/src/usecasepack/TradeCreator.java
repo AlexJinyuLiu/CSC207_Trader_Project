@@ -238,7 +238,7 @@ public class TradeCreator implements Serializable {
      * @param meetingPlace    location of trade
      * @param UserEditingName username of user who is editing the trade
      */ //TradeManager
-    public void editTradeRequest(UserManager userManager, Trade trade, LocalDateTime timeOfTrade,
+    public void editTradeRequest(Trade trade, LocalDateTime timeOfTrade,
                                  String meetingPlace, String UserEditingName) {
         trade.setTimeOfTrade(timeOfTrade);
         trade.setMeetingPlace(meetingPlace);
