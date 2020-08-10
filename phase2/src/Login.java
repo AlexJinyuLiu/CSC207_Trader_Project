@@ -43,11 +43,15 @@ public class Login extends JFrame{
                         //TODO send admin to adminActionsMenu instead of userActionsMenu
                         AdminActionsMenu adminOptionsMenu = new AdminActionsMenu(useCases,
                                 cpg, frame);
+                        // cpg.adminAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser,
+                        //        useCases.userManager, useCases.tradeCreator, useCases.itemManager,
+                        //        useCases.adminUser.getAdminAlerts());
                     } else {
                         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));
                     }
                 }else{
                     UserActions userActions = new UserActions();
+                    // TODO send user to Options
                     //This version of validateLogin returns null if the login is invalid, true if the user is a
                     //TradingUser, and false if the user is a BrowsingUser
                     validLogin = userActions.validateLogin(useCases.userManager, user, pass);

@@ -19,7 +19,7 @@ public class AdminAlertManager {
      *
      * @param alerts Array List of AdminAlerts that need to be processed.
      */
-    public void handleAlertQueue(MenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
+    public void handleAlertQueue(GuiMenuPresenter menuPresenter, AdminUser adminUser, UserManager userManager,
                                  TradeCreator tradeCreator, ItemManager itemManager, ArrayList<AdminAlert> alerts){
 
         while(!(alerts.size() == 0)){
