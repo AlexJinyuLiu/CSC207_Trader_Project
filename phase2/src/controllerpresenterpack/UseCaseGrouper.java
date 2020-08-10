@@ -12,6 +12,7 @@ public class UseCaseGrouper {
     public UserManager userManager;
     public TradeCreator tradeCreator;
     public ItemManager itemManager;
+    public TradeHistories tradeHistories;
 
 
     public UseCaseGrouper(AdminUser adminUser, UserManager userManager,

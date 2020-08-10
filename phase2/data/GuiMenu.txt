@@ -257,4 +257,7 @@ Incomplete Trades
 Weekly Transactions
 Most Recently Traded Items
 Most Frequent Trading Partners
+Frozen
+Not Frozen
+Back
 }
