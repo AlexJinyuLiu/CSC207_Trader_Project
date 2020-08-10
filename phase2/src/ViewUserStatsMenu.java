@@ -1,6 +1,7 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 import entitypack.User;
 
 import javax.swing.*;
@@ -25,14 +26,20 @@ public class ViewUserStatsMenu {
     private JLabel mostFrequentTradingPartnersLabel;
     private JLabel mostFrequentTradingPartnersValue;
 
-    public ViewUserStatsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+    public ViewUserStatsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                              String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-        //TODO use presenter and use-case to fill in labels
+        numberBorrowedLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,0));
+        numberLentLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,1));
+        frozenStatusLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,2));
+        numIncompleteLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,3));
+        weeklyTransactionsLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,4));
+        mostRecentlyTradedItemsLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,5));
+        mostFrequentTradingPartnersLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,6));
 
 
         //TODO use use-cases to fill in the stats
