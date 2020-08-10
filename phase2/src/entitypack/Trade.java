@@ -269,4 +269,36 @@ public class Trade implements Serializable {
     public void setUsersAlertedToPastDue(boolean usersAlertedToPastDue) {
         this.usersAlertedToPastDue = usersAlertedToPastDue;
     }
+
+    /**
+     *
+     * @return whether user 1 has accepted the trade request
+     */
+    public boolean getUser1AcceptedRequest() {
+        return user1AcceptedRequest;
+    }
+
+    /**
+     *
+     * @return whether user 2 has accepted the trade request
+     */
+    public boolean getUser2AcceptedRequest() {
+        return user2AcceptedRequest;
+    }
+
+    /**
+     *
+     * @return whether user 1 has confirmed the trade occurred
+     */
+    public boolean getUser1TradeConfirmed() {
+        return user1TradeConfirmed;
+    }
+
+    /**
+     *
+     * @return whether user 2 has confirmed the trade occurred.
+     */
+    public boolean getUser2TradeConfirmed() {
+        return user2TradeConfirmed;
+    }
 }

@@ -112,8 +112,8 @@ public class GuiMenuPresenter {
         StringBuilder acc = new StringBuilder();
         acc.append(getText(Frame.TRADETOSTRING, 1, trade.getUsername1()));
         acc.append(getText(Frame.TRADETOSTRING, 2, trade.getUsername2()));
-        acc.append(getText(Frame.TRADETOSTRING, 3, GetItemNamesFromUser1ToUser2(trade, itemManager)));
-        acc.append(getText(Frame.TRADETOSTRING, 4, GetItemNamesFromUser2ToUser1(trade, itemManager)));
+        acc.append(getText(Frame.TRADETOSTRING, 3, getItemNamesFromUser1ToUser2(trade, itemManager)));
+        acc.append(getText(Frame.TRADETOSTRING, 4, getItemNamesFromUser2ToUser1(trade, itemManager)));
         acc.append(getText(Frame.TRADETOSTRING, 5, trade.getTimeOfTrade().toString()));
         acc.append(getText(Frame.TRADETOSTRING, 6, trade.getMeetingPlace()));
         acc.append(getText(Frame.TRADETOSTRING, 7, trade.getTradeID()));
@@ -121,7 +121,7 @@ public class GuiMenuPresenter {
         return acc.toString();
     }
     // helper method which lists the names of the items going from user 1 to user 2 - Louis
-    private String GetItemNamesFromUser1ToUser2(Trade trade, ItemManager itemManager){
+    private String getItemNamesFromUser1ToUser2(Trade trade, ItemManager itemManager){
         StringBuilder stringBuilder = new StringBuilder();
         for(int itemID: trade.getItemIDsSentToUser2()){
             Item item = itemManager.searchItem(itemID);
@@ -131,7 +131,7 @@ public class GuiMenuPresenter {
         return null;
     }
     // helper method which lists the names of the items going from user 2 to user 1 - Louis
-    private String GetItemNamesFromUser2ToUser1(Trade trade, ItemManager itemManager){
+    private String getItemNamesFromUser2ToUser1(Trade trade, ItemManager itemManager){
         StringBuilder stringBuilder = new StringBuilder();
         for(int itemID: trade.getItemIDsSentToUser1()){
             Item item = itemManager.searchItem(itemID);
@@ -139,6 +139,38 @@ public class GuiMenuPresenter {
             return stringBuilder.toString();
         }
         return null;
+    }
+
+    public ArrayList<String> getItemStringsFromUser1ToUser2(Trade trade, ItemManager itemManager){
+        ArrayList<String> list = new ArrayList<String>();
+        for(int i :  trade.getItemIDsSentToUser2()){
+            Item item = itemManager.searchItem(i);
+            StringBuilder sb = new StringBuilder();
+            sb.append(item.getName());
+            sb.append(" ===== ");
+            sb.append(item.getId());
+            sb.append("\n");
+            sb.append(item.getDescription());
+            String string = sb.toString();
+            list.add(string);
+        }
+        return list;
+    }
+
+    public ArrayList<String> getItemStringsFromUser2ToUser1(Trade trade, ItemManager itemManager){
+        ArrayList<String> list = new ArrayList<String>();
+        for(int i :  trade.getItemIDsSentToUser1()){
+            Item item = itemManager.searchItem(i);
+            StringBuilder sb = new StringBuilder();
+            sb.append(item.getName());
+            sb.append(" ===== ");
+            sb.append(item.getId());
+            sb.append("\n");
+            sb.append(item.getDescription());
+            String string = sb.toString();
+            list.add(string);
+        }
+        return list;
     }
 
     /**

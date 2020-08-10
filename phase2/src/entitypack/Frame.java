@@ -43,4 +43,6 @@ public enum Frame {
     SENDMESSAGEMENU,
 
     ADDNEWADMIN,
+
+    ACCEPTTRADEMENU
 }

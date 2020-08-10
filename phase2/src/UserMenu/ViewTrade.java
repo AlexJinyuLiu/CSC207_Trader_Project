@@ -30,6 +30,8 @@ public class ViewTrade {
     private JLabel user2ConfirmedValue;
     private JLabel user2ConfirmedLabel;
     private JButton backButton;
+    private JLabel tradeIDValue;
+    private JLabel tradeIDLabel;
 
     public ViewTrade(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);

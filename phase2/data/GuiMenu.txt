@@ -269,3 +269,15 @@ Frozen
 Not Frozen
 Back
 }
+
+Frame{ - ACCEPTTRADESMENU
+Back
+Accept Trade Request
+User 1:
+User 2:
+Items being transferred from user 1 to user 2:
+Items being transferred from user 2 to user 2:
+Meeting Location:
+Meeting Time:
+User 1 accepted:
+User 2 accepted:
