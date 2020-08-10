@@ -26,20 +26,38 @@ public class AddNewAdmin {
         frame.pack();
         frame.setVisible(true);
 
+        addNewAdminTitle.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN,8));
+        setAdminUsername.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN,0));
+        setAdminPassword.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN,1));
+        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN,2));
+        submitButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN,3));
+
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = newUsername.getSelectedText();
                 String password = newPassword.getSelectedText();
                 controllerPresenterGrouper.adminActions.addNewLogin(useCases.adminUser, username, password);
-            }
 
-        });
+                char[] passwordCharArr = newPassword.getPassword();
+                if (passwordCharArr.length == 0){
+                    JOptionPane.showMessageDialog(frame,
+                            controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN, 5));
+                    return;
+
+            }
+                JOptionPane.showMessageDialog(frame,
+                        controllerPresenterGrouper.menuPresenter.getText(Frame.ADDNEWADMIN, 7));
+                AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases,
+                        controllerPresenterGrouper, frame);
+
+        };
+
+    });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, controllerPresenterGrouper, frame);
             }
         });
-    }
-}
+    }};

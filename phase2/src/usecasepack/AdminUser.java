@@ -4,7 +4,6 @@ import entitypack.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * A use case class describing the business rules for admin functionality.

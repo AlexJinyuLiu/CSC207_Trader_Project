@@ -236,3 +236,15 @@ Item Description:
 User:
 Validate
 }
+
+Frame{ - ADDNEWADMIN
+Username
+Password
+Back
+Confirm
+Could not register this account because the username is taken.
+Password field is empty. Please enter or confirm your password.
+Username field is empty. Please enter a username.
+Account successfully created.
+Add a New Admin
+}
