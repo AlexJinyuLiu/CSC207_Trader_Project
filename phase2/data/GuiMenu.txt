@@ -270,7 +270,7 @@ Not Frozen
 Back
 }
 
-Frame{ - ACCEPTTRADESMENU
+Frame{ - ACCEPTTRADEMENU
 Back
 Accept Trade Request
 User 1:
@@ -281,3 +281,4 @@ Meeting Location:
 Meeting Time:
 User 1 accepted:
 User 2 accepted:
+}
