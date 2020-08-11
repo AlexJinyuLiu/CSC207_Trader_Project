@@ -64,14 +64,16 @@ public class ViewUserStatsMenu {
         StringBuilder recentItems = new StringBuilder();
         for (Item item : useCases.tradeCreator.getTradeHistories()
                 .getNRecentItems(useCases.itemManager, username, 3)) {
-            recentItems.append(item);
+            String item_string = item.getName() + " ";
+            recentItems.append(item_string);
         }
         mostRecentlyTradedItemsAmount.setText(recentItems.toString());
 
         StringBuilder frequentPartners = new StringBuilder();
-        for (String item : useCases.tradeCreator.getTradeHistories()
+        for (String partner : useCases.tradeCreator.getTradeHistories()
                 .getTopNTradingPartners(username, 3)) {
-            frequentPartners.append(item);
+            String partner_string = partner + " ";
+            frequentPartners.append(partner_string);
         }
         mostFrequentTradingPartnersValue.setText(frequentPartners.toString());
 
