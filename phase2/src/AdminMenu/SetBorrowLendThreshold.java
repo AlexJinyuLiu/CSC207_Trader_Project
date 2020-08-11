@@ -26,6 +26,8 @@ public class SetBorrowLendThreshold {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         final int[] newThresh = new int[1];
+        final int[] completed = new int[1];
+        final int[] incompleted = new int[1];
         menuTitle.setText("Admin Actions");
         enterThreshold.setText("Enter New Threshold");
         newThresholdField.setText(enterThreshold.getText());
@@ -39,16 +41,16 @@ public class SetBorrowLendThreshold {
         submitIncompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newThresh[0] = Integer.parseInt(newIncompletes.getText()); //wrapping string as an int
-                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, newThresh[0]);
+                incompleted[0] = Integer.parseInt(newIncompletes.getText()); //wrapping string as an int
+                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted[0]);
             }
         });
 
         submitCompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newThresh[0] = Integer.parseInt(newCompletes.getText()); //wrapping string as an int
-                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, newThresh[0]);
+                completed[0] = Integer.parseInt(newCompletes.getText()); //wrapping string as an int
+                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed[0]);
             }
         });
 
@@ -60,4 +62,9 @@ public class SetBorrowLendThreshold {
             }
         });
 
-}}
+}
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
+}
