@@ -109,7 +109,7 @@ public class TradingUserActionsMenu {
         viewPendingTradeRequestsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradeRequestsMenu viewPendingTradeRequestsMenu = new ViewPendingTradeRequestsMenu(useCases,
+                ViewTradeRequestsMenu viewTradeRequestsMenu = new ViewTradeRequestsMenu(useCases,
                         cpg, username, frame);
             }
         });

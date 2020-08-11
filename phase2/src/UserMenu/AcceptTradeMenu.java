@@ -1,10 +1,8 @@
 package UserMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.TradingUserActions;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
-import entitypack.Item;
 import entitypack.Trade;
 
 import javax.swing.*;
@@ -60,6 +58,9 @@ public class AcceptTradeMenu {
         meetingTimeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 7));
         user1AcceptedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 8));
         user2AcceptedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 9));
+        tradeIDLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 12));
+        user1EditsMadeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 10));
+        user2EditsMadeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 11));
 
         //Should i do this or does this break clean architecture? - Louis
         user1Value.setText(trade.getUsername1());
@@ -121,7 +122,7 @@ public class AcceptTradeMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradeRequestsMenu viewPendingTradeRequestsMenu = new ViewPendingTradeRequestsMenu(useCases, controllerPresenterGrouper, username, frame);
+                ViewTradeRequestsMenu viewTradeRequestsMenu = new ViewTradeRequestsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         counterOfferButton.addActionListener(new ActionListener() {

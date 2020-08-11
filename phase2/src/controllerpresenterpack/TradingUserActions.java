@@ -809,6 +809,10 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         tradeCreator.confirmTrade(userManager, userAccepting, trade, itemManager, user1, user2);
     }
 
+    public void confirmReExchange(UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager, TemporaryTrade trade, String username){
+        tradeCreator.getTradeHistories().confirmReExchange(itemManager, (TradingUser) userManager.searchUser(username), trade);
+    }
+
 
     public ArrayList<Trade> searchPendingTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
@@ -836,6 +840,10 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         TradingUser user = (TradingUser) userManager.searchUser(username);
         TradeHistories tradeHistories = tradeCreator.getTradeHistories();
         return tradeHistories.searchDeadTradesByUser(user);
+    }
+
+    public Trade searchTrade(TradeCreator tradeCreator, int tradeID){
+        return tradeCreator.searchTrades(tradeID);
     }
 
 }

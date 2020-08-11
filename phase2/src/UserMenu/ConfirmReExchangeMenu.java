@@ -1,11 +1,9 @@
 package UserMenu;
 
-import AdminMenu.ViewPendingTrades;
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.TradingUserActions;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
-import entitypack.Item;
+import entitypack.TemporaryTrade;
 import entitypack.Trade;
 
 import javax.swing.*;
@@ -15,61 +13,57 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ConfirmTradeMenu {
+public class ConfirmReExchangeMenu {
+    private JPanel mainPanel;
     private JLabel tradeIDLabel;
     private JLabel tradeIDValue;
     private JLabel user1Label;
-    private JLabel user1Value;
+    private JLabel user2Label;
     private JLabel itemsToUser1Label;
     private JLabel itemsToUser2Label;
-    private JLabel meetingLocationLabel;
-    private JLabel meetingTimeLabel;
-    private JLabel user2Label;
+    private JLabel user1Value;
     private JLabel user2Value;
-    private JTextPane itemsToUser2List;
-    private JLabel meetingLocationValue;
-    private JLabel meetingTimeValue;
-    private JButton confirmTradeButton;
-    private JButton backButton;
-    private JButton reportButton;
-    private JLabel user1ConfirmedValue;
-    private JLabel user1ConfirmedLabel;
-    private JLabel user2ConfirmedValue;
-    private JLabel user2ConfirmedLabel;
-    private JPanel mainPanel;
     private JTextPane itemsToUser1List;
+    private JTextPane itemsToUser2List;
+    private JButton backButton;
+    private JButton confirmReExchangeButton;
+    private JButton reportButton;
+    private JLabel reExchangeTimeLabel;
+    private JLabel user1ConfirmedReExchangeLabel;
+    private JLabel user2ConfirmedReExchangeLabel;
+    private JLabel reExchangeTimeValue;
+    private JLabel user1ConfirmedReExchangeValue;
+    private JLabel user2ConfirmedReExchangeValue;
 
-    public ConfirmTradeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
-                            String username, JFrame frame, Trade trade) {
+    public ConfirmReExchangeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
+                                 String username, JFrame frame, TemporaryTrade trade) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 0));
-        confirmTradeButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 1));
-        reportButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 14));
+        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 0));
+        confirmReExchangeButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 1));
+        reportButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 14));
 
-        user1Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 2));
-        user2Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 3));
-        itemsToUser1Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 4));
-        itemsToUser2Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 5));
-        meetingLocationLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 6));
-        meetingTimeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 7));
-        user1ConfirmedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 8));
-        user2ConfirmedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 9));
-        tradeIDLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 12));
+        user1Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 2));
+        user2Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 3));
+        itemsToUser1Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 4));
+        itemsToUser2Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 5));
+        reExchangeTimeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 7));
+        user1ConfirmedReExchangeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 8));
+        user2ConfirmedReExchangeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 9));
+        tradeIDLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 12));
 
 
         //Should i do this or does this break clean architecture? - Louis
         user1Value.setText(trade.getUsername1());
         user2Value.setText(trade.getUsername2());
-        meetingLocationValue.setText(trade.getMeetingPlace());
-        meetingTimeValue.setText(trade.getTimeOfTrade().toString());
+        reExchangeTimeValue.setText(trade.getDueDate().toString());
         Boolean user1ConfirmedBoolean = (Boolean)trade.getUser1TradeConfirmed();
         Boolean user2ConfirmedBoolean = (Boolean)trade.getUser2TradeConfirmed();
-        user1ConfirmedValue.setText(user1ConfirmedBoolean.toString());
-        user2ConfirmedValue.setText(user2ConfirmedBoolean.toString());
+        user1ConfirmedReExchangeValue.setText(user1ConfirmedBoolean.toString());
+        user2ConfirmedReExchangeValue.setText(user2ConfirmedBoolean.toString());
         Integer user1NumRequests = (Integer) trade.getUser1NumRequests();
         Integer user2NumRequests = (Integer) trade.getUser2NumRequests();
         Integer tradeID = (Integer) trade.getTradeID();
@@ -104,22 +98,22 @@ public class ConfirmTradeMenu {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
 
-        if(LocalDateTime.now().isBefore(trade.getTimeOfTrade())){
-            confirmTradeButton.setEnabled(false);
-            confirmTradeButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 17));
+        if(LocalDateTime.now().isBefore(trade.getDueDate())){
+            confirmReExchangeButton.setEnabled(false);
+            confirmReExchangeButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 17));
         }
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTrades viewPendingTrades = new ViewPendingTrades(useCases, controllerPresenterGrouper, frame);
+                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
-        confirmTradeButton.addActionListener(new ActionListener() {
+        confirmReExchangeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 13));
-                controllerPresenterGrouper.tradingUserActions.confirmTrade(useCases.userManager, useCases.tradeCreator, useCases.itemManager, trade, username);
+                JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 13));
+                controllerPresenterGrouper.tradingUserActions.confirmReExchange(useCases.userManager, useCases.tradeCreator, useCases.itemManager, trade, username);
                 TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
@@ -131,3 +125,4 @@ public class ConfirmTradeMenu {
         });
     }
 }
+
