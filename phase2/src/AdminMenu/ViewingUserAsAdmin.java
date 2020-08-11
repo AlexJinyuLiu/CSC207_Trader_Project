@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import UserMenu.SendMessageMenu;
+import entitypack.Frame;
 import entitypack.TradingUser;
 
 public class ViewingUserAsAdmin {
@@ -29,9 +30,15 @@ public class ViewingUserAsAdmin {
         sendAMessageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SendMessageMenu sendMessageMenu = new SendMessageMenu("admin", usernameViewed, cpg,
-                        useCases, window, false, useCases.userManager.searchUser(usernameViewed)
-                        instanceof TradingUser);
+//                SendMessageMenu sendMessageMenu = new SendMessageMenu("admin", usernameViewed, cpg,
+//                        useCases, window, false, useCases.userManager.searchUser(usernameViewed)
+//                        instanceof TradingUser);
+                String message = JOptionPane.showInputDialog(window,cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 2),
+                        cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 0), JOptionPane.PLAIN_MESSAGE);
+                if (!message.isEmpty()) {
+                    cpg.tradingUserActions.messageUser("admin", usernameViewed, message, useCases.userManager);
+                    JOptionPane.showMessageDialog(window, cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 3));
+                }
             }
         });
         removeAnItemFromButton.addActionListener(new ActionListener() {
