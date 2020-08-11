@@ -43,7 +43,6 @@ public class SendTradeRequestMenu {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
 
-        JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU,7));
         usertoViewLabel.setText(userToViewUsername + cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 0));
         userViewingLabel.setText(activeUsername + cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 0));
 
@@ -52,6 +51,8 @@ public class SendTradeRequestMenu {
 
         sendTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 5));
         backButton.setText(cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 6));
+
+        JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU,7));
 
         ArrayList<Item> user2Items= useCases.itemManager.getAvailableItems(userToViewUsername);
         ArrayList<Item> user1Items= useCases.itemManager.getAvailableItems(activeUsername);

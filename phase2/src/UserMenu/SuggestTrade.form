@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="6eddb" class="javax.swing.JButton" binding="coolButton" custom-create="true" default-binding="true">
+      <component id="6eddb" class="javax.swing.JButton" binding="coolButton" default-binding="true">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
