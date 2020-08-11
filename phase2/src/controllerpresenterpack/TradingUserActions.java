@@ -382,7 +382,7 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
                     int itemID = scan.nextInt();
                     if (itemManager.checkIfUserHas(tradingUser, itemID)) {
                         Item item = itemManager.searchItem(itemID);
-                        userManager.addToWishlist((TradingUser) userViewing, item.getName());
+                        //userManager.addToWishlist((TradingUser) userViewing, item.getName());
                         menuPresenter.printMenu(18, 9);
                         suggestMatch((TradingUser) userToView, (TradingUser) userViewing,itemManager, menuPresenter);
                     }
@@ -775,6 +775,10 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
             choice = scanner.nextInt();
         }
         return choice;
+    }
+
+    public boolean addItemToWishlist(UserManager userManager, String username, String itemName){
+        return userManager.addToWishlist(username, itemName);
     }
 
     /**

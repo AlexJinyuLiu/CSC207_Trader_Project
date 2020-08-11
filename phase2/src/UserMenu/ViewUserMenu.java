@@ -23,6 +23,7 @@ public class ViewUserMenu {
     private JLabel userTitleLabel;
     private JLabel isActive;
     private JButton suggestTradeButton;
+    private JButton addItemToWishlistButton;
 
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                         String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing,
@@ -34,6 +35,7 @@ public class ViewUserMenu {
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 3));
         createTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 4));
         sendMessageButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 8));
+        addItemToWishlistButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 11));
         boolean userToViewIsFrozen;
         boolean active;
 
@@ -88,6 +90,7 @@ public class ViewUserMenu {
             userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
             createTradeRequestButton.setEnabled(false);
             suggestTradeButton.setEnabled(false);
+            addItemToWishlistButton.setEnabled(false);
         }
 
 
@@ -99,6 +102,16 @@ public class ViewUserMenu {
                         frame, isTradingUserViewing);
             }
         });
+
+        addItemToWishlistButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO: this is not working
+                AddItemToWishlistMenu addItemToWishListMenu = new AddItemToWishlistMenu(useCases, cpg, activeUsername,
+                        userToViewUsername, frame);
+            }
+        });
+
         createTradeRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

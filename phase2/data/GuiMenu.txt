@@ -82,6 +82,7 @@ This user is inactive, cannot make trades.
 Send Message
 Available Items
 Wishlist
+Add Item to Your Wishlist
 }
 
 Frame{ - MESSAGEALERT
@@ -336,4 +337,12 @@ Report trade to admin
 Report sent to admin
 Please detail why you are reporting this trade to the admin team.
 Confirm Re-Exchange has occurred (Can be done after the due date)
+}
+
+Frame{ - ADDITEMTOWISHLISTMENU
+Displaying items of
+. Press the button by each one to add it to your wishlist.
+Add
+Item Successfully added to wishlist
+Item Could not be added to wishlist
 }
