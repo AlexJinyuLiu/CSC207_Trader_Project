@@ -142,7 +142,7 @@ public class ViewUserMenu {
         suggestTradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    SuggestTrade suggestTrade = new SuggestTrade(useCases, cpg, activeUsername, userToViewUsername, frame);
+                SuggestTrade suggestTrade = new SuggestTrade(useCases, cpg, activeUsername, userToViewUsername, frame);
             }
         });
 
