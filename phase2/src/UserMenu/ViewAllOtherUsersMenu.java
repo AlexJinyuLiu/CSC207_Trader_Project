@@ -49,10 +49,15 @@ public class ViewAllOtherUsersMenu {
         selectUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String userToViewUsername = (String)selectUserBox.getSelectedItem();
-                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg, username,
-                        userToViewUsername, frame, isTradingUser,
-                        useCases.userManager.searchUser(userToViewUsername) instanceof TradingUser);
+                if ((selectUserBox.getSelectedItem()).equals(cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 0))) {
+                    JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 3));
+                }
+                else {
+                    String userToViewUsername = (String) selectUserBox.getSelectedItem();
+                    ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg, username,
+                            userToViewUsername, frame, isTradingUser,
+                            useCases.userManager.searchUser(userToViewUsername) instanceof TradingUser);
+                }
             }
         });
     }

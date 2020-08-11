@@ -68,6 +68,7 @@ Frame{ - VIEWALLOTHERUSERSMENU
 Select a user to view...
 Back
 Confirm
+Please select a user to view!
 }
 
 Frame{ - VIEWUSERMENU
@@ -253,7 +254,7 @@ Add a New Admin
 }
 
 Frame{ - SENDMESSAGEMENU
-Send
+Message
 Back
 Enter your message here
 The message has been successfully sent!
@@ -269,6 +270,7 @@ Most Recently Traded Items
 Most Frequent Trading Partners
 Frozen
 Not Frozen
+None
 Back
 }
 

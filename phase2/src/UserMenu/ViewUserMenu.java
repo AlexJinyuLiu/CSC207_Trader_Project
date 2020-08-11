@@ -142,17 +142,21 @@ public class ViewUserMenu {
         suggestTradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    SuggestTrade suggestTrade = new SuggestTrade(useCases, cpg, activeUsername, userToViewUsername, frame);
+                SuggestTrade suggestTrade = new SuggestTrade(useCases, cpg, activeUsername, userToViewUsername, frame);
             }
         });
 
-        /**The button is only for testing now**/
+
         sendMessageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SendMessageMenu sendMessageMenu = new SendMessageMenu(activeUsername, userToViewUsername, cpg, useCases, frame, isTradingUserViewing, isUserToViewTrading);
-                // MessageAlert messageAlert = new MessageAlert("sender", "message");
-                // useCases.userManager.alertUser(userToViewUsername, messageAlert);
+                // SendMessageMenu sendMessageMenu = new SendMessageMenu(activeUsername, userToViewUsername, cpg, useCases, frame, isTradingUserViewing, isUserToViewTrading);
+                String message = JOptionPane.showInputDialog(frame,cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 2),
+                        cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 0), JOptionPane.PLAIN_MESSAGE);
+                if (!message.isEmpty()) {
+                    cpg.tradingUserActions.messageUser(activeUsername, userToViewUsername, message, useCases.userManager);
+                    JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 3));
+                }
             }
         });
     }
