@@ -299,8 +299,8 @@ Items being transferred from user 1 to user 2:
 Items being transferred from user 2 to user 2:
 Meeting Location:
 Meeting Time:
-User 1 accepted:
-User 2 accepted:
+User 1 confirmed the exchange:
+User 2 confirmed the exchange:
 User 1 number of counter-offers remaining:
 User 2 number of counter-offers remaining:
 Trade ID number:

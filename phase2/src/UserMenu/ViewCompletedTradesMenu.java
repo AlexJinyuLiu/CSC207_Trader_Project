@@ -30,11 +30,12 @@ public class ViewCompletedTradesMenu {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
 
-
+        System.out.println(useCases.tradeCreator.getTradeHistories().getCompletedTrades());
 
         int n = 0;
         ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchCompletedTradesUser(username,
                 useCases.userManager, useCases.tradeCreator);
+
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
             generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,
@@ -43,6 +44,8 @@ public class ViewCompletedTradesMenu {
             n++;
             content.add(generatedLabel, c);
         }
+        tradeInfoPane.setViewportView(content);
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

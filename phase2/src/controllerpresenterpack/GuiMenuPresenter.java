@@ -147,9 +147,8 @@ public class GuiMenuPresenter {
             Item item = itemManager.searchItem(i);
             StringBuilder sb = new StringBuilder();
             sb.append(item.getName());
-            sb.append(" ===== ");
-            sb.append(item.getId());
-            sb.append("\n");
+            sb.append(" (").append(item.getId()).append(")");
+            sb.append(", ");
             sb.append(item.getDescription());
             String string = sb.toString();
             list.add(string);

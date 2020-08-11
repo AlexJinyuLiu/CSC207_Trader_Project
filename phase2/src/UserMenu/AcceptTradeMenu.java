@@ -20,8 +20,8 @@ public class AcceptTradeMenu {
     private JLabel user1Label;
     private JLabel itemsToUser1Label;
     private JLabel itemsToUser2Label;
-    private JList itemsToUser1List;
-    private JList itemsToUser2List;
+    private JTextPane itemsToUser1List;
+    private JTextPane itemsToUser2List;
     private JLabel meetingLocationLabel;
     private JLabel meetingTimeLabel;
     private JLabel user1AcceptedLabel;
@@ -80,17 +80,25 @@ public class AcceptTradeMenu {
         ArrayList<String> itemsToUser1 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser2ToUser1(trade, useCases.itemManager);
         ArrayList<String> itemsToUser2 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser1ToUser2(trade, useCases.itemManager);
 
-        for(String string: itemsToUser1){
-            JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(string);
-            itemsToUser1List.add(generatedLabel);
-        }
 
-        for(String string: itemsToUser2){
-            JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(string);
-            itemsToUser2List.add(generatedLabel);
+        StringBuilder itemsToU1SB = new StringBuilder();
+        int i = 1;
+        for(String string: itemsToUser1){
+            itemsToU1SB.append(i).append("- ");
+            i++;
+            itemsToU1SB.append(string).append("\n");
         }
+        itemsToUser1List.setText(itemsToU1SB.toString());
+
+
+        StringBuilder itemsToU2SB = new StringBuilder();
+        i = 1;
+        for(String string: itemsToUser2){
+            itemsToU1SB.append(i).append("- ");
+            i++;
+            itemsToU2SB.append(string).append("\n");
+        }
+        itemsToUser2List.setText(itemsToU2SB.toString());
 
         JPanel content = new JPanel();
         content.setLayout(new GridBagLayout());

@@ -45,6 +45,8 @@ public class ViewDeadTradesMenu {
             }
         }
 
+        tradeInfoPane.setViewportView(content);
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

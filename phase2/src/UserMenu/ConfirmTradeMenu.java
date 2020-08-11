@@ -4,12 +4,14 @@ import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.TradingUserActions;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
+import entitypack.Item;
 import entitypack.Trade;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ConfirmTradeMenu {
@@ -23,8 +25,7 @@ public class ConfirmTradeMenu {
     private JLabel meetingTimeLabel;
     private JLabel user2Label;
     private JLabel user2Value;
-    private JList itemsToUser1List;
-    private JList itemsToUser2List;
+    private JTextPane itemsToUser2List;
     private JLabel meetingLocationValue;
     private JLabel meetingTimeValue;
     private JButton confirmTradeButton;
@@ -35,6 +36,7 @@ public class ConfirmTradeMenu {
     private JLabel user2ConfirmedValue;
     private JLabel user2ConfirmedLabel;
     private JPanel mainPanel;
+    private JTextPane itemsToUser1List;
 
     public ConfirmTradeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                             String username, JFrame frame, Trade trade) {
@@ -57,6 +59,7 @@ public class ConfirmTradeMenu {
         user2ConfirmedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 9));
         tradeIDLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 12));
 
+
         //Should i do this or does this break clean architecture? - Louis
         user1Value.setText(trade.getUsername1());
         user2Value.setText(trade.getUsername2());
@@ -74,22 +77,36 @@ public class ConfirmTradeMenu {
         ArrayList<String> itemsToUser1 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser2ToUser1(trade, useCases.itemManager);
         ArrayList<String> itemsToUser2 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser1ToUser2(trade, useCases.itemManager);
 
-        for(String string: itemsToUser1){
-            JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(string);
-            itemsToUser1List.add(generatedLabel);
-        }
 
-        for(String string: itemsToUser2){
-            JLabel generatedLabel = new JLabel();
-            generatedLabel.setText(string);
-            itemsToUser2List.add(generatedLabel);
+        StringBuilder itemsToU1SB = new StringBuilder();
+        int i = 1;
+        for(String string: itemsToUser1){
+            itemsToU1SB.append(i).append("- ");
+            i++;
+            itemsToU1SB.append(string).append("\n");
         }
+        itemsToUser1List.setText(itemsToU1SB.toString());
+
+
+        StringBuilder itemsToU2SB = new StringBuilder();
+        i = 1;
+        for(String string: itemsToUser2){
+            itemsToU1SB.append(i).append("- ");
+            i++;
+            itemsToU2SB.append(string).append("\n");
+        }
+        itemsToUser2List.setText(itemsToU2SB.toString());
+
 
         JPanel content = new JPanel();
         content.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
+
+        if(LocalDateTime.now().isBefore(trade.getTimeOfTrade())){
+            confirmTradeButton.setEnabled(false);
+        }
+
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
