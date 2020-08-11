@@ -42,6 +42,7 @@ public class SuggestTrade {
         ArrayList<Item> theywantIown = suggestItems(user1, user2, useCases.itemManager);
         ArrayList<Item> IwantTheyown = suggestItems(user2, user1, useCases.itemManager);
 
+        user2.addItemToWishList("red bike");
 
 
         itemLabelConstructor(theywantIown, myStuffTheyWantList);
@@ -74,7 +75,7 @@ public class SuggestTrade {
         s.append("<html>");
         for (Item item: items){
             s.append(item.getName() +" ("+ item.getId()+")" + "<br/>");
-            s.append("    - " + item.getDescription() + "<br/r>");
+            s.append("     - " + item.getDescription() + "<br/>");
         }
         s.append("<html>");
 
