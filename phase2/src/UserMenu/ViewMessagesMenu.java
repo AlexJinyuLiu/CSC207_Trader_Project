@@ -4,6 +4,7 @@ import AdminMenu.AdminActionsMenu;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
+import entitypack.TradingUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +41,12 @@ public class ViewMessagesMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!username.equals("admin")) {
-                    TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                    if (useCases.userManager.searchUser(username) instanceof TradingUser) {
+                        TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                    }
+                    else {
+                        BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases, cpg, username, frame);
+                    }
                 }
                 else {
                     AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, frame);
