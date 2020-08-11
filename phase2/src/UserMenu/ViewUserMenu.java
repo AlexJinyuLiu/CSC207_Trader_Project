@@ -22,6 +22,7 @@ public class ViewUserMenu {
     private JLabel frozenStatus;
     private JLabel userTitleLabel;
     private JLabel isActive;
+    private JButton suggestTradeButton;
 
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                         String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing,
@@ -46,15 +47,18 @@ public class ViewUserMenu {
         }
         //TODO: Test this once item validation is working properly.
 
-         if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
+
+        if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
              userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
 
              if (userToViewIsFrozen){
                  frozenStatus.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
+                 createTradeRequestButton.setEnabled(false);
              }
 
              if (!active){
                  isActive.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 7));
+                 createTradeRequestButton.setEnabled(false);
              }
 
 
@@ -83,6 +87,7 @@ public class ViewUserMenu {
         } else {
             userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
             createTradeRequestButton.setEnabled(false);
+            suggestTradeButton.setEnabled(false);
         }
 
 
@@ -120,6 +125,14 @@ public class ViewUserMenu {
 
             }
         });
+
+        suggestTradeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    SuggestTrade suggestTrade = new SuggestTrade(useCases, cpg, activeUsername, userToViewUsername, frame);
+            }
+        });
+
         /**The button is only for testing now**/
         sendMessageButton.addActionListener(new ActionListener() {
             @Override

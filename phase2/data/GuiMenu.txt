@@ -309,3 +309,9 @@ Report trade to admin
 Report sent to admin
 Please detail why you are reporting this trade to the admin team.
 }
+
+Frame{ - SUGGESTTRADE
+Cool!
+Items on their wishlist that you own:
+Items on your wishlist that they own:
+}
