@@ -212,8 +212,10 @@ public class TradeCreator implements Serializable {
             assert trade.getUsername2().equals(username);
             trade.setUser2AcceptedRequest(true);
         }
-        pendingTradeRequests.remove(trade);
-        pendingTrades.add(trade);
+        if (trade.getUser1AcceptedRequest() && trade.getUser2AcceptedRequest()) {
+            pendingTradeRequests.remove(trade);
+            pendingTrades.add(trade);
+        }
     }
 
 

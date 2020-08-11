@@ -171,26 +171,35 @@ public class AdminUser implements Serializable{
     }
 
     public void cancelTradeRequest(int tradeID, TradeCreator tradeCreator) {
+        Trade tradeToModify = null;
         for (Trade pendingTrade : tradeCreator.getPendingTrades()) {
             if (pendingTrade.getTradeID() == tradeID) {
-                tradeCreator.getPendingTrades().remove(pendingTrade);
-                tradeCreator.getPendingTradeRequests().add(pendingTrade);
+                tradeToModify = pendingTrade;
             }
         }
-
+        if (tradeToModify != null) {
+            tradeToModify.setUser1AcceptedRequest(false);
+            tradeToModify.setUser2AcceptedRequest(false);
+            tradeToModify.setUser1NumRequests(0);
+            tradeToModify.setUser2NumRequests(0);
+            tradeCreator.getPendingTradeRequests().add(tradeToModify);
+            tradeCreator.getPendingTrades().remove(tradeToModify);
+        }
     }
 
     public void undoTrade(int tradeID, TradeHistories tradeHistories, ItemManager itemManager, UserManager userManager){
+        Trade tradeToModify = null;
         for (Trade trade : tradeHistories.getCompletedTrades()) {
             if (trade.getTradeID() == tradeID) {
-                tradeHistories.getCompletedTrades().remove(trade);
-                tradeHistories.getDeadTrades().add(trade);
-                User user1 = userManager.searchUser(trade.getUsername1());
-                User user2 = userManager.searchUser(trade.getUsername2());
-                itemManager.exchangeItems(trade, (TradingUser) user2, (TradingUser) user1);
-                ((TradingUser) user1).increaseNumBorrowed(-2);
-                ((TradingUser) user2).increaseNumBorrowed(-1);
+                tradeToModify = trade;
             }
+        }
+        if (tradeToModify != null) {
+            tradeHistories.getCompletedTrades().remove(tradeToModify);
+            tradeHistories.getDeadTrades().add(tradeToModify);
+            User user1 = userManager.searchUser(tradeToModify.getUsername1());
+            User user2 = userManager.searchUser(tradeToModify.getUsername2());
+            itemManager.undoExchangeItems(tradeToModify, (TradingUser) user1, (TradingUser) user2 );
         }
     }
 
