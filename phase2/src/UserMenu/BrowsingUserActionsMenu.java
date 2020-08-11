@@ -13,6 +13,7 @@ public class BrowsingUserActionsMenu {
     private JPanel mainPanel;
     private JButton viewOtherUsersButton;
     private JLabel Loggedin;
+    private JButton viewMessagesButton;
 
     public BrowsingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
@@ -22,11 +23,18 @@ public class BrowsingUserActionsMenu {
 
         Loggedin.setText(cpg.menuPresenter.getText(Frame.BROWSINGUSERACTIONSMENU,0) + username);
         viewOtherUsersButton.setText(cpg.menuPresenter.getText(Frame.BROWSINGUSERACTIONSMENU,1));
+        viewMessagesButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU,15));
 
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame, false);
+            }
+        });
+        viewMessagesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewMessagesMenu viewMessagesMenu = new ViewMessagesMenu(useCases, cpg, username, frame);
             }
         });
     }

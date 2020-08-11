@@ -140,8 +140,12 @@ public class TradingUser implements Serializable, User {
      *
      * @param item item name to be added to this user's wish list.
      */
-    public void addItemToWishList(String item){
-        wishlistItemNames.add(item.trim());
+    public boolean addItemToWishList(String item){
+        boolean itemIsThere = containItemInWishlist(item);
+        if (!itemIsThere){
+            wishlistItemNames.add(item);
+        }
+        return !itemIsThere;
     }
 
     /**

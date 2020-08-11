@@ -22,6 +22,8 @@ public class ViewUserMenu {
     private JLabel frozenStatus;
     private JLabel userTitleLabel;
     private JLabel isActive;
+    private JButton suggestTradeButton;
+    private JButton addItemToWishlistButton;
 
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                         String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing,
@@ -33,6 +35,7 @@ public class ViewUserMenu {
         backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 3));
         createTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 4));
         sendMessageButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 8));
+        addItemToWishlistButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 11));
         boolean userToViewIsFrozen;
         boolean active;
 
@@ -46,15 +49,18 @@ public class ViewUserMenu {
         }
         //TODO: Test this once item validation is working properly.
 
-         if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
+
+        if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
              userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
 
              if (userToViewIsFrozen){
                  frozenStatus.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 6));
+                 createTradeRequestButton.setEnabled(false);
              }
 
              if (!active){
                  isActive.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 7));
+                 createTradeRequestButton.setEnabled(false);
              }
 
 
@@ -83,6 +89,8 @@ public class ViewUserMenu {
         } else {
             userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
             createTradeRequestButton.setEnabled(false);
+            suggestTradeButton.setEnabled(false);
+            addItemToWishlistButton.setEnabled(false);
         }
 
 
@@ -94,6 +102,16 @@ public class ViewUserMenu {
                         frame, isTradingUserViewing);
             }
         });
+
+        addItemToWishlistButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //TODO: this is not working
+                AddItemToWishlistMenu addItemToWishListMenu = new AddItemToWishlistMenu(useCases, cpg, activeUsername,
+                        userToViewUsername, frame, isTradingUserViewing, isUserToViewTrading);
+            }
+        });
+
         createTradeRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -120,13 +138,25 @@ public class ViewUserMenu {
 
             }
         });
-        /**The button is only for testing now**/
+
+        suggestTradeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SuggestTrade suggestTrade = new SuggestTrade(useCases, cpg, activeUsername, userToViewUsername, frame);
+            }
+        });
+
+
         sendMessageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SendMessageMenu sendMessageMenu = new SendMessageMenu(activeUsername, userToViewUsername, cpg, useCases, frame, isTradingUserViewing, isUserToViewTrading);
-                // MessageAlert messageAlert = new MessageAlert("sender", "message");
-                // useCases.userManager.alertUser(userToViewUsername, messageAlert);
+                // SendMessageMenu sendMessageMenu = new SendMessageMenu(activeUsername, userToViewUsername, cpg, useCases, frame, isTradingUserViewing, isUserToViewTrading);
+                String message = JOptionPane.showInputDialog(frame,cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 2),
+                        cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 0), JOptionPane.PLAIN_MESSAGE);
+                if (!message.isEmpty()) {
+                    cpg.tradingUserActions.messageUser(activeUsername, userToViewUsername, message, useCases.userManager);
+                    JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDMESSAGEMENU, 3));
+                }
             }
         });
     }

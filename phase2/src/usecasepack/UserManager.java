@@ -156,11 +156,17 @@ public class UserManager implements Serializable{
 
     /**
      * Adds an item to the user's wishlist
-     * @param user user
+     * @param username the username of the user.
      * @param itemName name of item
      */ //UseCasePack.UserManager
-    public void addToWishlist(TradingUser user, String itemName){
-        user.addItemToWishList(itemName);
+    public boolean addToWishlist(String username, String itemName){
+        //TODO: Return false if its already there.
+        TradingUser user = (TradingUser)searchUser(username);
+        if (user != null){
+            return user.addItemToWishList(itemName);
+        } else{
+            return false;
+        }
     }
 
     /**

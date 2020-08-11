@@ -145,6 +145,36 @@ public class ItemManager implements Serializable {
         }
     }
 
+    /** Method which undoes an exchange of items in the trade system
+     * @param trade trade object
+     */
+    public void undoExchangeItems(Trade trade, TradingUser user1, TradingUser user2) {
+        for(int itemID : trade.getItemIDsSentToUser1()){
+            Item item = searchItem(itemID);
+            user1.increaseNumBorrowed(-1);
+            user2.increaseNumLent(-1);
+
+            if (trade instanceof TemporaryTrade){
+                item.setInPossessionOf(user2.getUsername());
+            }
+            else {
+                item.setOwner(user2.getUsername());
+            }
+        }
+        for(int itemID : trade.getItemIDsSentToUser2()){
+            Item item = searchItem(itemID);
+            //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
+            user2.increaseNumBorrowed(-1);
+            user1.increaseNumLent(-1);
+            if (trade instanceof TemporaryTrade){
+                item.setInPossessionOf(user1.getUsername());
+            }
+            else{
+                item.setOwner(user1.getUsername());
+            }
+        }
+    }
+
     /** Method which returns items to their owners after the expiration of a temporary trade
      * Author: Louis Scheffer V
      * @param trade Temporary EntityPack.Trade Object

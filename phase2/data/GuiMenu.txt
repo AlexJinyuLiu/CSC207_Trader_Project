@@ -68,6 +68,7 @@ Frame{ - VIEWALLOTHERUSERSMENU
 Select a user to view...
 Back
 Confirm
+Please select a user to view!
 }
 
 Frame{ - VIEWUSERMENU
@@ -82,6 +83,7 @@ This user is inactive, cannot make trades.
 Send Message
 Available Items
 Wishlist
+Add Item to Your Wishlist
 }
 
 Frame{ - MESSAGEALERT
@@ -252,7 +254,7 @@ Add a New Admin
 }
 
 Frame{ - SENDMESSAGEMENU
-Send
+Message
 Back
 Enter your message here
 The message has been successfully sent!
@@ -268,6 +270,7 @@ Most Recently Traded Items
 Most Frequent Trading Partners
 Frozen
 Not Frozen
+None
 Back
 }
 
@@ -299,8 +302,8 @@ Items being transferred from user 1 to user 2:
 Items being transferred from user 2 to user 2:
 Meeting Location:
 Meeting Time:
-User 1 accepted:
-User 2 accepted:
+User 1 confirmed the exchange:
+User 2 confirmed the exchange:
 User 1 number of counter-offers remaining:
 User 2 number of counter-offers remaining:
 Trade ID number:
@@ -308,4 +311,40 @@ You have marked this trade as confirmed.
 Report trade to admin
 Report sent to admin
 Please detail why you are reporting this trade to the admin team.
+Confirm Trade has occurred (Can be done after the time of exchange has passed)
+}
+
+Frame{ - SUGGESTTRADE
+Cool!
+Items on their wishlist that you own:
+Items on your wishlist that they own:
+}
+
+Frame{ - CONFIRMTRADEMENU
+Back
+Confirm Re-Exchange has occurred
+User 1:
+User 2:
+Items being transferred from user 1 to user 2:
+Items being transferred from user 2 to user 2:
+Meeting Location:
+Meeting Time:
+User 1 confirmed the Re-Exchange:
+User 2 confirmed the Re-Exchange:
+User 1 number of counter-offers remaining:
+User 2 number of counter-offers remaining:
+Trade ID number:
+You have the Re-Exchange as completed.
+Report trade to admin
+Report sent to admin
+Please detail why you are reporting this trade to the admin team.
+Confirm Re-Exchange has occurred (Can be done after the due date)
+}
+
+Frame{ - ADDITEMTOWISHLISTMENU
+Displaying items of
+. Press the button by each one to add it to your wishlist.
+Add
+Item Successfully added to wishlist
+Item Could not be added to wishlist
 }

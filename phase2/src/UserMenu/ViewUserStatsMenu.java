@@ -4,6 +4,7 @@ import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
+import entitypack.Item;
 import entitypack.TradingUser;
 import entitypack.User;
 
@@ -54,14 +55,40 @@ public class ViewUserStatsMenu {
         else {
             frozenStatusBool.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,8));
         }
+
         numIncompleteAmount.setText(String.valueOf(user.getNumIncompleteTrades()));
-        weeklyTransactionsAmount.setText(String.valueOf(useCases.tradeCreator.getTradeHistories().getNumTradesThisWeek(username)));
-        mostRecentlyTradedItemsAmount.setText(String.valueOf(useCases.tradeCreator.getTradeHistories().getNRecentItems(useCases.itemManager, username, 3)));
-        mostFrequentTradingPartnersValue.setText(String.valueOf(useCases.tradeCreator.getTradeHistories().getTopNTradingPartners(username, 3)));
+        weeklyTransactionsAmount.setText(String.valueOf(useCases.tradeCreator.getTradeHistories()
+                .getNumTradesThisWeek(username)));
+
+        // last two stats are lists and need to be built as strings
+        StringBuilder recentItems = new StringBuilder();
+        for (Item item : useCases.tradeCreator.getTradeHistories()
+                .getNRecentItems(useCases.itemManager, username, 3)) {
+            String item_string = item.getName() + " ";
+            recentItems.append(item_string);
+        }
+        mostRecentlyTradedItemsAmount.setText(recentItems.toString());
+
+        StringBuilder frequentPartners = new StringBuilder();
+        for (String partner : useCases.tradeCreator.getTradeHistories()
+                .getTopNTradingPartners(username, 3)) {
+            String partner_string = partner + " ";
+            frequentPartners.append(partner_string);
+        }
+        mostFrequentTradingPartnersValue.setText(frequentPartners.toString());
+
+        // if recentItmes or frequentPartners is null
+        if (useCases.tradeCreator.getTradeHistories()
+                .getNRecentItems(useCases.itemManager, username, 3).isEmpty()) {
+            mostRecentlyTradedItemsAmount.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,9));
+        }
+        if (useCases.tradeCreator.getTradeHistories()
+                .getTopNTradingPartners(username, 3).isEmpty()) {
+            mostFrequentTradingPartnersValue.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,9));
+        }
 
 
-
-        backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,9));
+        backButton.setText(cpg.menuPresenter.getText(Frame.VIEWUSERSTATSMENU,10));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

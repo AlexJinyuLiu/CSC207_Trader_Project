@@ -62,7 +62,6 @@ public class ViewItemValidationRequests {
                 public void actionPerformed(ActionEvent e) {
                     cpg.adminActions.approveItemValidationRequest(useCases.itemManager, validationRequest);
                     approveButton.setEnabled(false);
-                    System.out.println(useCases.itemManager.getAvailableItems(validationRequest.getUsernameOfCreator()));
                 }
             });
             content.add(approveButton, c);

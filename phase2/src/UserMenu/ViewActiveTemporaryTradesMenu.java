@@ -1,6 +1,7 @@
 package UserMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.TradingUserActions;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
 import entitypack.TemporaryTrade;
@@ -46,7 +47,8 @@ public class ViewActiveTemporaryTradesMenu {
                     JOptionPane.showMessageDialog(frame, "Please Pick a Trade");
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
-                    ViewTrade viewTrade = new ViewTrade(useCases, controllerPresenterGrouper, username, frame);
+                    TemporaryTrade temporaryTrade = (TemporaryTrade) controllerPresenterGrouper.tradingUserActions.searchTrade(useCases.tradeCreator, tradeID);
+                    ConfirmReExchangeMenu confirmReExchangeMenu = new ConfirmReExchangeMenu(useCases, controllerPresenterGrouper, username, frame, temporaryTrade);
                 }
 
             }
