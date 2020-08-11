@@ -163,8 +163,7 @@ public class UserManager implements Serializable{
         //TODO: Return false if its already there.
         TradingUser user = (TradingUser)searchUser(username);
         if (user != null){
-            user.addItemToWishList(itemName);
-            return true;
+            return user.addItemToWishList(itemName);
         } else{
             return false;
         }

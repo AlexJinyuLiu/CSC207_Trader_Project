@@ -26,7 +26,7 @@ public class SuggestTrade {
 
     public SuggestTrade(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String activeUser, String userToView,
                         JFrame frame) {
-
+        //TODO: Make sure the text here isn't swapped
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -39,10 +39,8 @@ public class SuggestTrade {
         TradingUser user1 = (TradingUser) useCases.userManager.searchUser(activeUser);
         TradingUser user2 = (TradingUser) useCases.userManager.searchUser(userToView);
 
-        ArrayList<Item> theywantIown = suggestItems(user1, user2, useCases.itemManager);
-        ArrayList<Item> IwantTheyown = suggestItems(user2, user1, useCases.itemManager);
-
-        user2.addItemToWishList("red bike");
+        ArrayList<Item> theywantIown = suggestItems(user2, user1, useCases.itemManager);
+        ArrayList<Item> IwantTheyown = suggestItems(user1, user2, useCases.itemManager);
 
 
         itemLabelConstructor(theywantIown, myStuffTheyWantList);
@@ -52,7 +50,8 @@ public class SuggestTrade {
         coolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg,activeUser, userToView, frame, true, true);
+                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg,activeUser, userToView, frame,
+                        true, true);
             }
         });
     }

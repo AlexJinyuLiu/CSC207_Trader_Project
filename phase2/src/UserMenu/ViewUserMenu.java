@@ -108,7 +108,7 @@ public class ViewUserMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 //TODO: this is not working
                 AddItemToWishlistMenu addItemToWishListMenu = new AddItemToWishlistMenu(useCases, cpg, activeUsername,
-                        userToViewUsername, frame);
+                        userToViewUsername, frame, isTradingUserViewing, isUserToViewTrading);
             }
         });
 

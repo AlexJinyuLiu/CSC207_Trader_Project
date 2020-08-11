@@ -15,9 +15,17 @@ import java.util.ArrayList;
 public class AddItemToWishlistMenu {
     private JScrollPane userToViewItemsPane;
     private JLabel title;
+    private JPanel mainPanel;
+    private JButton backButton;
 
     public AddItemToWishlistMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
-                                 String activeUsername, String userToViewUsername, JFrame frame){
+                                 String activeUsername, String userToViewUsername, JFrame frame,
+                                 boolean isTradingUserViewing, boolean isUserToViewTrading){
+        frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
 
         title.setText(cpg.menuPresenter.getText(Frame.ADDITEMTOWISHLISTMENU, 0) + userToViewUsername +
                 cpg.menuPresenter.getText(Frame.ADDITEMTOWISHLISTMENU, 1));
@@ -64,5 +72,13 @@ public class AddItemToWishlistMenu {
         }
 
         userToViewItemsPane.setViewportView(content);
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg, activeUsername, userToViewUsername, frame,
+                        isTradingUserViewing, isUserToViewTrading);
+            }
+        });
     }
 }
