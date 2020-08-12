@@ -112,7 +112,8 @@ public class ConfirmTradeMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTrades viewPendingTrades = new ViewPendingTrades(useCases, controllerPresenterGrouper, frame);
+                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(useCases, controllerPresenterGrouper,
+                        username, frame);
             }
         });
         confirmTradeButton.addActionListener(new ActionListener() {
