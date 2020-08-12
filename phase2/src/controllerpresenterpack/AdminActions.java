@@ -118,6 +118,11 @@ public class AdminActions implements UserBrowsing, ActionController{
             }
         }
 
+    /** Method which returns the list of all users in the program
+     *
+     * @param userManager UserManager
+     * @return list of all users
+     */
     public ArrayList<User> viewAllUsers(UserManager userManager){
         return userManager.getListUsers();
     }
