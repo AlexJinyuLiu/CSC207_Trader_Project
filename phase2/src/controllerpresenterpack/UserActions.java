@@ -8,10 +8,10 @@ import usecasepack.UserManager;
 
 import java.util.ArrayList;
 
+/**Class for actions the can be taken by all users of the program
+ *
+ */
 public class UserActions implements ActionController{
-    /**SuperClass for actions
-     *
-     */
 
     /**
      * Return true iff username and password are a valid user login.
