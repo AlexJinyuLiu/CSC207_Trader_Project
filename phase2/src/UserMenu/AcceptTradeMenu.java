@@ -135,7 +135,7 @@ public class AcceptTradeMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 15));
-                useCases.tradeCreator.declineTradeRequest(trade);
+                controllerPresenterGrouper.tradingUserActions.declineTradeRequest(useCases.tradeCreator, trade);
                 TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });

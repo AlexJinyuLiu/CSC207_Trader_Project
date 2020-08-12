@@ -38,12 +38,12 @@ public class SetActiveStatusMenu {
                 TradingUser user = (TradingUser) useCases.userManager.searchUser(username);
                 if (statusBox.getSelectedItem() == cpg.menuPresenter.getText(Frame.SETACTIVESTATUSMENU,2) &&
                         !user.isActive()){
-                    user.setActive(true);
+                    cpg.tradingUserActions.setActive(true, user);
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SETACTIVESTATUSMENU,4));
                 }
                 else if (statusBox.getSelectedItem() == cpg.menuPresenter.getText(Frame.SETACTIVESTATUSMENU,3) &&
                         user.isActive()){
-                    user.setActive(false);
+                    cpg.tradingUserActions.setActive(false, user);
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SETACTIVESTATUSMENU,4));
                 }
                 else {

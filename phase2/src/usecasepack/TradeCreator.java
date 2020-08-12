@@ -411,8 +411,6 @@ public class TradeCreator implements Serializable {
         }
 
         itemManager.exchangeItems(trade, user1, user2);
-        //First list: cancelled pending trade requests.
-        //Second list: cancelled pending trades.
         ArrayList<ArrayList<Trade>> listsOfCancelledTrades = new ArrayList<ArrayList<Trade>>();
         listsOfCancelledTrades.add(checkPendingTradeRequests(userManager, itemManager));
         listsOfCancelledTrades.add(checkPendingTrades(userManager, itemManager));
