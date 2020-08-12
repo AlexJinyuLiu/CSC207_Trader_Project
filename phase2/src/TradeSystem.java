@@ -38,7 +38,7 @@ public class TradeSystem {
      * @return ControllerPresenterGrouper object containing instances of all our controllers and presenters.
      */
     public ControllerPresenterGrouper getControllerPresenters(){
-        return new ControllerPresenterGrouper(adminActions, tradingUserActions, browsingUserActions, userAlertManager, adminAlertManager);
+        return new ControllerPresenterGrouper(adminActions, tradingUserActions, browsingUserActions);
     }
     /**
      * Loads all classes in that need to be serialized.
