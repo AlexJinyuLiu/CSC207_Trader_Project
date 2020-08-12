@@ -12,7 +12,7 @@ import java.util.Scanner;
 /**
  * A controller class describing the actions a user can take from the menu in the trade system.
  */
-public class TradingUserActions extends UserActions implements UserBrowsing{
+public class TradingUserActions extends UserActions {
 
     /**
      * Adds a new login to the system. Return false iff the login could not be added.

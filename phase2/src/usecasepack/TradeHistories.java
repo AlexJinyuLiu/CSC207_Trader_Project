@@ -230,7 +230,7 @@ public class TradeHistories  implements Serializable {
         HashMap<String, Integer> numTradesPerUser = this.getNumTradesPerUser(username);
         HashMap<String, Integer> numTradesPerUserClone = (HashMap<String, Integer>) numTradesPerUser.clone();
         ArrayList<String> topPartnersUsername = new ArrayList<String>();
-        while (topPartnersUsername.size() < n & !numTradesPerUserClone.isEmpty()) {
+        while (topPartnersUsername.size() < n && !numTradesPerUserClone.isEmpty()) {
             int maxInt = 0;
             StringBuilder favouritePartner = new StringBuilder();
             for (Map.Entry<String, Integer> mapping : numTradesPerUserClone.entrySet()) {
