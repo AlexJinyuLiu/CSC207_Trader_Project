@@ -106,6 +106,7 @@ public class ItemManager implements Serializable {
      */
     public void exchangeItems(Trade trade, TradingUser user1, TradingUser user2){
         //TODO: Find a better solution than casting like this.
+        System.out.println(trade.getItemIDsSentToUser1());
         for(int itemID : trade.getItemIDsSentToUser1()){
 
             Item item = searchItem(itemID);
@@ -118,13 +119,12 @@ public class ItemManager implements Serializable {
             user1.increaseNumBorrowed(1);
             user2.increaseNumLent(1);
 
-            if (trade instanceof TemporaryTrade){
-                item.setInPossessionOf(user1.getUsername());
-            }
-            else {
+            if (!(trade instanceof TemporaryTrade)){
                 item.setOwner(user1.getUsername());
             }
+            item.setInPossessionOf(user1.getUsername());
         }
+        System.out.println(trade.getItemIDsSentToUser2());
         for(int itemID : trade.getItemIDsSentToUser2()){
             Item item = searchItem(itemID);
             for (String string: user2.getWishlistItemNames()){
@@ -135,13 +135,10 @@ public class ItemManager implements Serializable {
             //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
             user2.increaseNumBorrowed(1);
             user1.increaseNumLent(1);
-            if (trade instanceof TemporaryTrade){
-                item.setInPossessionOf(user2.getUsername());
-            }
-            else{
+            if (!(trade instanceof TemporaryTrade)){
                 item.setOwner(user2.getUsername());
             }
-
+            item.setInPossessionOf(user2.getUsername());
         }
     }
 
@@ -154,24 +151,20 @@ public class ItemManager implements Serializable {
             user1.increaseNumBorrowed(-1);
             user2.increaseNumLent(-1);
 
-            if (trade instanceof TemporaryTrade){
-                item.setInPossessionOf(user2.getUsername());
-            }
-            else {
+            if (!(trade instanceof TemporaryTrade)) {
                 item.setOwner(user2.getUsername());
             }
+            item.setInPossessionOf(user2.getUsername());
         }
         for(int itemID : trade.getItemIDsSentToUser2()){
             Item item = searchItem(itemID);
             //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
             user2.increaseNumBorrowed(-1);
             user1.increaseNumLent(-1);
-            if (trade instanceof TemporaryTrade){
-                item.setInPossessionOf(user1.getUsername());
-            }
-            else{
+            if (!(trade instanceof TemporaryTrade)) {
                 item.setOwner(user1.getUsername());
             }
+            item.setInPossessionOf(user1.getUsername());
         }
     }
 
