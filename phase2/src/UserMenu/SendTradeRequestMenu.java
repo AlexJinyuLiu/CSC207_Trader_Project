@@ -27,6 +27,7 @@ public class SendTradeRequestMenu {
     private JLabel meetingTimeLabel;
     private JScrollPane userToViewItemsPane;
     private JScrollPane myItemsPane;
+    private JCheckBox isTempTradeBox;
 
 
     public SendTradeRequestMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String activeUsername,
@@ -51,6 +52,7 @@ public class SendTradeRequestMenu {
 
         sendTradeRequestButton.setText(cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 5));
         backButton.setText(cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 6));
+        isTempTradeBox.setText(cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 8));
 
         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU,7));
 
@@ -115,9 +117,9 @@ public class SendTradeRequestMenu {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 3));
                     return;
                 }
-
+                boolean isTempTrade = isTempTradeBox.isSelected();
                 cpg.tradingUserActions.createTradeRequest(useCases.tradeCreator, user1, user2, otherSelectedItems,
-                        mySelectedItems, timeOfTrade, meetingPlace.getText());
+                        mySelectedItems, timeOfTrade, meetingPlace.getText(), isTempTrade);
                 //"Trade Request sent successfully"
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 4));
                 TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,

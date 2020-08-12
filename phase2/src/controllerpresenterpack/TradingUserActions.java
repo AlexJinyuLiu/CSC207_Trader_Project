@@ -1,6 +1,5 @@
 package controllerpresenterpack;
 
-import alertpack.*;
 import entitypack.*;
 import usecasepack.*;
 
@@ -173,9 +172,14 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
      */
     public void createTradeRequest(TradeCreator tradeCreator, TradingUser user1, TradingUser user2,
                                    ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
-                                   LocalDateTime meetingTime, String meetingPlace){
-        tradeCreator.createTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
-                meetingPlace);
+                                   LocalDateTime meetingTime, String meetingPlace, boolean isTempTrade){
+        if (isTempTrade) {
+            tradeCreator.createTemporaryTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
+                    meetingPlace);
+        } else {
+            tradeCreator.createTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
+                    meetingPlace);
+        }
     }
 
     /** Method which allows a user to accept a trade request

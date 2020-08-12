@@ -20,11 +20,6 @@ public class UserManager implements Serializable{
     //UseCasePack.UserManager
     private ArrayList<User> listUsers = new ArrayList<User>(); // List of all users - Jinyu
 
-    //TradeManager AND UseCasePack.UserManager
-    private ArrayList<Prompt> adminAlerts = new ArrayList<Prompt>();
-
-    //UseCasePack.UserManager
-    private HashMap<String, ArrayList<Prompt>> alertSystem = new HashMap<String, ArrayList<Prompt>>();
 
     //UseCasePack.UserManager -- all thresholds are admin things really, rethink this?
     private int incompleteThreshold = 3; // # of incomplete trades allowed
@@ -33,21 +28,10 @@ public class UserManager implements Serializable{
 
 
     /**
-     * Method called on program Start up. Currently fetches all userAlerts from other places in the program.
-     * @param tradeCreator the UseCasePack.TradeCreator used in this program.
+     * Method called on program Start up.
      */
-    public void onStartUp(TradeCreator tradeCreator){
-        HashMap<String, ArrayList<Prompt>> alertsToAdd = tradeCreator.fetchUserAlerts();
+    public void onStartUp(){
 
-        for (String key : alertsToAdd.keySet()){
-            if (alertSystem.containsKey(key)){
-                ArrayList<Prompt> alertsForUser = alertSystem.get(key);
-                alertsForUser.addAll(alertsToAdd.get(key));
-                alertSystem.put(key, alertsForUser);
-            } else {
-                alertSystem.put(key, alertsToAdd.get(key));
-            }
-        }
     }
 
     /**
@@ -78,29 +62,8 @@ public class UserManager implements Serializable{
         return listUsers;
     }
 
-    /**
-     * clears all admin alerts.
-     */
-    public void clearAdminAlerts(){
-        adminAlerts = new ArrayList<Prompt>();
-    }
 
-    /**
-     * Returns the user alerts for the user with the given username.
-     * @param username the username in question
-     * @return an arraylist containing all alerts for that user.
-     */
-    public ArrayList<Prompt> getUserAlerts(String username){
-        return alertSystem.get(username);
-    }
 
-    /**
-     * Alerts the admin.
-     * @param alert alert
-     */ //TradeManager and UseCasePack.UserManager
-    public void alertAdmin(Prompt alert){
-        this.adminAlerts.add(alert);
-    }
 
     /**
      * Adds a new user to the system
@@ -134,7 +97,6 @@ public class UserManager implements Serializable{
         newUser.setPassword(password);
         newUser.setMetro(metro);
         listUsers.add(newUser);
-        alertSystem.put(username, new ArrayList<Prompt>());
         return newUser;
     }
 
@@ -150,7 +112,6 @@ public class UserManager implements Serializable{
         newUser.setPassword(password);
         newUser.setMetro(metro);
         listUsers.add(newUser);
-        alertSystem.put(username, new ArrayList<Prompt>());
         return newUser;
     }
 
@@ -160,7 +121,7 @@ public class UserManager implements Serializable{
      * @param itemName name of item
      */ //UseCasePack.UserManager
     public boolean addToWishlist(String username, String itemName){
-        //TODO: Return false if its already there.
+
         TradingUser user = (TradingUser)searchUser(username);
         if (user != null){
             return user.addItemToWishList(itemName);
@@ -187,15 +148,6 @@ public class UserManager implements Serializable{
      */
     public boolean checkIfUserContain(TradingUser user, String itemName) { return user.containItemInWishlist(itemName); }
 
-    /**
-     * Return a list of all adminAlerts from this class. Also empties the adminAlerts member.
-     * @return the list of adminAlerts
-     */
-    public ArrayList<Prompt> fetchAdminAlerts(){
-        ArrayList<Prompt> alerts = this.adminAlerts;
-        this.adminAlerts = new ArrayList<Prompt>();
-        return alerts;
-    }
 
     /** Method which returns a user when given their username
      * Author: Louis Scheffer V
@@ -211,24 +163,8 @@ public class UserManager implements Serializable{
         return null;
     }
 
-    /** Overloaded method to send an alert to a user. This one uses a user object.
-     * Author: Louis Scheffer V
-     * @param user object of the user who will be receiving the alert
-     * @param alert alert object to send to the user
-     */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(User user, Prompt alert){
-        String username = user.getUsername();
-        alertUser(username, alert);
-    }
 
-    /** Overloaded method to send an alert to a user. This one uses a username.
-     * Author: Louis Scheffer V
-     * @param username username of the user receiving the alert
-     * @param alert alert object to send to the user
-     */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(String username, Prompt alert){
-        alertSystem.get(username).add(alert);
-    }
+
 
     public void messageUser(String sendersUsername, String receiversUsername, String messageBody) {
         String message = "[" + sendersUsername + "] ------ " + LocalDateTime.now() + "\n" +

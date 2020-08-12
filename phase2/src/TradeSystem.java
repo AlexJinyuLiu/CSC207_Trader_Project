@@ -1,4 +1,4 @@
-import alertpack.*;
+
 import controllerpresenterpack.*;
 import entitypack.*;
 import usecasepack.*;
@@ -19,8 +19,6 @@ public class TradeSystem {
     private TradeCreator tradeCreator;
     private ItemManager itemManager;
 
-    private UserAlertManager userAlertManager = new UserAlertManager();
-    private AdminAlertManager adminAlertManager = new AdminAlertManager();
 
     private AdminActions adminActions = new AdminActions();
     private TradingUserActions tradingUserActions = new TradingUserActions();

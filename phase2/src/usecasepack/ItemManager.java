@@ -105,17 +105,19 @@ public class ItemManager implements Serializable {
      * @param trade trade object
      */
     public void exchangeItems(Trade trade, TradingUser user1, TradingUser user2){
-        //TODO: Find a better solution than casting like this.
-        System.out.println(trade.getItemIDsSentToUser1());
         for(int itemID : trade.getItemIDsSentToUser1()){
 
             Item item = searchItem(itemID);
+            ArrayList<String> wishlistItemsToRemoveUser1 = new ArrayList<String>();
             for (String string: user1.getWishlistItemNames()){
                 if(item.getName().equals(string)){
-                    user1.removeItemFromWishList(string);
+                    wishlistItemsToRemoveUser1.add(string);
                 }
             }
-            //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
+            for (String string : wishlistItemsToRemoveUser1){
+                user1.removeItemFromWishList(string);
+            }
+
             user1.increaseNumBorrowed(1);
             user2.increaseNumLent(1);
 
@@ -124,17 +126,22 @@ public class ItemManager implements Serializable {
             }
             item.setInPossessionOf(user1.getUsername());
         }
-        System.out.println(trade.getItemIDsSentToUser2());
+
         for(int itemID : trade.getItemIDsSentToUser2()){
             Item item = searchItem(itemID);
+            ArrayList<String> wishlistItemsToRemoveUser2 = new ArrayList<String>();
             for (String string: user2.getWishlistItemNames()){
                 if(item.getName().equals(string)){
-                    user2.removeItemFromWishList(string);
+                    wishlistItemsToRemoveUser2.add(string);
                 }
             }
-            //do borrowed and lent get incremented every trade or just during TemporaryTrades? - Louis
+            for (String string : wishlistItemsToRemoveUser2){
+                user2.removeItemFromWishList(string);
+            }
+
             user2.increaseNumBorrowed(1);
             user1.increaseNumLent(1);
+
             if (!(trade instanceof TemporaryTrade)){
                 item.setOwner(user2.getUsername());
             }

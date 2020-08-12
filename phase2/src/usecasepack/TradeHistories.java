@@ -19,54 +19,9 @@ public class TradeHistories  implements Serializable {
 
     private ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability - Louis
 
-    private ArrayList<Prompt> adminAlerts = new ArrayList<Prompt>();
 
-    private HashMap<String, ArrayList<Prompt>> userAlertsToDispatch = new HashMap<String, ArrayList<Prompt>>();
-    /**
-     * Return a list of all adminAlerts stored in this class. Also empties the adminAlerts member.
-     * @return an ArrayList of admin alerts
-     */
-    public ArrayList<Prompt> fetchAdminAlerts() {
-        ArrayList<Prompt> alerts = this.adminAlerts;
-        this.adminAlerts = new ArrayList<Prompt>();
-        return alerts;
-    }
 
-    /**
-     * Return a list of all user Alerts stored in this class. Also empties the userAlertsToDispatch member.
-     * @return an ArrayList of admin alerts
-     */
-    public HashMap<String, ArrayList<Prompt>> fetchUserAlerts(){
-        HashMap<String, ArrayList<Prompt>> alerts = userAlertsToDispatch;
-        this.userAlertsToDispatch = new HashMap<String, ArrayList<Prompt>>();
-        return alerts;
-    }
 
-    /**
-     * Adds an alert to be sent to the user.
-     * @param user the user to alert.
-     * @param alert the alert to be sent.
-     */
-    public void alertUser(User user, Prompt alert){
-        String username = user.getUsername();
-        alertUser(username, alert);
-    }
-
-    /**
-     * Adds an alert to be sent to the user.
-     * @param username the username of the user to alert.
-     * @param alert the alert to be sent.
-     */
-    public void alertUser(String username, Prompt alert){
-        ArrayList<Prompt> userAlerts;
-        if (userAlertsToDispatch.containsKey(username)) {
-            userAlerts = userAlertsToDispatch.get(username);
-        } else{
-            userAlerts = new ArrayList<Prompt>();
-        }
-        userAlerts.add(alert);
-        userAlertsToDispatch.put(username, userAlerts);
-    }
 
     /**
      *

@@ -230,6 +230,7 @@ Trade Request sent successfully
 Send Trade Request
 Back
 Form trade request by checking the items you want from the selected user, and check the items that you want to trade away.
+Temporary Trade? (Items will be returned after 30 days)
 }
 
 Frame{ - VIEWITEMVALIDATIONREQUESTS
