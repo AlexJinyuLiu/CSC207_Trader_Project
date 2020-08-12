@@ -116,8 +116,8 @@ public class SendTradeRequestMenu {
                     return;
                 }
 
-                cpg.tradingUserActions.createTradeRequest(useCases.tradeCreator, user1, user2, mySelectedItems,
-                        otherSelectedItems, timeOfTrade, meetingPlace.getText());
+                cpg.tradingUserActions.createTradeRequest(useCases.tradeCreator, user1, user2, otherSelectedItems,
+                        mySelectedItems, timeOfTrade, meetingPlace.getText());
                 //"Trade Request sent successfully"
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 4));
                 TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
