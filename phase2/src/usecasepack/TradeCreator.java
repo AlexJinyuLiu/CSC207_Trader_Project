@@ -384,6 +384,7 @@ public class TradeCreator implements Serializable {
         } else if (user.getUsername().equals(trade.getUsername2())) {
             trade.setUser2TradeConfirmed(true);
         }
+        System.out.println(trade.isTradeCompleted());
         if (trade.isTradeCompleted()) {
             IDsOfAllCancelledTrades = afterTrade(userManager, trade, itemManager, user1, user2);
         }
