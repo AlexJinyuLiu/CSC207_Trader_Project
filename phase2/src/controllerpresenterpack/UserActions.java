@@ -9,6 +9,9 @@ import usecasepack.UserManager;
 import java.util.ArrayList;
 
 public class UserActions implements ActionController{
+    /**SuperClass for actions
+     *
+     */
 
     /**
      * Return true iff username and password are a valid user login.

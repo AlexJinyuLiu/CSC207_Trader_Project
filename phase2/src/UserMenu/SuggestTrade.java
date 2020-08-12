@@ -39,8 +39,8 @@ public class SuggestTrade {
         TradingUser user1 = (TradingUser) useCases.userManager.searchUser(activeUser);
         TradingUser user2 = (TradingUser) useCases.userManager.searchUser(userToView);
 
-        ArrayList<Item> theywantIown = suggestItems(user2, user1, useCases.itemManager);
-        ArrayList<Item> IwantTheyown = suggestItems(user1, user2, useCases.itemManager);
+        ArrayList<Item> theywantIown = cpg.tradingUserActions.suggestItems(user2, user1, useCases.itemManager);
+        ArrayList<Item> IwantTheyown = cpg.tradingUserActions.suggestItems(user1, user2, useCases.itemManager);
 
 
         itemLabelConstructor(theywantIown, myStuffTheyWantList);
@@ -54,19 +54,6 @@ public class SuggestTrade {
                         true, true);
             }
         });
-    }
-
-    private ArrayList<Item> suggestItems(TradingUser userToView, TradingUser activeUser, ItemManager itemManager) {
-        ArrayList<Item> listItems = new ArrayList<Item>();
-        for (String wish : userToView.getWishlistItemNames()) {
-            for (Item item : itemManager.getAvailableItems(activeUser.getUsername())) {
-                if ((item.getName().toLowerCase().contains(wish.toLowerCase()) ||
-                        item.getDescription().toLowerCase().contains(wish.toLowerCase()))) {
-                    listItems.add(item);
-                }
-            }
-        }
-        return listItems;
     }
 
     private void itemLabelConstructor(ArrayList<Item> items, JLabel label){

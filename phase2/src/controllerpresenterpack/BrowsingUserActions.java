@@ -14,45 +14,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BrowsingUserActions extends UserActions implements UserBrowsing{
-    //TODO: Create the BrowsingOnlyUser menu from here.
-
-    public void runBrowsingUserMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-    BrowsingUser user, ItemManager itemManager){
-        mainMenu(menuPresenter, userManager, tradeCreator, user, itemManager);
-    }
-
-    /**
-     * Display the main menu to user, take user's input to implement the corresponding action
-     * @param user user logged in making changes or viewing statuses
-     */
-    private void mainMenu(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                          BrowsingUser user, ItemManager itemManager){
-        int numOptions = 1;
-        boolean running = true;
-        while (running) {
-            int input = -1;
-            Scanner scan = new Scanner(System.in);
-            for (int i = 0; i < 3; i++) {
-                menuPresenter.printMenu(43, i);
-            }
-            boolean valid_input = false;
-            while(!valid_input){
-                //"Please enter a number corresponding to a setting above:\n"
-                menuPresenter.printMenu(43, 3);
-                input = scan.nextInt();
-                if (input > 1 || input < 0) {
-                    //"Please enter a number from 0 to "
-                    menuPresenter.printMenu(43, 4, numOptions);
-                } else if (input == 1) {
-                    viewAllUsers(menuPresenter, userManager, tradeCreator, user, itemManager);
-                    valid_input = true;
-                } else if (input == 0){
-                    valid_input = true;
-                    running = false;
-                }
-            }
-        }
-    }
 
 
     /**
