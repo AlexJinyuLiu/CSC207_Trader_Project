@@ -37,6 +37,7 @@ public class ViewAllUsers {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, cpg, frame);
             }});
 
         confirmButton.addActionListener(new ActionListener() {
