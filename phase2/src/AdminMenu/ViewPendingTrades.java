@@ -2,6 +2,7 @@ package AdminMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 import entitypack.Trade;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class ViewPendingTrades {
     private JPanel mainPanel;
     private JButton confirmButton;
     private JButton backButton;
+    private JLabel TradeID;
 
     public ViewPendingTrades(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window) {
         window.setContentPane(mainPanel);
@@ -21,15 +23,19 @@ public class ViewPendingTrades {
         window.pack();
         window.setVisible(true);
 
+        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 0));
+        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 1));
+        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 2));
+
         for (Trade pendingTrade : useCases.tradeCreator.getPendingTrades()) {
-            pendingTrades.addItem("Trade ID: " + pendingTrade.getTradeID());
+            pendingTrades.addItem(pendingTrade.getTradeID());
         }
 
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewTradeToUndo viewTradeToUndo = new ViewTradeToUndo(useCases, controllerPresenterGrouper,
-                        "Confirmed", Integer.parseInt(pendingTrades.getSelectedItem().toString().substring(10)),
+                        "Confirmed", (Integer) pendingTrades.getSelectedItem(),
                         window);
             }
         });

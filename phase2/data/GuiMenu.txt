@@ -59,6 +59,11 @@ View Item Validation Requests
 View messages
 }
 
+Frame{ - VIEWTRADE
+Confirm
+Back
+Trade ID:
+
 Frame{ - BROWSINGUSERACTIONSMENU
 (Browsing)
 View other users in your area
