@@ -8,18 +8,12 @@ import java.io.*;
  * A gateway class that handles the input and output to and from files for serialization.
  */
 public class FileManager {
-    //author: Callan Murphy in group 0110 for CSC207H1 summer 2020 project
     //used provided code in file StudentManager.java as a reference
     //used https://www.tutorialspoint.com/java/java_serialization.htm and
     //https://attacomsian.com/blog/java-write-object-to-file as a reference
 
     private final static String dir = "phase2/data/"; //file directory
 
-    /**
-     * Serializes an object to a file
-     * @param obj object to be serialized
-     * @param fileName name of file
-     */
     private static void saveToFile(Object obj, String fileName) {
         try {
             FileOutputStream file = new FileOutputStream(dir + fileName);

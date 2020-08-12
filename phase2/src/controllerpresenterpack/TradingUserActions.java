@@ -197,10 +197,26 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         tradeCreator.declineTradeRequest(trade);
     }
 
+    /** Method wich allows a user to counter-offer a meeting time and locaion
+     *
+     * @param tradeCreator TradeCreator object
+     * @param username username of the user countering the request
+     * @param trade Trade object of the trade
+     * @param newMeetingPlace new proposed location of the meeting
+     * @param newDateTime new proposed time & date of the meeting
+     */
     public void counterTradeRequest(TradeCreator tradeCreator, String username, Trade trade, String newMeetingPlace, LocalDateTime newDateTime){
         tradeCreator.editTradeRequest(trade, newDateTime, newMeetingPlace, username);
     }
 
+    /** Method which allows a user to confirm the exchange of items has occurred
+     *
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @param itemManager ItemManager object
+     * @param trade Trade object of the trade
+     * @param username username of the user confirming the exchange
+     */
     public void confirmTrade(UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager, Trade trade, String username){
         TradingUser user1 = (TradingUser) userManager.searchUser(trade.getUsername1());
         TradingUser user2 = (TradingUser) userManager.searchUser(trade.getUsername2());
@@ -208,39 +224,87 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
         tradeCreator.confirmTrade(userManager, userAccepting, trade, itemManager, user1, user2);
     }
 
+    /** Method which allows a user to confirm a re-exhange has occurred
+     *
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @param itemManager ItemManager object
+     * @param trade TemporaryTrade object of the trade
+     * @param username username of the user confirming the exchange
+     */
     public void confirmReExchange(UserManager userManager, TradeCreator tradeCreator, ItemManager itemManager, TemporaryTrade trade, String username){
         tradeCreator.getTradeHistories().confirmReExchange(itemManager, (TradingUser) userManager.searchUser(username), trade);
     }
 
-
+    /** Method which returns a list of pending trades involving a user
+     *
+     * @param username username of the user
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @return list of pending trades involving the user
+     */
     public ArrayList<Trade> searchPendingTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
         return tradeCreator.searchPendingTradesByUser(user);
     }
 
+    /** Method which returns a list of pending trade requests involving a user
+     *
+     * @param username username of the user
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @return list of pending trades involving the user
+     */
     public ArrayList<Trade> searchPendingTradeRequestsUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
         return tradeCreator.searchPendingTradeRequestsByUser(user);
     }
 
+    /** Method which returns a list of current temporary trades involving a user
+     *
+     * @param username username of the user
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @return list of pending trades involving the user
+     */
     public ArrayList<TemporaryTrade> searchCurrentTempTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
         TradeHistories tradeHistories = tradeCreator.getTradeHistories();
         return tradeHistories.searchActiveTempTradesByUser(user);
     }
 
+    /** Method which returns a list of completed trades involving a user
+     *
+     * @param username username of the user
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @return list of pending trades involving the user
+     */
     public ArrayList<Trade> searchCompletedTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
         TradeHistories tradeHistories = tradeCreator.getTradeHistories();
         return tradeHistories.searchCompletedTradesByUser(user);
     }
 
+    /** Method which returns a list of dead trades involving a user
+     *
+     * @param username username of the user
+     * @param userManager UserManager object
+     * @param tradeCreator TradeCreator object
+     * @return list of pending trades involving the user
+     */
     public ArrayList<Trade> searchDeadTradesUser(String username, UserManager userManager, TradeCreator tradeCreator){
         TradingUser user = (TradingUser) userManager.searchUser(username);
         TradeHistories tradeHistories = tradeCreator.getTradeHistories();
         return tradeHistories.searchDeadTradesByUser(user);
     }
 
+    /** Method which returns a Trade object when given a trade ID
+     *
+     * @param tradeCreator TradeCreator object
+     * @param tradeID ID number of the trade
+     * @return Trade object
+     */
     public Trade searchTrade(TradeCreator tradeCreator, int tradeID){
         return tradeCreator.searchTrades(tradeID);
     }

@@ -13,7 +13,13 @@ public class UseCaseGrouper {
     public TradeCreator tradeCreator;
     public ItemManager itemManager;
 
-
+    /**
+     * organizes the use cases for easy access and readability
+     * @param adminUser handling admin user related functionality
+     * @param userManager handing trading-user and browsing-user related functionality
+     * @param tradeCreator handles the creation of trades
+     * @param itemManager manages the items for each user
+     */
     public UseCaseGrouper(AdminUser adminUser, UserManager userManager,
                           TradeCreator tradeCreator, ItemManager itemManager){
         this.adminUser = adminUser;
