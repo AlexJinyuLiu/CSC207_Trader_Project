@@ -12,10 +12,16 @@ import usecasepack.UserManager;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * controller class that's called on startup
+ */
 public class StartupController {
 
     /**
      * Called on startup. Handles all startup functionality for users and admins.
+     * @param adminUser handling admin user related functionality
+     * @param userManager handing trading user and browsing user related functionality
+     * @param tradeCreator handles the creation of trades
      */
     public void onStartUp(AdminUser adminUser, UserManager userManager, TradeCreator tradeCreator){
         userManager.onStartUp(tradeCreator);
@@ -26,9 +32,7 @@ public class StartupController {
         checkForPastDateTrades(tradeCreator);
     }
 
-    /**
-     * Checks for any expired temporary trades, and then alerts the users involved that they must return their items.
-     */
+    // Checks for any expired temporary trades, and then alerts the users involved that they must return their items.
     private void checkForExpiredTempTrades(TradeCreator tradeCreator){
         ArrayList<TemporaryTrade> expiredTempTrade = tradeCreator.getTradeHistories().fetchExpiredTempTrades();
 
@@ -47,9 +51,7 @@ public class StartupController {
         }
     }
 
-    /**
-     * Checks for trades that have passed and alerts users that they must confirm whether or not the trade has happened.
-     */
+    // Checks for trades that have passed and alerts users that they must confirm whether or not the trade has happened.
     private void checkForPastDateTrades(TradeCreator tradeCreator){
         ArrayList<Trade> pastDateTrades = tradeCreator.fetchPastDateTrades();
         for (Trade trade : pastDateTrades) {

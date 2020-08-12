@@ -43,9 +43,9 @@ public class Login extends JFrame{
                     if (validLogin) {
                         AdminActionsMenu adminOptionsMenu = new AdminActionsMenu(useCases,
                                 cpg, frame);
-                         cpg.adminAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser,
+                         /*cpg.adminAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser,
                                 useCases.userManager, useCases.tradeCreator, useCases.itemManager,
-                                useCases.adminUser.getAdminAlerts());
+                                useCases.adminUser.getAdminAlerts()); */
                     } else {
                         JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.LOGIN,4));
                     }
