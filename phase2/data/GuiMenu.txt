@@ -106,6 +106,7 @@ Unfreeze
 Back
 Account frozen.
 Account unfrozen.
+would like to be unfrozen.
 }
 
 Frame{ - BROWSINGUSERACTIONSMENU
