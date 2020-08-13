@@ -39,9 +39,7 @@ public class SetThresholds {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
-        int newThresh = Integer.parseInt(newBorrowLend.getText());
-        int completed = Integer.parseInt(newCompletes.getText());
-        int incompleted = Integer.parseInt(newIncompletes.getText());
+
 
         menuTitle.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 0));
         enterBorrowLend.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 1));
@@ -59,6 +57,14 @@ public class SetThresholds {
         submitIncompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int incompleted;
+                try {
+                    incompleted = Integer.parseInt(newIncompletes.getText());
+                } catch (NumberFormatException x){
+                    JOptionPane.showMessageDialog(window,
+                            controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
+                    return;
+                }
                 useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
@@ -68,6 +74,14 @@ public class SetThresholds {
         submitCompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int completed;
+                try {
+                    completed = Integer.parseInt(newCompletes.getText());
+                } catch (NumberFormatException x){
+                    JOptionPane.showMessageDialog(window,
+                            controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
+                    return;
+                }
                 useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
@@ -77,7 +91,15 @@ public class SetThresholds {
         submitBorrowLend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, newThresh);
+                int borrowLentThresh;
+                try {
+                    borrowLentThresh = Integer.parseInt(newBorrowLend.getText());
+                } catch (NumberFormatException x){
+                    JOptionPane.showMessageDialog(window,
+                            controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
+                    return;
+                }
+                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, borrowLentThresh);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }

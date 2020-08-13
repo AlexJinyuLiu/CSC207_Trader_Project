@@ -124,17 +124,39 @@ DESIGN PATTERNS:
         * We did not find semblances of antipatterns for the other design patterns (Adapter, Iterator, Abstract Factory)
 
 IMPROVEMENTS FROM PHASE 1:
+In addition to mandatory extensions, we have implemented many changes to the design of our code to make it more extensible,
+    follow Clean architecture better, and improve the "SOLIDity" of our program. Here are a few of these changes:
+
     * Our UI! We decided to implement a java swing UI that wraps over our existing code. We had to significantly refactor
-        and de-couple our controller/presenter stuff from our input/output logic, as this was nescesary for the previous
+        and de-couple our controller/presenter stuff from our input/output logic, as this was necessary for the previous
         text-based UI. As a result of this decoupling, our UI can now be switched out for a different UI (an app, for example)
         with ease.
-    *
+    * We have removed our alert system entirely. In phase 1, much of our functionality for responses from users (trade
+        requests, for example) were implemented via an Event based system we dubbed "alerts". We really liked this system,
+        as it made our program very easy and intuitive to use. Unfortunately, when trying to separate our controller/presenter
+        classes (and our alerts) into distinct clean architecture layers, we found that one of two things kept happening:
+        1) Our alerts would exist in multiple layers of clean architecture.
+        or
+        2) we would have to handle our alerts using a massive chain of "instanceof" statements, as polymorphism was not
+        possible while folowing the clean architecture rules.
+        We had a tough decision to make, and we decided to prioritize the extensibility of our project over the usability
+        and novelty of the alert system. This was tough, as it required us to add many new options to our system to
+        cover the bases that the alert system was previously covering for us, but we beleive that now that we are rid of
+        alerts, our system is more extensible and follows clean architecture and object oriented principles better.
     * We created a new use case class (ItemManager) to fix coupling and SRP issues in our old UserManager. Based on our
         TA's feedback, we determined that UserManager was responsible for too many different systems, so we decided to
         split it up into two classes, UserManager (now just for user functionality) and ItemManager (for item stuff).
         This has made our code significantly more extensible and adding features to Item management has been a breeze
         in phase 2 as a result. In particular, undo actions for the admin have been a very easy to extend because of
         this.
-    *
+    * The presenter method that retrieves lines from our txt file originally required 2 int index to print a specific
+        line (eg. printMenu(25, 24 ). That design choice quickly caused a readability issue in our code as it wasn't very
+        intuitive for viewers to understand what it meant.
+        To remedy to the problem, we've created an enum class (Frame.java) that stored constants, each representing the
+        name of the frame. The idea is to have store the text we need to display on a specific frame(window) in a indexed
+        text block that has it all(Check GuiMenu.txt in phase2/data).  This way, when we need to add text, we can just go
+        to that specifix index block in the GuiMenu.txt file and add new lines or look at which line we're referencing.
+        Now the code looks like menupresenter.getText(Frame.MAINMENU, 2)
+        instead of menupresenter.getText(12, 2)
     * We have packaged our code by layer, meaning our usecases, controller/presenter code, entities, and GUI are all
         in seperate packages.
