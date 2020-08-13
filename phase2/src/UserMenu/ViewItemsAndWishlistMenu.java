@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class for users to view their own items and wishlist
+ */
 public class ViewItemsAndWishlistMenu {
     private JScrollPane itemPane;
     private JPanel mainPanel;
@@ -18,6 +21,13 @@ public class ViewItemsAndWishlistMenu {
     private JTextPane itemTextPane;
     private JTextPane wishlistTextPane;
 
+    /**
+     * Constructs the interface to view items and wishlist
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ViewItemsAndWishlistMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                                     String username, JFrame frame) {
 

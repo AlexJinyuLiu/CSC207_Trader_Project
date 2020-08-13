@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class for user's to view their active temporary trades
+ */
 public class ViewActiveTemporaryTradesMenu {
     private JComboBox pendingTradesBox;
     private JButton backButton;
@@ -19,6 +22,13 @@ public class ViewActiveTemporaryTradesMenu {
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
+    /**
+     * Constructs the interface to view active temporary trades
+     * @param useCases the user case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ViewActiveTemporaryTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                  String username, JFrame frame) {
         frame.setContentPane(mainPanel);

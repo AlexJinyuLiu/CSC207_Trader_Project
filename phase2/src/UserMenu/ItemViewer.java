@@ -8,12 +8,23 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class for user's to view item details including ID and description
+ */
 public class ItemViewer {
     private JButton removeItemButton;
     private JButton backButton;
     private JLabel itemDescription;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface to view items
+     * @param useCases use case grouper
+     * @param cpg the controller presenter grouper
+     * @param username current user's username
+     * @param itemId the current item's ID
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ItemViewer(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, int itemId, JFrame frame) {
 
         frame.setContentPane(mainPanel);

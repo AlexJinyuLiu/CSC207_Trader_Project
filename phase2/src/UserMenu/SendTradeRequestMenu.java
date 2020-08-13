@@ -15,6 +15,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
+/**
+ * A UI class to display the ability for users to send trade requests
+ */
 public class SendTradeRequestMenu {
     private JButton sendTradeRequestButton;
     private JButton backButton;
@@ -29,7 +32,14 @@ public class SendTradeRequestMenu {
     private JScrollPane myItemsPane;
     private JCheckBox isTempTradeBox;
 
-
+    /**
+     * Constructs the interface to send trade requests
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param activeUsername the current user's username
+     * @param userToViewUsername the trade recipient's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public SendTradeRequestMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String activeUsername,
                                 String userToViewUsername, JFrame frame) {
         frame.setContentPane(mainPanel);

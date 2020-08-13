@@ -57,6 +57,8 @@ Edit or Undo a Trade
 View All Users
 View Item Validation Requests
 View messages
+Admin Actions
+Submit
 }
 
 Frame{ - ADMINVIEWTRADE
@@ -218,11 +220,11 @@ Frame{ - TRADETOSTRING
 Trade to String
 User 1:
 , User 2:
-Items being traded from User 1 to User 2:
-Items being traded from User 2 to User 1:
-Time and date of exchange:
-Location of trade:
-Trade ID:
+, Items being traded from User 1 to User 2:
+, Items being traded from User 2 to User 1:
+, Time and date of exchange:
+, Location of trade:
+, Trade ID:
 }
 
 Frame{ - VIEWPENDINGTRADESMENU

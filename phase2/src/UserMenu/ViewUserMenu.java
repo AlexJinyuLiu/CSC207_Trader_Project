@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class for users to view a specific other user
+ */
 public class ViewUserMenu {
     private JPanel mainPanel;
     private JButton backButton;
@@ -25,6 +28,16 @@ public class ViewUserMenu {
     private JButton suggestTradeButton;
     private JButton addItemToWishlistButton;
 
+    /**
+     * Constructs the interface to view another user
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param activeUsername the viewing user's username
+     * @param userToViewUsername the username of the user who is being viewed
+     * @param frame the main window displayed to the trading user of the program
+     * @param isTradingUserViewing boolean for whether or not the viewing user is a trading user
+     * @param isUserToViewTrading boolean for whether or not the user being viewed is a trading user
+     */
     public ViewUserMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                         String activeUsername, String userToViewUsername, JFrame frame, boolean isTradingUserViewing,
                         boolean isUserToViewTrading) {

@@ -10,13 +10,21 @@ import usecasepack.TradeCreator;
 import usecasepack.UserManager;
 import usecasepack.AdminUser;
 
+/**
+ * The UI class which begins the program – allowing users to select their language
+ */
 public class LanguagePrompt {
     public JPanel panelMain;
     private JButton englishButton;
     private JButton frenchButton;
 
 
-
+    /**
+     * Constructs the interface for language selection
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param frame the main window displayed to the trading user of the program
+     */
     public LanguagePrompt(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame){
         frenchButton.setIcon(new ImageIcon("phase2/data/baguette.png"));
         englishButton.setIcon(new ImageIcon("phase2/data/hamburger.png"));

@@ -9,12 +9,22 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class for users to set their own active status: either active or inactive
+ */
 public class SetActiveStatusMenu {
     private JComboBox statusBox;
     private JButton setStatusButton;
     private JButton backButton;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface for user's to set their active status
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public SetActiveStatusMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

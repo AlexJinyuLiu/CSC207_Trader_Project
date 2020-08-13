@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class for users to view their trade requests
+ */
 public class ViewTradeRequestsMenu {
     private JComboBox pendingTradesBox;
     private JButton backButton;
@@ -18,6 +21,13 @@ public class ViewTradeRequestsMenu {
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
+    /**
+     * Constructs the interface to view trade requests
+     * @param useCases the user case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ViewTradeRequestsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                  String username, JFrame frame) {
         frame.setContentPane(mainPanel);
