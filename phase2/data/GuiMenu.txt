@@ -59,10 +59,24 @@ View Item Validation Requests
 View messages
 }
 
-Frame{ - VIEWTRADE
+Frame{ - ADMINVIEWTRADE
+Trade ID:
 Confirm
 Back
-Trade ID:
+Trade type: Request
+Trade type: Confirmed
+Trade type: Completed
+Undo Trade
+Back
+Trade undone.
+}
+
+Frame{ - EDITTRADE
+View trade requests
+View confirmed trades
+View completed trades
+Back
+}
 
 Frame{ - BROWSINGUSERACTIONSMENU
 (Browsing)

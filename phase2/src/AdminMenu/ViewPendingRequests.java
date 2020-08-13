@@ -22,9 +22,10 @@ public class ViewPendingRequests {
         window.pack();
         window.setVisible(true);
 
-        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 0));
-        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 1));
-        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 2));
+        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 0));
+        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 1));
+        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 2));
+
 
         for (Trade pendingRequest : useCases.tradeCreator.getPendingTradeRequests())
             pendingRequests.addItem(pendingRequest.getTradeID());
@@ -32,9 +33,8 @@ public class ViewPendingRequests {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewTradeToUndo viewTradeToUndo = new ViewTradeToUndo(useCases, controllerPresenterGrouper,
-                        "Request", (Integer) pendingRequests.getSelectedItem(),
-                        window);
+                ViewRequestToUndo viewRequestToUndo = new ViewRequestToUndo(useCases, controllerPresenterGrouper,
+                        (Integer) pendingRequests.getSelectedItem(), window);
             }
         });
         backButton.addActionListener(new ActionListener() {

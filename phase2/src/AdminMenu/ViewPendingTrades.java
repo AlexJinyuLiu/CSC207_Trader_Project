@@ -23,9 +23,10 @@ public class ViewPendingTrades {
         window.pack();
         window.setVisible(true);
 
-        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 0));
-        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 1));
-        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 2));
+        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 0));
+        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 1));
+        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 2));
+
 
         for (Trade pendingTrade : useCases.tradeCreator.getPendingTrades()) {
             pendingTrades.addItem(pendingTrade.getTradeID());
@@ -34,9 +35,8 @@ public class ViewPendingTrades {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewTradeToUndo viewTradeToUndo = new ViewTradeToUndo(useCases, controllerPresenterGrouper,
-                        "Confirmed", (Integer) pendingTrades.getSelectedItem(),
-                        window);
+                ViewConfirmedTradeToUndo viewConfirmedTradeToUndo = new ViewConfirmedTradeToUndo(useCases, controllerPresenterGrouper,
+                        (Integer) pendingTrades.getSelectedItem(), window);
             }
         });
         backButton.addActionListener(new ActionListener() {

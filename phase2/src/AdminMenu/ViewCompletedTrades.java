@@ -22,9 +22,10 @@ public class ViewCompletedTrades {
         window.pack();
         window.setVisible(true);
 
-        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 0));
-        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 1));
-        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWTRADE, 2));
+        TradeID.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 0));
+        confirmButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 1));
+        backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINVIEWTRADE, 2));
+
 
         for (Trade completedTrade : useCases.tradeCreator.getTradeHistories().getCompletedTrades())
             completedTrades.addItem(completedTrade.getTradeID());
@@ -32,9 +33,8 @@ public class ViewCompletedTrades {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewTradeToUndo viewTradeToUndo = new ViewTradeToUndo(useCases, controllerPresenterGrouper,
-                        "Completed", (Integer) completedTrades.getSelectedItem(),
-                        window);
+                ViewCompletedToUndo viewCompletedToUndo = new ViewCompletedToUndo(useCases, controllerPresenterGrouper,
+                        (Integer) completedTrades.getSelectedItem(), window);
             }
         });
         backButton.addActionListener(new ActionListener() {
