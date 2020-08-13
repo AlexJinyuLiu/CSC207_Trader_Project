@@ -78,6 +78,15 @@ View completed trades
 Back
 }
 
+Frame{ - ADMINFREEZE
+ status:
+Frozen
+Not frozen
+Not Applicable
+Freeze
+Unfreeze
+Back
+
 Frame{ - BROWSINGUSERACTIONSMENU
 (Browsing)
 View other users in your area

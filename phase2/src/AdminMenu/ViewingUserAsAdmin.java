@@ -56,13 +56,13 @@ public class ViewingUserAsAdmin {
         freezeUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                FreezeMenu freezeMenu = new FreezeMenu(useCases, cpg, usernameViewed, window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, cpg, true, window);
             }
         });
     }
