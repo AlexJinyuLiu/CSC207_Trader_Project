@@ -27,6 +27,7 @@ public class LanguagePrompt {
      */
     public LanguagePrompt(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame){
         frenchButton.setIcon(new ImageIcon("phase2/data/baguette.png"));
+        englishButton.setIcon(new ImageIcon("phase2/data/hamburger.png"));
         frame.setMinimumSize(new Dimension(800, 600));
         panelMain.setSize(800, 600);
         frame.setContentPane(panelMain);

@@ -125,13 +125,14 @@ public class GuiMenuPresenter {
     public String printTradeToString(ItemManager itemManager, Trade trade) {
         System.out.println(trade);
         StringBuilder acc = new StringBuilder();
+        acc.append("<html>");
         acc.append(getText(Frame.TRADETOSTRING, 1, trade.getUsername1()));
-        acc.append(getText(Frame.TRADETOSTRING, 2, trade.getUsername2()));
-        acc.append(getText(Frame.TRADETOSTRING, 3, getItemNamesFromUser1ToUser2(trade, itemManager)));
-        acc.append(getText(Frame.TRADETOSTRING, 4, getItemNamesFromUser2ToUser1(trade, itemManager)));
-        acc.append(getText(Frame.TRADETOSTRING, 5, trade.getTimeOfTrade().toString()));
-        acc.append(getText(Frame.TRADETOSTRING, 6, trade.getMeetingPlace()));
-        acc.append(getText(Frame.TRADETOSTRING, 7, trade.getTradeID()));
+        acc.append(getText(Frame.TRADETOSTRING, 2, trade.getUsername2()) + "<br/>");
+        acc.append(getText(Frame.TRADETOSTRING, 3, getItemNamesFromUser1ToUser2(trade, itemManager)) + "<br/>");
+        acc.append(getText(Frame.TRADETOSTRING, 4, getItemNamesFromUser2ToUser1(trade, itemManager))+ "<br/>");
+        acc.append(getText(Frame.TRADETOSTRING, 5, trade.getTimeOfTrade().toString()) + "<br/>");
+        acc.append(getText(Frame.TRADETOSTRING, 6, trade.getMeetingPlace())+ "<br/>");
+        acc.append(getText(Frame.TRADETOSTRING, 7, trade.getTradeID())+ "<br/><html>");
 
         return acc.toString();
     }
