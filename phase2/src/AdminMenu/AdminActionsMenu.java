@@ -96,7 +96,7 @@ public class AdminActionsMenu {
         viewMessages.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewMessagesMenu viewMessagesMenu = new ViewMessagesMenu(useCases, cpg, "admin", frame);
+                AdminMessages adminMessages = new AdminMessages(useCases, cpg, frame);
             }
         });
     }

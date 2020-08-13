@@ -1,10 +1,8 @@
-package UserMenu;
+package AdminMenu;
 
-import AdminMenu.AdminActionsMenu;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
-import entitypack.TradingUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 /**
  * A UI class for user's to view their messages
  */
-public class ViewMessagesMenu {
+public class AdminMessages {
     private JButton backButton;
     private JPanel mainPanel;
     private JTextPane messagePane;
@@ -23,10 +21,9 @@ public class ViewMessagesMenu {
      * Constructs the interface to view messages
      * @param useCases the user case grouper
      * @param cpg the controller presenter grouper
-     * @param username the current user's username
      * @param frame the main window displayed to the trading user of the program
      */
-    public ViewMessagesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame) {
+    public AdminMessages(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -36,7 +33,8 @@ public class ViewMessagesMenu {
 
         ArrayList<String> messages;
         StringBuilder messageString = new StringBuilder();
-        messages = useCases.userManager.searchUser(username).getMessages();
+
+        messages = useCases.adminUser.getAdminMessages();
 
         for (String message : messages) {
             messageString.append(message);
@@ -46,11 +44,7 @@ public class ViewMessagesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (useCases.userManager.searchUser(username) instanceof TradingUser) {
-                    TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
-                } else {
-                    BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases, cpg, username, frame);
-                }
+                    AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, frame);
             }
         });
     }
