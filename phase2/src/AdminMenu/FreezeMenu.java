@@ -12,6 +12,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that displays a User's status and allows the administrative user to unfreeze/freeze this User
+ */
 public class FreezeMenu {
     private JButton freezeButton;
     private JPanel mainPanel;
@@ -20,6 +23,13 @@ public class FreezeMenu {
     private JLabel usernameStatus;
     private JLabel currentFrozenStatus;
 
+    /**
+     * Constructs the interface to view the status of the User with viewedUsername, and to unfreeze/freeze
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param viewedUsername the username of the User being viewed at
+     * @param window the main window displayed to the administrative user of the program
+     */
     public FreezeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String viewedUsername, JFrame window) {
 
         window.setContentPane(mainPanel);

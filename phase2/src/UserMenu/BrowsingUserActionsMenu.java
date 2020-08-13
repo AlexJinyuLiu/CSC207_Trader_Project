@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that displays and links to the following menu classes for BrowsingUser:
+ *  - View messages
+ *  - View other users
+ */
 public class BrowsingUserActionsMenu {
 
     private JPanel mainPanel;
@@ -15,6 +20,13 @@ public class BrowsingUserActionsMenu {
     private JLabel Loggedin;
     private JButton viewMessagesButton;
 
+    /**
+     * Constructs the interface of BrowsingUser's menu
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the username of the browsing user
+     * @param frame the main window displayed to the browsing user of the program
+     */
     public BrowsingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

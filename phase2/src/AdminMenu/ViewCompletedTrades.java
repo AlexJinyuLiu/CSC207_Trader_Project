@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that allows the administrative user to view all complete trades and select one to view in details
+ */
 public class ViewCompletedTrades {
     private JComboBox completedTrades;
     private JPanel mainPanel;
@@ -16,6 +19,12 @@ public class ViewCompletedTrades {
     private JButton backButton;
     private JLabel TradeID;
 
+    /**
+     * Constructs the interface to view all complete trades
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param window the main window displayed to the administrative user of the program
+     */
     public ViewCompletedTrades(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window) {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

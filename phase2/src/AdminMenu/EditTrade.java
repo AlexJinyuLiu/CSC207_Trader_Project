@@ -8,6 +8,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class allows Admin to edit trades and links to the following menus:
+ *  - Pending trades
+ *  - Confirmed trades (in progress)
+ *  - Completed trades
+ */
 public class EditTrade {
     private JButton viewPendingTradesButton;
     private JButton viewConfirmedTradesButton;
@@ -15,6 +21,12 @@ public class EditTrade {
     private JButton backButton;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface to edit trades
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param window the main window displayed to the user of the program
+     */
     public EditTrade(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window) {
 
         viewPendingTradesButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.EDITTRADE, 0));

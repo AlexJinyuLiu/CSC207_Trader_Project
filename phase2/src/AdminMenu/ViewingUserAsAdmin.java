@@ -11,6 +11,13 @@ import UserMenu.SendMessageMenu;
 import entitypack.Frame;
 import entitypack.TradingUser;
 
+/**
+ * A UI class that links the following action menus that can be done to the user being viewed at:
+ *  - Send message
+ *  - Remove items from the user's wishlist
+ *  - Remove items from the user's inventory
+ *  - Freeze user
+ */
 public class ViewingUserAsAdmin {
     private JButton sendAMessageButton;
     private JButton removeAnItemFromButton;
@@ -19,6 +26,13 @@ public class ViewingUserAsAdmin {
     private JButton backButton;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface that links multiple actions can be done to the User with usernameViewed
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param usernameViewed the username of the User being viewed at
+     * @param window the main window displayed to the administrative user of the program
+     */
     public ViewingUserAsAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String usernameViewed,
                               JFrame window) {
         window.setContentPane(mainPanel);
@@ -26,6 +40,7 @@ public class ViewingUserAsAdmin {
         window.pack();
         window.setVisible(true);
 
+        //TODO: set button text and implement the remaining button listeners
 
         sendAMessageButton.addActionListener(new ActionListener() {
             @Override

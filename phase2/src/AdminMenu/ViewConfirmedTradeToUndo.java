@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that displays the details of a confirmed trade and allows the administrative user to undo it
+ */
 public class ViewConfirmedTradeToUndo {
     private JTextPane tradeToString;
     private JPanel mainPanel;
@@ -15,6 +18,13 @@ public class ViewConfirmedTradeToUndo {
     private JButton backButton;
     private JLabel tradeLabel;
 
+    /**
+     * Constructs the interface to view a confirmed trade and undo it
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param tradeID the ID of the trade
+     * @param window the main window displayed to the administrative user of the program
+     */
     public ViewConfirmedTradeToUndo(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, int tradeID, JFrame window) {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

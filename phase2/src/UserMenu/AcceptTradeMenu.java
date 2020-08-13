@@ -11,6 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class that displays the following components of the trade:
+ *  - Trade ID
+ *  - Usernames of the Users trading
+ *  - Items being trading
+ *  - Meeting time/location
+ *  - Status of acceptance of both Users
+ * This class also allows User to edit, accept or decline the trade.
+ */
 public class AcceptTradeMenu {
     private JLabel user1Value;
     private JLabel user2Value;
@@ -40,6 +49,14 @@ public class AcceptTradeMenu {
     private JLabel user2EditsMadeValue;
     private JButton declineTradeButton;
 
+    /**
+     * Constructs the interface to view the details of trade from the perspective of TradingUser with username
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username the username of the User viewing the trade
+     * @param frame the main window displayed to the trading user of the program
+     * @param trade the trade being viewed at
+     */
     public AcceptTradeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                            String username, JFrame frame, Trade trade) {
         frame.setContentPane(mainPanel);
@@ -47,6 +64,7 @@ public class AcceptTradeMenu {
         frame.pack();
         frame.setVisible(true);
 
+        //TODO: some buttons texts have not been set
         backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
         acceptRequestButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 1));
 

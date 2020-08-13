@@ -12,12 +12,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class that allows Admin to view all Users and select one
+ */
 public class ViewAllUsers {
     private JComboBox<String> selectUserBox;
     private JPanel mainPanel;
     private JButton backButton;
     private JButton confirmButton;
 
+    /**
+     * Constructs the interface to view all Users and select one
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param frame the main window displayed to the administrative user of the program
+     */
     public ViewAllUsers(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, boolean isAdmin, JFrame frame)
     {
         frame.setContentPane(mainPanel);

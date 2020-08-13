@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that displays the details of a trade request and allows the administrative user to undo it
+ */
 public class ViewRequestToUndo {
     private JTextPane tradeToString;
     private JPanel mainPanel;
@@ -15,6 +18,13 @@ public class ViewRequestToUndo {
     private JButton backButton;
     private JLabel tradeLabel;
 
+    /**
+     * Constructs the interface to view the trade request with tradeID and to undo it
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param tradeID the ID of the trade request
+     * @param window the main window displayed to the administrative user of the program
+     */
     public ViewRequestToUndo(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, int tradeID, JFrame window) {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

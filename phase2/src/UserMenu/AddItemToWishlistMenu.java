@@ -12,12 +12,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class that allows user to add items to their wishlist
+ */
 public class AddItemToWishlistMenu {
     private JScrollPane userToViewItemsPane;
     private JLabel title;
     private JPanel mainPanel;
     private JButton backButton;
 
+    /**
+     * Constructs the interface to add items to the wishlist for trading user
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param activeUsername the username of the User adding items
+     * @param userToViewUsername the username of the User whose items are being viewed at
+     * @param frame the window displayed to the trading user of the program
+     * @param isTradingUserViewing whether the User viewing is a TradingUser
+     * @param isUserToViewTrading whether the User being viewed at is a TradingUser
+     */
     public AddItemToWishlistMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                                  String activeUsername, String userToViewUsername, JFrame frame,
                                  boolean isTradingUserViewing, boolean isUserToViewTrading){

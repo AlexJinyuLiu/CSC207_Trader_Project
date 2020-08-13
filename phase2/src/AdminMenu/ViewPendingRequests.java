@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that displays all pending trade requests and allows the administrative user to select one
+ */
 public class ViewPendingRequests {
     private JComboBox pendingRequests;
     private JPanel mainPanel;
@@ -16,6 +19,12 @@ public class ViewPendingRequests {
     private JButton backButton;
     private JLabel TradeID;
 
+    /**
+     * Constructs the interface to view all pending trade requests
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param window the main window displayed to the administrative user of the program
+     */
     public ViewPendingRequests(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window) {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -9,6 +9,18 @@ import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
 
+/**
+ * A UI class that displays and links to the following menu classes for AdminUser:
+ *  - Set borrow lend threshold
+ *  - Set complete trade threshold
+ *  - Set incomplete trade threshold
+ *  - Add new AdminUser to the program
+ *  - View all thresholds
+ *  - Edit/Undo trades conducted by TradingUsers
+ *  - View all Users
+ *  - View item validation request queue
+ *  _ View messages
+ */
 public class AdminActionsMenu {
     public JPanel mainPanel;
     private JButton setCompleteTradeThreshold;
@@ -22,6 +34,12 @@ public class AdminActionsMenu {
     private JButton viewMessages;
     public JButton searchUser;
 
+    /**
+     * Constructs the interface of Admin's menu
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param frame the main window displayed to the administrative user of the program
+     */
     public AdminActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +59,7 @@ public class AdminActionsMenu {
         setBorrowLendThreshold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                //TODO: implement this and other set threshold buttons
             }
         });
 
@@ -55,8 +74,6 @@ public class AdminActionsMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, cpg, true, frame);
-                /*Login login = new Login(useCases, controllerPresenterGrouper, true, window);
-                window.dispose();*/
             }
         });
         viewThresholdValues.addActionListener(new ActionListener() {

@@ -11,13 +11,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class that displays the item validation request queue, and allows the administrative user to validate each of
+ * the requests
+ */
 public class ViewItemValidationRequests {
     private JPanel mainPanel;
     private JButton backButton;
     private JScrollPane itemPane;
 
-
-
+    /**
+     * Constructs the interface to view the item validation request queue
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param frame the main window displayed to the administrative user of the program
+     */
     public ViewItemValidationRequests(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, JFrame frame){
 
         frame.setContentPane(mainPanel);

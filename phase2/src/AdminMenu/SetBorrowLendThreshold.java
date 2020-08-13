@@ -7,6 +7,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that allows the administrative user to set each threshold:
+ *  - Max number of complete trades per week
+ *  - Max number of incomplete trades per week
+ *  - Borrow/lend threshold
+ */
 public class SetBorrowLendThreshold {
     private JLabel menuTitle;
     private JLabel enterThreshold;
@@ -21,6 +27,12 @@ public class SetBorrowLendThreshold {
     private JButton submitCompletes;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface to set each threshold
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param window the main window displayed to the administrative user of the program
+     */
     public SetBorrowLendThreshold(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame window){
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +40,8 @@ public class SetBorrowLendThreshold {
         final int[] newThresh = new int[1];
         final int[] completed = new int[1];
         final int[] incompleted = new int[1];
+
+        //TODO: replace the following setText methods
         menuTitle.setText("Admin Actions");
         enterThreshold.setText("Enter New Threshold");
         newThresholdField.setText(enterThreshold.getText());
