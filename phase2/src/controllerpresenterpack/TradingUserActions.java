@@ -89,28 +89,6 @@ public class TradingUserActions extends UserActions {
     }
 
     /**
-     * Allow user to view all the users in the trading system
-     * @param userViewing user logged in viewing other users
-     */
-    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             User userViewing, ItemManager itemManager){
-
-    }
-
-    /**
-     * Allow userViewing to do the followings:
-     * (1) send a message to userToView
-     * (2) add one of userToView's items to the wishlist
-     * (3) send a trade request to userToView
-     * @param userToView user that is being viewed
-     * @param userViewing user logged in that is viewing other user
-     */
-    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                         User userToView, User userViewing, ItemManager itemManager) {
-
-    }
-
-    /**
      * @return a boolean specifying whether or not the Trading user with username is currently frozen.
      */
     public boolean isUserFrozen(UserManager userManager, String username){

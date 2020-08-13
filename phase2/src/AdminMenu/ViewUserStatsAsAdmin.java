@@ -1,13 +1,9 @@
 package AdminMenu;
 
-import AdminMenu.ViewingUserAsAdmin;
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
-import entitypack.Item;
 import entitypack.TradingUser;
-import entitypack.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -102,3 +102,32 @@ OPTIONAL EXTENSIONS:
 there.
 * Multiple languages: From the beginning itself, you have the choice between using the trade system either
     in English or in French (which is set up such that it can be extended to any other language).
+
+
+DESIGN PATTERNS:
+
+    We implemented:
+        * Strategy for login logic. We had multiple different ways of logging in and wanted to make logging in
+            extensible for security concerns in the future. In ValidateLoginStrategy.
+        * Dependency injection throughout our use-case layer and controller/presenter layer to ease dependencies
+            between classes. We use UseCaseGrouper and ControllerPresenterGrouper to hold and distribute all of our
+            instances.
+
+    We chose not to implement:
+        * Observer pattern because we did not find any points in our program where we wanted to separate our real-time
+            causes and effects. We considered implementing it for our now-deceased alert system, however we scrapped
+            that system because it violated clean architecture.
+        * Facade pattern because we payed close attention to SRP violations in our code, and thus did not recognize an
+            antipattern for Facade (A single class responsible to multiple actors). We considered applying a Facade pattern to
+            our UserManager use case, but we decided instead to split up the class into many smaller Use Cases responsible
+            for different things in the program, as the facade we would have implemented here would quickly have bloated.
+        * Builder pattern because there are no single instances complicated enough to warrant their own class for building.
+            We considered implementing a builder for our TradeSystem class, but we decided that one of TradeSystem's main purposes
+            is to link together the controllers, presenters, and gateways in our program, which is not conducive of a builder.
+            Additionally, we did not need to encapsulate the construction of the TradeSystem class as it was overall fairly
+            straightforward (one line of code in main).
+        * We had considered implementing a factory pattern for our now-scrapped alert system, however we decided to
+            get rid of this system because of clean architecture violations.
+        * We did not find semblances of antipatterns for the other design patterns (Adapter, Iterator, Abstract Factory)
+
+
