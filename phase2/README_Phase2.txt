@@ -22,7 +22,6 @@ INSTRUCTIONS:
 
 
 
-
 IF USER:
     If creating an account, you will have the option of being a regular user or a “browse-only” user, the
         latter having the same functionality except you will not be able to make trades.
@@ -55,8 +54,6 @@ An added feature is Metropolitan Area Selection, in which you can select the clo
 * Request unfreeze
 
 
-
-
 IF ADMIN:
      Admin Login Menu
 * Set borrow/lend threshold
@@ -70,10 +67,6 @@ IF ADMIN:
         remove an item from their inventory, or freeze the user
 * View messages
 * View item validation requests
-
-
-
-
 
 
 MANDATORY EXTENSIONS:
@@ -130,4 +123,18 @@ DESIGN PATTERNS:
             get rid of this system because of clean architecture violations.
         * We did not find semblances of antipatterns for the other design patterns (Adapter, Iterator, Abstract Factory)
 
-
+IMPROVEMENTS FROM PHASE 1:
+    * Our UI! We decided to implement a java swing UI that wraps over our existing code. We had to significantly refactor
+        and de-couple our controller/presenter stuff from our input/output logic, as this was nescesary for the previous
+        text-based UI. As a result of this decoupling, our UI can now be switched out for a different UI (an app, for example)
+        with ease.
+    *
+    * We created a new use case class (ItemManager) to fix coupling and SRP issues in our old UserManager. Based on our
+        TA's feedback, we determined that UserManager was responsible for too many different systems, so we decided to
+        split it up into two classes, UserManager (now just for user functionality) and ItemManager (for item stuff).
+        This has made our code significantly more extensible and adding features to Item management has been a breeze
+        in phase 2 as a result. In particular, undo actions for the admin have been a very easy to extend because of
+        this.
+    *
+    * We have packaged our code by layer, meaning our usecases, controller/presenter code, entities, and GUI are all
+        in seperate packages.
