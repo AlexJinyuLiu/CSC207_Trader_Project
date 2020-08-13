@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class to display the ability for users to report trades
+ */
 public class ReportMenu {
     private JTextPane reportTextPane;
     private JButton backButton;
@@ -17,6 +20,14 @@ public class ReportMenu {
     private JPanel mainPanel;
     private JLabel reportLabel;
 
+    /**
+     * Constructs the trade report menu
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     * @param trade the trade being reported
+     */
     public ReportMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                       String username, JFrame frame, Trade trade) {
 
