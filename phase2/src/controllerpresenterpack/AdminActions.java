@@ -1,7 +1,5 @@
 package controllerpresenterpack;
 
-import alertpack.MessageAlert;
-import alertpack.UserAlert;
 import entitypack.BrowsingUser;
 import entitypack.*;
 import usecasepack.*;
@@ -12,19 +10,8 @@ import java.util.ArrayList;
 /**
  * A controller class that dictates what can be done on the Admin's menu.
  */
-public class AdminActions implements UserBrowsing, ActionController{
+public class AdminActions implements ActionController{
 
-
-    //TODO: the below method are to be called from input 6.
-    public void viewAllUsers(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                             User userViewing, ItemManager itemManager){
-
-    }
-
-    public void viewUser(MenuPresenter menuPresenter, UserManager userManager, TradeCreator tradeCreator,
-                         User userToView, User userViewing,ItemManager itemManager){
-
-    }
 
     /**
      * Return true iff username and password is a valid admin login.

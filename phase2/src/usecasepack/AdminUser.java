@@ -21,10 +21,6 @@ public class AdminUser implements Serializable{
      */
     private ArrayList<String> unfreezeRequests = new ArrayList<String>();
 
-    /**
-     * Stores the list of alerts to be processed by the admin
-     */
-    private ArrayList<Prompt> adminAlerts;
     private ArrayList<String> adminMessages = new ArrayList<String>();
 
     private AdminValidateLoginStrategy strategy = new AdminValidateLoginStrategy();
@@ -45,7 +41,7 @@ public class AdminUser implements Serializable{
      * @param password string for the admin's password
      */
     public AdminUser(String username, String password) {
-        adminAlerts = new ArrayList<Prompt>();
+
         addNewLogin(username, password);
     }
 
@@ -83,13 +79,6 @@ public class AdminUser implements Serializable{
         return true;
     }
 
-    /**
-     * Getter for the admin alert list.
-     * @return the list of admin alerts.
-     */
-    public ArrayList<Prompt> getAdminAlerts() {
-        return adminAlerts;
-    }
 
     public void addAdminMessage(String message) {
         adminMessages.add(message);
@@ -119,13 +108,9 @@ public class AdminUser implements Serializable{
 
     /**
      * Manages all startup functionality for the admin
-     * @param userManager the UseCasePack.UserManager initialized in the system.
-     * @param tradeCreator the UseCasePack.TradeCreator
      */
-    public void onStartUp(UserManager userManager, TradeCreator tradeCreator){
-        this.adminAlerts = userManager.fetchAdminAlerts();
-        this.adminAlerts.addAll(tradeCreator.fetchAdminAlerts());
-        userManager.clearAdminAlerts();
+    public void onStartUp(){
+
     }
 
     /*Temporarily abandoned by Tingyu

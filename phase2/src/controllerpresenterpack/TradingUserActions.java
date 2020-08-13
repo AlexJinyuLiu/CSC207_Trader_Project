@@ -1,6 +1,5 @@
 package controllerpresenterpack;
 
-import alertpack.*;
 import entitypack.*;
 import usecasepack.*;
 
@@ -13,7 +12,7 @@ import java.util.Scanner;
 /**
  * A controller class describing the actions a user can take from the menu in the trade system.
  */
-public class TradingUserActions extends UserActions implements UserBrowsing{
+public class TradingUserActions extends UserActions {
 
     /**
      * Adds a new login to the system. Return false iff the login could not be added.
@@ -173,9 +172,14 @@ public class TradingUserActions extends UserActions implements UserBrowsing{
      */
     public void createTradeRequest(TradeCreator tradeCreator, TradingUser user1, TradingUser user2,
                                    ArrayList<Integer> itemIDsSentToUser1, ArrayList<Integer> itemIDsSentToUser2,
-                                   LocalDateTime meetingTime, String meetingPlace){
-        tradeCreator.createTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
-                meetingPlace);
+                                   LocalDateTime meetingTime, String meetingPlace, boolean isTempTrade){
+        if (isTempTrade) {
+            tradeCreator.createTemporaryTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
+                    meetingPlace);
+        } else {
+            tradeCreator.createTradeRequest(user1, user2, itemIDsSentToUser1, itemIDsSentToUser2, meetingTime,
+                    meetingPlace);
+        }
     }
 
     /** Method which allows a user to accept a trade request

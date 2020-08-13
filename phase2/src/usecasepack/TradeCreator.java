@@ -20,10 +20,6 @@ public class TradeCreator implements Serializable {
     private ArrayList<Trade> pendingTradeRequests = new ArrayList<Trade>(); // list of all trade requests which have not been accepted
     // by both parties - Louis
 
-    private ArrayList<Prompt> adminAlerts = new ArrayList<Prompt>();
-
-    private HashMap<String, ArrayList<Prompt>> userAlertsToDispatch = new HashMap<String, ArrayList<Prompt>>();
-
     /**
      * The instance of UseCasePack.TradeHistories for the program.
      */
@@ -61,13 +57,7 @@ public class TradeCreator implements Serializable {
         return pendingTradeRequests;
     }
 
-    /**
-     * Fetches the userAlerts from tradeHistories by calling the equivalent method in tradeHistories.
-     * @return A hashmap of all useralerts for all users.
-     */
-    public HashMap<String, ArrayList<Prompt>> fetchUserAlerts() {
-        return tradeHistories.fetchUserAlerts();
-    }
+
 
 
     /**
@@ -92,17 +82,7 @@ public class TradeCreator implements Serializable {
         return pastDateTrades;
     }
 
-    /**
-     * Gets all admin alerts from UseCasePack.TradeCreator and UseCasePack.TradeHistories. Also empties the adminAlerts lists.
-     *
-     * @return an arraylist containing all admin alerts from this class and UseCasePack.TradeHistories.
-     */
-    public ArrayList<Prompt> fetchAdminAlerts() {
-        ArrayList<Prompt> alerts = this.adminAlerts;
-        this.adminAlerts = new ArrayList<Prompt>();
-        alerts.addAll(tradeHistories.fetchAdminAlerts());
-        return alerts;
-    }
+
 
 
     /**
@@ -373,10 +353,8 @@ public class TradeCreator implements Serializable {
      *
      * @param user  who is confirming the trade
      * @param trade the trade object
-     * @return an arraylist of all IDs of pending trades and pending trade requests that have been cancelled as a
-     * result of <trade> going through.
-     */ //TradeManager????
-    public ArrayList<ArrayList<Trade>> confirmTrade(UserManager userManager, TradingUser user, Trade trade,
+     */
+    public void confirmTrade(UserManager userManager, TradingUser user, Trade trade,
                                            ItemManager itemManager, TradingUser user1, TradingUser user2) {
         ArrayList<ArrayList<Trade>> IDsOfAllCancelledTrades = null;
         if (user.getUsername().equals(trade.getUsername1())) {
@@ -386,9 +364,8 @@ public class TradeCreator implements Serializable {
         }
         System.out.println(trade.isTradeCompleted());
         if (trade.isTradeCompleted()) {
-            IDsOfAllCancelledTrades = afterTrade(userManager, trade, itemManager, user1, user2);
+            afterTrade(userManager, trade, itemManager, user1, user2);
         }
-        return IDsOfAllCancelledTrades;
     }
 
     /**
@@ -397,11 +374,9 @@ public class TradeCreator implements Serializable {
      * Author: Louis Scheffer V
      *
      * @param trade trade object
-     * @return an arraylist containing two lists. The first is a arraylist of all pending trade requests to remove,
-     * and the second is an arraylist of all pending trades to remove.
-     */ //TradeManager
-    public ArrayList<ArrayList<Trade>> afterTrade(UserManager userManager, Trade trade, ItemManager itemManager, TradingUser user1,
-                           TradingUser user2) {
+     */
+    public void afterTrade(UserManager userManager, Trade trade, ItemManager itemManager,
+                                                  TradingUser user1, TradingUser user2) {
         pendingTrades.remove(trade);
         if (trade instanceof TemporaryTrade) {
             tradeHistories.addCurrentTemporaryTrade((TemporaryTrade) trade);
@@ -411,10 +386,9 @@ public class TradeCreator implements Serializable {
         }
 
         itemManager.exchangeItems(trade, user1, user2);
-        ArrayList<ArrayList<Trade>> listsOfCancelledTrades = new ArrayList<ArrayList<Trade>>();
-        listsOfCancelledTrades.add(checkPendingTradeRequests(userManager, itemManager));
-        listsOfCancelledTrades.add(checkPendingTrades(userManager, itemManager));
-        return listsOfCancelledTrades;
+
+        checkPendingTradeRequests(userManager, itemManager);
+        checkPendingTrades(userManager, itemManager);
     }
 
 
@@ -422,11 +396,8 @@ public class TradeCreator implements Serializable {
      * Method which checks all pending trades to see if the items are still available. If they are not then the trade
      * request is deleted.
      * Author: Louis Scheffer V
-     * @return an arraylist of all pending trades which have been cancelled as a result of a previous trade being
-     * completed.
      */
-    //TradeManager
-    public ArrayList<Trade> checkPendingTrades(UserManager userManager, ItemManager itemManager) {
+    public void checkPendingTrades(UserManager userManager, ItemManager itemManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTrades) {
             for (int itemID : trade.getItemIDsSentToUser1()) {
@@ -443,17 +414,18 @@ public class TradeCreator implements Serializable {
             }
         }
 
-        return tradesToRemove;
+        for (Trade trade: tradesToRemove){
+            pendingTrades.remove(trade);
+            tradeHistories.addDeadTrade(trade);
+        }
     }
 
     /**
      * Method which checks all pending trades to see if the items are still available. If they are not then the trade
      * request is deleted.
      * Author: Louis Scheffer V
-     * @return An arraylist of pending trade requests that have been cancelled because of annother trade
-     * happening first.
-     */ //TradeManager
-    public ArrayList<Trade> checkPendingTradeRequests(UserManager userManager, ItemManager itemManager) {
+     */
+    public void checkPendingTradeRequests(UserManager userManager, ItemManager itemManager) {
         ArrayList<Trade> tradesToRemove = new ArrayList<Trade>();
         for (Trade trade : pendingTradeRequests) {
             for (int itemID : trade.getItemIDsSentToUser1()) {
@@ -470,7 +442,11 @@ public class TradeCreator implements Serializable {
             }
         }
 
-        return tradesToRemove;
+        for (Trade trade: tradesToRemove){
+            pendingTradeRequests.remove(trade);
+            tradeHistories.addDeadTrade(trade);
+        }
+
     }
 
     /**
@@ -485,6 +461,7 @@ public class TradeCreator implements Serializable {
         }
     }
 
+    //TODO: remove trades that get cancelled on startup
     /**
      * Removes all pending trades from pendingTrades that match trades from tradesToRemove.
      *
@@ -497,37 +474,7 @@ public class TradeCreator implements Serializable {
         }
     }
 
-    /**
-     * Overloaded method to send an alert to a user. This one uses a user object.
-     * Author: Louis Scheffer V
-     *
-     * @param user  object of the user who will be receiving the alert
-     * @param alert alert object to send to the user
-     */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(User user, Prompt alert) {
-        String username = user.getUsername();
-        alertUser(username, alert);
-    }
 
-    /**
-     * Overloaded method to send an alert to a user. This one uses a username.
-     * Author: Louis Scheffer V
-     *
-     * @param username username of the user receiving the alert
-     * @param alert    alert object to send to the user
-     */ //UseCasePack.UserManager AND TradeManager
-    public void alertUser(String username, Prompt alert) {
-        tradeHistories.alertUser(username, alert);
-    }
-
-    /**
-     * Method which sends an alert to the admin.
-     *
-     * @param a the AdminAlert being sent to the admin.
-     */
-    public void alertAdmin(Prompt a) {
-        this.adminAlerts.add(a);
-    }
 
     /**
      * Set the threshold for the amount of items a user can borrow before they must lend one.
