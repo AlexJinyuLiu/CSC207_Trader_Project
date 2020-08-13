@@ -7,17 +7,16 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import UserMenu.SendMessageMenu;
 import entitypack.Frame;
-import entitypack.TradingUser;
 
 public class ViewingUserAsAdmin {
     private JButton sendAMessageButton;
-    private JButton removeAnItemFromButton;
-    private JButton removeAnItemFromButton1;
+    private JButton removeAnItemFromWishlistButton;
+    private JButton removeAnItemFromInventoryButton;
     private JButton freezeUserButton;
     private JButton backButton;
     private JPanel mainPanel;
+    private JButton viewStatsButton;
 
     public ViewingUserAsAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String usernameViewed,
                               JFrame window) {
@@ -25,6 +24,20 @@ public class ViewingUserAsAdmin {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
+
+        if (!useCases.userManager.isTradingUser(usernameViewed)) {
+            viewStatsButton.setEnabled(false);
+            removeAnItemFromInventoryButton.setEnabled(false);
+            removeAnItemFromWishlistButton.setEnabled(false);
+            freezeUserButton.setEnabled(false);
+        }
+
+        sendAMessageButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 0));
+        viewStatsButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 1));
+        removeAnItemFromWishlistButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 2));
+        removeAnItemFromInventoryButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 3));
+        freezeUserButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 4));
+        backButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 5));
 
 
         sendAMessageButton.addActionListener(new ActionListener() {
@@ -41,13 +54,13 @@ public class ViewingUserAsAdmin {
                 }
             }
         });
-        removeAnItemFromButton.addActionListener(new ActionListener() {
+        removeAnItemFromWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        removeAnItemFromButton1.addActionListener(new ActionListener() {
+        removeAnItemFromInventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -63,6 +76,12 @@ public class ViewingUserAsAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, cpg, true, window);
+            }
+        });
+        viewStatsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewUserStatsAsAdmin viewUserStatsAsAdmin = new ViewUserStatsAsAdmin(useCases, cpg, usernameViewed, window);
             }
         });
     }

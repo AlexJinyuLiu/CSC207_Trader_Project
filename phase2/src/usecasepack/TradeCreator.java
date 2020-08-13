@@ -362,7 +362,6 @@ public class TradeCreator implements Serializable {
         } else if (user.getUsername().equals(trade.getUsername2())) {
             trade.setUser2TradeConfirmed(true);
         }
-        System.out.println(trade.isTradeCompleted());
         if (trade.isTradeCompleted()) {
             afterTrade(userManager, trade, itemManager, user1, user2);
         }
@@ -391,6 +390,14 @@ public class TradeCreator implements Serializable {
         checkPendingTrades(userManager, itemManager);
     }
 
+
+    public void afterReportTrade(UserManager userManager, Trade trade, TradingUser user1, TradingUser user2 ) {
+        pendingTrades.remove(trade);
+        tradeHistories.addDeadTrade(trade);
+
+        userManager.increaseUserIncompleteTrades(user1);
+        userManager.increaseUserIncompleteTrades(user2);
+    }
 
     /**
      * Method which checks all pending trades to see if the items are still available. If they are not then the trade
