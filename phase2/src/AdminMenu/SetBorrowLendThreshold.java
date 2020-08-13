@@ -18,11 +18,13 @@ public class SetBorrowLendThreshold {
     private JLabel menuTitle;
     private JLabel enterThreshold;
     private JLabel incompleteThreshold;
-    private JTextField newIncompletes;
 
+    private JTextField newIncompletes;
     private JTextField newCompletes;
-    private JLabel completeThreshold;
     private JTextField newThresholdField;
+
+
+    private JLabel completeThreshold;
     private JButton submitThreshold;
     private JButton submitIncompletes;
     private JButton submitCompletes;
@@ -38,41 +40,36 @@ public class SetBorrowLendThreshold {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
-        final int[] newThresh = new int[1];
-        final int[] completed = new int[1];
-        final int[] incompleted = new int[1];
 
         menuTitle.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,9));
         enterThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,0));
-        newThresholdField.setText(enterThreshold.getText());
+        int newThresh = Integer.parseInt(newThresholdField.getText());
         submitThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,10));
         incompleteThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,2));
         completeThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,1));
-        newIncompletes.setText(incompleteThreshold.getText());
-        newCompletes.setText(completeThreshold.getText());
+        int incompleted = Integer.parseInt(newIncompletes.getText());
+        int completed = Integer.parseInt(newCompletes.getText());
         window.setVisible(true);
 
         submitIncompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                incompleted[0] = Integer.parseInt(newIncompletes.getText()); //wrapping string as an int
-                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted[0]);
+
+                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted);
             }
         });
 
         submitCompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                completed[0] = Integer.parseInt(newCompletes.getText()); //wrapping string as an int
-                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed[0]);
+                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed);
             }
         });
 
         submitThreshold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newThresh[0] = Integer.parseInt(newThresholdField.getText()); //wrapping string as an int
-                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, newThresh[0]);
+                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, newThresh);
             }
         });
 
