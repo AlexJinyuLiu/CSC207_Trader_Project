@@ -103,7 +103,8 @@ public class TradingUserActionsMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if(cpg.tradingUserActions.isUserFrozen(useCases.userManager, username)){
-                    cpg.tradingUserActions.sendUnfreezeRequest(useCases.adminUser, username);
+                    cpg.tradingUserActions.messageAdmin(username,
+                            username + " " + cpg.menuPresenter.getText(Frame.ADMINFREEZE, 9), useCases.adminUser);
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 7));
                 }else {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 8));
