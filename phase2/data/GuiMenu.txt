@@ -48,17 +48,24 @@ View messages
 }
 
 Frame{ - ADMINACTIONSMENU
-Set Borrow/Lend Threshold
-Set Complete Trade Threshold
-Set Incomplete Trade Threshold
+Set trade thresholds
 Add a New Admin
 View Current Threshold Values
 Edit or Undo a Trade
 View All Users
 View Item Validation Requests
 View messages
+}
+
+Frame{ - THRESHOLDSMENU
 Admin Actions
+Set Borrow/Lend Threshold
+Set Complete Trade Threshold
+Set Incomplete Trade Threshold
+Enter a value
 Submit
+Threshold changed.
+Back
 }
 
 Frame{ - ADMINVIEWTRADE

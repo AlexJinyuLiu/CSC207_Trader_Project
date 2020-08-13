@@ -23,11 +23,9 @@ import entitypack.Frame;
  */
 public class AdminActionsMenu {
     public JPanel mainPanel;
-    private JButton setCompleteTradeThreshold;
-    public JButton setBorrowLendThreshold;
+    public JButton setThresholds;
     public JButton addNewAdmin;
     private JButton viewThresholdValues;
-    private JButton setIncompleteTradeThreshold;
     private JButton editUndoTrade;
     public JButton viewAllUsers;
     private JButton viewItemValidationRequests;
@@ -46,20 +44,18 @@ public class AdminActionsMenu {
         frame.pack();
         frame.setVisible(true);
 
-        setBorrowLendThreshold.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 0));
-        setCompleteTradeThreshold.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 1));
-        setIncompleteTradeThreshold.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 2));
-        addNewAdmin.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 3));
-        viewThresholdValues.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 4));
-        editUndoTrade.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 5));
-        viewAllUsers.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 6));
-        viewItemValidationRequests.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 7));
-        viewMessages.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 8));
+        setThresholds.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU,0));
+        addNewAdmin.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 1));
+        viewThresholdValues.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 2));
+        editUndoTrade.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 3));
+        viewAllUsers.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 4));
+        viewItemValidationRequests.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 5));
+        viewMessages.setText(cpg.menuPresenter.getText(Frame.ADMINACTIONSMENU, 6));
 
-        setBorrowLendThreshold.addActionListener(new ActionListener() {
+        setThresholds.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetBorrowLendThreshold setThresholds = new SetBorrowLendThreshold(useCases, cpg, frame);
+                SetThresholds setThresholds = new SetThresholds(useCases, cpg, frame);
             }
         });
 
