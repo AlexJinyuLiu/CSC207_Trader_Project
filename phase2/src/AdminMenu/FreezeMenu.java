@@ -1,5 +1,6 @@
 package AdminMenu;
 
+import controllerpresenterpack.AdminActions;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
@@ -39,22 +40,28 @@ public class FreezeMenu {
             TradingUser viewedUser = (TradingUser) useCases.userManager.searchUser(viewedUsername);
             if (viewedUser.getFrozen()) {
                 currentFrozenStatus.setText(cpg.menuPresenter.getText(Frame.ADMINFREEZE, 1));
+                freezeButton.setEnabled(false);
             } else {
                 currentFrozenStatus.setText(cpg.menuPresenter.getText(Frame.ADMINFREEZE, 2));
+                unfreezeButton.setEnabled(false);
             }
+            freezeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cpg.adminActions.freezeUser(viewedUser, 1, useCases.adminUser);
+                    JOptionPane.showMessageDialog(window, cpg.menuPresenter.getText(Frame.ADMINFREEZE, 7));
+                    AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, window);
+                }
+            });
+            unfreezeButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cpg.adminActions.freezeUser(viewedUser, 0, useCases.adminUser);
+                    JOptionPane.showMessageDialog(window, cpg.menuPresenter.getText(Frame.ADMINFREEZE, 8));
+                    AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, window);
+                }
+            });
         }
-        freezeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        unfreezeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

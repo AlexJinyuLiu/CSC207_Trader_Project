@@ -86,6 +86,9 @@ Not Applicable
 Freeze
 Unfreeze
 Back
+Account frozen.
+Account unfrozen.
+}
 
 Frame{ - BROWSINGUSERACTIONSMENU
 (Browsing)

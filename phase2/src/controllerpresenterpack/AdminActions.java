@@ -114,4 +114,18 @@ public class AdminActions implements ActionController{
         return userManager.getListUsers();
     }
 
+    /** Methods that takes input and freezes/unfreezes selected user
+     *
+     * @param user user being viewed
+     * @param input freeze or unfreeze (1 for freeze, 0 for unfreeze)
+     * @param adminUser AdminUser object associated with program
+     */
+    public void freezeUser(TradingUser user, int input, AdminUser adminUser) {
+        if (input == 0) {
+            adminUser.unfreezeAccount(user);
+        } else if (input == 1){
+            adminUser.freezeUser(user);
+        }
+    }
 }
+
