@@ -71,6 +71,15 @@ Back
 Trade undone.
 }
 
+Frame{ - ADMINVIEWUSER
+Send a message
+View user stats
+Remove an item from user's wishlist
+Remove an item from user's inventory
+Freeze/Unfreeze User
+Back
+}
+
 Frame{ - EDITTRADE
 View trade requests
 View confirmed trades

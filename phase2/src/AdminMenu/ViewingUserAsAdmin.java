@@ -7,32 +7,17 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import UserMenu.SendMessageMenu;
 import entitypack.Frame;
-import entitypack.TradingUser;
 
-/**
- * A UI class that links the following action menus that can be done to the user being viewed at:
- *  - Send message
- *  - Remove items from the user's wishlist
- *  - Remove items from the user's inventory
- *  - Freeze user
- */
 public class ViewingUserAsAdmin {
     private JButton sendAMessageButton;
-    private JButton removeAnItemFromButton;
-    private JButton removeAnItemFromButton1;
+    private JButton removeAnItemFromWishlistButton;
+    private JButton removeAnItemFromInventoryButton;
     private JButton freezeUserButton;
     private JButton backButton;
     private JPanel mainPanel;
+    private JButton viewStatsButton;
 
-    /**
-     * Constructs the interface that links multiple actions can be done to the User with usernameViewed
-     * @param useCases the use case grouper
-     * @param cpg the controller presenter grouper
-     * @param usernameViewed the username of the User being viewed at
-     * @param window the main window displayed to the administrative user of the program
-     */
     public ViewingUserAsAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String usernameViewed,
                               JFrame window) {
         window.setContentPane(mainPanel);
@@ -40,7 +25,20 @@ public class ViewingUserAsAdmin {
         window.pack();
         window.setVisible(true);
 
-        //TODO: set button text and implement the remaining button listeners
+        if (!useCases.userManager.isTradingUser(usernameViewed)) {
+            viewStatsButton.setEnabled(false);
+            removeAnItemFromInventoryButton.setEnabled(false);
+            removeAnItemFromWishlistButton.setEnabled(false);
+            freezeUserButton.setEnabled(false);
+        }
+
+        sendAMessageButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 0));
+        viewStatsButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 1));
+        removeAnItemFromWishlistButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 2));
+        removeAnItemFromInventoryButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 3));
+        freezeUserButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 4));
+        backButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 5));
+
 
         sendAMessageButton.addActionListener(new ActionListener() {
             @Override
@@ -56,13 +54,13 @@ public class ViewingUserAsAdmin {
                 }
             }
         });
-        removeAnItemFromButton.addActionListener(new ActionListener() {
+        removeAnItemFromWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        removeAnItemFromButton1.addActionListener(new ActionListener() {
+        removeAnItemFromInventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -78,6 +76,12 @@ public class ViewingUserAsAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, cpg, true, window);
+            }
+        });
+        viewStatsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewUserStatsAsAdmin viewUserStatsAsAdmin = new ViewUserStatsAsAdmin(useCases, cpg, usernameViewed, window);
             }
         });
     }

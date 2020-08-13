@@ -44,6 +44,7 @@ public enum Frame {
 
     ADDNEWADMIN,
     ADMINVIEWTRADE,
+    ADMINVIEWUSER,
     EDITTRADE,
     ADMINFREEZE,
 

@@ -40,7 +40,9 @@ public class ReportMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 String reportText = reportTextPane.getText();
                 cpg.tradingUserActions.messageAdmin(username, reportText, useCases.adminUser);
-
+                TradingUser user1 = (TradingUser) useCases.userManager.searchUser(trade.getUsername1());
+                TradingUser user2 = (TradingUser) useCases.userManager.searchUser(trade.getUsername2());
+                useCases.tradeCreator.afterReportTrade(useCases.userManager, trade, user1, user2);
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 15));
                 TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
