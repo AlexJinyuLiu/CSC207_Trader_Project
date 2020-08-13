@@ -33,8 +33,6 @@ public class Login extends JFrame{
         frame.pack();
         frame.setVisible(true);
 
-        //TODO: Do this through menuPresenter, it already deals with the language abstraction
-
         passwordLabel.setText(cpg.menuPresenter.getText(Frame.LOGIN,0));
         usernameLabel.setText(cpg.menuPresenter.getText(Frame.LOGIN,1));
         backButton.setText(cpg.menuPresenter.getText(Frame.LOGIN,2));
@@ -60,7 +58,7 @@ public class Login extends JFrame{
                     }
                 }else{
                     UserActions userActions = new UserActions();
-                    // TODO send user to Options
+
                     //This version of validateLogin returns null if the login is invalid, true if the user is a
                     //TradingUser, and false if the user is a BrowsingUser
                     validLogin = userActions.validateLogin(useCases.userManager, user, pass);
@@ -86,8 +84,6 @@ public class Login extends JFrame{
             }
         });
         backButton.addActionListener(new ActionListener() {
-            //TODO: Find a better solution for going back than this. This piles up function calls on the stack.
-            //  Maybe have a .run() method in all the UI classes and call that instead of making a new object each time?
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 MainMenu mainMenu = new MainMenu(useCases, cpg, frame);

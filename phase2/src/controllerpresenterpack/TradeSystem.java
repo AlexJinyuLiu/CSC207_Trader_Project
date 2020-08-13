@@ -1,3 +1,4 @@
+package controllerpresenterpack;
 
 import controllerpresenterpack.*;
 import entitypack.*;
@@ -28,7 +29,7 @@ public class TradeSystem {
     private String dir = "phase2/data/";
 
     /**
-     * Empty constructor. Creates a new instance of TradeSystem.
+     * Empty constructor. Creates a new instance of controllerpresenterpack.TradeSystem.
      */
     public TradeSystem(){}
 
@@ -43,7 +44,7 @@ public class TradeSystem {
      * @return a use case grouper object containing all recently loaded use cases
      */
     public UseCaseGrouper loadData(){
-        File directory = new File("phase1/data");
+        File directory = new File("phase2/data");
         if (! directory.exists()) {
             directory.mkdir();
         }

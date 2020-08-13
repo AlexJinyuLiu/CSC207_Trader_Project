@@ -40,7 +40,6 @@ public class ViewActiveTemporaryTradesMenu {
         selectItemButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 1));
 
 
-        //TODO populate the drop down box with pending trade IDs
         ArrayList<TemporaryTrade> trades = controllerPresenterGrouper.tradingUserActions.searchCurrentTempTradesUser(username, useCases.userManager, useCases.tradeCreator);
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
@@ -53,8 +52,9 @@ public class ViewActiveTemporaryTradesMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (pendingTradesBox.getSelectedIndex() == -1) {
-                    //TODO un-hardcode this
-                    JOptionPane.showMessageDialog(frame, "Please Pick a Trade");
+
+                    JOptionPane.showMessageDialog(frame,
+                            controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 2));
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
                     TemporaryTrade temporaryTrade = (TemporaryTrade) controllerPresenterGrouper.tradingUserActions.searchTrade(useCases.tradeCreator, tradeID);

@@ -1,5 +1,6 @@
 import AdminMenu.ViewingUserAsAdmin;
 import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.TradeSystem;
 import controllerpresenterpack.UseCaseGrouper;
 
 import javax.swing.*;

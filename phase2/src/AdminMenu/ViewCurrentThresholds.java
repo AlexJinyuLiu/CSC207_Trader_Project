@@ -2,6 +2,7 @@ package AdminMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +35,11 @@ public class ViewCurrentThresholds {
         window.pack();
         window.setVisible(true);
 
-        //TODO: set text of the threshold labels by calling the menuPresenter method
+        BorrowLendThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWCURRENTTHRESHOLDS, 0));
+        incompleteTradeThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWCURRENTTHRESHOLDS, 1));
+        CompleteThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWCURRENTTHRESHOLDS, 2));
+        BackButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWCURRENTTHRESHOLDS, 3));
+
         BLTnum.setText(Integer.toString(useCases.tradeCreator.getBorrowLendThreshold()));
         ITTnum.setText(Integer.toString(useCases.userManager.getIncompleteThreshold()));
         CTTnum.setText(Integer.toString(useCases.tradeCreator.getCompleteThreshold()));

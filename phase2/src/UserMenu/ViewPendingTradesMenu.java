@@ -62,8 +62,8 @@ public class ViewPendingTradesMenu {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if (pendingTradesBox.getSelectedIndex() == -1) {
-                    //TODO un-hardcode this
-                    JOptionPane.showMessageDialog(frame, "Please Pick a Trade");
+                    JOptionPane.showMessageDialog(frame,
+                            controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 2));
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
                     Trade trade = useCases.tradeCreator.searchTrades(tradeID);

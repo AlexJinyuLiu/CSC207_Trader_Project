@@ -38,8 +38,6 @@ public class LanguagePrompt {
         englishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO: Storing menuPresenter here might have some unforseen consequences when we want to access it
-                //  from outside the UI layer (do we need to do that?)
                 GuiMenuPresenter menuPresenter = new GuiMenuPresenter("English");
                 controllerPresenterGrouper.setMenuPresenter(menuPresenter);
                 MainMenu mainMenu = new MainMenu(useCases, controllerPresenterGrouper, frame);

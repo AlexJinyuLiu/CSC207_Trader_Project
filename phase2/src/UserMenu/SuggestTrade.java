@@ -36,7 +36,6 @@ public class SuggestTrade {
      */
     public SuggestTrade(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String activeUser, String userToView,
                         JFrame frame) {
-        //TODO: Make sure the text here isn't swapped
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -78,7 +77,4 @@ public class SuggestTrade {
         label.setText(s.toString());
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

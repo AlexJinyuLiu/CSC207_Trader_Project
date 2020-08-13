@@ -60,7 +60,6 @@ public class ViewUserMenu {
             userToViewIsFrozen = false;
             active = true;
         }
-        //TODO: Test this once item validation is working properly.
 
 
         if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
@@ -119,7 +118,6 @@ public class ViewUserMenu {
         addItemToWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO: this is not working
                 AddItemToWishlistMenu addItemToWishListMenu = new AddItemToWishlistMenu(useCases, cpg, activeUsername,
                         userToViewUsername, frame, isTradingUserViewing, isUserToViewTrading);
             }
@@ -128,7 +126,6 @@ public class ViewUserMenu {
         createTradeRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO take each selected item and populate a list of IDs
 
 
 
@@ -172,9 +169,5 @@ public class ViewUserMenu {
                 }
             }
         });
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

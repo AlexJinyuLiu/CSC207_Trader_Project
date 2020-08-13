@@ -30,10 +30,6 @@ public class ItemManager implements Serializable {
         items.add(newItem);
     }
 
-    //TODO: delete the function below after debug
-    public ArrayList<Item> getItems() {
-        return items;
-    }
 
     /**
      * Creates and adds a new item validation request to the validationRequests arraylist.

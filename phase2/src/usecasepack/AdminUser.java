@@ -54,6 +54,14 @@ public class AdminUser implements Serializable{
     }
 
     /**
+     *
+     * @return an arraylist of unfreeze requests for the admin.
+     */
+    public ArrayList<String> getUnfreezeRequests(){
+        return this.unfreezeRequests;
+    }
+
+    /**
      * Returns whether or not <username> is taken by annother user on the system.
      * @param username the username in question.
      * @return a boolean determining whether or not the username is valid.
