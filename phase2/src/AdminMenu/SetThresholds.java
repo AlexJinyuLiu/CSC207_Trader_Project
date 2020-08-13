@@ -38,9 +38,9 @@ public class SetThresholds {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
-        final int[] newThresh = new int[1];
-        final int[] completed = new int[1];
-        final int[] incompleted = new int[1];
+        int newThresh = Integer.parseInt(newBorrowLend.getText());
+        int completed = Integer.parseInt(newCompletes.getText());
+        int incompleted = Integer.parseInt(newIncompletes.getText());
 
         menuTitle.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 0));
         enterBorrowLend.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 1));
@@ -58,8 +58,7 @@ public class SetThresholds {
         submitIncompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                incompleted[0] = Integer.parseInt(newIncompletes.getText()); //wrapping string as an int
-                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted[0]);
+                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }
@@ -68,8 +67,7 @@ public class SetThresholds {
         submitCompletes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                completed[0] = Integer.parseInt(newCompletes.getText()); //wrapping string as an int
-                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed[0]);
+                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }
@@ -78,8 +76,7 @@ public class SetThresholds {
         submitBorrowLend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                newThresh[0] = Integer.parseInt(newBorrowLend.getText()); //wrapping string as an int
-                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, newThresh[0]);
+                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, newThresh);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }
