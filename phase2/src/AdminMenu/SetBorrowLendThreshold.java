@@ -2,6 +2,7 @@ package AdminMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -41,13 +42,12 @@ public class SetBorrowLendThreshold {
         final int[] completed = new int[1];
         final int[] incompleted = new int[1];
 
-        //TODO: replace the following setText methods
-        menuTitle.setText("Admin Actions");
-        enterThreshold.setText("Enter New Threshold");
+        menuTitle.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,9));
+        enterThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,0));
         newThresholdField.setText(enterThreshold.getText());
-        submitThreshold.setText("Submit");
-        incompleteThreshold.setText("Enter new number of maximum incomplete trades per user");
-        completeThreshold.setText("Enter new number of minimum completed trades per user");
+        submitThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,10));
+        incompleteThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,2));
+        completeThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU,1));
         newIncompletes.setText(incompleteThreshold.getText());
         newCompletes.setText(completeThreshold.getText());
         window.setVisible(true);

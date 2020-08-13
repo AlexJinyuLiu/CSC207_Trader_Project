@@ -57,6 +57,8 @@ Edit or Undo a Trade
 View All Users
 View Item Validation Requests
 View messages
+Admin Actions
+Submit
 }
 
 Frame{ - ADMINVIEWTRADE

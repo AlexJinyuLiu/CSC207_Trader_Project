@@ -59,7 +59,7 @@ public class AdminActionsMenu {
         setBorrowLendThreshold.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO: implement this and other set threshold buttons
+                SetBorrowLendThreshold setThresholds = new SetBorrowLendThreshold(useCases, cpg, frame);
             }
         });
 
