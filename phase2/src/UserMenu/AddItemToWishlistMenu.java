@@ -38,7 +38,7 @@ public class AddItemToWishlistMenu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
+        backButton.setText(cpg.menuPresenter.getText(Frame.ADDITEMTOWISHLISTMENU, 5));
 
         title.setText(cpg.menuPresenter.getText(Frame.ADDITEMTOWISHLISTMENU, 0) + userToViewUsername +
                 cpg.menuPresenter.getText(Frame.ADDITEMTOWISHLISTMENU, 1));
