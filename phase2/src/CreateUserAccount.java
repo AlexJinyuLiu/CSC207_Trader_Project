@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class to display the create user account functionality
+ */
 public class CreateUserAccount {
     private JPasswordField passwordField;
     private JPasswordField passwordConfirmationField;
@@ -24,6 +27,12 @@ public class CreateUserAccount {
     private JTextField usernameTextField;
     private JLabel citySelectorLabel;
 
+    /**
+     * Constructs the interface to create user accounts
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param frame the main window displayed to the trading user of the program
+     */
     public CreateUserAccount(UseCaseGrouper useCases, ControllerPresenterGrouper
             cpg, JFrame frame) {
         frame.setContentPane(mainPanel);

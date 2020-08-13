@@ -9,13 +9,22 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class to set the current user's metropolitan area
+ */
 public class SetActiveCityMenu {
     private JPanel mainPanel;
     private JComboBox cities;
     private JButton backButton;
     private JButton setCityButton;
 
-
+    /**
+     * Constructs the interface for user's to select their city
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public SetActiveCityMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                              String username, JFrame frame) {
         frame.setContentPane(mainPanel);

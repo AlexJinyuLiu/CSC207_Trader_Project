@@ -3,14 +3,16 @@ import UserMenu.BrowsingUserActionsMenu;
 import UserMenu.TradingUserActionsMenu;
 import controllerpresenterpack.*;
 import entitypack.Frame;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class to allow for user login
+ */
 public class Login extends JFrame{
 
-     JFormattedTextField username;
+    JFormattedTextField username;
     private JPasswordField password;
     private JButton loginButton;
     private JPanel mainPanel;
@@ -18,6 +20,13 @@ public class Login extends JFrame{
     private JLabel usernameLabel = new JLabel();
     private JLabel passwordLabel = new JLabel();
 
+    /**
+     * Constructs the interface for users to login
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param isAdmin boolean for whether or not user is an admin
+     * @param frame the main window displayed to the trading user of the program
+     */
     public Login(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, boolean isAdmin, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

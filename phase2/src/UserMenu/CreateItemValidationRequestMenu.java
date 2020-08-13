@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class to display the ability for users to request an item creation
+ */
 public class CreateItemValidationRequestMenu {
     private JButton createRequestButton;
     private JButton backButton;
@@ -17,6 +20,13 @@ public class CreateItemValidationRequestMenu {
     private JLabel itemNameLabel;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface to create an item validation request
+     * @param useCases use case grouper
+     * @param cpg the controller presenter grouper
+     * @param username current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public CreateItemValidationRequestMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                                            String username, JFrame frame) {
         frame.setContentPane(mainPanel);

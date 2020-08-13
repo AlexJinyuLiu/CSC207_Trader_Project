@@ -12,6 +12,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class for users to view their statistics
+ */
 public class ViewUserStatsMenu {
     private JButton backButton;
     private JPanel mainPanel;
@@ -30,6 +33,13 @@ public class ViewUserStatsMenu {
     private JLabel mostFrequentTradingPartnersLabel;
     private JLabel mostFrequentTradingPartnersValue;
 
+    /**
+     * Constructs the interface to view user stats
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ViewUserStatsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                              String username, JFrame frame) {
         frame.setContentPane(mainPanel);
