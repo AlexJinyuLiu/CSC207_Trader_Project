@@ -13,6 +13,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A UI class to counter offer a trade
+ */
 public class CounterOfferMenu {
 
     private JPanel mainPanel;
@@ -23,6 +26,14 @@ public class CounterOfferMenu {
     private JButton sendTradeRequestButton;
     private JButton backButton;
 
+    /**
+     * Constructs the interface to create a counter offer
+     * @param useCases the use case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     * @param trade the trade to counter offer
+     */
     public CounterOfferMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                             String username, JFrame frame, Trade trade) {
         frame.setContentPane(mainPanel);

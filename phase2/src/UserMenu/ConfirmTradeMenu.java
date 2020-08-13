@@ -15,6 +15,10 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * A UI class to display the confirm trade menu.
+ * Allows users to select a trade and to confirm it
+ */
 public class ConfirmTradeMenu {
     private JLabel tradeIDLabel;
     private JLabel tradeIDValue;
@@ -39,6 +43,14 @@ public class ConfirmTradeMenu {
     private JPanel mainPanel;
     private JTextPane itemsToUser1List;
 
+    /**
+     * Constructs the interface to confirm trades
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     * @param trade the trade to confirm
+     */
     public ConfirmTradeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                             String username, JFrame frame, Trade trade) {
         frame.setContentPane(mainPanel);

@@ -13,6 +13,9 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * A UI class which displays the ability for users to confirm a trade re-exchange
+ */
 public class ConfirmReExchangeMenu {
     private JPanel mainPanel;
     private JLabel tradeIDLabel;
@@ -35,6 +38,14 @@ public class ConfirmReExchangeMenu {
     private JLabel user1ConfirmedReExchangeValue;
     private JLabel user2ConfirmedReExchangeValue;
 
+    /**
+     * Constructs the interface to confirm trade re-exchanges
+     * @param useCases use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username current user's username
+     * @param frame the main window displayed to the trading user of the program
+     * @param trade the trade to re-exchange
+     */
     public ConfirmReExchangeMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                  String username, JFrame frame, TemporaryTrade trade) {
         frame.setContentPane(mainPanel);

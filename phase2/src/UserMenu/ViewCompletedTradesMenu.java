@@ -11,12 +11,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class for users to view their completed trades
+ */
 public class ViewCompletedTradesMenu {
 
     private JButton backButton;
     private JPanel mainPanel;
     private JScrollPane tradeInfoPane;
 
+    /**
+     * Constructs the interface to view completed trades
+     * @param useCases the user case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ViewCompletedTradesMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper,
                                         String username, JFrame frame) {
         frame.setContentPane(mainPanel);

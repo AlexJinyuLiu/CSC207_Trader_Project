@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class to display the menu for trading users
+ */
 public class TradingUserActionsMenu {
     private JButton viewItemsAndWishlistButton;
     private JButton viewUserStatsButton;
@@ -24,12 +27,18 @@ public class TradingUserActionsMenu {
     private JButton viewActiveTempTradesButton;
     private JButton viewMessagesButton;
 
+    /**
+     * Constructs the interface for a trading user's menu
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public TradingUserActionsMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame){
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
 
         viewItemsAndWishlistButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 0));
         viewOtherUsersButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 1));

@@ -6,12 +6,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import entitypack.Frame;
 
+/**
+ * A UI class for the main menu of the program. A different menu is presented depending
+ * on type of user: browsing/non-browsing and if they are an admin
+ */
 public class MainMenu {
     private JButton createAccountButton;
     private JButton loginAsUserButton;
     private JButton loginAsAdminButton;
     private JPanel mainPanel;
 
+    /**
+     * Constructs the interface to display the main menu
+     * @param useCases the use case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param frame the main window displayed to the trading user of the program
+     */
     public MainMenu(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

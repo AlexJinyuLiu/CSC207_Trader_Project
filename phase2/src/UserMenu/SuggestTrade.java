@@ -13,8 +13,10 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * A UI class to suggest a trade to another user
+ */
 public class SuggestTrade {
-
 
     private JPanel mainPanel;
     private JButton coolButton;
@@ -24,6 +26,14 @@ public class SuggestTrade {
     private JLabel theirStuffIwantList;
 
 
+    /**
+     * Constructs the interface to suggest a trade
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param activeUser the current user's username
+     * @param userToView the recipient user of the trade suggestion
+     * @param frame the main window displayed to the trading user of the program
+     */
     public SuggestTrade(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String activeUser, String userToView,
                         JFrame frame) {
         //TODO: Make sure the text here isn't swapped

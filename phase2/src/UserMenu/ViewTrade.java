@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class for users to view trades
+ */
 public class ViewTrade {
     private JPanel mainPanel;
     private JLabel user1Label;
@@ -33,6 +36,13 @@ public class ViewTrade {
     private JLabel tradeIDValue;
     private JLabel tradeIDLabel;
 
+    /**
+     * Constructs the interface to view trades
+     * @param useCases the user case grouper
+     * @param controllerPresenterGrouper the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     */
     public ViewTrade(UseCaseGrouper useCases, ControllerPresenterGrouper controllerPresenterGrouper, String username, JFrame frame) {
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

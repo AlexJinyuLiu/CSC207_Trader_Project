@@ -11,12 +11,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * A UI class for user's to view all other users in their metropolitan area
+ */
 public class ViewAllOtherUsersMenu {
     private JComboBox<String> selectUserBox;
     private JPanel mainPanel;
     private JButton backButton;
     private JButton selectUserButton;
 
+    /**
+     * Constructs the interface for users to view other users
+     * @param useCases the user case grouper
+     * @param cpg the controller presenter grouper
+     * @param username the current user's username
+     * @param frame the main window displayed to the trading user of the program
+     * @param isTradingUser boolean for whether or not the current user is of type TradingUser
+     */
     public ViewAllOtherUsersMenu(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame frame,
                                  boolean isTradingUser) {
         frame.setContentPane(mainPanel);
