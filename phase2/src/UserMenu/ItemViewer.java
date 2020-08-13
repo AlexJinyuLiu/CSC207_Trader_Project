@@ -2,6 +2,7 @@ package UserMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
+import entitypack.Frame;
 import entitypack.Item;
 
 import javax.swing.*;
@@ -36,8 +37,9 @@ public class ItemViewer {
 
         itemDescription.setText(item.getName() + "\n" + item.getDescription());
 
+        removeItemButton.setText(cpg.menuPresenter.getText(Frame.ITEMVIEWER, 0));
+        backButton.setText(cpg.menuPresenter.getText(Frame.ITEMVIEWER, 1));
 
-        //Todo set button text to english or french options from menu presenter
 
         removeItemButton.addActionListener(new ActionListener() {
             @Override

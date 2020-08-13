@@ -45,11 +45,10 @@ public class SetActiveCityMenu {
         setCityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //TODO set the users city
 
                 cpg.tradingUserActions.setUsersCity(useCases.userManager, username,
                         (MetroArea)cities.getSelectedItem());
-                JOptionPane.showMessageDialog(frame, "City selected successfully");
+                JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SETACTIVECITYMENU, 6));
                 TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
                         username, frame);
 

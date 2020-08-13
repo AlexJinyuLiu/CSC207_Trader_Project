@@ -340,8 +340,8 @@ public class TradeCreator implements Serializable {
      * @return Boolean
      */ //TradeManager
     public Boolean beforeTrade(TradingUser u1, TradingUser u2) {
-        if (tradeHistories.getNumTradesThisWeek(u1.getUsername()) > completeThreshold ||
-                tradeHistories.getNumTradesThisWeek(u2.getUsername()) > completeThreshold ||
+        if (tradeHistories.getNumTradesThisWeek(u1.getUsername()) >= completeThreshold ||
+                tradeHistories.getNumTradesThisWeek(u2.getUsername()) >= completeThreshold ||
                 !u1.isActive() || !u2.isActive()) {
             return false;
         }
@@ -468,7 +468,6 @@ public class TradeCreator implements Serializable {
         }
     }
 
-    //TODO: remove trades that get cancelled on startup
     /**
      * Removes all pending trades from pendingTrades that match trades from tradesToRemove.
      *

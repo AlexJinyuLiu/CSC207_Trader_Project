@@ -64,7 +64,7 @@ public class AcceptTradeMenu {
         frame.pack();
         frame.setVisible(true);
 
-        //TODO: some buttons texts have not been set
+
         backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
         acceptRequestButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 1));
         declineTradeButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 16));

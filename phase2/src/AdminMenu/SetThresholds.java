@@ -43,9 +43,9 @@ public class SetThresholds {
         final int[] incompleted = new int[1];
 
         menuTitle.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 0));
-        enterBorrowLend.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU, 1));
-        incompleteThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU, 3));
-        completeThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ADMINACTIONSMENU, 2));
+        enterBorrowLend.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 1));
+        incompleteThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 3));
+        completeThreshold.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 2));
         newBorrowLend.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 4));
         newCompletes.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 4));
         newIncompletes.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 4));
