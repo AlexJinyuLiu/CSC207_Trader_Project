@@ -61,7 +61,7 @@ public class TradeCreator implements Serializable {
 
 
     /**
-     * Called on program startup from TradeSystem.onStartup(). Handles verification of trades and things when the
+     * Called on program startup from controllerpresenterpack.TradeSystem.onStartup(). Handles verification of trades and things when the
      * program is launched.
      */
     public void onStartup() {

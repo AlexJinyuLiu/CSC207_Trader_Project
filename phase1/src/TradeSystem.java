@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The main TradeSystem class that links everything together. Technically this is a controller class.
+ * The main controllerpresenterpack.TradeSystem class that links everything together. Technically this is a controller class.
  */
 public class TradeSystem {
 
@@ -22,7 +22,7 @@ public class TradeSystem {
     private UserActions userActions = new UserActions();
 
     /**
-     * Empty constructor. Creates a new instance of TradeSystem.
+     * Empty constructor. Creates a new instance of controllerpresenterpack.TradeSystem.
      */
     public TradeSystem(){}
 
@@ -113,12 +113,12 @@ public class TradeSystem {
 //    TradeSystemBuilder tsb = TradeSystemBuilder(fm);
 //    tsb.buildUserManager();
 //    ...
-//    TradeSystem ts = tsb.getTradeSystem();
+//    controllerpresenterpack.TradeSystem ts = tsb.getTradeSystem();
 //    ts.run();
 
 //   or
 //   ControllerPresenterPack.FileManager fm = new ControllerPresenterPack.FileManager();
-//   TradeSystem ts = TradeSystem(fm);
+//   controllerpresenterpack.TradeSystem ts = controllerpresenterpack.TradeSystem(fm);
 //   ts.build();
 //   rs.run()
 

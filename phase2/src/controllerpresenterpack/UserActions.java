@@ -1,9 +1,6 @@
 package controllerpresenterpack;
 
 import entitypack.*;
-import usecasepack.AccountDataOperations;
-import usecasepack.TradeCreator;
-import usecasepack.TradeHistories;
 import usecasepack.UserManager;
 
 import java.util.ArrayList;

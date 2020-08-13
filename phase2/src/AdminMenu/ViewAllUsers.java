@@ -1,9 +1,7 @@
 package AdminMenu;
 
 import controllerpresenterpack.ControllerPresenterGrouper;
-import controllerpresenterpack.MenuPresenter;
 import controllerpresenterpack.UseCaseGrouper;
-import entitypack.BrowsingUser;
 import entitypack.Frame;
 import entitypack.User;
 

@@ -1,11 +1,10 @@
 import controllerpresenterpack.ControllerPresenterGrouper;
+import controllerpresenterpack.TradeSystem;
 import controllerpresenterpack.UseCaseGrouper;
-import entitypack.Trade;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 public class Main {
 
