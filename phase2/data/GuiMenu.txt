@@ -332,6 +332,8 @@ Trade ID number:
 You have already accepted this trade request.
 This trade request has been accepted.
 This trade request has been declined. This trade will be marked as dead.
+Decline Trade Request
+Make a counter-offer
 }
 
 Frame{ - CONFIRMTRADEMENU
@@ -361,7 +363,7 @@ Items on their wishlist that you own:
 Items on your wishlist that they own:
 }
 
-Frame{ - CONFIRMTRADEMENU
+Frame{ - CONFIRMREEXCHANGEMENU
 Back
 Confirm Re-Exchange has occurred
 User 1:

@@ -67,6 +67,8 @@ public class AcceptTradeMenu {
         //TODO: some buttons texts have not been set
         backButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 0));
         acceptRequestButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 1));
+        declineTradeButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 1));
+        counterOfferButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 1));
 
         user1Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 2));
         user2Label.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 3));
@@ -77,8 +79,8 @@ public class AcceptTradeMenu {
         user1AcceptedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 8));
         user2AcceptedLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 9));
         tradeIDLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 12));
-        user1EditsMadeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 10));
-        user2EditsMadeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 11));
+        user1EditsMadeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 16));
+        user2EditsMadeLabel.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 17));
 
         //Should i do this or does this break clean architecture? - Louis
         user1Value.setText(trade.getUsername1());
