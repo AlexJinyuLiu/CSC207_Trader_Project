@@ -17,7 +17,7 @@ public class Main {
 
         ControllerPresenterGrouper controllerPresenters = ts.getControllerPresenters();
 
-        JFrame frame = new JFrame("Trade System");
+        JFrame frame = new JFrame();
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e){
                 ts.saveData();
