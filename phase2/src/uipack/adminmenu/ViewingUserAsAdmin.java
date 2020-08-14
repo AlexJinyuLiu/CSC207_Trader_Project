@@ -71,7 +71,7 @@ public class ViewingUserAsAdmin {
         removeAnItemFromWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                removeItemFromUserWishlist removefromwishes = new removeItemFromUserWishlist(useCases, cpg, usernameViewed, window);
+                AdminMenu.removeItemFromUserWishlist removefromwishes = new AdminMenu.removeItemFromUserWishlist(useCases, cpg, usernameViewed, window);
             }
         });
         removeAnItemFromInventoryButton.addActionListener(new ActionListener() {

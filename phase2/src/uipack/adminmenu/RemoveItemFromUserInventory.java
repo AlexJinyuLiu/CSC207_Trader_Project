@@ -37,14 +37,13 @@ public class RemoveItemFromUserInventory {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
-        window.setVisible(true);
 
         menuTitle.setText(cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 0));
         removeItemText.setText(cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 1));
         submitButton.setText(cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 2));
         backButton.setText(cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 3));
 
-
+        window.setVisible(true);
 
         ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
                 username);
