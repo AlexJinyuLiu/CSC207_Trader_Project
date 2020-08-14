@@ -20,7 +20,13 @@ public class AdminLogin implements Serializable {
         this.password = password;
     }
 
+    /**
+     * @return the username of the AdminLogin
+     */
     public String getUsername() { return username; }
 
+    /**
+     * @return the password of the AdminLogin
+     */
     public String getPassword() {return password;}
 }

@@ -40,21 +40,19 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
-     * @param
+     * @return the username of the TradingUser
      */
     public String getUsername() {return username;}
 
     /**
-     * Set the activeness of the User
-     * @param active
+     * Set the activeness of the User to active
+     * @param active the expected active status
      */
     public void setActive(boolean active) {
         this.active = active;
     }
 
     /**
-     *
      * @return true if User is active, false otherwise
      */
     public boolean isActive() {
@@ -62,7 +60,6 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
      * @return the number of items they have borrowed.
      */
     public int getNumBorrowed() {
@@ -70,7 +67,6 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
      * @return the number of incomplete trades that have been attributed to this user.
      */
     public int getNumIncompleteTrades() {
@@ -78,7 +74,6 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
      * @return the number of items that this user has lent.
      */
     public int getNumLent() {
@@ -86,7 +81,7 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
+     * Increases the numBorrowed index by x
      * @param x the number to increase the number of items this user has borrowed by.
      */
     public void increaseNumBorrowed(int x){
@@ -94,7 +89,7 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
+     * Increases the numLent index by x
      * @param x the number to increase the number of items this user has lent by.
      */
     public void increaseNumLent(int x){
@@ -102,7 +97,7 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
+     * Increases the numIncompleteTrades index by x
      * @param x the number to increase the number of incomplete trades attributed to this user by.
      */
     public void increaseNumIncompleteTrades(int x){
@@ -110,19 +105,18 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
+     * Sets the password of the TradingUser to password
      * @param password new password for this user.
      */
     public void setPassword(String password) { this.password = password; }// may want to extend a use case to change password if forgotten
 
     /**
-     *
      * @return the password of this user
      */
     public String getPassword() { return password; }
 
     /**
-     *
+     * Checks if pass matches the password of TradingUser
      * @param pass string to be checked against this user's password.
      * @return whether the entered string matches this user's password.
      */
@@ -131,14 +125,14 @@ public class TradingUser implements Serializable, User {
     //for adding and removing from wishlist and available-to-lend lists, and getters for this EntityPack.User's lists
 
     /**
-     *
      * @return The wish list of the user.
      */
     public ArrayList<String> getWishlistItemNames() {return this.wishlistItemNames;}
 
     /**
-     *
+     * Adds item to the wishlist
      * @param item item name to be added to this user's wish list.
+     * @return true iff item is not contained in the wishlist
      */
     public boolean addItemToWishList(String item){
         boolean itemIsThere = containItemInWishlist(item);
@@ -149,7 +143,7 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
+     * Removes item from the wishlist
      * @param item item name to be removed from the user's wish list
      */
     public void removeItemFromWishList(String item){
@@ -157,6 +151,7 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
+     * Checks if itemSearched is contained in the wishlist
      * @param itemSearched the name of the item that is being searched for
      * @return true iff the user contains itemSearched in their wishlist
      */
@@ -169,16 +164,22 @@ public class TradingUser implements Serializable, User {
         return false;
     }
 
+    /**
+     * Adds message to the messages list of the TradingUser
+     * @param message the message received
+     */
     public void addMessage(String message) {
         messages.add(message);
     }
 
+    /**
+     * @return the message list of the TradingUser
+     */
     public ArrayList<String> getMessages() {
         return messages;
     }
 
     /**
-     *
      * @return whether or not a user is frozen.
      */
     public boolean getFrozen(){ // wondering how to implement freeze function with this; or should this only be a ThresholdChecker?
@@ -196,7 +197,7 @@ public class TradingUser implements Serializable, User {
 
 
     /**
-     *
+     * Sets the metro area of TradingUser to metro
      * @param metro Supported metropolitan area the user is located in.
      */
     public void setMetro(MetroArea metro) {
@@ -204,7 +205,6 @@ public class TradingUser implements Serializable, User {
     }
 
     /**
-     *
      * @return Supported metropolitan area the use is located in.
      */
     public MetroArea getMetro() {
