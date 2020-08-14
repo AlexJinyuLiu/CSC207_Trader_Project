@@ -1,4 +1,4 @@
-package AdminMenu;
+package uipack.adminmenu;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.UseCaseGrouper;
 import entitypack.Frame;
@@ -7,40 +7,40 @@ import entitypack.TradingUser;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
-//have already chosen user
-public class removeItemFromUserWishlist {
+//code adapted from https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
+
+public class RemoveItemFromUserWishlist {
     private JPanel mainPanel;
     private JLabel menuTitle;
     private JButton submit;
     private JScrollPane userItems;
+    private JButton back;
 
-    public removeItemFromUserWishlist(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame window){
+    public RemoveItemFromUserWishlist(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame window){
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         TradingUser user = (TradingUser) useCases.userManager.searchUser(username);
         menuTitle.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 2));
         submit.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 6));
-        window.setVisible(true);
+        back.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 5));
 
         DefaultListModel<String> items = new DefaultListModel<String>();
         items.addAll(user.getWishlistItemNames());
-    //    JCheckBox[] boxes = new JCheckBox[items.length]; //making an array only references one but doesn't allocate any memory space for it
-    //    //so gotta pass in an int
-    //    for (int i = 0; i<boxes.length; i++){
-    //        boxes[i] = new JCheckBox(items[i]); //then gotta actually put something/elements into the array
+        JList list = new JList(items);//items has type string[]
+        userItems.setViewportView(list);
 
-        JList list = new JList(items); //data has type Object[]
-        list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL_WRAP);
         list.setVisibleRowCount(-1);
+        window.setVisible(true);
 
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = list.getSelectedIndex();
+                user.removeItemFromWishList(items.getElementAt(index));
                 items.remove(index);
 
                 int size = items.getSize();
@@ -58,6 +58,13 @@ public class removeItemFromUserWishlist {
                     list.ensureIndexIsVisible(index);
 
                 }
+            }
+        });
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ViewingUserAsAdmin viewingUserAsAdmin = new ViewingUserAsAdmin(useCases, cpg, username, window);
             }
         });
     }
