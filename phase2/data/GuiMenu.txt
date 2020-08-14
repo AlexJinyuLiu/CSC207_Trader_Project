@@ -89,7 +89,7 @@ Remove an item from user's wishlist
 Remove an item from user's inventory
 Freeze/Unfreeze User
 Back
-Submit
+Remove
 }
 
 Frame{ - EDITTRADE
