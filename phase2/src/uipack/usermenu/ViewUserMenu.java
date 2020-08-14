@@ -61,6 +61,11 @@ public class ViewUserMenu {
             active = true;
         }
 
+        if (!isTradingUserViewing) {
+            createTradeRequestButton.setEnabled(false);
+            suggestTradeButton.setEnabled(false);
+            addItemToWishlistButton.setEnabled(false);
+        }
 
         if (cpg.tradingUserActions.isTradingUser(useCases.userManager, userToViewUsername)){
              userTitleLabel.setText(cpg.menuPresenter.getText(Frame.VIEWUSERMENU, 0) + userToViewUsername);
