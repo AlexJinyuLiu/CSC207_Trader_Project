@@ -70,10 +70,18 @@ public class AdminUser implements Serializable{
         return true;
     }
 
+    /** Method that adds a message to admin messages
+     *
+     * @param message message being put in admin messages
+     */
     public void addAdminMessage(String message) {
         adminMessages.add(message);
     }
 
+    /** Method that returns admin messages
+     *
+     * @return and arraylist of all admin messages
+     */
     public ArrayList<String> getAdminMessages() {
         return adminMessages;
     }
