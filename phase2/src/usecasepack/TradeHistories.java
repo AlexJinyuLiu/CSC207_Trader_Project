@@ -130,7 +130,7 @@ public class TradeHistories  implements Serializable {
 
 
     /**
-     * @return
+     * @return the list of complete trades
      */
     public ArrayList<Trade> getCompletedTrades() {
         return completedTrades;
@@ -204,7 +204,7 @@ public class TradeHistories  implements Serializable {
         }
         return numTransactions;
     }
-
+//TODO: two string variables not being used
     private HashMap<String, Integer> getNumTradesPerUser(String username) {
         HashMap<String, Integer> numTradesPerUser = new HashMap<String, Integer>();
         for (Trade trade: completedTrades) {

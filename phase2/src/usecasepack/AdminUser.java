@@ -70,10 +70,17 @@ public class AdminUser implements Serializable{
         return true;
     }
 
+    /**
+     * Adds message to the messages list of AdminUser
+     * @param message the message received by AdminUser
+     */
     public void addAdminMessage(String message) {
         adminMessages.add(message);
     }
 
+    /**
+     * @return the messages list of the AdminUser
+     */
     public ArrayList<String> getAdminMessages() {
         return adminMessages;
     }
@@ -103,20 +110,6 @@ public class AdminUser implements Serializable{
 
     }
 
-    /*Temporarily abandoned by Tingyu
-    public HashMap<String, String> getLogInInfo(){
-        return this.loginInfo;
-    }
-
-    Callan made the function below to search for username in case we are using hashmap again
-     public String getUsername(){
-        return (String) getLogInInfo().keySet().toArray()[0];
-     }
-     */
-
-
-
-
     /** Method which freezes the user account and sends a FrozenAlert to the user
      * author: tian
      * @param user user object to freeze
@@ -141,10 +134,20 @@ public class AdminUser implements Serializable{
         tradeCreator.setBorrowLendThreshold(newThreshold);
     }
 
+    /**
+     * Removes the trade request with tradeID from the program
+     * @param tradeID the trade ID of the trade request that is expected to be removed
+     * @param tradeCreator the use case class TradeCreator
+     */
     public void unsendTradeRequest(int tradeID, TradeCreator tradeCreator) {
         tradeCreator.getPendingTradeRequests().removeIf(trade -> trade.getTradeID() == tradeID);
     }
 
+    /**
+     * Modifies the confirmed trade request with tradeID to be a pending trade request
+     * @param tradeID the trade ID of the trade request that is expected to be modified
+     * @param tradeCreator the use case class TradeCreator
+     */
     public void cancelTradeRequest(int tradeID, TradeCreator tradeCreator) {
         Trade tradeToModify = null;
         for (Trade pendingTrade : tradeCreator.getPendingTrades()) {
@@ -162,6 +165,13 @@ public class AdminUser implements Serializable{
         }
     }
 
+    /**
+     * Removes the complete trade with tradeID and exchange the items back to
+     * @param tradeID the trade ID of the trade request that is expected to be removed
+     * @param tradeHistories the use case class TradeHistories
+     * @param itemManager the use case class ItemManager
+     * @param userManager the use case class UserManager
+     */
     public void undoTrade(int tradeID, TradeHistories tradeHistories, ItemManager itemManager, UserManager userManager){
         Trade tradeToModify = null;
         for (Trade trade : tradeHistories.getCompletedTrades()) {

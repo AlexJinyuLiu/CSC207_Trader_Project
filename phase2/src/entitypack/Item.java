@@ -49,16 +49,6 @@ public class Item implements Serializable {
         this.inPossessionOf = owner;
     }
 
-
-    //setters
-
-    /**
-     * @param description the description of the string
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     //getters
 
     /**
@@ -99,7 +89,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * Sets the person who has the possession of the Item to be inPossessionOf
      * @param inPossessionOf username of the user who is in possession of the item via a temporary trade.
      */
     public void setInPossessionOf(String inPossessionOf) {
@@ -107,7 +97,7 @@ public class Item implements Serializable {
     }
 
     /**
-     *
+     * Sets the owner of the Item to owner
      * @param owner username of the new owner of the item.
      */
     public void setOwner(String owner) {

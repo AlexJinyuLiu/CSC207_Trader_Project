@@ -390,7 +390,13 @@ public class TradeCreator implements Serializable {
         checkPendingTrades(userManager, itemManager);
     }
 
-
+    /**
+     * Kills the reported trades and increases the associated user index
+     * @param userManager the use case class UserManager
+     * @param trade the trade being reported
+     * @param user1 user1 of the trade
+     * @param user2 user2 of the trade
+     */
     public void afterReportTrade(UserManager userManager, Trade trade, TradingUser user1, TradingUser user2 ) {
         pendingTrades.remove(trade);
         tradeHistories.addDeadTrade(trade);

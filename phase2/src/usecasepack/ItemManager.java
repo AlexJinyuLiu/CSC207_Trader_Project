@@ -33,7 +33,7 @@ public class ItemManager implements Serializable {
 
     /**
      * Creates and adds a new item validation request to the validationRequests arraylist.
-     * @param usernameOfOwner the username of the user sending the validationrequest.
+     * @param usernameOfOwner the username of the user sending the validation request.
      * @param itemName the name of the item to be validated.
      * @param description a short description of the item.
      */
@@ -45,6 +45,10 @@ public class ItemManager implements Serializable {
         validationRequests.add(validationRequest);
     }
 
+    /**
+     * Removes validationRequest and creates the item associated with it
+     * @param validationRequest the validation request sent by TradingUser
+     */
     public void approveValidationRequest(ItemValidationRequest validationRequest){
         for (int i = 0; i < validationRequests.size(); i++){
             if (validationRequest.getID() == validationRequests.get(i).getID()){
