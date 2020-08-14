@@ -89,6 +89,8 @@ Supprimer un article de la liste de souhaits de l'utilisateur
 Supprimer un article de l'inventaire de l'utilisateur
 Figer / libérer l'utilisateur
 Arrière
+Supprimer
+Cliquer sur un objet et appuyer 'Supprimer' pour supprimer cet object
 }
 
 Cadre{ - EDITTRADE

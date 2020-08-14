@@ -22,7 +22,7 @@ public class RemoveItemFromUserWishlist {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         TradingUser user = (TradingUser) useCases.userManager.searchUser(username);
-        menuTitle.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 2));
+        menuTitle.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 7));
         submit.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 6));
         back.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 5));
 

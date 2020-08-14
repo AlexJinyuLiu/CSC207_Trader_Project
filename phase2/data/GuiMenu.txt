@@ -89,7 +89,8 @@ Remove an item from user's wishlist
 Remove an item from user's inventory
 Freeze/Unfreeze User
 Back
-Submit
+Remove
+Click on a single item in the list below and press 'Remove' to remove it from a user's wishlist
 }
 
 Frame{ - EDITTRADE
