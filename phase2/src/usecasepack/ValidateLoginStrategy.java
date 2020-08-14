@@ -21,7 +21,6 @@ public class ValidateLoginStrategy implements Serializable {
     }
 
     public boolean usernameAvailable(String username, HashMap<String, String> validLogins) {
-        System.out.println(validLogins);
         if (validLogins.isEmpty()) {
             return true;
         }
