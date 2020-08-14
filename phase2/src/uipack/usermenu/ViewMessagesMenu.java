@@ -35,7 +35,7 @@ public class ViewMessagesMenu {
 
         ArrayList<String> messages;
         StringBuilder messageString = new StringBuilder();
-        messages = useCases.userManager.searchUser(username).getMessages();
+        messages = useCases.userManager.getUserMessages(username);
 
         for (String message : messages) {
             messageString.append(message);

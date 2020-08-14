@@ -11,6 +11,7 @@ public class BrowsingUser implements Serializable, User {
     private String username;
     private String password;
     private MetroArea metro;
+    private ArrayList<String> messages = new ArrayList<String>();
 
     /**
      *

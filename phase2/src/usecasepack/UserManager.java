@@ -163,15 +163,27 @@ public class UserManager implements Serializable{
         return null;
     }
 
-
-
-
+    /**
+     * Formats a message with messageBody and sendersUsername and sends it to the User with receiversUsername
+     * @param sendersUsername the username of the User who sends the message
+     * @param receiversUsername the username of the User who will receiver the message
+     * @param messageBody the text part inputted by the sender
+     */
     public void messageUser(String sendersUsername, String receiversUsername, String messageBody) {
         String message = "[" + sendersUsername + "] ------ " + LocalDateTime.now() + "\n" +
                 messageBody + "\n" +
                 "--------------------------------------------------------------------" + "\n";
         User user = searchUser(receiversUsername);
         user.addMessage(message);
+    }
+
+    /**
+     * @param username the username of the User whose messages are being searched for
+     * @return the list of messages which the User with username receives
+     */
+    public ArrayList<String> getUserMessages(String username) {
+        User user = searchUser(username);
+        return user.getMessages();
     }
 
     /**
