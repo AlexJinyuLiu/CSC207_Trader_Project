@@ -1,4 +1,4 @@
-import UIPack.LanguagePrompt;
+import uipack.LanguagePrompt;
 import controllerpresenterpack.ControllerPresenterGrouper;
 import controllerpresenterpack.TradeSystem;
 import controllerpresenterpack.UseCaseGrouper;
