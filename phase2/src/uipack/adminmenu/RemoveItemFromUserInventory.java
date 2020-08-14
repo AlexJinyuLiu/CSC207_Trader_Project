@@ -72,10 +72,11 @@ public class RemoveItemFromUserInventory {
                         useCases.itemManager.removeFromInventory(item.getId());
                         JOptionPane.showMessageDialog(window,
                                 cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 4));
-                }   else{
-                        JOptionPane.showMessageDialog(window,
+                        return;
+                }
+                    JOptionPane.showMessageDialog(window,
                                 cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 5));
-                    }
+
                 }
             }
         });
