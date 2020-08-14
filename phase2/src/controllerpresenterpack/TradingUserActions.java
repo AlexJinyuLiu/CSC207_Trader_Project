@@ -95,14 +95,6 @@ public class TradingUserActions extends UserActions {
         return ((TradingUser)userManager.searchUser(username)).getFrozen();
     }
 
-    /**
-     * Send a unfreeze request to admin
-     * @param username the username of the user who wants to be unfrozen.
-     */
-    public void sendUnfreezeRequest(AdminUser adminUser, String username) {
-        adminUser.addUnfreezeRequest(username);
-    }
-
     /** Method which allows users to send a message to another user
      *
      * @param sendersUsername username of the sender
