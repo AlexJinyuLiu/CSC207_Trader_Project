@@ -459,27 +459,33 @@ public class TradeCreator implements Serializable {
     /**
      * Removes all pending trade requests from pendingTradeRequests that match trades from tradeToRemove.
      *
-     * @param tradesToRemove the list of trades to remove.
+     * @param tradeID the id of trade to remove of trades to remove.
      */
-    public void removePendingTradeRequests(ArrayList<Trade> tradesToRemove){
-        for(Trade trade: tradesToRemove){
-            pendingTradeRequests.remove(trade);
-            tradeHistories.addDeadTrade(trade);
-        }
+    public void removePendingTradeRequests(int tradeID){
+        pendingTradeRequests.removeIf(trade -> trade.getTradeID() == tradeID);
     }
 
     /**
      * Removes all pending trades from pendingTrades that match trades from tradesToRemove.
      *
-     * @param tradesToRemove the list of trades to remove.
+     * @param tradeID id of trade to remove
      */
-    public void removePendingTrades(ArrayList<Trade> tradesToRemove){
-        for (Trade trade : tradesToRemove){
-            pendingTrades.remove(trade);
-            tradeHistories.addDeadTrade(trade);
+    public void removePendingTrades(int tradeID){
+        Trade tradeToModify = null;
+        for (Trade pendingTrade : pendingTrades) {
+            if (pendingTrade.getTradeID() == tradeID) {
+                tradeToModify = pendingTrade;
+            }
+        }
+        if (tradeToModify != null) {
+            tradeToModify.setUser1AcceptedRequest(false);
+            tradeToModify.setUser2AcceptedRequest(false);
+            tradeToModify.setUser1NumRequests(0);
+            tradeToModify.setUser2NumRequests(0);
+            pendingTradeRequests.add(tradeToModify);
+            pendingTrades.remove(tradeToModify);
         }
     }
-
 
 
     /**

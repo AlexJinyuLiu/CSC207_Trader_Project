@@ -103,20 +103,6 @@ public class AdminUser implements Serializable{
 
     }
 
-    /*Temporarily abandoned by Tingyu
-    public HashMap<String, String> getLogInInfo(){
-        return this.loginInfo;
-    }
-
-    Callan made the function below to search for username in case we are using hashmap again
-     public String getUsername(){
-        return (String) getLogInInfo().keySet().toArray()[0];
-     }
-     */
-
-
-
-
     /** Method which freezes the user account and sends a FrozenAlert to the user
      * author: tian
      * @param user user object to freeze
@@ -141,41 +127,33 @@ public class AdminUser implements Serializable{
         tradeCreator.setBorrowLendThreshold(newThreshold);
     }
 
+    /** Method that unsends a pending trade request
+     *
+     * @param tradeID id of trade request being unsent
+     * @param tradeCreator TradeCreator object that is called
+     */
     public void unsendTradeRequest(int tradeID, TradeCreator tradeCreator) {
-        tradeCreator.getPendingTradeRequests().removeIf(trade -> trade.getTradeID() == tradeID);
+        tradeCreator.removePendingTradeRequests(tradeID);
     }
 
+    /** Method that unconfirms a pending trade
+     *
+     * @param tradeID id of trade request being unconfirmed
+     * @param tradeCreator TradeCreator object that is called
+     */
     public void cancelTradeRequest(int tradeID, TradeCreator tradeCreator) {
-        Trade tradeToModify = null;
-        for (Trade pendingTrade : tradeCreator.getPendingTrades()) {
-            if (pendingTrade.getTradeID() == tradeID) {
-                tradeToModify = pendingTrade;
-            }
-        }
-        if (tradeToModify != null) {
-            tradeToModify.setUser1AcceptedRequest(false);
-            tradeToModify.setUser2AcceptedRequest(false);
-            tradeToModify.setUser1NumRequests(0);
-            tradeToModify.setUser2NumRequests(0);
-            tradeCreator.getPendingTradeRequests().add(tradeToModify);
-            tradeCreator.getPendingTrades().remove(tradeToModify);
-        }
+        tradeCreator.removePendingTrades(tradeID);
     }
 
+    /** Method that undoes a trade
+     *
+     * @param tradeID id of trade being undone
+     * @param tradeHistories TradeHistories object being passed
+     * @param itemManager ItemManger object being passed
+     * @param userManager UserManager object being passed
+     */
     public void undoTrade(int tradeID, TradeHistories tradeHistories, ItemManager itemManager, UserManager userManager){
-        Trade tradeToModify = null;
-        for (Trade trade : tradeHistories.getCompletedTrades()) {
-            if (trade.getTradeID() == tradeID) {
-                tradeToModify = trade;
-            }
-        }
-        if (tradeToModify != null) {
-            tradeHistories.getCompletedTrades().remove(tradeToModify);
-            tradeHistories.getDeadTrades().add(tradeToModify);
-            User user1 = userManager.searchUser(tradeToModify.getUsername1());
-            User user2 = userManager.searchUser(tradeToModify.getUsername2());
-            itemManager.undoExchangeItems(tradeToModify, (TradingUser) user1, (TradingUser) user2 );
-        }
+        tradeHistories.undoTrade(tradeID, itemManager, userManager);
     }
 
 }

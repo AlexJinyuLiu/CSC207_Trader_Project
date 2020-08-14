@@ -64,7 +64,8 @@ public class SetThresholds {
                             controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
                     return;
                 }
-                useCases.adminUser.changeIncompleteThreshold(useCases.userManager, incompleted);
+                controllerPresenterGrouper.adminActions.changeIncompleteThreshold(incompleted, useCases.adminUser,
+                        useCases.userManager);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }
@@ -81,7 +82,8 @@ public class SetThresholds {
                             controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
                     return;
                 }
-                useCases.adminUser.changeCompleteThreshold(useCases.tradeCreator, completed);
+                controllerPresenterGrouper.adminActions.changeCompleteThreshold(completed, useCases.adminUser,
+                        useCases.tradeCreator);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }
@@ -98,7 +100,8 @@ public class SetThresholds {
                             controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
                     return;
                 }
-                useCases.adminUser.changeBorrowLendThreshold(useCases.tradeCreator, borrowLentThresh);
+                controllerPresenterGrouper.adminActions.changeBorrowLendThreshold(useCases.adminUser, useCases.tradeCreator,
+                        borrowLentThresh);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }

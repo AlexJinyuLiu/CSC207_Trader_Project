@@ -208,7 +208,6 @@ public class ItemManager implements Serializable {
             return false;
         }
         else {
-            //Dunno if borrowed items will be shown in user's inventory - Tingyu
             return item.getInPossessionOf().equals(user.getUsername());
         }
     }

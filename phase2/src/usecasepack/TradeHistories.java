@@ -304,22 +304,6 @@ public class TradeHistories  implements Serializable {
         return userTrades;
     }
 
-
-    /**
-     * Check to see if any TemporaryTrades have expired and if so, return them in an arraylist.
-     *
-     * @return An arraylist of all expired temporary trades.
-     */ //TradeManager
-    public ArrayList<TemporaryTrade> fetchExpiredTempTrades(){
-        ArrayList<TemporaryTrade> expiredTempTrades = new ArrayList<TemporaryTrade>();
-        for (TemporaryTrade tempTrade : currentTemporaryTrades) {
-            if (LocalDateTime.now().isAfter(tempTrade.getDueDate())) {
-                expiredTempTrades.add(tempTrade);
-            }
-        }
-        return expiredTempTrades;
-    }
-
     /** Method which allows a user to confirm the re-exchange of items has occurred in the real world. If the other
      * user has already confirmed, then the reExchangeItems method will be called to reExahange the items within the
      * trade system.
@@ -338,4 +322,22 @@ public class TradeHistories  implements Serializable {
             itemManager.reExchangeItems(temporaryTrade);
         }
     }
+
+    public void undoTrade(int tradeID, ItemManager itemManager, UserManager userManager) {
+        Trade tradeToModify = null;
+        for (Trade trade : completedTrades) {
+            if (trade.getTradeID() == tradeID) {
+                tradeToModify = trade;
+            }
+        }
+        if (tradeToModify != null) {
+            completedTrades.remove(tradeToModify);
+            deadTrades.add(tradeToModify);
+            User user1 = userManager.searchUser(tradeToModify.getUsername1());
+            User user2 = userManager.searchUser(tradeToModify.getUsername2());
+            itemManager.undoExchangeItems(tradeToModify, (TradingUser) user1, (TradingUser) user2 );
+        }
+    }
+
 }
+

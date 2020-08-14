@@ -264,14 +264,6 @@ public class Trade implements Serializable {
 
     /**
      *
-     * @param usersAlertedToPastDue whether the users have been alerted to the fact that the trade is past due.
-     */
-    public void setUsersAlertedToPastDue(boolean usersAlertedToPastDue) {
-        this.usersAlertedToPastDue = usersAlertedToPastDue;
-    }
-
-    /**
-     *
      * @return whether user 1 has accepted the trade request
      */
     public boolean getUser1AcceptedRequest() {
