@@ -7,6 +7,7 @@ import entitypack.Item;
 import entitypack.TradingUser;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 /**
  * a UI class that allows an admin to remove an item from a user's inventory
  */
-public class removeItemFromUserInventory {
+public class RemoveItemFromUserInventory {
     private JPanel mainPanel;
     private JLabel menuTitle;
     private JScrollPane userItems;
@@ -31,7 +32,7 @@ public class removeItemFromUserInventory {
      * @param username current user's username
      * @param window the main window displayed to the trading user of the program
      */
-    public removeItemFromUserInventory(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username,
+    public RemoveItemFromUserInventory(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username,
                                        JFrame window) {
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,17 +44,20 @@ public class removeItemFromUserInventory {
         submitButton.setText(cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 2));
         backButton.setText(cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 3));
 
-        TradingUser user = (TradingUser) useCases.userManager.searchUser(username);
+
+
+        ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
+                username);
 
         StringBuilder availItemsString = new StringBuilder(
                 cpg.menuPresenter.getText(Frame.VIEWITEMSANDWISHLISTMENU, 0));
-        ArrayList<Item> availableItems = cpg.tradingUserActions.getAvailableItems(useCases.itemManager,
-                username);
+
         availItemsString.append("\n");
         for (Item item : availableItems){
             availItemsString.append(item.getName()).append(" ID: ").append(item.getId()).append("\n");
         }
         itemTextPane.setText(availItemsString.toString());
+
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -61,14 +65,19 @@ public class removeItemFromUserInventory {
                 String itemToRemove = itemToRemoveField.getText();
                 if (itemToRemove.equals("")){
                     JOptionPane.showMessageDialog(window,
-                            cpg.menuPresenter.getText(Frame.CREATEITEMVALIDATIONREQUESTMENU, 4));
+                            cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 5));
                     return;
                 }
-
-
-                JOptionPane.showMessageDialog(window,
-                        cpg.menuPresenter.getText(Frame.ADDNEWADMIN, 7));
-                new ViewingUserAsAdmin(useCases, cpg, username, window);
+                for (Item item : availableItems) {
+                    if (itemToRemove.equals(Integer.toString(item.getId()))) {
+                        useCases.itemManager.removeFromInventory(item.getId());
+                        JOptionPane.showMessageDialog(window,
+                                cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 4));
+                }   else{
+                        JOptionPane.showMessageDialog(window,
+                                cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 5));
+                    }
+                }
             }
         });
         backButton.addActionListener(new ActionListener() {
