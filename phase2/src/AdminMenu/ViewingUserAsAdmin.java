@@ -77,7 +77,7 @@ public class ViewingUserAsAdmin {
         removeAnItemFromInventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                removeItemFromUserInventory removeInventoryItem = new removeItemFromUserInventory(useCases, cpg, usernameViewed, window);
             }
         });
         freezeUserButton.addActionListener(new ActionListener() {

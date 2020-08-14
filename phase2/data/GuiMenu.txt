@@ -415,3 +415,10 @@ Frame{ - ITEMVIEWER
 Remove Item
 Back
 }
+
+Frame{ - REMOVEFROMINVENTORY
+Remove From Inventory Menu
+Item you want to remove:
+Submit
+Back
+}
