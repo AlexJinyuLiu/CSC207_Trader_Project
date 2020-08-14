@@ -27,7 +27,9 @@ public class RemoveItemFromUserWishlist {
         back.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWUSER, 5));
 
         DefaultListModel<String> items = new DefaultListModel<String>();
-        items.addAll(user.getWishlistItemNames());
+        for (String itemName : user.getWishlistItemNames()) {
+            items.addElement(itemName);
+        }
         JList list = new JList(items);//items has type string[]
         userItems.setViewportView(list);
 
