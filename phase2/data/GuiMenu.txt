@@ -339,6 +339,6 @@ Item you want to remove:
 Submit
 Back
 Item successfully removed from their inventory
-The item ID field is empty. Please enter the ID of the item you want to remove.
+The item ID field is invalid. Please enter the ID of the item you want to remove.
 Item could not be removed from their inventory
 }
