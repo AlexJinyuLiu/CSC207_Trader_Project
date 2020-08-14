@@ -48,7 +48,7 @@ public class SetActiveCityMenu {
 
                 cpg.tradingUserActions.setUsersCity(useCases.userManager, username,
                         (MetroArea)cities.getSelectedItem());
-                JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SETACTIVECITYMENU, 6));
+                JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SETACTIVECITYMENU, 2));
                 TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
                         username, frame);
 

@@ -188,6 +188,7 @@ Item Validation Request successfully created!
 Frame{ - SETACTIVECITYMENU
 Back
 Set City
+City successfully set.
 }
 
 Frame{ - SENDTRADEREQUESTMENU

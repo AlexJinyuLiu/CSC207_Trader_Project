@@ -40,8 +40,6 @@ public class ViewCompletedTradesMenu {
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
 
-        System.out.println(useCases.tradeCreator.getTradeHistories().getCompletedTrades());
-
         int n = 0;
         ArrayList<Trade> trades = controllerPresenterGrouper.tradingUserActions.searchCompletedTradesUser(username,
                 useCases.userManager, useCases.tradeCreator);
