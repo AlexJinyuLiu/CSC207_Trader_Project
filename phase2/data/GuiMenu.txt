@@ -66,6 +66,7 @@ Enter a value
 Submit
 Threshold changed.
 Back
+Invalid input. Please enter a valid number.
 }
 
 Frame{ - ADMINVIEWTRADE
@@ -106,6 +107,7 @@ Unfreeze
 Back
 Account frozen.
 Account unfrozen.
+would like to be unfrozen.
 }
 
 Frame{ - BROWSINGUSERACTIONSMENU
@@ -135,93 +137,6 @@ Wishlist
 Add Item to Your Wishlist
 }
 
-Frame{ - MESSAGEALERT
-Dismiss
-From:
-
-}
-
-Frame{ - FREEZEUSERALERT
-Handle Freeze User Alert
-(1) Freeze User
-(2) Dismiss
-User:
-Items this user has lent:
-Items this user has borrowed:
-Number of items required to lend before borrowing:
-Number of incomplete transactions:
-Number of incomplete transactions permitted:
-}
-
-Frame{ - FROZENALERT
-Handle Frozen Alert
-Your account has been frozen by the administrator.
-Number of items you borrowed:
-Number of items you lent:
-Number of items you need to lend before you can borrow:
-(1) Dismiss
-Number of incomplete transactions:
-Number of incomplete transactions permitted:
-}
-
-Frame{ - ITEMVALIDATIONREQUESTALERT
-Item Validation Request
-User:
-Item Name:
-Item Description:
-Item ID Number:
-(1) Approve this item
-(2) Deny this item
-Please explain why this item was declined:
-}
-
-Frame{ - REPORTALERT
-Handle Report Alert
-(1) Accept Report
-(2) Dismiss
- has reported user
-Trade status of reported user:
-Report Description:
-}
-
-Frame{ - TRADEACCEPTEDALERT
-Handle Trade Accepted Alert
-The following trade request has been accepted:
-(1) Dismiss
-}
-
-Frame{ - TRADECANCELLEDALERT
-Handle Trade Cancelled Alert
-The following trade has been cancelled as one of the users is no longer in possession of an item. Trade ID:
-(1) Dismiss
-}
-
-Frame{ - TRADEDECLINEDALERT
-Handle Trade Declined Alert
-Your trade request has been declined:
-(1) Dismiss
-}
-
-Frame{ - EXPIRATIONALERT
-The following trade has expired at
-Report
-Confirm re-exchange
-}
-
-Frame{ - ITEMVALIDATIONDECLINEDALERT
-Handle Item Validation Declined Alert
-Your item validation request has been declined for the following reason:
-User:
-Item name:
-Item description:
-Item ID:
-(1) Dismiss
-(2) Send a new item validation request
-Please enter the name of your item
-Please enter the item description
-Send a new item validation request
-Dismiss
-}
 
 Frame{ - TRADETOSTRING
 Trade to String
