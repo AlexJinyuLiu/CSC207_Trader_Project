@@ -52,6 +52,7 @@ An added feature is Metropolitan Area Selection, in which you can select the clo
 * Set active status
 * Change metro area
 * Request unfreeze
+    * Unfreeze requests and reports for users not showing up to a trade are viewable by the admin in view messages
 
 
 IF ADMIN:
@@ -63,8 +64,8 @@ IF ADMIN:
 * View current threshold values
 * Edit or undo a trade
 * View all users
-   * You can select a user and then have the option to send them a message, remove an item from their wishlist,
-        remove an item from their inventory, or freeze the user
+   * You can select a user and then have the option to send them a message, view their states, remove an item from their
+        wishlist, remove an item from their inventory, or freeze the user.
 * View messages
 * View item validation requests
 
@@ -74,9 +75,13 @@ MANDATORY EXTENSIONS:
 * To undo an action taken by a user, create a user account and request to add an item. Relogin in as an admin and
     approve of the item. You can now also choose to remove that item. If you create a second user, add an item and propose
     a trade by viewing the original user's profile, you can also remove an item from a user’s wishlist or cancel a trade.
-    The admin can also cancel any trade request created by a user.
-* To see a trade suggestion, create two user accounts and have them add items approved by the admin such that each
-    other’s items are added to their wishlists. Then a suggest trade option is available.
+    The admin can also cancel any trade request created by a user, uncomfirm a trade request that was previously accepted
+    by both users (this will put the trade back in trade request queue for both parties to accept), and undo a completed
+    trade. Undoing a completed trade will return all items to their previous owners and reset stats but will not revert a
+    user's wishlist (items on a wishlist are removed if user's received the item through trade).
+* To see a trade suggestion, create two user accounts and have them add items approved by the admin then have each
+    other’s items are added to their wishlists (done through viewing users in your area). Then a suggest trade option is
+    available.
 * To be a browse-only user that doesn’t need to make any trades, select the browse-only option at the top of the
     “create an account” page.
 * To change any user threshold, log in as an admin and click on the threshold change menu buttons.
@@ -101,7 +106,8 @@ DESIGN PATTERNS:
 
     We implemented:
         * Strategy for login logic. We had multiple different ways of logging in and wanted to make logging in
-            extensible for security concerns in the future. In ValidateLoginStrategy.
+            extensible and avoid duplicate code. This also encapsulated the login process and helps with security concerns
+            in the future. Used In usecasepack's ValidateLoginStrategy and it's child classes.
         * Dependency injection throughout our use-case layer and controller/presenter layer to ease dependencies
             between classes. We use UseCaseGrouper and ControllerPresenterGrouper to hold and distribute all of our
             instances.
@@ -141,7 +147,7 @@ In addition to mandatory extensions, we have implemented many changes to the des
         possible while folowing the clean architecture rules.
         We had a tough decision to make, and we decided to prioritize the extensibility of our project over the usability
         and novelty of the alert system. This was tough, as it required us to add many new options to our system to
-        cover the bases that the alert system was previously covering for us, but we beleive that now that we are rid of
+        cover the bases that the alert system was previously covering for us, but we believe that now that we are rid of
         alerts, our system is more extensible and follows clean architecture and object oriented principles better.
     * We created a new use case class (ItemManager) to fix coupling and SRP issues in our old UserManager. Based on our
         TA's feedback, we determined that UserManager was responsible for too many different systems, so we decided to
