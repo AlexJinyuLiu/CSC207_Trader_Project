@@ -26,6 +26,7 @@ Password
 Back
 Log in
 Username and Password not recognized
+Logged in:
 }
 
 Frame{ - TRADINGUSERACTIONSMENU
@@ -142,11 +143,11 @@ Frame{ - TRADETOSTRING
 Trade to String
 User 1:
 , User 2:
-, Items being traded from User 1 to User 2:
-, Items being traded from User 2 to User 1:
-, Time and date of exchange:
-, Location of trade:
-, Trade ID:
+Items being traded from User 1 to User 2:
+Items being traded from User 2 to User 1:
+Time and date of exchange:
+Location of trade:
+Trade ID:
 }
 
 Frame{ - VIEWPENDINGTRADESMENU
@@ -293,6 +294,7 @@ Frame{ - CONFIRMREEXCHANGEMENU
 Back
 Confirm Re-Exchange has occurred
 User 1:
+User 2:
 User 2:
 Items being transferred from user 1 to user 2:
 Items being transferred from user 2 to user 2:
