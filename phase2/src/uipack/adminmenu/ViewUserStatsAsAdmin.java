@@ -26,6 +26,13 @@ public class ViewUserStatsAsAdmin {
     private JLabel weeklyTransactionsLabel;
     private JLabel weeklyTransactionsAmount;
 
+    /** Method which creates the menu and sets it on the frame
+     *
+     * @param useCases UseCaseGrouper object created on startup
+     * @param cpg ControllerPresenterGrouper object created on startup
+     * @param username username of the user to view
+     * @param frame window that was created on startup.
+     */
     public ViewUserStatsAsAdmin(UseCaseGrouper useCases, ControllerPresenterGrouper cpg,
                              String username, JFrame frame) {
         frame.setContentPane(mainPanel);

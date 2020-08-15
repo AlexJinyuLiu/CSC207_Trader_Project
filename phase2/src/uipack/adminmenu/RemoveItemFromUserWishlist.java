@@ -19,6 +19,13 @@ public class RemoveItemFromUserWishlist {
     private JScrollPane userItems;
     private JButton back;
 
+    /** Creates the panel and its it as the visible panel on the frame
+     *
+     * @param useCases UseCaseGrouper object created on program startup
+     * @param cpg ControllerPresenterGrouper object created on program startup
+     * @param username username of the user who being viewed
+     * @param window the current JFrame that is open
+     */
     public RemoveItemFromUserWishlist(UseCaseGrouper useCases, ControllerPresenterGrouper cpg, String username, JFrame window){
         window.setContentPane(mainPanel);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
