@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * A use case class describing the business rules for admin functionality.
  */
 public class AdminUser implements Serializable{
-    //author: Tingyu Liang, Riya Razdan in group 0110 for CSC207H1 summer 2020 project
 
     /**
      * Stores all login info for admins.

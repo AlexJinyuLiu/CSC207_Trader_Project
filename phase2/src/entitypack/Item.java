@@ -6,7 +6,6 @@ import java.io.Serializable;
  * Represents an EntityPack.Item in the trading system.
  */
 public class Item implements Serializable {
-    //author: Tian Yue Dong in group 0110 for CSC207H1 summer 2020 project
 
     /**
      * The name of the item

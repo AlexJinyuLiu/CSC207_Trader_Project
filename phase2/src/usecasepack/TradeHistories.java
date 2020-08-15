@@ -13,11 +13,11 @@ import java.util.Map;
  */
 public class TradeHistories  implements Serializable {
     private ArrayList<TemporaryTrade> currentTemporaryTrades = new ArrayList<TemporaryTrade>(); //list of all temporary trades where items have
-    // been exchanged but not returned -Louis
+    // been exchanged but not returned
 
-    private ArrayList<Trade> completedTrades = new ArrayList<Trade>(); // list of all trades which have been completed - Louis
+    private ArrayList<Trade> completedTrades = new ArrayList<Trade>(); // list of all trades which have been completed
 
-    private ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability - Louis
+    private ArrayList<Trade> deadTrades = new ArrayList<Trade>(); // list of all trades that died due to item unavailability
 
 
 

@@ -7,10 +7,7 @@ import java.util.*;
  * An Entity class describing a user of a program.
  */
 public class TradingUser implements Serializable, User {
-    //author: Melody Yang in group 0110 for CSC207H1 summer 2020 project
     // Sorting method orderPartners() is taken from https://howtodoinjava.com/sort/java-sort-map-by-values/
-
-
 
     private final String username;
     private String password; // private so no one can access except EntityPack.User; have setters and getters for change password function
@@ -32,10 +29,6 @@ public class TradingUser implements Serializable, User {
         numBorrowed = 0;
         numIncompleteTrades = 0;
         numLent = 0;
-        //stats.put("Lent", 0); // # lent items since creation
-        //stats.put("Borrowed", 0); // # borrowed items since creation
-        // Use Cases need to increase after each 1-way or 2-way trade; and reset each week
-        //stats.put("incompleteT", 0); // # incomplete transactions since creation
         this.username = username; // Admin needs to access to freeze; USerManager needs to access/search by EntityPack.User
     }
 

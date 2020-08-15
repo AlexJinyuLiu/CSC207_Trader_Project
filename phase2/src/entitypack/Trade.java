@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * An Entity class describing a trade, which stores users involved and items exchanged among other data.
  */
 public class Trade implements Serializable {
-    //author: Murray Smith in group 0110 for CSC207H1 summer 2020 project
 
     /**
      * the unique ID of this trade.

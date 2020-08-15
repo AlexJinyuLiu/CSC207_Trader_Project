@@ -14,14 +14,8 @@ public class UserManager implements Serializable{
     //Note: We are aware this is static. We are afraid to delete it because we don't remember who put it here and why,
     // also we have to submit our phase 1 in an hour so please ignore this its probably not nescesary. Ty <3
     private static final long serialVersionUID = 886852790530090694L;
-    //author: Jinyu Liu, Louis Scheffer V in group 0110 for CSC207H1 summer 2020 project
-    //All methods written by Jinyu Liu except where noted
 
-    //UseCasePack.UserManager
-    private ArrayList<User> listUsers = new ArrayList<User>(); // List of all users - Jinyu
-
-
-    //UseCasePack.UserManager -- all thresholds are admin things really, rethink this?
+    private ArrayList<User> listUsers = new ArrayList<User>(); // List of all users
     private int incompleteThreshold = 3; // # of incomplete trades allowed
 
     private UserValidateLoginStrategy strategy = new UserValidateLoginStrategy();
