@@ -57,8 +57,7 @@ public class SuggestTrade {
         coolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg,activeUser, userToView, frame,
-                        true, true);
+                new ViewUserMenu(useCases, cpg,activeUser, userToView, frame, true, true);
             }
         });
     }

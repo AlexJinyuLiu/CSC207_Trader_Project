@@ -66,7 +66,7 @@ public class FreezeMenu {
                 public void actionPerformed(ActionEvent e) {
                     cpg.adminActions.freezeUser(viewedUser, 0, useCases.adminUser);
                     JOptionPane.showMessageDialog(window, cpg.menuPresenter.getText(Frame.ADMINFREEZE, 8));
-                    AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, window);
+                    new AdminActionsMenu(useCases, cpg, window);
                 }
             });
         }

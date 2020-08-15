@@ -83,7 +83,7 @@ public class ViewItemValidationRequests {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, cpg, frame);
+                new AdminActionsMenu(useCases, cpg, frame);
             }
         });
     }

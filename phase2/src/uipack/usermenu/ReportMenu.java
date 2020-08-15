@@ -43,7 +43,7 @@ public class ReportMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ConfirmTradeMenu confirmTradeMenu = new ConfirmTradeMenu(useCases, cpg, username, frame, trade);
+                new ConfirmTradeMenu(useCases, cpg, username, frame, trade);
             }
         });
         reportButton.addActionListener(new ActionListener() {
@@ -55,7 +55,7 @@ public class ReportMenu {
                 TradingUser user2 = (TradingUser) useCases.userManager.searchUser(trade.getUsername2());
                 useCases.tradeCreator.afterReportTrade(useCases.userManager, trade, user1, user2);
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 15));
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
         });
     }

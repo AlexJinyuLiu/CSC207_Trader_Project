@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //code adapted from https://docs.oracle.com/javase/tutorial/uiswing/components/list.html
-
+/**
+ * A UI class that allows Admin to remove items from a User's wishlist
+ */
 public class RemoveItemFromUserWishlist {
     private JPanel mainPanel;
     private JLabel menuTitle;

@@ -43,14 +43,14 @@ public class ViewPendingTrades {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewConfirmedTradeToUndo viewConfirmedTradeToUndo = new ViewConfirmedTradeToUndo(useCases, controllerPresenterGrouper,
+                new ViewConfirmedTradeToUndo(useCases, controllerPresenterGrouper,
                         (Integer) pendingTrades.getSelectedItem(), window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EditTrade editTrade = new EditTrade(useCases, controllerPresenterGrouper, window);
+                new EditTrade(useCases, controllerPresenterGrouper, window);
             }
         });
     }

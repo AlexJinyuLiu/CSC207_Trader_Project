@@ -9,6 +9,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * A UI class that displays the stats of a User
+ */
 public class ViewUserStatsAsAdmin {
     private JButton backButton;
     private JPanel mainPanel;
@@ -54,7 +57,7 @@ public class ViewUserStatsAsAdmin {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewingUserAsAdmin viewingUserAsAdmin = new ViewingUserAsAdmin(useCases, cpg, username, frame);
+                new ViewingUserAsAdmin(useCases, cpg, username, frame);
             }
         });
     }

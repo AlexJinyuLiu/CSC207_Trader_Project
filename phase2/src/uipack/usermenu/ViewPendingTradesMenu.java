@@ -67,7 +67,7 @@ public class ViewPendingTradesMenu {
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
                     Trade trade = useCases.tradeCreator.searchTrades(tradeID);
-                    ConfirmTradeMenu confirmTradeMenu = new ConfirmTradeMenu(useCases, controllerPresenterGrouper, username, frame, trade);
+                    new ConfirmTradeMenu(useCases, controllerPresenterGrouper, username, frame, trade);
                 }
 
             }
@@ -75,8 +75,7 @@ public class ViewPendingTradesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
-                        controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
     }

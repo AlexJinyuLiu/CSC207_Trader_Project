@@ -67,7 +67,7 @@ public class ViewItemsAndWishlistMenu {
             thing.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ItemViewer a = new ItemViewer(useCases, cpg, username, item.getId(), frame);
+                    new ItemViewer(useCases, cpg, username, item.getId(), frame);
                 }
             });
         }
@@ -76,9 +76,7 @@ public class ViewItemsAndWishlistMenu {
         createItemValidationRequestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent){
-
-                CreateItemValidationRequestMenu createItemValidationRequestMenu =
-                        new CreateItemValidationRequestMenu(useCases, cpg, username, frame);
+                new CreateItemValidationRequestMenu(useCases, cpg, username, frame);
             }
         });
 
@@ -87,7 +85,7 @@ public class ViewItemsAndWishlistMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
         });
     }

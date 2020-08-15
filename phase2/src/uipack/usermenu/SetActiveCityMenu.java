@@ -57,8 +57,7 @@ public class SetActiveCityMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
-                        username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
 
         });

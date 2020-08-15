@@ -53,8 +53,7 @@ public class ViewAllUsers {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 3));
                 }
                 else {
-                    ViewingUserAsAdmin viewingUserAsAdmin = new ViewingUserAsAdmin(useCases, cpg,
-                            (String) selectUserBox.getSelectedItem(), frame);
+                    new ViewingUserAsAdmin(useCases, cpg, (String) selectUserBox.getSelectedItem(), frame);
                 }
             }
         });

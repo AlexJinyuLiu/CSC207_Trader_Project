@@ -54,9 +54,6 @@ public class CreateUserAccount {
         for (MetroArea Area : MetroArea.values()){
             citySelectorComboBox.addItem(Area);
         }
-//        citySelectorComboBox.addItem(MetroArea.TORONTO);
-//        citySelectorComboBox.addItem(MetroArea.OTTAWA);
-//        citySelectorComboBox.addItem(MetroArea.VANCOUVER);
 
         back.addActionListener(new ActionListener() {
             @Override
@@ -108,13 +105,13 @@ public class CreateUserAccount {
 
                 //"Account successfully created."
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEUSERACCOUNT, 12));
+                frame.setTitle(cpg.menuPresenter.getText(Frame.LOGIN, 5) + " " + username);
+
                 if (isBrowsingUser){
-                    BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases,
-                            cpg, username, frame);
+                    new BrowsingUserActionsMenu(useCases, cpg, username, frame);
 
                 } else {
-                    TradingUserActionsMenu tradingUserActionsMenu = new
-                            TradingUserActionsMenu(useCases, cpg, username, frame);
+                    new TradingUserActionsMenu(useCases, cpg, username, frame);
                 }
 
 

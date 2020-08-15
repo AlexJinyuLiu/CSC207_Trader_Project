@@ -23,7 +23,7 @@ public class Main {
             }
         });
 
-        LanguagePrompt languagePrompt = new LanguagePrompt(useCases, controllerPresenters, frame);
+        new LanguagePrompt(useCases, controllerPresenters, frame);
 
     }
 }

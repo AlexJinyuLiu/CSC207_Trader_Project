@@ -37,7 +37,7 @@ public class LanguagePrompt {
             public void actionPerformed(ActionEvent actionEvent) {
                 GuiMenuPresenter menuPresenter = new GuiMenuPresenter("English");
                 controllerPresenterGrouper.setMenuPresenter(menuPresenter);
-                MainMenu mainMenu = new MainMenu(useCases, controllerPresenterGrouper, frame);
+                new MainMenu(useCases, controllerPresenterGrouper, frame);
             }
         });
         frenchButton.addActionListener(new ActionListener() {
@@ -45,7 +45,7 @@ public class LanguagePrompt {
             public void actionPerformed(ActionEvent actionEvent) {
                 GuiMenuPresenter menuPresenter = new GuiMenuPresenter("French");
                 controllerPresenterGrouper.setMenuPresenter(menuPresenter);
-                MainMenu mainMenu = new MainMenu(useCases, controllerPresenterGrouper, frame);
+                new MainMenu(useCases, controllerPresenterGrouper, frame);
             }
         });
     }

@@ -138,6 +138,8 @@ Envoyer le message
 Articles disponibles
 Liste de souhaits
 Ajouter un article à votre liste de souhaits
+Vous êtes inactif! Changez votre statut en actif pour créer des demandes d'échange.
+Vous êtes CONGELÉ! demande de dégeler pour plus de fonctionnalités!
 }
 
 
@@ -188,6 +190,7 @@ La demande de validation d'article a été créée avec succès!
 Cadre{ - SETACTIVECITYMENU
 Arrière
 Définir la ville
+Ville définie avec succès.
 }
 
 Cadre{ - SENDTRADEREQUESTMENU
@@ -340,4 +343,7 @@ Supprimer du menu d'inventaire
 Élément que vous souhaitez supprimer:
 Soumettre
 Arrière
+L'article a bien été supprimé de son inventaire
+Le champ ID de l'article n'est pas valide. Veuillez saisir l'ID de l'élément que vous souhaitez supprimer.
+L'article n'a pas pu être supprimé de son inventaire
 }

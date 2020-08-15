@@ -139,7 +139,6 @@ public class UserManager implements Serializable{
         user.removeItemFromWishList(itemName);
     }
 
-    public void reExchangeItems(){}
 
     /**
      * @param user the trading user that the items in their wishlist are being inspected

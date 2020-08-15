@@ -60,8 +60,7 @@ public class ViewDeadTradesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
-                        controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
     }

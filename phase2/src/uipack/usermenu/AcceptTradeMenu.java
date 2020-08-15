@@ -87,15 +87,15 @@ public class AcceptTradeMenu {
         user2Value.setText(trade.getUsername2());
         meetingLocationValue.setText(trade.getMeetingPlace());
         meetingTimeValue.setText(trade.getTimeOfTrade().toString());
-        Boolean user1AcceptedBoolean = (Boolean)trade.getUser1AcceptedRequest();
-        Boolean user2AcceptedBoolean = (Boolean)trade.getUser2AcceptedRequest();
+        Boolean user1AcceptedBoolean = trade.getUser1AcceptedRequest();
+        Boolean user2AcceptedBoolean = trade.getUser2AcceptedRequest();
         user1AcceptedValue.setText(user1AcceptedBoolean.toString());
         user2AcceptedValue.setText(user2AcceptedBoolean.toString());
-        Integer user1NumRequests = (Integer) trade.getUser1NumRequests();
-        Integer user2NumRequests = (Integer) trade.getUser2NumRequests();
+        Integer user1NumRequests =  trade.getUser1NumRequests();
+        Integer user2NumRequests =  trade.getUser2NumRequests();
         user1EditsMadeValue.setText(user1NumRequests.toString());
         user2EditsMadeValue.setText(user2NumRequests.toString());
-        Integer tradeID = (Integer) trade.getTradeID();
+        Integer tradeID =  trade.getTradeID();
         tradeIDValue.setText(tradeID.toString());
 
         ArrayList<String> itemsToUser1 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser2ToUser1(trade, useCases.itemManager);
@@ -136,19 +136,19 @@ public class AcceptTradeMenu {
                     JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 14));
                     controllerPresenterGrouper.tradingUserActions.acceptTradeRequest(useCases.tradeCreator, username, trade);
                 }
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewTradeRequestsMenu viewTradeRequestsMenu = new ViewTradeRequestsMenu(useCases, controllerPresenterGrouper, username, frame);
+                new ViewTradeRequestsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         counterOfferButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                CounterOfferMenu counterOfferMenu = new CounterOfferMenu(useCases, controllerPresenterGrouper, username, frame, trade);
+                new CounterOfferMenu(useCases, controllerPresenterGrouper, username, frame, trade);
             }
         });
         declineTradeButton.addActionListener(new ActionListener() {
@@ -156,7 +156,7 @@ public class AcceptTradeMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.ACCEPTTRADEMENU, 15));
                 controllerPresenterGrouper.tradingUserActions.declineTradeRequest(useCases.tradeCreator, trade);
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
     }

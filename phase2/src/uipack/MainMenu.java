@@ -36,22 +36,21 @@ public class MainMenu {
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                CreateUserAccount createAccount = new CreateUserAccount(useCases, controllerPresenterGrouper, frame);
+                new CreateUserAccount(useCases, controllerPresenterGrouper, frame);
 
             }
         });
         loginAsUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(useCases, controllerPresenterGrouper, false, frame);
+                new Login(useCases, controllerPresenterGrouper, false, frame);
 
             }
         });
         loginAsAdminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Login login = new Login(useCases, controllerPresenterGrouper, true, frame);
-
+                new Login(useCases, controllerPresenterGrouper, true, frame);
             }
         });
     }

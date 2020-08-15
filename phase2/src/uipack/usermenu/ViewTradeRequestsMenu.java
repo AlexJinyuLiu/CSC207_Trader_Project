@@ -67,7 +67,8 @@ public class ViewTradeRequestsMenu {
                             controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 2));
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
-                    AcceptTradeMenu acceptTradeMenu = new AcceptTradeMenu(useCases,controllerPresenterGrouper, username, frame, useCases.tradeCreator.searchTrades(tradeID));
+                    new AcceptTradeMenu(useCases,controllerPresenterGrouper, username, frame,
+                            useCases.tradeCreator.searchTrades(tradeID));
                 }
 
             }
@@ -75,8 +76,7 @@ public class ViewTradeRequestsMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
-                        controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
     }

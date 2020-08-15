@@ -47,7 +47,7 @@ public class ViewCurrentThresholds {
         BackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
+                new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
             }
         });
     }

@@ -90,7 +90,7 @@ public class GuiMenuPresenter {
      */
     public String getText(Frame frameIndex, int lineIndex, Object variable) {
         try {
-            return menusMap.get(frameIndex).get(lineIndex) + variable;
+            return menusMap.get(frameIndex).get(lineIndex) + " " + variable;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index out of bound, menu either doesn't exist in file or the line doesn't exist :/");
             e.printStackTrace();

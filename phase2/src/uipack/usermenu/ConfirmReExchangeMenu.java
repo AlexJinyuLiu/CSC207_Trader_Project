@@ -116,7 +116,7 @@ public class ConfirmReExchangeMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         confirmReExchangeButton.addActionListener(new ActionListener() {
@@ -124,13 +124,13 @@ public class ConfirmReExchangeMenu {
             public void actionPerformed(ActionEvent actionEvent) {
                 JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMREEXCHANGEMENU, 13));
                 controllerPresenterGrouper.tradingUserActions.confirmReExchange(useCases.userManager, useCases.tradeCreator, useCases.itemManager, trade, username);
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         reportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ReportMenu reportMenu = new ReportMenu(useCases, controllerPresenterGrouper, username, frame, trade);
+                new ReportMenu(useCases, controllerPresenterGrouper, username, frame, trade);
             }
         });
     }

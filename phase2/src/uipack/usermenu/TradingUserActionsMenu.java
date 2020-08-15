@@ -39,7 +39,6 @@ public class TradingUserActionsMenu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setTitle("Logged in : " + username);
 
         viewItemsAndWishlistButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 0));
         viewOtherUsersButton.setText(cpg.menuPresenter.getText(Frame.TRADINGUSERACTIONSMENU, 1));
@@ -64,39 +63,39 @@ public class TradingUserActionsMenu {
         viewItemsAndWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-            ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(useCases, cpg, username,
+            new ViewItemsAndWishlistMenu(useCases, cpg, username,
                     frame);
             }
         });
         viewUserStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewUserStatsMenu viewUserStatsMenu = new ViewUserStatsMenu(useCases, cpg, username, frame);
+                new ViewUserStatsMenu(useCases, cpg, username, frame);
             }
         });
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame,
+                new ViewAllOtherUsersMenu(useCases, cpg, username, frame,
                         true);
             }
         });
         viewPendingTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(useCases, cpg, username, frame);
+                new ViewPendingTradesMenu(useCases, cpg, username, frame);
             }
         });
         setActiveStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveStatusMenu setActiveStatusMenu = new SetActiveStatusMenu(useCases, cpg, username, frame);
+                new SetActiveStatusMenu(useCases, cpg, username, frame);
             }
         });
         changeMetropolitanAreaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                SetActiveCityMenu setActiveCityMenu = new SetActiveCityMenu(useCases, cpg, username, frame);
+                new SetActiveCityMenu(useCases, cpg, username, frame);
             }
         });
         requestUnfreezeButton.addActionListener(new ActionListener() {
@@ -114,32 +113,31 @@ public class TradingUserActionsMenu {
         viewDeadTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewDeadTradesMenu viewDeadTradesMenu = new ViewDeadTradesMenu(useCases, cpg, username, frame);
+                new ViewDeadTradesMenu(useCases, cpg, username, frame);
             }
         });
         viewPendingTradeRequestsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewTradeRequestsMenu viewTradeRequestsMenu = new ViewTradeRequestsMenu(useCases,
-                        cpg, username, frame);
+                new ViewTradeRequestsMenu(useCases, cpg, username, frame);
             }
         });
         viewActiveTempTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewActiveTemporaryTradesMenu viewActiveTemporaryTradesMenu = new ViewActiveTemporaryTradesMenu(useCases, cpg, username, frame);
+                new ViewActiveTemporaryTradesMenu(useCases, cpg, username, frame);
             }
         });
         viewCompletedTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewCompletedTradesMenu viewCompletedTradesMenu = new ViewCompletedTradesMenu(useCases, cpg, username, frame);
+                new ViewCompletedTradesMenu(useCases, cpg, username, frame);
             }
         });
         viewMessagesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewMessagesMenu viewMessagesMenu = new ViewMessagesMenu(useCases, cpg, username, frame);
+                new ViewMessagesMenu(useCases, cpg, username, frame);
             }
         });
     }

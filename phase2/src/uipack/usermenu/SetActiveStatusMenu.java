@@ -38,8 +38,7 @@ public class SetActiveStatusMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
-                        username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
         });
         setStatusButton.addActionListener(new ActionListener() {
@@ -59,8 +58,7 @@ public class SetActiveStatusMenu {
                 else {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SETACTIVESTATUSMENU,5));
                 }
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
-                        username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
         });
     }

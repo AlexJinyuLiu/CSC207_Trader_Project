@@ -43,13 +43,13 @@ public class ViewCompletedToUndo {
                 cpg.adminActions.editTrade(tradeID, "Completed", useCases.adminUser, useCases.tradeCreator,
                         useCases.itemManager, useCases.userManager);
                 JOptionPane.showMessageDialog(window, cpg.menuPresenter.getText(Frame.ADMINVIEWTRADE, 8));
-                AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, window);
+                new AdminActionsMenu(useCases, cpg, window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewCompletedTrades viewCompletedTrades = new ViewCompletedTrades(useCases, cpg, window);
+                new ViewCompletedTrades(useCases, cpg, window);
             }
         });
     }

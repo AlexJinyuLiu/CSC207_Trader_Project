@@ -64,8 +64,7 @@ public class CreateItemValidationRequestMenu {
                         itemDescription);
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.CREATEITEMVALIDATIONREQUESTMENU,
                         6));
-                ViewItemsAndWishlistMenu viewItemsAndWishlistMenu = new ViewItemsAndWishlistMenu(useCases, cpg,
-                        username, frame);
+                new ViewItemsAndWishlistMenu(useCases, cpg, username, frame);
             }
         });
         backButton.addActionListener(new ActionListener() {

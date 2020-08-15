@@ -46,9 +46,9 @@ public class ViewMessagesMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (useCases.userManager.searchUser(username) instanceof TradingUser) {
-                    TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                    new TradingUserActionsMenu(useCases, cpg, username, frame);
                 } else {
-                    BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases, cpg, username, frame);
+                    new BrowsingUserActionsMenu(useCases, cpg, username, frame);
                 }
             }
         });

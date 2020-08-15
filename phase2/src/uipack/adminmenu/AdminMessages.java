@@ -44,7 +44,7 @@ public class AdminMessages {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, frame);
+                    new AdminActionsMenu(useCases, cpg, frame);
             }
         });
     }

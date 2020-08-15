@@ -39,7 +39,8 @@ public class ViewActiveTemporaryTradesMenu {
         selectItemButton.setText(controllerPresenterGrouper.menuPresenter.getText(Frame.VIEWPENDINGTRADESMENU, 1));
 
 
-        ArrayList<TemporaryTrade> trades = controllerPresenterGrouper.tradingUserActions.searchCurrentTempTradesUser(username, useCases.userManager, useCases.tradeCreator);
+        ArrayList<TemporaryTrade> trades = controllerPresenterGrouper.tradingUserActions.searchCurrentTempTradesUser(username,
+                useCases.userManager, useCases.tradeCreator);
         for (Trade trade: trades){
             JLabel generatedLabel = new JLabel();
             generatedLabel.setText(controllerPresenterGrouper.menuPresenter.printTradeToString(useCases.itemManager,trade));
@@ -57,7 +58,7 @@ public class ViewActiveTemporaryTradesMenu {
                 }else{
                     int tradeID = (int) pendingTradesBox.getSelectedItem();
                     TemporaryTrade temporaryTrade = (TemporaryTrade) controllerPresenterGrouper.tradingUserActions.searchTrade(useCases.tradeCreator, tradeID);
-                    ConfirmReExchangeMenu confirmReExchangeMenu = new ConfirmReExchangeMenu(useCases, controllerPresenterGrouper, username, frame, temporaryTrade);
+                    new ConfirmReExchangeMenu(useCases, controllerPresenterGrouper, username, frame, temporaryTrade);
                 }
 
             }
@@ -65,8 +66,7 @@ public class ViewActiveTemporaryTradesMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases,
-                        controllerPresenterGrouper, username, frame);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
     }

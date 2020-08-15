@@ -42,28 +42,28 @@ public class EditTrade {
         viewPendingTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewPendingRequests viewPendingRequests = new ViewPendingRequests(useCases, controllerPresenterGrouper,
+                new ViewPendingRequests(useCases, controllerPresenterGrouper,
                         window);
             }
         });
         viewConfirmedTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewPendingTrades viewPendingTrades = new ViewPendingTrades(useCases, controllerPresenterGrouper,
+                new ViewPendingTrades(useCases, controllerPresenterGrouper,
                         window);
             }
         });
         viewCompletedTradesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewCompletedTrades viewCompletedTrades = new ViewCompletedTrades(useCases, controllerPresenterGrouper,
+                new ViewCompletedTrades(useCases, controllerPresenterGrouper,
                         window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminActionsMenu adminOptions = new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
+                new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
             }
         });
     }

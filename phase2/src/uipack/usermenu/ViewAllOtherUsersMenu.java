@@ -60,7 +60,8 @@ public class ViewAllOtherUsersMenu {
         selectUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if ((selectUserBox.getSelectedItem()).equals(cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 0))) {
+                if ((selectUserBox.getSelectedItem()).equals(cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU,
+                        0))) {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.VIEWALLOTHERUSERSMENU, 3));
                 }
                 else {

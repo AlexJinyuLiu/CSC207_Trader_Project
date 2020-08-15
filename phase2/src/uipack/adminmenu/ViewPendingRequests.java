@@ -42,14 +42,14 @@ public class ViewPendingRequests {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewRequestToUndo viewRequestToUndo = new ViewRequestToUndo(useCases, controllerPresenterGrouper,
-                        (Integer) pendingRequests.getSelectedItem(), window);
+                new ViewRequestToUndo(useCases, controllerPresenterGrouper, (Integer) pendingRequests.getSelectedItem(),
+                        window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EditTrade editTrade = new EditTrade(useCases, controllerPresenterGrouper, window);
+                new EditTrade(useCases, controllerPresenterGrouper, window);
             }
         });
     }

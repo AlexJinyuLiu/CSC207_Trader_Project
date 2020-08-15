@@ -138,6 +138,8 @@ Send Message
 Available Items
 Wishlist
 Add Item to Your Wishlist
+You are inactive! Change your status to active to create trade requests.
+You are FROZEN! request to unfreeze for more functionality!
 }
 
 

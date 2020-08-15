@@ -71,9 +71,10 @@ public class CounterOfferMenu {
                     JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 3));
                     return;
                 }
-                cpg.tradingUserActions.counterTradeRequest(useCases.tradeCreator, username, trade, meetingPlace.getText(), timeOfTrade);
+                cpg.tradingUserActions.counterTradeRequest(useCases.tradeCreator, username, trade, meetingPlace.getText(),
+                        timeOfTrade);
                 JOptionPane.showMessageDialog(frame, cpg.menuPresenter.getText(Frame.SENDTRADEREQUESTMENU, 4));
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, cpg, username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
         });
 

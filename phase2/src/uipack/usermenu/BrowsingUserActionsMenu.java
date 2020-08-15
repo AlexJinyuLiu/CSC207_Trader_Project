@@ -40,13 +40,13 @@ public class BrowsingUserActionsMenu {
         viewOtherUsersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewAllOtherUsersMenu viewOtherUsersMenu = new ViewAllOtherUsersMenu(useCases, cpg, username, frame, false);
+                new ViewAllOtherUsersMenu(useCases, cpg, username, frame, false);
             }
         });
         viewMessagesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewMessagesMenu viewMessagesMenu = new ViewMessagesMenu(useCases, cpg, username, frame);
+                new ViewMessagesMenu(useCases, cpg, username, frame);
             }
         });
     }

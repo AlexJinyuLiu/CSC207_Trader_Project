@@ -11,7 +11,7 @@ language: English or French. You will then be able to create a new user account 
 
 INSTRUCTIONS:
 1. Go to Intellij and click run. Navigate to then click 'main'.
-        (a) If an error occurs at this point, it is likely caused by corrupted .ser files.
+        (a) If an error occurs at this point, it is likely caused by corrupted .ser files in group_0110/phase2/data/
             You may need to delete all .ser files and run the program again.
 2. At this point, you can:
           (a) Create an account.

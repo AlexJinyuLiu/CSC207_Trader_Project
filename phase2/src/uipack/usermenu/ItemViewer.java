@@ -45,14 +45,13 @@ public class ItemViewer {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 useCases.itemManager.removeFromInventory(itemId);
-                ViewItemsAndWishlistMenu viewitems = new ViewItemsAndWishlistMenu(useCases, cpg, username, frame);
+                new ViewItemsAndWishlistMenu(useCases, cpg, username, frame);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                TradingUserActionsMenu userActionsMenu = new TradingUserActionsMenu(useCases, cpg,
-                        username, frame);
+                new TradingUserActionsMenu(useCases, cpg, username, frame);
             }
         });
     }

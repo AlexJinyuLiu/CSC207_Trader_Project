@@ -50,7 +50,8 @@ public class Login extends JFrame{
                     AdminActions adminActions = new AdminActions();
                     validLogin = adminActions.validateLogin(useCases.adminUser, user, pass);
                     if (validLogin) {
-                        AdminActionsMenu adminOptionsMenu = new AdminActionsMenu(useCases,
+                        frame.setTitle(cpg.menuPresenter.getText(Frame.LOGIN, 5) +" "+ user);
+                        new AdminActionsMenu(useCases,
                                 cpg, frame);
                          /*cpg.adminAlertManager.handleAlertQueue(cpg.menuPresenter, useCases.adminUser,
                                 useCases.userManager, useCases.tradeCreator, useCases.itemManager,
@@ -71,12 +72,11 @@ public class Login extends JFrame{
                                 useCases.tradeCreator, useCases.itemManager, useCases.userManager.getUserAlerts(user));
 
                          */
+                        frame.setTitle(cpg.menuPresenter.getText(Frame.LOGIN, 5) + " "+ user);
                         if (isTradingUser) {
-                            TradingUserActionsMenu tradingUserActionsMenu =
-                                    new TradingUserActionsMenu(useCases, cpg, user, frame);
+                            new TradingUserActionsMenu(useCases, cpg, user, frame);
                         } else{
-                            BrowsingUserActionsMenu browsingUserActionsMenu = new BrowsingUserActionsMenu(useCases, cpg,
-                                    user, frame);
+                            new BrowsingUserActionsMenu(useCases, cpg, user, frame);
                         }
 
                     } else {
@@ -88,7 +88,7 @@ public class Login extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                MainMenu mainMenu = new MainMenu(useCases, cpg, frame);
+                new MainMenu(useCases, cpg, frame);
             }
         });
     }

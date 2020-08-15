@@ -32,7 +32,8 @@ public class ViewConfirmedTradeToUndo {
         window.setVisible(true);
 
         tradeLabel.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWTRADE, 4));
-        tradeToString.setText(cpg.menuPresenter.printTradeToString(useCases.itemManager, useCases.tradeCreator.searchTrades(tradeID)));
+        tradeToString.setText(cpg.menuPresenter.printTradeToString(useCases.itemManager,
+                useCases.tradeCreator.searchTrades(tradeID)));
         undoButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWTRADE, 6));
         backButton.setText(cpg.menuPresenter.getText(Frame.ADMINVIEWTRADE, 7));
         undoButton.addActionListener(new ActionListener() {
@@ -42,13 +43,13 @@ public class ViewConfirmedTradeToUndo {
                 cpg.adminActions.editTrade(tradeID, "Confirmed", useCases.adminUser, useCases.tradeCreator,
                         useCases.itemManager, useCases.userManager);
                 JOptionPane.showMessageDialog(window, cpg.menuPresenter.getText(Frame.ADMINVIEWTRADE, 8));
-                AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, cpg, window);
+                new AdminActionsMenu(useCases, cpg, window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewPendingTrades viewPendingTrades = new ViewPendingTrades(useCases, cpg, window);
+                new ViewPendingTrades(useCases, cpg, window);
             }
         });
     }

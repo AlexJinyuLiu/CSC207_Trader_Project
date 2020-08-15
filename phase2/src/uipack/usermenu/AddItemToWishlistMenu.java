@@ -88,7 +88,7 @@ public class AddItemToWishlistMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg, activeUsername, userToViewUsername, frame,
+                new ViewUserMenu(useCases, cpg, activeUsername, userToViewUsername, frame,
                         isTradingUserViewing, isUserToViewTrading);
             }
         });

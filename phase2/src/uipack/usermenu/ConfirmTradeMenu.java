@@ -75,17 +75,19 @@ public class ConfirmTradeMenu {
         user2Value.setText(trade.getUsername2());
         meetingLocationValue.setText(trade.getMeetingPlace());
         meetingTimeValue.setText(trade.getTimeOfTrade().toString());
-        Boolean user1ConfirmedBoolean = (Boolean)trade.getUser1TradeConfirmed();
-        Boolean user2ConfirmedBoolean = (Boolean)trade.getUser2TradeConfirmed();
+        Boolean user1ConfirmedBoolean = trade.getUser1TradeConfirmed();
+        Boolean user2ConfirmedBoolean = trade.getUser2TradeConfirmed();
         user1ConfirmedValue.setText(user1ConfirmedBoolean.toString());
         user2ConfirmedValue.setText(user2ConfirmedBoolean.toString());
-        Integer user1NumRequests = (Integer) trade.getUser1NumRequests();
-        Integer user2NumRequests = (Integer) trade.getUser2NumRequests();
-        Integer tradeID = (Integer) trade.getTradeID();
+        Integer user1NumRequests =  trade.getUser1NumRequests();
+        Integer user2NumRequests =  trade.getUser2NumRequests();
+        Integer tradeID =  trade.getTradeID();
         tradeIDValue.setText(tradeID.toString());
 
-        ArrayList<String> itemsToUser1 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser2ToUser1(trade, useCases.itemManager);
-        ArrayList<String> itemsToUser2 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser1ToUser2(trade, useCases.itemManager);
+        ArrayList<String> itemsToUser1 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser2ToUser1(trade,
+                useCases.itemManager);
+        ArrayList<String> itemsToUser2 = controllerPresenterGrouper.menuPresenter.getItemStringsFromUser1ToUser2(trade,
+                useCases.itemManager);
 
 
         StringBuilder itemsToU1SB = new StringBuilder();
@@ -121,22 +123,24 @@ public class ConfirmTradeMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewPendingTradesMenu viewPendingTradesMenu = new ViewPendingTradesMenu(useCases, controllerPresenterGrouper,
+                new ViewPendingTradesMenu(useCases, controllerPresenterGrouper,
                         username, frame);
             }
         });
         confirmTradeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(Frame.CONFIRMTRADEMENU, 13));
-                controllerPresenterGrouper.tradingUserActions.confirmTrade(useCases.userManager, useCases.tradeCreator, useCases.itemManager, trade, username);
-                TradingUserActionsMenu tradingUserActionsMenu = new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
+                JOptionPane.showMessageDialog(frame, controllerPresenterGrouper.menuPresenter.getText(
+                        Frame.CONFIRMTRADEMENU, 13));
+                controllerPresenterGrouper.tradingUserActions.confirmTrade(useCases.userManager, useCases.tradeCreator,
+                        useCases.itemManager, trade, username);
+                new TradingUserActionsMenu(useCases, controllerPresenterGrouper, username, frame);
             }
         });
         reportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ReportMenu reportMenu = new ReportMenu(useCases, controllerPresenterGrouper, username, frame, trade);
+                new ReportMenu(useCases, controllerPresenterGrouper, username, frame, trade);
             }
         });
     }

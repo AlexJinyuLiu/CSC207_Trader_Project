@@ -71,31 +71,31 @@ public class ViewingUserAsAdmin {
         removeAnItemFromWishlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemoveItemFromUserWishlist removefromwishes = new RemoveItemFromUserWishlist(useCases, cpg, usernameViewed, window);
+                new RemoveItemFromUserWishlist(useCases, cpg, usernameViewed, window);
             }
         });
         removeAnItemFromInventoryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RemoveItemFromUserInventory removeInventoryItem = new RemoveItemFromUserInventory(useCases, cpg, usernameViewed, window);
+                new RemoveItemFromUserInventory(useCases, cpg, usernameViewed, window);
             }
         });
         freezeUserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FreezeMenu freezeMenu = new FreezeMenu(useCases, cpg, usernameViewed, window);
+                new FreezeMenu(useCases, cpg, usernameViewed, window);
             }
         });
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewAllUsers viewAllUsers = new ViewAllUsers(useCases, cpg, true, window);
+                new ViewAllUsers(useCases, cpg, true, window);
             }
         });
         viewStatsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ViewUserStatsAsAdmin viewUserStatsAsAdmin = new ViewUserStatsAsAdmin(useCases, cpg, usernameViewed, window);
+                new ViewUserStatsAsAdmin(useCases, cpg, usernameViewed, window);
             }
         });
     }

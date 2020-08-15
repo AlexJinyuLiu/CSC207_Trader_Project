@@ -75,7 +75,7 @@ public class SendTradeRequestMenu {
         int n1 = 0;
         for (Item item: user2Items){
             JCheckBox box = new JCheckBox();
-            box.setText(item.getName() + " - " + item.getId());
+            box.setText(item.getName() + " -- itemID: " + item.getId());
             user2ItemsCheckboxes.add(box);
             c.gridy = n1;
             n1++;
@@ -86,7 +86,7 @@ public class SendTradeRequestMenu {
         c.gridy = 0;
         for (Item item: user1Items){
             JCheckBox box = new JCheckBox();
-            box.setText(item.getName() + " - " + item.getId());
+            box.setText(item.getName() + " -- itemID: " + item.getId());
             user1ItemsCheckboxes.add(box);
             c.gridy = n2;
             n2++;
@@ -141,8 +141,7 @@ public class SendTradeRequestMenu {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ViewUserMenu viewUserMenu = new ViewUserMenu(useCases, cpg, activeUsername,
-                        userToViewUsername, frame, true,
+                new ViewUserMenu(useCases, cpg, activeUsername, userToViewUsername, frame, true,
                         useCases.userManager.searchUser(userToViewUsername) instanceof TradingUser);
             }
         });

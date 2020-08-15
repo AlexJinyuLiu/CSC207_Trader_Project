@@ -100,8 +100,8 @@ public class SetThresholds {
                             controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 8));
                     return;
                 }
-                controllerPresenterGrouper.adminActions.changeBorrowLendThreshold(useCases.adminUser, useCases.tradeCreator,
-                        borrowLentThresh);
+                controllerPresenterGrouper.adminActions.changeBorrowLendThreshold(useCases.adminUser,
+                        useCases.tradeCreator, borrowLentThresh);
                 JOptionPane.showMessageDialog(window,
                         controllerPresenterGrouper.menuPresenter.getText(Frame.THRESHOLDSMENU, 6));
             }
@@ -110,7 +110,7 @@ public class SetThresholds {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AdminActionsMenu adminActionsMenu = new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
+                new AdminActionsMenu(useCases, controllerPresenterGrouper, window);
             }
         });
     }
