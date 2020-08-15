@@ -73,11 +73,10 @@ public class RemoveItemFromUserInventory {
                         JOptionPane.showMessageDialog(window,
                                 cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 4));
                         return;
+                    }
                 }
-                    JOptionPane.showMessageDialog(window,
-                                cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 5));
-
-                }
+                JOptionPane.showMessageDialog(window,
+                        cpg.menuPresenter.getText(Frame.REMOVEFROMINVENTORY, 5));
             }
         });
         backButton.addActionListener(new ActionListener() {

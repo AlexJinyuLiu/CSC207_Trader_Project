@@ -123,7 +123,6 @@ public class GuiMenuPresenter {
      * @param trade a trade object
      */
     public String printTradeToString(ItemManager itemManager, Trade trade) {
-        System.out.println(trade);
         StringBuilder acc = new StringBuilder();
         acc.append("<html>");
         acc.append(getText(Frame.TRADETOSTRING, 1, trade.getUsername1()));

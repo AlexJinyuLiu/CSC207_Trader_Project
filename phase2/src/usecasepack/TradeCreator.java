@@ -415,13 +415,13 @@ public class TradeCreator implements Serializable {
         for (Trade trade : pendingTrades) {
             for (int itemID : trade.getItemIDsSentToUser1()) {
                 Item item = itemManager.searchItem(itemID);
-                if (item == null) {
+                if (!item.getOwner().equals(trade.getUsername2())) {
                     tradesToRemove.add(trade);
                 }
             }
             for (int itemID : trade.getItemIDsSentToUser2()) {
                 Item item = itemManager.searchItem(itemID);
-                if (item == null) {
+                if (!item.getOwner().equals(trade.getUsername1())) {
                     tradesToRemove.add(trade);
                 }
             }
@@ -443,18 +443,17 @@ public class TradeCreator implements Serializable {
         for (Trade trade : pendingTradeRequests) {
             for (int itemID : trade.getItemIDsSentToUser1()) {
                 Item item = itemManager.searchItem(itemID);
-                if (item == null) {
+                if (!item.getOwner().equals(trade.getUsername2())) {
                     tradesToRemove.add(trade);
                 }
             }
             for (int itemID : trade.getItemIDsSentToUser2()) {
                 Item item = itemManager.searchItem(itemID);
-                if (item == null) {
+                if (!item.getOwner().equals(trade.getUsername1())) {
                     tradesToRemove.add(trade);
                 }
             }
         }
-
         for (Trade trade: tradesToRemove){
             pendingTradeRequests.remove(trade);
             tradeHistories.addDeadTrade(trade);
